@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E17 Studio — East London Websites. Live in 48 Hours.</title>
+<meta name="description" content="Professional websites for East London businesses. See your preview before you pay. From £149. Live in 48 hours.">
+<meta name="keywords" content="web design Walthamstow, websites East London, E17 web design, local business website, cheap website London">
+<link rel="canonical" href="https://e17studio.com">
+<meta property="og:title" content="E17 Studio — East London Websites">
+<meta property="og:description" content="We build websites for East London businesses. See your preview first, pay after.">
+<meta property="og:url" content="https://e17studio.com">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "E17 Studio",
+  "url": "https://e17studio.com",
+  "description": "Web design agency for East London businesses. Professional websites built in 48 hours.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "214 Fleeming Road",
+    "addressLocality": "London",
+    "postalCode": "E17 5EU",
+    "addressCountry": "GB"
+  },
+  "email": "hello@e17studios.com",
+  "areaServed": "East London"
+}
+</script>
+<style>
+/* ─── Reset ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ─── Design System ─── */
+:root {
+  --bg: #0d0d0d;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.14);
+  --red: #e63946;
+  --red-dim: rgba(230,57,70,0.12);
+  --red-glow: rgba(230,57,70,0.22);
+  --green: #22c55e;
+  --text: #f0ede8;
+  --muted: #888880;
+  --dim: #3a3a38;
+  --radius: 14px;
+}
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ─── Layout wrapper ─── */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+/* ─── Nav ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 0 28px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.35s, border-color 0.35s;
+}
+.nav.scrolled {
+  background: rgba(13,13,13,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 1px;
+}
+.nav-logo .bracket { color: var(--red); }
+.nav-logo .num { color: var(--text); }
+.nav-logo .word { color: var(--muted); font-weight: 500; margin-left: 4px; }
+.nav-links {
+  display: flex; align-items: center; gap: 6px;
+  list-style: none;
+}
+.nav-links a {
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-wa {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--red);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.nav-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--red-glow); }
+.nav-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+.nav-mobile-btn { display: none; background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+
+/* ─── Hero ─── */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 28px 80px;
+  max-width: 1120px; margin: 0 auto;
+  position: relative;
+}
+
+/* Atmospheric red glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 10%; right: -10%;
+  width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+  background: radial-gradient(circle, rgba(230,57,70,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: -1;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red-dim);
+  border: 1px solid rgba(230,57,70,0.28);
+  color: var(--red);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  width: fit-content;
+  opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+
+.hero-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(3.2rem, 8.5vw, 7rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  margin-bottom: 28px;
+  max-width: 860px;
+}
+.hero-line { display: block; overflow: hidden; }
+.hero-line-inner {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slideUp 0.7s ease forwards;
+}
+.hero-line:nth-child(1) .hero-line-inner { animation-delay: 0.2s; }
+.hero-line:nth-child(2) .hero-line-inner { animation-delay: 0.35s; }
+.hero-line:nth-child(3) .hero-line-inner { animation-delay: 0.5s; color: var(--red); }
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 44px;
+  opacity: 0; animation: fadeUp 0.7s 0.65s ease forwards;
+}
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  opacity: 0; animation: fadeUp 0.7s 0.78s ease forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--red);
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 24px var(--red-glow);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 44px var(--red-glow); }
+.btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+  padding: 15px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+/* ─── Ticker ─── */
+.ticker {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  animation: marquee 35s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  white-space: nowrap;
+  padding: 0 28px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  display: flex; align-items: center; gap: 10px;
+}
+.ticker-item.live { color: var(--text); }
+.ticker-item.live::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(34,197,94,0.25);
+  flex-shrink: 0;
+}
+.ticker-sep { color: var(--dim); flex-shrink: 0; }
+
+/* ─── Proof bar ─── */
+.proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.proof-item {
+  background: var(--bg);
+  padding: 48px 32px;
+  text-align: center;
+}
+.proof-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.proof-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+}
+
+/* ─── Section shell ─── */
+.section { padding: 100px 28px; max-width: 1120px; margin: 0 auto; }
+.section.full { max-width: none; padding-left: 0; padding-right: 0; }
+.section.dark { background: var(--surface); }
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.07;
+  margin-bottom: 18px;
+}
+.section-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* ─── Showcase ─── */
+.showcase-wrap { padding: 100px 28px; background: var(--surface); }
+.showcase-header { max-width: 1120px; margin: 0 auto 56px; }
+.showcase-grid {
+  max-width: 1120px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.showcase-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+}
+.showcase-card:hover {
+  border-color: rgba(230,57,70,0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+}
+.browser-bar {
+  background: var(--surface2);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+.browser-dot:nth-child(1) { background: #ff5f57; }
+.browser-dot:nth-child(2) { background: #ffbd2e; }
+.browser-dot:nth-child(3) { background: #28c840; }
+.browser-url {
+  flex: 1;
+  margin-left: 8px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  color: var(--dim);
+  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.showcase-iframe {
+  width: 100%;
+  height: 260px;
+  border: 0;
+  pointer-events: none;
+  display: block;
+  background: var(--surface);
+}
+.showcase-footer {
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.showcase-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 2px; }
+.showcase-type { font-size: 0.75rem; color: var(--muted); }
+.pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pill-live { background: rgba(34,197,94,0.15); color: var(--green); }
+.pill-demo { background: var(--red-dim); color: var(--red); }
+
+/* ─── Process ─── */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 72px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.process-step {
+  padding: 44px 36px;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.process-step:last-child { border-right: none; }
+.process-step:hover { background: var(--surface); }
+.process-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.process-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.process-body { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+.process-note {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--red);
+}
+
+/* ─── Package card ─── */
+.package-wrap { padding: 100px 28px; background: var(--surface); }
+.package-inner { max-width: 1120px; margin: 0 auto; }
+.package-header-row { margin-bottom: 56px; text-align: center; }
+
+.package-card {
+  max-width: 660px; margin: 0 auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.package-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), #ff6b6b);
+}
+.pkg-header {
+  padding: 40px 40px 28px;
+  border-bottom: 1px solid var(--border);
+}
+.pkg-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+.pkg-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+.pkg-desc { font-size: 0.875rem; color: var(--muted); }
+
+.pkg-price-row {
+  padding: 32px 40px;
+  display: flex; align-items: flex-end; gap: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.price-main {
+  display: flex; align-items: baseline; gap: 2px;
+  line-height: 1;
+}
+.price-symbol {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--red);
+}
+.price-digits {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--red);
+  line-height: 1;
+}
+.price-was {
+  font-size: 1.1rem;
+  color: var(--dim);
+  text-decoration: line-through;
+  padding-bottom: 6px;
+}
+.price-note {
+  margin-left: auto;
+  text-align: right;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-bottom: 4px;
+}
+.price-note strong { color: var(--green); font-weight: 600; }
+
+.pkg-features {
+  padding: 28px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.pkg-feat {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+.pkg-feat::before {
+  content: '✓';
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.pkg-cta { padding: 24px 40px; }
+.btn-full {
+  display: block;
+  width: 100%;
+  background: var(--red);
+  color: #fff;
+  padding: 17px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px var(--red-glow);
+}
+.btn-full:hover { transform: translateY(-2px); box-shadow: 0 12px 36px var(--red-glow); }
+
+/* ─── Final CTA ─── */
+.cta-section {
+  padding: 130px 28px;
+  text-align: center;
+  position: relative; overflow: hidden;
+  max-width: 1120px; margin: 0 auto;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw; height: 70vh; max-height: 600px;
+  background: radial-gradient(ellipse at center, rgba(230,57,70,0.08) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cta-eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 20px; }
+.cta-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.0;
+  margin-bottom: 14px;
+}
+.cta-title em { font-style: italic; color: var(--red); }
+.cta-sub { font-size: 1.05rem; color: var(--muted); max-width: 420px; margin: 0 auto 52px; line-height: 1.65; }
+.cta-btns { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #22c55e;
+  color: #fff;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 24px rgba(34,197,94,0.3);
+}
+.btn-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(34,197,94,0.4); }
+.btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
+.btn-email {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn-email:hover { border-color: var(--text); color: var(--text); }
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 28px;
+}
+.footer-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-brand {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 1rem; letter-spacing: -0.02em;
+}
+.footer-brand .bracket { color: var(--red); }
+.footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+.footer-info { font-size: 0.78rem; color: var(--muted); line-height: 1.65; text-align: center; }
+.footer-links { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.footer-link { font-size: 0.78rem; color: var(--muted); transition: color 0.2s; }
+.footer-link:hover { color: var(--text); }
+
+/* ─── Floating WhatsApp ─── */
+.fab {
+  position: fixed;
+  bottom: 26px; right: 26px;
+  z-index: 400;
+  width: 58px; height: 58px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(34,197,94,0.4);
+  transition: all 0.25s;
+}
+.fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(34,197,94,0.5); }
+.fab::before {
+  content: '';
+  position: absolute; inset: -7px;
+  border-radius: 50%;
+  border: 2px solid rgba(34,197,94,0.35);
+  animation: fabRing 2.5s ease-out infinite;
+}
+.fab svg { width: 28px; height: 28px; fill: #fff; }
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes fabRing {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .proof { grid-template-columns: repeat(2, 1fr); }
+  .showcase-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  .pkg-features { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 110px 20px 60px; }
+  .proof-item { padding: 32px 16px; }
+  .proof-num { font-size: 2.4rem; }
+  .section { padding: 72px 20px; }
+  .showcase-wrap { padding: 72px 20px; }
+  .package-wrap { padding: 72px 20px; }
+  .cta-section { padding: 90px 20px; }
+  .pkg-header { padding: 28px 24px 20px; }
+  .pkg-price-row { padding: 20px 24px; flex-wrap: wrap; }
+  .pkg-features { padding: 20px 24px; }
+  .pkg-cta { padding: 20px 24px; }
+  .price-digits { font-size: 3.8rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-links { align-items: flex-start; }
+  .cta-btns { flex-direction: column; width: 100%; }
+  .btn-wa, .btn-email { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <span class="bracket">[</span><span class="num">E17</span><span class="bracket">]</span><span class="word">Studio</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="nav-wa" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+    WhatsApp Us
+  </a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-badge">
+    <span class="hero-badge-dot" aria-hidden="true"></span>
+    E17 Based &nbsp;·&nbsp; East London Focused
+  </div>
+
+  <h1 class="hero-title">
+    <span class="hero-line"><span class="hero-line-inner">East London</span></span>
+    <span class="hero-line"><span class="hero-line-inner">businesses.</span></span>
+    <span class="hero-line"><span class="hero-line-inner">Online now.</span></span>
+  </h1>
+
+  <p class="hero-sub">
+    We build fast, professional websites for local businesses —&nbsp;
+    <strong>see your preview before you pay</strong> a single penny.
+    Live in 48 hours.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="btn-primary" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      Get Your Free Preview
+    </a>
+    <a href="mailto:hello@e17studios.com" class="btn-ghost">Email Us Instead &rarr;</a>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item live">Vanish Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Lagoon Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Apollo Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Supreme Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Ready to be next?</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">No website yet? We'll fix that.</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Built in E17 for E17</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Free preview · No commitment</span>
+    <span class="ticker-sep">—</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item live">Vanish Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Lagoon Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Apollo Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item live">Supreme Dry Cleaners</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Ready to be next?</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">No website yet? We'll fix that.</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Built in E17 for E17</span>
+    <span class="ticker-sep">—</span>
+    <span class="ticker-item">Free preview · No commitment</span>
+    <span class="ticker-sep">—</span>
+  </div>
+</div>
+
+<!-- ─── PROOF BAR ─── -->
+<div class="proof">
+  <div class="proof-item reveal">
+    <div class="proof-num">6+</div>
+    <div class="proof-label">Local Clients</div>
+  </div>
+  <div class="proof-item reveal">
+    <div class="proof-num">48h</div>
+    <div class="proof-label">Build Time</div>
+  </div>
+  <div class="proof-item reveal">
+    <div class="proof-num">£0</div>
+    <div class="proof-label">Upfront Cost</div>
+  </div>
+  <div class="proof-item reveal">
+    <div class="proof-num">5★</div>
+    <div class="proof-label">Client Satisfaction</div>
+  </div>
+</div>
+
+<!-- ─── SHOWCASE ─── -->
+<div class="showcase-wrap" id="work">
+  <div class="showcase-header reveal">
+    <div class="section-eyebrow">Real Work</div>
+    <h2 class="section-title">Sites we've built.<br>Right here in E17.</h2>
+    <p class="section-sub">These businesses had no website. Now they do — and they're winning customers because of it.</p>
+  </div>
+
+  <div class="showcase-grid">
+    <div class="showcase-card reveal">
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <span class="browser-url">vanish-dry-cleaners.co.uk</span>
+      </div>
+      <iframe class="showcase-iframe" src="https://leathalobaidi.com/e17/vanish-dry-cleaners/" loading="lazy" title="Vanish Dry Cleaners website"></iframe>
+      <div class="showcase-footer">
+        <div>
+          <div class="showcase-name">Vanish Dry Cleaners</div>
+          <div class="showcase-type">Dry Cleaner · Walthamstow</div>
+        </div>
+        <span class="pill pill-live">Live</span>
+      </div>
+    </div>
+
+    <div class="showcase-card reveal">
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <span class="browser-url">afterswalthamstow.co.uk</span>
+      </div>
+      <iframe class="showcase-iframe" src="https://leathalobaidi.com/e17/afters-ice-cream/" loading="lazy" title="Afters Ice Cream website"></iframe>
+      <div class="showcase-footer">
+        <div>
+          <div class="showcase-name">Afters Ice Cream</div>
+          <div class="showcase-type">Ice Cream Parlour · Forest Road</div>
+        </div>
+        <span class="pill pill-demo">Demo</span>
+      </div>
+    </div>
+
+    <div class="showcase-card reveal">
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <span class="browser-url">walthamstowcycles.co.uk</span>
+      </div>
+      <iframe class="showcase-iframe" src="https://leathalobaidi.com/e17/" loading="lazy" title="Walthamstow Cycles website"></iframe>
+      <div class="showcase-footer">
+        <div>
+          <div class="showcase-name">Walthamstow Cycles</div>
+          <div class="showcase-type">Bike Shop · Walthamstow</div>
+        </div>
+        <span class="pill pill-demo">Demo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROCESS ─── -->
+<section class="section" id="process">
+  <div class="reveal">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">From nothing to online<br>in three steps.</h2>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-num">01</div>
+      <h3 class="process-title">You reach out</h3>
+      <p class="process-body">Send a WhatsApp or email. Tell us your business name and what you do. Takes under two minutes — we handle the rest.</p>
+      <span class="process-note">→ 2 minutes</span>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-num">02</div>
+      <h3 class="process-title">We build it</h3>
+      <p class="process-body">We design and build your full website within 48 hours. You receive a live preview link — no payment required at this stage.</p>
+      <span class="process-note">→ 48 hours</span>
+    </div>
+    <div class="process-step reveal">
+      <div class="process-num">03</div>
+      <h3 class="process-title">You decide</h3>
+      <p class="process-body">Happy with it? We hand it over for £149. Not happy? You owe us absolutely nothing. Zero risk, zero catch, zero pressure.</p>
+      <span class="process-note">→ Zero risk</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PACKAGE ─── -->
+<div class="package-wrap" id="pricing">
+  <div class="package-inner">
+    <div class="package-header-row reveal">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">One price. Everything included.</h2>
+      <p class="section-sub" style="margin: 0 auto;">No subscriptions. No hidden fees. No surprises.</p>
+    </div>
+
+    <div class="package-card reveal">
+      <div class="pkg-header">
+        <div class="pkg-eyebrow">The Genesis Package</div>
+        <div class="pkg-name">Complete Digital Foundation</div>
+        <div class="pkg-desc">Everything your business needs to go from zero to a professional online presence.</div>
+      </div>
+
+      <div class="pkg-price-row">
+        <div class="price-main">
+          <span class="price-symbol">£</span>
+          <span class="price-digits">149</span>
+        </div>
+        <span class="price-was">£499+</span>
+        <div class="price-note">
+          One-time payment<br>
+          <strong>Free preview first</strong>
+        </div>
+      </div>
+
+      <div class="pkg-features">
+        <div class="pkg-feat">Professional 6-page website</div>
+        <div class="pkg-feat">3 custom logo concepts</div>
+        <div class="pkg-feat">Mobile-optimised design</div>
+        <div class="pkg-feat">Google Maps integration</div>
+        <div class="pkg-feat">Contact form + click-to-call</div>
+        <div class="pkg-feat">Google-ready SEO setup</div>
+        <div class="pkg-feat">Social media links</div>
+        <div class="pkg-feat">48-hour delivery</div>
+        <div class="pkg-feat">CMS training session</div>
+        <div class="pkg-feat">1 month free support</div>
+        <div class="pkg-feat">Unlimited revisions</div>
+        <div class="pkg-feat">Free preview — no upfront cost</div>
+      </div>
+
+      <div class="pkg-cta">
+        <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27m+interested+in+the+Genesis+Package+for+my+business" class="btn-full" target="_blank" rel="noopener">
+          Get Started — WhatsApp Us Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="cta-section">
+  <p class="cta-eyebrow">No commitment · Free preview</p>
+  <h2 class="cta-title reveal">Your site could be live<br><em>by Thursday.</em></h2>
+  <p class="cta-sub reveal">Join East London businesses already winning new customers every day online.</p>
+  <div class="cta-btns reveal">
+    <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="btn-wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      WhatsApp Us Now
+    </a>
+    <a href="mailto:hello@e17studios.com" class="btn-email">
+      Or email hello@e17studios.com
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span class="bracket">[</span>E17<span class="bracket">]</span>Studio</div>
+      <div class="footer-tagline">East London's Local Web Agency</div>
+    </div>
+    <div class="footer-info">
+      214 Fleeming Road, London E17 5EU<br>
+      <a href="mailto:hello@e17studios.com" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">hello@e17studios.com</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://leathalobaidi.com/e17/" class="footer-link">View portfolio &rarr;</a>
+      <a href="https://leathalobaidi.com/e17/e17studios/genesis-package.html" class="footer-link">Genesis Package &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Floating WhatsApp ─── -->
+<a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="fab" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<script>
+  // Scroll-aware nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Stagger siblings
+        const parent = entry.target.parentElement;
+        const siblings = [...parent.querySelectorAll('.reveal:not(.in)')];
+        const idx = siblings.indexOf(entry.target);
+        const delay = Math.max(0, idx * 0.1);
+        entry.target.style.transitionDelay = delay + 's';
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
