@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message Sent — E17 Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --yellow: #EDCF5D;
+  --red: #C43B2E;
+  --dark: #2A1F14;
+  --cream: #FFF8E7;
+  --cream-card: #FFFDF5;
+  --text-muted: #7A6B55;
+  --border-dark: rgba(42,31,20,0.2);
+  --font-display: 'Anybody', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--yellow);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+/* Nav */
+.nav {
+  padding: 0 28px; height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--yellow);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.4rem;
+  color: var(--red); letter-spacing: -0.03em; font-stretch: 110%;
+}
+
+/* Main */
+.main {
+  min-height: calc(100vh - 72px - 80px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 28px;
+}
+.card {
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
+  border-radius: 24px;
+  padding: 56px 48px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: popIn 0.5s ease forwards;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--red);
+}
+
+.check-circle {
+  width: 72px; height: 72px;
+  background: rgba(196,59,46,0.1);
+  border: 3px solid var(--red);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px;
+  animation: scaleIn 0.4s 0.1s ease both;
+}
+.check-circle svg {
+  width: 32px; height: 32px;
+  stroke: var(--red);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 900; font-stretch: 110%;
+  letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 14px;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+.subtitle {
+  font-size: 1rem; color: var(--text-muted);
+  line-height: 1.7; margin-bottom: 36px;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+.subtitle strong { color: var(--dark); font-weight: 600; }
+
+.actions {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.4s ease both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: var(--cream);
+  padding: 14px 30px; border-radius: 50px;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 0.9rem;
+  box-shadow: 0 4px 0 #9B2D22;
+  transition: all 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #9B2D22; }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 2px solid var(--border-dark);
+  color: var(--text-muted);
+  padding: 12px 24px; border-radius: 50px;
+  font-weight: 600; font-size: 0.88rem;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--dark); color: var(--dark); }
+
+.reply-note {
+  margin-top: 28px;
+  font-size: 0.78rem; color: var(--text-muted);
+  animation: fadeUp 0.5s 0.5s ease both;
+}
+.reply-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  background: #1a8f40;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+  animation: pulse 2s infinite;
+}
+
+/* Footer */
+.footer {
+  background: var(--dark); padding: 24px 28px;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.78rem; text-align: center;
+}
+.footer a { color: var(--yellow); }
+
+/* Animations */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (max-width: 480px) {
+  .card { padding: 40px 24px; }
+  .actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">e17studio</a>
+</nav>
+
+<main class="main">
+  <div class="card">
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <h1 class="title">Message sent!</h1>
+    <p class="subtitle">
+      Thanks for reaching out. We've got your message and will get back to you at your email address — usually within <strong>a couple of hours</strong>.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="btn-primary">Back to home &rarr;</a>
+      <a href="/portfolio/" class="btn-secondary">View our work</a>
+    </div>
+
+    <p class="reply-note">
+      <span class="reply-dot"></span>
+      We typically reply within 2 hours during the day.
+    </p>
+  </div>
+</main>
+
+<footer class="footer">
+  &copy; 2026 E17 Studio &middot; <a href="mailto:hello@e17studio.com">hello@e17studio.com</a>
+</footer>
+
+</body>
+</html>
