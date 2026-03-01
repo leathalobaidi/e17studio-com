@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E17 Studio — Websites for East London Businesses</title>
-<meta name="description" content="We build websites for East London businesses. See your preview before you pay. From £149. Live in 48 hours. No faff.">
+<meta name="description" content="We build websites for East London businesses. See your preview before you pay. From £249. Live in 48 hours. No faff.">
 <meta name="keywords" content="web design Walthamstow, websites East London, E17 web design, local business website, cheap website London">
 <link rel="canonical" href="https://e17studio.com">
 <meta property="og:title" content="E17 Studio — Websites for East London">
-<meta property="og:description" content="We build websites for East London businesses. See your preview first, pay after. From £149.">
+<meta property="og:description" content="We build websites for East London businesses. See your preview first, pay after. From £249.">
 <meta property="og:url" content="https://e17studio.com">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,13 +21,6 @@
   "name": "E17 Studio",
   "url": "https://e17studio.com",
   "description": "Web design studio for East London businesses. Professional websites built in 48 hours.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "214 Fleeming Road",
-    "addressLocality": "London",
-    "postalCode": "E17 5EU",
-    "addressCountry": "GB"
-  },
   "email": "hello@e17studio.com",
   "areaServed": "East London"
 }
@@ -368,8 +361,9 @@ img { max-width: 100%; display: block; }
 .showcase-header { margin-bottom: 56px; }
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
+  max-width: 760px;
 }
 
 .showcase-card {
@@ -435,6 +429,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.05em;
 }
 .pill-live { background: rgba(34,160,70,0.15); color: #1a8f40; }
+.pill-white { background: rgba(42,31,20,0.08); color: var(--dark); }
 .pill-demo { background: var(--red-dim); color: var(--red); }
 
 /* ─── Process ─── */
@@ -495,7 +490,7 @@ img { max-width: 100%; display: block; }
 }
 /* Decorative background text */
 .package-wrap::before {
-  content: '£149';
+  content: '£249';
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -614,6 +609,14 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
+.pkg-domain-note {
+  padding: 14px 40px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border-dark);
+  line-height: 1.5;
+}
+.pkg-domain-note strong { color: var(--dark); }
 .pkg-cta { padding: 24px 40px; }
 .btn-full {
   display: block;
@@ -802,7 +805,7 @@ img { max-width: 100%; display: block; }
   .nav-links { display: none; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(2) { border-right: none; }
-  .showcase-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .showcase-grid { grid-template-columns: 1fr; max-width: 460px; }
   .process-grid { grid-template-columns: 1fr; }
   .process-step { border-right: none; border-bottom: 2px solid var(--border-dark); }
   .process-step:last-child { border-bottom: none; }
@@ -822,6 +825,7 @@ img { max-width: 100%; display: block; }
   .pkg-header { padding: 28px 24px 20px; }
   .pkg-price-row { padding: 20px 24px; flex-wrap: wrap; }
   .pkg-features { padding: 20px 24px; }
+  .pkg-domain-note { padding: 12px 24px; }
   .pkg-cta { padding: 20px 24px; }
   .price-digits { font-size: 3.8rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -832,11 +836,6 @@ img { max-width: 100%; display: block; }
 </style>
 </head>
 <body>
-
-<!-- ─── ANNOUNCEMENT BAR ─── -->
-<div class="announce">
-  Now booking March projects. <a href="#contact">Get in touch &rarr;</a>
-</div>
 
 <!-- ─── NAV ─── -->
 <nav class="nav" id="nav">
@@ -859,9 +858,9 @@ img { max-width: 100%; display: block; }
   </div>
 
   <h1 class="hero-title">
-    <span class="hero-line"><span class="hero-line-inner">We make</span></span>
+    <span class="hero-line"><span class="hero-line-inner">We build</span></span>
     <span class="hero-line"><span class="hero-line-inner">websites.</span></span>
-    <span class="hero-line"><span class="hero-line-inner">They slap.</span></span>
+    <span class="hero-line"><span class="hero-line-inner">Proper ones.</span></span>
   </h1>
 
   <p class="hero-sub">
@@ -936,22 +935,7 @@ img { max-width: 100%; display: block; }
           <div class="showcase-name">Vanish Dry Cleaners</div>
           <div class="showcase-type">Dry Cleaner &middot; Walthamstow</div>
         </div>
-        <span class="pill pill-live">Live</span>
-      </div>
-    </div>
-
-    <div class="showcase-card reveal">
-      <div class="browser-bar">
-        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
-        <span class="browser-url">afterswalthamstow.co.uk</span>
-      </div>
-      <iframe class="showcase-iframe" src="https://leathalobaidi.com/e17/afters-ice-cream/" loading="lazy" title="Afters Ice Cream website"></iframe>
-      <div class="showcase-footer">
-        <div>
-          <div class="showcase-name">Afters Ice Cream</div>
-          <div class="showcase-type">Ice Cream &middot; Forest Road</div>
-        </div>
-        <span class="pill pill-demo">Demo</span>
+        <span class="pill pill-white">Live</span>
       </div>
     </div>
 
@@ -960,7 +944,7 @@ img { max-width: 100%; display: block; }
         <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
         <span class="browser-url">walthamstowcycles.co.uk</span>
       </div>
-      <iframe class="showcase-iframe" src="https://leathalobaidi.com/e17/" loading="lazy" title="Walthamstow Cycles website"></iframe>
+      <iframe class="showcase-iframe" src="https://leathalobaidi.com/walthamstow-cycles/" loading="lazy" title="Walthamstow Cycles website"></iframe>
       <div class="showcase-footer">
         <div>
           <div class="showcase-name">Walthamstow Cycles</div>
@@ -995,7 +979,7 @@ img { max-width: 100%; display: block; }
     <div class="process-step reveal">
       <div class="process-num">03</div>
       <h3 class="process-title">You decide</h3>
-      <p class="process-body">Love it? It's yours for £149. Not feeling it? You owe us nothing. Zero risk, zero catch, zero awkwardness.</p>
+      <p class="process-body">Love it? It's yours for £249. Not feeling it? You owe us nothing. Zero risk, zero catch, zero awkwardness.</p>
       <span class="process-note">&rarr; Zero risk</span>
     </div>
   </div>
@@ -1020,7 +1004,7 @@ img { max-width: 100%; display: block; }
       <div class="pkg-price-row">
         <div class="price-main">
           <span class="price-symbol">£</span>
-          <span class="price-digits">149</span>
+          <span class="price-digits">249</span>
         </div>
         <span class="price-was">£499+</span>
         <div class="price-note">
@@ -1030,18 +1014,19 @@ img { max-width: 100%; display: block; }
       </div>
 
       <div class="pkg-features">
-        <div class="pkg-feat">Professional 6-page website</div>
+        <div class="pkg-feat">Professional landing page</div>
         <div class="pkg-feat">3 custom logo concepts</div>
         <div class="pkg-feat">Mobile-optimised design</div>
         <div class="pkg-feat">Google Maps integration</div>
-        <div class="pkg-feat">Contact form + click-to-call</div>
+        <div class="pkg-feat">Contact form</div>
         <div class="pkg-feat">Google-ready SEO setup</div>
+        <div class="pkg-feat">Click-to-call + WhatsApp</div>
         <div class="pkg-feat">Social media links</div>
-        <div class="pkg-feat">48-hour delivery</div>
-        <div class="pkg-feat">CMS training session</div>
-        <div class="pkg-feat">1 month free support</div>
-        <div class="pkg-feat">Unlimited revisions</div>
+        <div class="pkg-feat">5 revisions</div>
         <div class="pkg-feat">Free preview &mdash; no upfront cost</div>
+      </div>
+      <div class="pkg-domain-note">
+        <strong>Domain name:</strong> We help you register your .co.uk or .com &mdash; you pay for it directly (typically £10-15/year).
       </div>
 
       <div class="pkg-cta">
@@ -1067,8 +1052,7 @@ img { max-width: 100%; display: block; }
 
       <div class="contact-detail">
         <p><strong>E17 Studio</strong></p>
-        <p>214 Fleeming Road</p>
-        <p>London E17 5EU</p>
+        <p>Walthamstow, East London</p>
         <p style="margin-top: 12px; color: var(--red); font-weight: 500;">We typically reply within 2 hours.</p>
       </div>
     </div>
@@ -1105,12 +1089,12 @@ img { max-width: 100%; display: block; }
       <div class="footer-tagline">East London's Web Studio</div>
     </div>
     <div class="footer-info">
-      214 Fleeming Road, London E17 5EU<br>
+      Walthamstow, East London<br>
       <a href="mailto:hello@e17studio.com">hello@e17studio.com</a>
     </div>
     <div class="footer-links">
-      <a href="https://leathalobaidi.com/e17/" class="footer-link">View portfolio &rarr;</a>
-      <a href="https://leathalobaidi.com/e17/e17studios/genesis-package.html" class="footer-link">Genesis Package &rarr;</a>
+      <a href="#work" class="footer-link">Our work &rarr;</a>
+      <a href="#contact" class="footer-link">Get in touch &rarr;</a>
     </div>
   </div>
 </footer>
