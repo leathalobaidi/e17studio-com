@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E17 Studio — East London Websites. Live in 48 Hours.</title>
-<meta name="description" content="Professional websites for East London businesses. See your preview before you pay. From £149. Live in 48 hours.">
+<title>E17 Studio — Websites for East London Businesses</title>
+<meta name="description" content="We build websites for East London businesses. See your preview before you pay. From £149. Live in 48 hours. No faff.">
 <meta name="keywords" content="web design Walthamstow, websites East London, E17 web design, local business website, cheap website London">
 <link rel="canonical" href="https://e17studio.com">
-<meta property="og:title" content="E17 Studio — East London Websites">
-<meta property="og:description" content="We build websites for East London businesses. See your preview first, pay after.">
+<meta property="og:title" content="E17 Studio — Websites for East London">
+<meta property="og:description" content="We build websites for East London businesses. See your preview first, pay after. From £149.">
 <meta property="og:url" content="https://e17studio.com">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "E17 Studio",
   "url": "https://e17studio.com",
-  "description": "Web design agency for East London businesses. Professional websites built in 48 hours.",
+  "description": "Web design studio for East London businesses. Professional websites built in 48 hours.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "214 Fleeming Road",
@@ -28,36 +28,45 @@
     "postalCode": "E17 5EU",
     "addressCountry": "GB"
   },
-  "email": "hello@e17studios.com",
+  "email": "hello@e17studio.com",
   "areaServed": "East London"
 }
 </script>
 <style>
+/* ═══════════════════════════════════════════════
+   E17 STUDIO — Sunshine Brutalist v2
+   Yellow canvas · Red ink · Chunky type · Playful
+   ═══════════════════════════════════════════════ */
+
 /* ─── Reset ─── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* ─── Design System ─── */
+/* ─── Design Tokens ─── */
 :root {
-  --bg: #0d0d0d;
-  --surface: #141414;
-  --surface2: #1c1c1c;
-  --border: rgba(255,255,255,0.07);
-  --border-bright: rgba(255,255,255,0.14);
-  --red: #e63946;
-  --red-dim: rgba(230,57,70,0.12);
-  --red-glow: rgba(230,57,70,0.22);
-  --green: #22c55e;
-  --text: #f0ede8;
-  --muted: #888880;
-  --dim: #3a3a38;
-  --radius: 14px;
+  --yellow: #EDCF5D;
+  --yellow-light: #F5E08A;
+  --yellow-dark: #D4B84A;
+  --red: #C43B2E;
+  --red-light: #D9564A;
+  --red-dim: rgba(196,59,46,0.1);
+  --dark: #2A1F14;
+  --dark-soft: #3D2F20;
+  --cream: #FFF8E7;
+  --cream-card: #FFFDF5;
+  --text-on-yellow: #2A1F14;
+  --text-muted: #7A6B55;
+  --border-warm: rgba(42,31,20,0.1);
+  --border-dark: rgba(42,31,20,0.2);
+  --radius: 16px;
+  --font-display: 'Anybody', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 }
 
 body {
-  font-family: 'Instrument Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--font-body);
+  background: var(--yellow);
+  color: var(--text-on-yellow);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -66,280 +75,318 @@ body {
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
-/* ─── Layout wrapper ─── */
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+/* ─── Layout ─── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+/* ─── Announcement Bar ─── */
+.announce {
+  background: var(--dark);
+  color: var(--yellow);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.announce a {
+  color: var(--yellow-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 6px;
+}
+.announce a:hover { color: #fff; }
 
 /* ─── Nav ─── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: sticky; top: 0;
   z-index: 500;
   padding: 0 28px;
-  height: 68px;
+  height: 72px;
   display: flex; align-items: center; justify-content: space-between;
-  transition: background 0.35s, border-color 0.35s;
+  background: var(--yellow);
+  transition: box-shadow 0.3s;
 }
 .nav.scrolled {
-  background: rgba(13,13,13,0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 20px rgba(42,31,20,0.08);
 }
 .nav-logo {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-  display: flex; align-items: center; gap: 1px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--red);
+  letter-spacing: -0.03em;
+  font-stretch: 110%;
 }
-.nav-logo .bracket { color: var(--red); }
-.nav-logo .num { color: var(--text); }
-.nav-logo .word { color: var(--muted); font-weight: 500; margin-left: 4px; }
 .nav-links {
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 4px;
   list-style: none;
 }
 .nav-links a {
-  padding: 7px 14px;
-  font-size: 0.85rem;
+  padding: 8px 16px;
+  font-size: 0.88rem;
   font-weight: 500;
-  color: var(--muted);
-  border-radius: 8px;
+  color: var(--text-muted);
+  border-radius: 10px;
   transition: color 0.2s, background 0.2s;
 }
-.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-.nav-wa {
-  display: flex; align-items: center; gap: 8px;
+.nav-links a:hover { color: var(--dark); background: rgba(42,31,20,0.06); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
   background: var(--red);
-  color: #fff;
-  padding: 9px 20px;
+  color: var(--cream);
+  padding: 10px 24px;
   border-radius: 50px;
   font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.2s;
+  font-size: 0.88rem;
+  transition: all 0.25s;
+  border: 2px solid var(--red);
 }
-.nav-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--red-glow); }
-.nav-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
-.nav-mobile-btn { display: none; background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+.nav-cta:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(42,31,20,0.2);
+}
 
 /* ─── Hero ─── */
 .hero {
-  min-height: 100svh;
+  min-height: 88vh;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 28px 80px;
-  max-width: 1120px; margin: 0 auto;
+  padding: 80px 28px 60px;
+  max-width: 1100px; margin: 0 auto;
   position: relative;
 }
 
-/* Atmospheric red glow */
-.hero::before {
-  content: '';
+/* Decorative asterisk */
+.hero-deco {
   position: absolute;
-  top: 10%; right: -10%;
-  width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
-  background: radial-gradient(circle, rgba(230,57,70,0.1) 0%, transparent 65%);
-  pointer-events: none; z-index: -1;
+  top: 14%; right: 8%;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  color: var(--red);
+  opacity: 0.12;
+  line-height: 1;
+  animation: spinSlow 20s linear infinite;
+  pointer-events: none;
+  user-select: none;
 }
 
-.hero-badge {
+.hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--red-dim);
-  border: 1px solid rgba(230,57,70,0.28);
+  border: 2px solid rgba(196,59,46,0.2);
   color: var(--red);
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 50px;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   width: fit-content;
-  opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards;
+  opacity: 0; animation: popIn 0.5s 0.1s ease forwards;
 }
-.hero-badge-dot {
-  width: 6px; height: 6px;
+.hero-tag-dot {
+  width: 7px; height: 7px;
   background: var(--red);
   border-radius: 50%;
-  animation: blink 2s ease infinite;
 }
 
 .hero-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(3.2rem, 8.5vw, 7rem);
-  font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.045em;
-  margin-bottom: 28px;
-  max-width: 860px;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 9vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-stretch: 105%;
+  margin-bottom: 32px;
+  max-width: 900px;
 }
-.hero-line { display: block; overflow: hidden; }
+.hero-line {
+  display: block;
+  overflow: hidden;
+}
 .hero-line-inner {
   display: block;
   opacity: 0;
-  transform: translateY(100%);
-  animation: slideUp 0.7s ease forwards;
+  transform: translateY(110%);
+  animation: slideUp 0.65s ease forwards;
 }
-.hero-line:nth-child(1) .hero-line-inner { animation-delay: 0.2s; }
-.hero-line:nth-child(2) .hero-line-inner { animation-delay: 0.35s; }
-.hero-line:nth-child(3) .hero-line-inner { animation-delay: 0.5s; color: var(--red); }
+.hero-line:nth-child(1) .hero-line-inner { animation-delay: 0.15s; }
+.hero-line:nth-child(2) .hero-line-inner { animation-delay: 0.3s; }
+.hero-line:nth-child(3) .hero-line-inner {
+  animation-delay: 0.45s;
+  color: var(--red);
+}
 
 .hero-sub {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--muted);
-  max-width: 480px;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 500px;
   line-height: 1.7;
-  margin-bottom: 44px;
-  opacity: 0; animation: fadeUp 0.7s 0.65s ease forwards;
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.6s 0.6s ease forwards;
 }
-.hero-sub strong { color: var(--text); font-weight: 600; }
+.hero-sub strong { color: var(--dark); font-weight: 600; }
 
 .hero-actions {
-  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
-  opacity: 0; animation: fadeUp 0.7s 0.78s ease forwards;
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+  opacity: 0; animation: fadeUp 0.6s 0.75s ease forwards;
 }
 
-.btn-primary {
+/* ─── Buttons ─── */
+.btn-big {
   display: inline-flex; align-items: center; gap: 10px;
   background: var(--red);
-  color: #fff;
-  padding: 15px 32px;
+  color: var(--cream);
+  padding: 17px 36px;
   border-radius: 50px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   transition: all 0.25s;
-  box-shadow: 0 4px 24px var(--red-glow);
+  box-shadow: 0 4px 0 #9B2D22, 0 6px 20px rgba(196,59,46,0.25);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 44px var(--red-glow); }
-.btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-big:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #9B2D22, 0 14px 40px rgba(196,59,46,0.3);
+}
+.btn-big:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0 #9B2D22, 0 3px 10px rgba(196,59,46,0.2);
+}
 
-.btn-ghost {
+.btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--border-bright);
-  color: var(--muted);
+  border: 2px solid var(--border-dark);
+  color: var(--text-muted);
   padding: 15px 28px;
   border-radius: 50px;
-  font-weight: 500;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.92rem;
   transition: all 0.2s;
 }
-.btn-ghost:hover { border-color: var(--text); color: var(--text); }
+.btn-outline:hover { border-color: var(--dark); color: var(--dark); }
 
 /* ─── Ticker ─── */
 .ticker {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 0;
+  background: var(--dark);
+  padding: 16px 0;
   overflow: hidden;
 }
 .ticker-track {
   display: flex;
-  animation: marquee 35s linear infinite;
+  animation: marquee 30s linear infinite;
   width: max-content;
 }
-.ticker-item {
+.ticker-word {
   white-space: nowrap;
-  padding: 0 28px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--muted);
-  display: flex; align-items: center; gap: 10px;
+  padding: 0 20px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  font-stretch: 115%;
 }
-.ticker-item.live { color: var(--text); }
-.ticker-item.live::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px rgba(34,197,94,0.25);
-  flex-shrink: 0;
+.ticker-dot {
+  color: var(--red);
+  padding: 0 4px;
+  font-size: 1.2rem;
+  line-height: 1;
 }
-.ticker-sep { color: var(--dim); flex-shrink: 0; }
 
-/* ─── Proof bar ─── */
-.proof {
+/* ─── Stats Strip ─── */
+.stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
+  gap: 0;
+  border-top: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
 }
-.proof-item {
-  background: var(--bg);
-  padding: 48px 32px;
+.stat {
+  padding: 48px 24px;
   text-align: center;
+  border-right: 2px solid var(--border-dark);
+  transition: background 0.2s;
 }
-.proof-num {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
+.stat:last-child { border-right: none; }
+.stat:hover { background: rgba(42,31,20,0.04); }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 900;
+  font-stretch: 115%;
   color: var(--red);
   line-height: 1;
   margin-bottom: 8px;
+  letter-spacing: -0.04em;
 }
-.proof-label {
+.stat-label {
   font-size: 0.75rem;
-  color: var(--muted);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
-/* ─── Section shell ─── */
-.section { padding: 100px 28px; max-width: 1120px; margin: 0 auto; }
-.section.full { max-width: none; padding-left: 0; padding-right: 0; }
-.section.dark { background: var(--surface); }
-
+/* ─── Section helpers ─── */
+.section { padding: 100px 28px; max-width: 1100px; margin: 0 auto; }
 .section-eyebrow {
   display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   color: var(--red);
   margin-bottom: 14px;
+  font-stretch: 120%;
 }
 .section-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  font-stretch: 105%;
   letter-spacing: -0.035em;
-  line-height: 1.07;
+  line-height: 1.05;
   margin-bottom: 18px;
 }
 .section-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  max-width: 480px;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 500px;
   line-height: 1.7;
 }
 
 /* ─── Showcase ─── */
-.showcase-wrap { padding: 100px 28px; background: var(--surface); }
-.showcase-header { max-width: 1120px; margin: 0 auto 56px; }
+.showcase-wrap {
+  padding: 100px 28px;
+  max-width: 1100px; margin: 0 auto;
+}
+.showcase-header { margin-bottom: 56px; }
 .showcase-grid {
-  max-width: 1120px; margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 22px;
 }
 
 .showcase-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s;
 }
 .showcase-card:hover {
-  border-color: rgba(230,57,70,0.5);
-  transform: translateY(-8px);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+  transform: translateY(-8px) rotate(-0.5deg);
+  box-shadow: 0 20px 50px rgba(42,31,20,0.15);
 }
 .browser-bar {
-  background: var(--surface2);
+  background: var(--dark);
   padding: 10px 14px;
   display: flex; align-items: center; gap: 6px;
-  border-bottom: 1px solid var(--border);
 }
 .browser-dot { width: 8px; height: 8px; border-radius: 50%; }
 .browser-dot:nth-child(1) { background: #ff5f57; }
@@ -348,12 +395,12 @@ img { max-width: 100%; display: block; }
 .browser-url {
   flex: 1;
   margin-left: 8px;
-  background: rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.1);
   border-radius: 4px;
   padding: 3px 10px;
   font-size: 0.7rem;
-  color: var(--dim);
-  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  color: rgba(255,255,255,0.4);
+  font-family: monospace;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -364,24 +411,30 @@ img { max-width: 100%; display: block; }
   border: 0;
   pointer-events: none;
   display: block;
-  background: var(--surface);
+  background: #eee;
 }
 .showcase-footer {
   padding: 16px 18px;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border-dark);
   display: flex; align-items: center; justify-content: space-between;
 }
-.showcase-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 2px; }
-.showcase-type { font-size: 0.75rem; color: var(--muted); }
+.showcase-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+.showcase-type { font-size: 0.75rem; color: var(--text-muted); }
 .pill {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 800;
   padding: 4px 10px;
   border-radius: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
-.pill-live { background: rgba(34,197,94,0.15); color: var(--green); }
+.pill-live { background: rgba(34,160,70,0.15); color: #1a8f40; }
 .pill-demo { background: var(--red-dim); color: var(--red); }
 
 /* ─── Process ─── */
@@ -389,55 +442,82 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  margin-top: 72px;
-  border: 1px solid var(--border);
+  margin-top: 64px;
+  border: 2px solid var(--border-dark);
   border-radius: var(--radius);
   overflow: hidden;
+  background: var(--cream-card);
 }
 .process-step {
-  padding: 44px 36px;
-  border-right: 1px solid var(--border);
+  padding: 48px 36px;
+  border-right: 2px solid var(--border-dark);
+  position: relative;
   transition: background 0.2s;
 }
 .process-step:last-child { border-right: none; }
-.process-step:hover { background: var(--surface); }
+.process-step:hover { background: rgba(196,59,46,0.03); }
 .process-num {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 900;
+  font-stretch: 120%;
   letter-spacing: -0.06em;
   color: var(--red);
   line-height: 1;
   margin-bottom: 20px;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .process-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
 }
-.process-body { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+.process-body { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 .process-note {
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 16px;
+  font-family: var(--font-display);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--red);
 }
 
 /* ─── Package card ─── */
-.package-wrap { padding: 100px 28px; background: var(--surface); }
-.package-inner { max-width: 1120px; margin: 0 auto; }
+.package-wrap {
+  padding: 100px 28px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+/* Decorative background text */
+.package-wrap::before {
+  content: '£149';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(15rem, 30vw, 30rem);
+  font-weight: 900;
+  font-stretch: 130%;
+  color: rgba(255,255,255,0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+.package-inner { max-width: 1100px; margin: 0 auto; position: relative; }
 .package-header-row { margin-bottom: 56px; text-align: center; }
+.package-header-row .section-eyebrow { color: var(--yellow); }
+.package-header-row .section-title { color: var(--cream); }
+.package-header-row .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto; }
 
 .package-card {
   max-width: 660px; margin: 0 auto;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -445,87 +525,92 @@ img { max-width: 100%; display: block; }
 .package-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--red), #ff6b6b);
+  height: 4px;
+  background: var(--red);
 }
 .pkg-header {
   padding: 40px 40px 28px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border-dark);
 }
 .pkg-eyebrow {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--red);
   margin-bottom: 10px;
+  font-stretch: 120%;
 }
 .pkg-name {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.9rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.03em;
   margin-bottom: 6px;
 }
-.pkg-desc { font-size: 0.875rem; color: var(--muted); }
+.pkg-desc { font-size: 0.9rem; color: var(--text-muted); }
 
 .pkg-price-row {
   padding: 32px 40px;
   display: flex; align-items: flex-end; gap: 14px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border-dark);
+  background: rgba(196,59,46,0.03);
 }
 .price-main {
   display: flex; align-items: baseline; gap: 2px;
   line-height: 1;
 }
 .price-symbol {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--red);
 }
 .price-digits {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-display);
   font-size: 5rem;
-  font-weight: 800;
+  font-weight: 900;
+  font-stretch: 110%;
   letter-spacing: -0.05em;
   color: var(--red);
   line-height: 1;
 }
 .price-was {
   font-size: 1.1rem;
-  color: var(--dim);
+  color: var(--text-muted);
   text-decoration: line-through;
   padding-bottom: 6px;
+  opacity: 0.6;
 }
 .price-note {
   margin-left: auto;
   text-align: right;
-  font-size: 0.78rem;
-  color: var(--muted);
+  font-size: 0.8rem;
+  color: var(--text-muted);
   line-height: 1.55;
   padding-bottom: 4px;
 }
-.price-note strong { color: var(--green); font-weight: 600; }
+.price-note strong { color: #1a8f40; font-weight: 600; }
 
 .pkg-features {
   padding: 28px 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px 32px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border-dark);
 }
 .pkg-feat {
   display: flex; align-items: flex-start; gap: 9px;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   line-height: 1.4;
 }
 .pkg-feat::before {
   content: '✓';
   color: var(--red);
-  font-weight: 700;
-  font-size: 0.8rem;
-  margin-top: 2px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-top: 1px;
   flex-shrink: 0;
 }
 
@@ -534,159 +619,206 @@ img { max-width: 100%; display: block; }
   display: block;
   width: 100%;
   background: var(--red);
-  color: #fff;
-  padding: 17px;
-  border-radius: 10px;
+  color: var(--cream);
+  padding: 18px;
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   text-align: center;
   transition: all 0.25s;
-  box-shadow: 0 4px 20px var(--red-glow);
+  box-shadow: 0 4px 0 #9B2D22;
+  border: none; cursor: pointer;
 }
-.btn-full:hover { transform: translateY(-2px); box-shadow: 0 12px 36px var(--red-glow); }
+.btn-full:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #9B2D22, 0 10px 30px rgba(196,59,46,0.25);
+}
 
-/* ─── Final CTA ─── */
-.cta-section {
-  padding: 130px 28px;
-  text-align: center;
-  position: relative; overflow: hidden;
-  max-width: 1120px; margin: 0 auto;
+/* ─── Contact ─── */
+.contact-wrap {
+  padding: 100px 28px;
+  max-width: 1100px; margin: 0 auto;
 }
-.cta-section::before {
-  content: '';
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw; height: 70vh; max-height: 600px;
-  background: radial-gradient(ellipse at center, rgba(230,57,70,0.08) 0%, transparent 68%);
-  pointer-events: none;
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
 }
-.cta-eyebrow { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 20px; }
-.cta-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.6rem, 7vw, 5.5rem);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.0;
-  margin-bottom: 14px;
-}
-.cta-title em { font-style: italic; color: var(--red); }
-.cta-sub { font-size: 1.05rem; color: var(--muted); max-width: 420px; margin: 0 auto 52px; line-height: 1.65; }
-.cta-btns { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
-.btn-wa {
+.contact-left {}
+.contact-left .section-title { margin-bottom: 24px; }
+.contact-email-link {
   display: inline-flex; align-items: center; gap: 10px;
-  background: #22c55e;
-  color: #fff;
-  padding: 16px 36px;
-  border-radius: 50px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 700;
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+.contact-email-link:hover { opacity: 0.7; }
+.contact-email-link svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.contact-detail {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border-dark);
+}
+.contact-detail p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+.contact-detail strong { color: var(--dark); font-weight: 600; }
+
+.contact-form {
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--border-dark);
+  border-radius: 10px;
+  font-family: var(--font-body);
   font-size: 1rem;
+  color: var(--dark);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(196,59,46,0.12);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #bbb; }
+
+.form-submit {
+  display: block;
+  width: 100%;
+  background: var(--red);
+  color: var(--cream);
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
   transition: all 0.25s;
-  box-shadow: 0 4px 24px rgba(34,197,94,0.3);
+  box-shadow: 0 4px 0 #9B2D22;
 }
-.btn-wa:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(34,197,94,0.4); }
-.btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
-.btn-email {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--border-bright);
-  color: var(--muted);
-  padding: 16px 28px;
-  border-radius: 50px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: all 0.2s;
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #9B2D22, 0 10px 24px rgba(196,59,46,0.2);
 }
-.btn-email:hover { border-color: var(--text); color: var(--text); }
+.form-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0 #9B2D22;
+}
 
 /* ─── Footer ─── */
 .footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  padding: 40px 28px;
+  background: var(--dark);
+  padding: 48px 28px;
+  color: var(--cream);
 }
 .footer-inner {
-  max-width: 1120px; margin: 0 auto;
+  max-width: 1100px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 20px;
+  flex-wrap: wrap; gap: 24px;
 }
 .footer-brand {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 800; font-size: 1rem; letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.3rem;
+  color: var(--yellow);
+  letter-spacing: -0.02em;
+  font-stretch: 110%;
 }
-.footer-brand .bracket { color: var(--red); }
-.footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
-.footer-info { font-size: 0.78rem; color: var(--muted); line-height: 1.65; text-align: center; }
-.footer-links { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.footer-link { font-size: 0.78rem; color: var(--muted); transition: color 0.2s; }
-.footer-link:hover { color: var(--text); }
-
-/* ─── Floating WhatsApp ─── */
-.fab {
-  position: fixed;
-  bottom: 26px; right: 26px;
-  z-index: 400;
-  width: 58px; height: 58px;
-  background: #22c55e;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(34,197,94,0.4);
-  transition: all 0.25s;
+.footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+.footer-info { font-size: 0.78rem; color: rgba(255,255,255,0.4); line-height: 1.7; text-align: center; }
+.footer-info a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+.footer-info a:hover { color: #fff; }
+.footer-links { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.footer-link {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.2s;
 }
-.fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(34,197,94,0.5); }
-.fab::before {
-  content: '';
-  position: absolute; inset: -7px;
-  border-radius: 50%;
-  border: 2px solid rgba(34,197,94,0.35);
-  animation: fabRing 2.5s ease-out infinite;
-}
-.fab svg { width: 28px; height: 28px; fill: #fff; }
+.footer-link:hover { color: var(--yellow); }
 
 /* ─── Scroll reveal ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ─── Animations ─── */
 @keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes slideUp {
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-@keyframes fabRing {
-  0% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1.7); }
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ─── Responsive ─── */
 @media (max-width: 900px) {
   .nav-links { display: none; }
-  .proof { grid-template-columns: repeat(2, 1fr); }
-  .showcase-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: none; }
+  .showcase-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   .process-grid { grid-template-columns: 1fr; }
-  .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .process-step { border-right: none; border-bottom: 2px solid var(--border-dark); }
   .process-step:last-child { border-bottom: none; }
   .pkg-features { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 600px) {
-  .hero { padding: 110px 20px 60px; }
-  .proof-item { padding: 32px 16px; }
-  .proof-num { font-size: 2.4rem; }
+  .hero { padding: 60px 20px 50px; min-height: 80vh; }
+  .hero-deco { display: none; }
+  .stat { padding: 32px 16px; }
+  .stat-num { font-size: 2.4rem; }
   .section { padding: 72px 20px; }
   .showcase-wrap { padding: 72px 20px; }
   .package-wrap { padding: 72px 20px; }
-  .cta-section { padding: 90px 20px; }
+  .contact-wrap { padding: 72px 20px; }
+  .contact-form { padding: 24px; }
   .pkg-header { padding: 28px 24px 20px; }
   .pkg-price-row { padding: 20px 24px; flex-wrap: wrap; }
   .pkg-features { padding: 20px 24px; }
@@ -694,122 +826,102 @@ img { max-width: 100%; display: block; }
   .price-digits { font-size: 3.8rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-links { align-items: flex-start; }
-  .cta-btns { flex-direction: column; width: 100%; }
-  .btn-wa, .btn-email { width: 100%; justify-content: center; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .btn-big, .btn-outline { width: 100%; justify-content: center; }
 }
 </style>
 </head>
 <body>
 
+<!-- ─── ANNOUNCEMENT BAR ─── -->
+<div class="announce">
+  Now booking March projects. <a href="#contact">Get in touch &rarr;</a>
+</div>
+
 <!-- ─── NAV ─── -->
 <nav class="nav" id="nav">
-  <a href="/" class="nav-logo">
-    <span class="bracket">[</span><span class="num">E17</span><span class="bracket">]</span><span class="word">Studio</span>
-  </a>
+  <a href="/" class="nav-logo">e17studio</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
-  <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="nav-wa" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-    WhatsApp Us
-  </a>
+  <a href="#contact" class="nav-cta">Say Hello &rarr;</a>
 </nav>
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="home">
-  <div class="hero-badge">
-    <span class="hero-badge-dot" aria-hidden="true"></span>
-    E17 Based &nbsp;·&nbsp; East London Focused
+  <div class="hero-deco" aria-hidden="true">&#10042;</div>
+
+  <div class="hero-tag">
+    <span class="hero-tag-dot" aria-hidden="true"></span>
+    Based in E17 &nbsp;·&nbsp; Built for East London
   </div>
 
   <h1 class="hero-title">
-    <span class="hero-line"><span class="hero-line-inner">East London</span></span>
-    <span class="hero-line"><span class="hero-line-inner">businesses.</span></span>
-    <span class="hero-line"><span class="hero-line-inner">Online now.</span></span>
+    <span class="hero-line"><span class="hero-line-inner">We make</span></span>
+    <span class="hero-line"><span class="hero-line-inner">websites.</span></span>
+    <span class="hero-line"><span class="hero-line-inner">They slap.</span></span>
   </h1>
 
   <p class="hero-sub">
-    We build fast, professional websites for local businesses —&nbsp;
+    Fast, professional sites for local businesses &mdash;
     <strong>see your preview before you pay</strong> a single penny.
-    Live in 48 hours.
+    Live in 48 hours. No faff.
   </p>
 
   <div class="hero-actions">
-    <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="btn-primary" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-      Get Your Free Preview
+    <a href="#contact" class="btn-big">
+      Get Your Free Preview &rarr;
     </a>
-    <a href="mailto:hello@e17studios.com" class="btn-ghost">Email Us Instead &rarr;</a>
+    <a href="mailto:hello@e17studio.com" class="btn-outline">hello@e17studio.com</a>
   </div>
 </section>
 
 <!-- ─── TICKER ─── -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item live">Vanish Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Lagoon Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Apollo Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Supreme Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Ready to be next?</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">No website yet? We'll fix that.</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Built in E17 for E17</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Free preview · No commitment</span>
-    <span class="ticker-sep">—</span>
-    <!-- duplicate for seamless loop -->
-    <span class="ticker-item live">Vanish Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Lagoon Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Apollo Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item live">Supreme Dry Cleaners</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Ready to be next?</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">No website yet? We'll fix that.</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Built in E17 for E17</span>
-    <span class="ticker-sep">—</span>
-    <span class="ticker-item">Free preview · No commitment</span>
-    <span class="ticker-sep">—</span>
+    <span class="ticker-word">Design</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Build</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Launch</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Host</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Support</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Repeat</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Design</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Build</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Launch</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Host</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Support</span><span class="ticker-dot">&#9679;</span>
+    <span class="ticker-word">Repeat</span><span class="ticker-dot">&#9679;</span>
   </div>
 </div>
 
-<!-- ─── PROOF BAR ─── -->
-<div class="proof">
-  <div class="proof-item reveal">
-    <div class="proof-num">6+</div>
-    <div class="proof-label">Local Clients</div>
+<!-- ─── STATS ─── -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">6+</div>
+    <div class="stat-label">Local Clients</div>
   </div>
-  <div class="proof-item reveal">
-    <div class="proof-num">48h</div>
-    <div class="proof-label">Build Time</div>
+  <div class="stat reveal">
+    <div class="stat-num">48h</div>
+    <div class="stat-label">Build Time</div>
   </div>
-  <div class="proof-item reveal">
-    <div class="proof-num">£0</div>
-    <div class="proof-label">Upfront Cost</div>
+  <div class="stat reveal">
+    <div class="stat-num">£0</div>
+    <div class="stat-label">Upfront Cost</div>
   </div>
-  <div class="proof-item reveal">
-    <div class="proof-num">5★</div>
-    <div class="proof-label">Client Satisfaction</div>
+  <div class="stat reveal">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Satisfaction</div>
   </div>
 </div>
 
 <!-- ─── SHOWCASE ─── -->
 <div class="showcase-wrap" id="work">
   <div class="showcase-header reveal">
-    <div class="section-eyebrow">Real Work</div>
-    <h2 class="section-title">Sites we've built.<br>Right here in E17.</h2>
-    <p class="section-sub">These businesses had no website. Now they do — and they're winning customers because of it.</p>
+    <div class="section-eyebrow">Our Work</div>
+    <h2 class="section-title">Real sites.<br>Real businesses.<br>Right here in E17.</h2>
+    <p class="section-sub">These lot had no website. Now they do &mdash; and they're getting customers because of it.</p>
   </div>
 
   <div class="showcase-grid">
@@ -822,7 +934,7 @@ img { max-width: 100%; display: block; }
       <div class="showcase-footer">
         <div>
           <div class="showcase-name">Vanish Dry Cleaners</div>
-          <div class="showcase-type">Dry Cleaner · Walthamstow</div>
+          <div class="showcase-type">Dry Cleaner &middot; Walthamstow</div>
         </div>
         <span class="pill pill-live">Live</span>
       </div>
@@ -837,7 +949,7 @@ img { max-width: 100%; display: block; }
       <div class="showcase-footer">
         <div>
           <div class="showcase-name">Afters Ice Cream</div>
-          <div class="showcase-type">Ice Cream Parlour · Forest Road</div>
+          <div class="showcase-type">Ice Cream &middot; Forest Road</div>
         </div>
         <span class="pill pill-demo">Demo</span>
       </div>
@@ -852,7 +964,7 @@ img { max-width: 100%; display: block; }
       <div class="showcase-footer">
         <div>
           <div class="showcase-name">Walthamstow Cycles</div>
-          <div class="showcase-type">Bike Shop · Walthamstow</div>
+          <div class="showcase-type">Bike Shop &middot; Walthamstow</div>
         </div>
         <span class="pill pill-demo">Demo</span>
       </div>
@@ -864,27 +976,27 @@ img { max-width: 100%; display: block; }
 <section class="section" id="process">
   <div class="reveal">
     <div class="section-eyebrow">How It Works</div>
-    <h2 class="section-title">From nothing to online<br>in three steps.</h2>
+    <h2 class="section-title">Dead simple.<br>Three steps. That's it.</h2>
   </div>
 
   <div class="process-grid">
     <div class="process-step reveal">
       <div class="process-num">01</div>
-      <h3 class="process-title">You reach out</h3>
-      <p class="process-body">Send a WhatsApp or email. Tell us your business name and what you do. Takes under two minutes — we handle the rest.</p>
-      <span class="process-note">→ 2 minutes</span>
+      <h3 class="process-title">You say hello</h3>
+      <p class="process-body">Drop us an email. Tell us your business name and what you do. Two minutes, tops. We handle the rest.</p>
+      <span class="process-note">&rarr; 2 minutes</span>
     </div>
     <div class="process-step reveal">
       <div class="process-num">02</div>
       <h3 class="process-title">We build it</h3>
-      <p class="process-body">We design and build your full website within 48 hours. You receive a live preview link — no payment required at this stage.</p>
-      <span class="process-note">→ 48 hours</span>
+      <p class="process-body">We design and build your full website within 48 hours. You get a live preview link &mdash; no payment needed yet.</p>
+      <span class="process-note">&rarr; 48 hours</span>
     </div>
     <div class="process-step reveal">
       <div class="process-num">03</div>
       <h3 class="process-title">You decide</h3>
-      <p class="process-body">Happy with it? We hand it over for £149. Not happy? You owe us absolutely nothing. Zero risk, zero catch, zero pressure.</p>
-      <span class="process-note">→ Zero risk</span>
+      <p class="process-body">Love it? It's yours for £149. Not feeling it? You owe us nothing. Zero risk, zero catch, zero awkwardness.</p>
+      <span class="process-note">&rarr; Zero risk</span>
     </div>
   </div>
 </section>
@@ -894,15 +1006,15 @@ img { max-width: 100%; display: block; }
   <div class="package-inner">
     <div class="package-header-row reveal">
       <div class="section-eyebrow">Pricing</div>
-      <h2 class="section-title">One price. Everything included.</h2>
-      <p class="section-sub" style="margin: 0 auto;">No subscriptions. No hidden fees. No surprises.</p>
+      <h2 class="section-title">One price.<br>Everything included.</h2>
+      <p class="section-sub" style="margin: 0 auto;">No subscriptions. No hidden fees. No "well actually..." moments.</p>
     </div>
 
     <div class="package-card reveal">
       <div class="pkg-header">
         <div class="pkg-eyebrow">The Genesis Package</div>
         <div class="pkg-name">Complete Digital Foundation</div>
-        <div class="pkg-desc">Everything your business needs to go from zero to a professional online presence.</div>
+        <div class="pkg-desc">Everything your business needs to go from zero to professional online presence.</div>
       </div>
 
       <div class="pkg-price-row">
@@ -929,31 +1041,59 @@ img { max-width: 100%; display: block; }
         <div class="pkg-feat">CMS training session</div>
         <div class="pkg-feat">1 month free support</div>
         <div class="pkg-feat">Unlimited revisions</div>
-        <div class="pkg-feat">Free preview — no upfront cost</div>
+        <div class="pkg-feat">Free preview &mdash; no upfront cost</div>
       </div>
 
       <div class="pkg-cta">
-        <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27m+interested+in+the+Genesis+Package+for+my+business" class="btn-full" target="_blank" rel="noopener">
-          Get Started — WhatsApp Us Now
+        <a href="#contact" class="btn-full">
+          Get Started &mdash; Say Hello
         </a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ─── FINAL CTA ─── -->
-<section class="cta-section">
-  <p class="cta-eyebrow">No commitment · Free preview</p>
-  <h2 class="cta-title reveal">Your site could be live<br><em>by Thursday.</em></h2>
-  <p class="cta-sub reveal">Join East London businesses already winning new customers every day online.</p>
-  <div class="cta-btns reveal">
-    <a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="btn-wa" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-      WhatsApp Us Now
-    </a>
-    <a href="mailto:hello@e17studios.com" class="btn-email">
-      Or email hello@e17studios.com
-    </a>
+<!-- ─── CONTACT ─── -->
+<section class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title">Let's make<br>something.</h2>
+      <p class="section-sub">Drop us a message and we'll get back to you within a few hours. Or just email us directly:</p>
+      <a href="mailto:hello@e17studio.com" class="contact-email-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        hello@e17studio.com
+      </a>
+
+      <div class="contact-detail">
+        <p><strong>E17 Studio</strong></p>
+        <p>214 Fleeming Road</p>
+        <p>London E17 5EU</p>
+        <p style="margin-top: 12px; color: var(--red); font-weight: 500;">We typically reply within 2 hours.</p>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" action="https://formsubmit.co/hello@e17studio.com" method="POST">
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="New enquiry from e17studio.com">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://e17studio.com/#contact">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Sarah" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="sarah@mybusiness.com" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell Us About Your Business</label>
+        <textarea id="message" name="message" placeholder="What's your business called? What do you do? Anything else we should know..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message &rarr;</button>
+    </form>
   </div>
 </section>
 
@@ -961,12 +1101,12 @@ img { max-width: 100%; display: block; }
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand"><span class="bracket">[</span>E17<span class="bracket">]</span>Studio</div>
-      <div class="footer-tagline">East London's Local Web Agency</div>
+      <div class="footer-brand">e17studio</div>
+      <div class="footer-tagline">East London's Web Studio</div>
     </div>
     <div class="footer-info">
       214 Fleeming Road, London E17 5EU<br>
-      <a href="mailto:hello@e17studios.com" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">hello@e17studios.com</a>
+      <a href="mailto:hello@e17studio.com">hello@e17studio.com</a>
     </div>
     <div class="footer-links">
       <a href="https://leathalobaidi.com/e17/" class="footer-link">View portfolio &rarr;</a>
@@ -974,11 +1114,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </footer>
-
-<!-- ─── Floating WhatsApp ─── -->
-<a href="https://wa.me/447XXXXXXXXX?text=Hi%2C+I%27d+like+a+free+website+preview+for+my+business" class="fab" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.117 1.523 5.85L0 24l6.338-1.5C8.05 23.462 9.988 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.663-.516-5.176-1.41l-.37-.22-3.833.907.932-3.74-.241-.386A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
-</a>
 
 <script>
   // Scroll-aware nav
@@ -992,7 +1127,6 @@ img { max-width: 100%; display: block; }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Stagger siblings
         const parent = entry.target.parentElement;
         const siblings = [...parent.querySelectorAll('.reveal:not(.in)')];
         const idx = siblings.indexOf(entry.target);
