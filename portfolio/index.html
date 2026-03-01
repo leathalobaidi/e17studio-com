@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — E17 Studio</title>
+<meta name="description" content="Websites built by E17 Studio for East London businesses. See the work before you pay for yours.">
+<link rel="canonical" href="https://e17studio.com/portfolio/">
+<meta property="og:title" content="Portfolio — E17 Studio">
+<meta property="og:description" content="Websites built by E17 Studio for East London businesses.">
+<meta property="og:url" content="https://e17studio.com/portfolio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<style>
+/* ─── Design Tokens (match e17studio.com) ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+:root {
+  --yellow: #EDCF5D;
+  --yellow-light: #F5E08A;
+  --red: #C43B2E;
+  --red-light: #D9564A;
+  --red-dim: rgba(196,59,46,0.1);
+  --dark: #2A1F14;
+  --dark-soft: #3D2F20;
+  --cream: #FFF8E7;
+  --cream-card: #FFFDF5;
+  --text-on-yellow: #2A1F14;
+  --text-muted: #7A6B55;
+  --border-warm: rgba(42,31,20,0.1);
+  --border-dark: rgba(42,31,20,0.2);
+  --radius: 16px;
+  --font-display: 'Anybody', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--yellow);
+  color: var(--text-on-yellow);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ─── Nav ─── */
+.nav {
+  position: sticky; top: 0; z-index: 500;
+  padding: 0 28px; height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--yellow);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: 0 2px 20px rgba(42,31,20,0.08); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.4rem;
+  color: var(--red); letter-spacing: -0.03em; font-stretch: 110%;
+}
+.nav-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text-muted); padding: 8px 16px;
+  border-radius: 10px; transition: color 0.2s, background 0.2s;
+}
+.nav-back:hover { color: var(--dark); background: rgba(42,31,20,0.06); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: var(--cream);
+  padding: 10px 24px; border-radius: 50px;
+  font-weight: 600; font-size: 0.88rem;
+  transition: all 0.25s; border: 2px solid var(--red);
+}
+.nav-cta:hover { background: var(--dark); border-color: var(--dark); transform: translateY(-2px); }
+
+/* ─── Header ─── */
+.header {
+  padding: 80px 28px 60px;
+  max-width: 1100px; margin: 0 auto;
+}
+.header-eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--red); margin-bottom: 14px; font-stretch: 120%;
+}
+.header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900; font-stretch: 110%;
+  letter-spacing: -0.04em; line-height: 0.95;
+  margin-bottom: 20px;
+}
+.header-sub {
+  font-size: 1.05rem; color: var(--text-muted);
+  max-width: 480px; line-height: 1.7;
+}
+
+/* ─── Portfolio Grid ─── */
+.portfolio-wrap {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 28px 120px;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ─── Project Card ─── */
+.project-card {
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  transform: translateY(-8px) rotate(-0.3deg);
+  box-shadow: 0 24px 60px rgba(42,31,20,0.15);
+}
+
+/* Browser chrome */
+.browser-chrome {
+  background: var(--dark);
+  padding: 12px 16px;
+  display: flex; align-items: center; gap: 7px;
+  flex-shrink: 0;
+}
+.b-dot { width: 9px; height: 9px; border-radius: 50%; }
+.b-dot:nth-child(1) { background: #ff5f57; }
+.b-dot:nth-child(2) { background: #ffbd2e; }
+.b-dot:nth-child(3) { background: #28c840; }
+.b-url {
+  flex: 1; margin-left: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px; padding: 4px 12px;
+  font-size: 0.72rem; color: rgba(255,255,255,0.45);
+  font-family: monospace; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Preview area */
+.preview-area {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.preview-iframe {
+  width: 100%; height: 100%;
+  border: 0; display: block;
+  pointer-events: none;
+  background: #eee;
+}
+.preview-overlay {
+  position: absolute; inset: 0;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.preview-overlay:hover .view-btn { opacity: 1; transform: scale(1); }
+.view-btn {
+  background: var(--red);
+  color: var(--cream);
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 0 #9B2D22, 0 8px 24px rgba(196,59,46,0.3);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+/* Card info */
+.card-info {
+  padding: 22px 24px;
+  border-top: 2px solid var(--border-dark);
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex: 1;
+}
+.card-meta { flex: 1; }
+.card-name {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.1rem;
+  letter-spacing: -0.02em; margin-bottom: 4px;
+}
+.card-type { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: var(--font-display);
+  font-size: 0.62rem; font-weight: 800;
+  padding: 3px 9px; border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  background: var(--red-dim); color: var(--red);
+}
+.tag-live { background: rgba(34,160,70,0.12); color: #1a8f40; }
+
+.card-action {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--dark);
+  color: var(--yellow);
+  padding: 10px 20px; border-radius: 50px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.8rem;
+  transition: all 0.2s;
+  align-self: center;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.3);
+}
+.card-action:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #9B2D22;
+}
+
+/* ─── CTA strip ─── */
+.cta-strip {
+  background: var(--dark);
+  padding: 80px 28px;
+  text-align: center;
+}
+.cta-strip-inner { max-width: 600px; margin: 0 auto; }
+.cta-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--yellow); margin-bottom: 16px;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; font-stretch: 110%;
+  letter-spacing: -0.035em; line-height: 1;
+  color: var(--cream); margin-bottom: 20px;
+}
+.cta-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.5);
+  margin-bottom: 36px; line-height: 1.7;
+}
+.btn-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--red); color: var(--cream);
+  padding: 17px 40px; border-radius: 50px;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 1rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 0 #9B2D22, 0 6px 20px rgba(196,59,46,0.25);
+}
+.btn-big:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #9B2D22, 0 14px 40px rgba(196,59,46,0.3);
+}
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--dark); padding: 32px 28px;
+  color: var(--cream);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.2rem;
+  color: var(--yellow); letter-spacing: -0.02em;
+}
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+.footer-back {
+  font-size: 0.8rem; color: rgba(255,255,255,0.5);
+  transition: color 0.2s;
+}
+.footer-back:hover { color: var(--yellow); }
+
+/* ─── Scroll reveal ─── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── Responsive ─── */
+@media (max-width: 800px) {
+  .portfolio-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .nav-back span { display: none; }
+}
+@media (max-width: 600px) {
+  .header { padding: 56px 20px 40px; }
+  .portfolio-wrap { padding: 0 20px 80px; }
+  .preview-area { height: 240px; }
+  .card-info { flex-direction: column; }
+  .card-action { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">e17studio</a>
+  <a href="/" class="nav-back">&#8592; <span>Back to site</span></a>
+  <a href="/#contact" class="nav-cta">Get Your Site &rarr;</a>
+</nav>
+
+<!-- ─── HEADER ─── -->
+<div class="header reveal">
+  <div class="header-eyebrow">Our Work</div>
+  <h1 class="header-title">The portfolio.</h1>
+  <p class="header-sub">Every site we've built for East London businesses. Click any card to see the full site.</p>
+</div>
+
+<!-- ─── PORTFOLIO GRID ─── -->
+<div class="portfolio-wrap">
+  <div class="portfolio-grid">
+
+    <!-- Vanish Dry Cleaners -->
+    <div class="project-card reveal">
+      <div class="browser-chrome">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <span class="b-url">e17studio.com/portfolio/vanish-dry-cleaners</span>
+      </div>
+      <div class="preview-area">
+        <iframe class="preview-iframe" src="/portfolio/vanish-dry-cleaners/" loading="lazy" title="Vanish Dry Cleaners"></iframe>
+        <a href="/portfolio/vanish-dry-cleaners/" class="preview-overlay" target="_blank" rel="noopener">
+          <span class="view-btn">View Site &rarr;</span>
+        </a>
+      </div>
+      <div class="card-info">
+        <div class="card-meta">
+          <div class="card-name">Vanish Dry Cleaners</div>
+          <div class="card-type">Dry Cleaner &middot; Walthamstow E17</div>
+          <div class="card-tags">
+            <span class="tag tag-live">Live</span>
+            <span class="tag">Landing Page</span>
+            <span class="tag">Local SEO</span>
+          </div>
+        </div>
+        <a href="/portfolio/vanish-dry-cleaners/" class="card-action" target="_blank" rel="noopener">
+          Open &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Walthamstow Cycles -->
+    <div class="project-card reveal">
+      <div class="browser-chrome">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <span class="b-url">e17studio.com/portfolio/walthamstow-cycles</span>
+      </div>
+      <div class="preview-area">
+        <iframe class="preview-iframe" src="/portfolio/walthamstow-cycles/" loading="lazy" title="Walthamstow Cycles"></iframe>
+        <a href="/portfolio/walthamstow-cycles/" class="preview-overlay" target="_blank" rel="noopener">
+          <span class="view-btn">View Site &rarr;</span>
+        </a>
+      </div>
+      <div class="card-info">
+        <div class="card-meta">
+          <div class="card-name">Walthamstow Cycles</div>
+          <div class="card-type">Bike Shop &middot; Walthamstow E17</div>
+          <div class="card-tags">
+            <span class="tag">Demo</span>
+            <span class="tag">Landing Page</span>
+            <span class="tag">Google Maps</span>
+          </div>
+        </div>
+        <a href="/portfolio/walthamstow-cycles/" class="card-action" target="_blank" rel="noopener">
+          Open &rarr;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── CTA STRIP ─── -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div class="cta-eyebrow">Want One?</div>
+    <h2 class="cta-title">Your business.<br>Your site. £249.</h2>
+    <p class="cta-sub">We build your site first — you see it before you pay a single penny. Live in 48 hours.</p>
+    <a href="/#contact" class="btn-big">Get Your Free Preview &rarr;</a>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">e17studio</div>
+    <div class="footer-copy">&copy; 2026 E17 Studio</div>
+    <a href="/" class="footer-back">&larr; Back to home</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll-aware nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.08) + 's';
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
