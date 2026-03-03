@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afters — Late Night Desserts in Walthamstow E17</title>
+    <meta name="description" content="Walthamstow's favourite late-night dessert spot. Falooda, ice cream scoops, loaded waffles, chocolate shakes, and more. Open till midnight, 7 days.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark:     #130B05;
+            --dark-mid: #211409;
+            --dark-card:#2A1C0F;
+            --cream:    #FFF4E3;
+            --cream-dim:rgba(255,244,227,0.6);
+            --pink:     #FF2D6B;
+            --pink-dim: rgba(255,45,107,0.15);
+            --gold:     #F5C218;
+            --orange:   #FF7A35;
+            --border:   rgba(255,244,227,0.1);
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body:    'DM Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            color: var(--cream);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+        /* ── NAV ── */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(19,11,5,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px; height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.6rem; font-weight: 700;
+            font-style: italic;
+            color: var(--cream);
+            letter-spacing: -0.02em;
+        }
+        .nav-brand span { color: var(--pink); }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a {
+            font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--cream-dim); transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-order {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--pink); color: var(--cream);
+            padding: 9px 20px; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s;
+        }
+        .nav-order:hover { opacity: 0.85; }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,45,107,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(245,194,24,0.1) 0%, transparent 50%),
+                var(--dark);
+            display: flex; align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 64px; align-items: center;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--pink); margin-bottom: 24px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block; width: 24px; height: 1px;
+            background: var(--pink);
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 6vw, 5.5rem);
+            font-weight: 800; font-style: italic;
+            line-height: 1.0; letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--pink);
+        }
+        .hero-sub {
+            font-size: 1rem; color: var(--cream-dim);
+            line-height: 1.75; max-width: 380px;
+            margin-bottom: 40px;
+        }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--pink); color: var(--cream);
+            padding: 14px 32px; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1.5px solid var(--border);
+            color: var(--cream-dim);
+            padding: 14px 28px; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover { border-color: var(--cream-dim); color: var(--cream); }
+
+        /* Hero visual side */
+        .hero-visual {
+            position: relative;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .hero-img {
+            border-radius: 16px; overflow: hidden;
+            aspect-ratio: 3/4;
+            position: relative;
+        }
+        .hero-img:nth-child(2) {
+            margin-top: 40px; aspect-ratio: 3/4;
+        }
+        .hero-img img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .hero-badge {
+            position: absolute;
+            bottom: -20px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: var(--dark);
+            padding: 10px 20px; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 800;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        /* ── STRIP ── */
+        .strip {
+            background: var(--pink);
+            padding: 14px 0; overflow: hidden;
+            position: relative;
+        }
+        .strip-inner {
+            display: flex; gap: 48px;
+            white-space: nowrap;
+            animation: marquee 18s linear infinite;
+        }
+        .strip-inner span {
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--cream); flex-shrink: 0;
+        }
+        .strip-inner span::before {
+            content: '✦';
+            margin-right: 48px;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ── MENU ── */
+        .menu { padding: 100px 0; }
+        .section-eyebrow {
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--pink); margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 700; font-style: italic;
+            letter-spacing: -0.02em; line-height: 1.1;
+            margin-bottom: 52px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .menu-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,45,107,0.4);
+        }
+        .menu-photo {
+            width: 100%; aspect-ratio: 1;
+            overflow: hidden;
+        }
+        .menu-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+            transition: transform 0.5s ease;
+        }
+        .menu-card:hover .menu-photo img { transform: scale(1.07); }
+        .menu-card-body { padding: 18px 18px 20px; }
+        .menu-tag {
+            display: inline-block;
+            font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--pink); margin-bottom: 8px;
+        }
+        .menu-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem; font-weight: 700;
+            font-style: italic; letter-spacing: -0.01em;
+            margin-bottom: 6px;
+        }
+        .menu-card p {
+            font-size: 0.8rem; color: var(--cream-dim);
+            line-height: 1.6;
+        }
+
+        /* ── DELIVERY ── */
+        .delivery {
+            padding: 80px 0;
+            background: var(--dark-mid);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .delivery-inner {
+            display: flex; align-items: center;
+            justify-content: space-between; gap: 48px;
+        }
+        .delivery-text h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700; font-style: italic;
+            letter-spacing: -0.02em; line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        .delivery-text p { color: var(--cream-dim); font-size: 0.92rem; }
+        .delivery-btns { display: flex; gap: 14px; flex-shrink: 0; }
+        .delivery-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 24px; border-radius: 12px;
+            font-size: 0.82rem; font-weight: 700;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s, transform 0.2s;
+            border: 1.5px solid var(--border);
+        }
+        .delivery-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+        .delivery-btn.uber { background: #06C167; color: #000; border-color: #06C167; }
+        .delivery-btn.just-eat { background: #FF8000; color: #fff; border-color: #FF8000; }
+        .delivery-btn .btn-icon { font-size: 1.1rem; }
+
+        /* ── HOURS + LOCATION ── */
+        .info-section { padding: 100px 0; }
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; align-items: start;
+        }
+        .info-block h2 {
+            font-family: var(--font-display);
+            font-size: 2rem; font-weight: 700; font-style: italic;
+            letter-spacing: -0.02em; margin-bottom: 32px;
+        }
+        .hours-list { list-style: none; }
+        .hours-list li {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+        .hours-list li:last-child { border-bottom: none; }
+        .hours-day { color: var(--cream-dim); }
+        .hours-time { color: var(--cream); font-weight: 600; }
+        .hours-time.late { color: var(--pink); }
+
+        .map-wrap {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border);
+            height: 320px;
+        }
+        .map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+        .address-block {
+            margin-top: 24px;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .address-row {
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 0.88rem;
+        }
+        .address-icon {
+            font-size: 1rem; margin-top: 1px; flex-shrink: 0;
+        }
+        .address-label {
+            font-size: 0.66rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--pink); display: block; margin-bottom: 2px;
+        }
+        .address-row a { color: var(--cream); transition: color 0.2s; }
+        .address-row a:hover { color: var(--pink); }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,45,107,0.2) 0%, transparent 70%),
+                var(--dark);
+        }
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 800; font-style: italic;
+            letter-spacing: -0.03em; line-height: 1.0;
+            margin-bottom: 18px;
+        }
+        .cta-section h2 span { color: var(--pink); }
+        .cta-section p {
+            color: var(--cream-dim); font-size: 1rem;
+            margin-bottom: 44px; line-height: 1.7;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--dark-mid);
+            border-top: 1px solid var(--border);
+            padding: 32px;
+            color: rgba(255,244,227,0.3);
+            font-size: 0.76rem; text-align: center; line-height: 1.8;
+        }
+        .footer a { color: rgba(255,244,227,0.5); transition: color 0.2s; }
+        .footer a:hover { color: var(--cream); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-visual { display: none; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .delivery-inner { flex-direction: column; text-align: center; }
+            .delivery-btns { justify-content: center; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"IceCreamShop","name":"Afters","address":{"@type":"PostalAddress","streetAddress":"589 Forest Road","addressLocality":"London","postalCode":"E17 4PP","addressCountry":"GB"},"openingHours":["Mo-Th 12:00-23:30","Fr-Sa 12:00-00:00","Su 12:00-23:30"],"servesCuisine":"Desserts","priceRange":"££"}
+    </script>
+</head>
+<body>
+
+<nav class="nav">
+    <a class="nav-brand" href="#">After<span>s</span></a>
+    <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+    </ul>
+    <a href="https://www.ubereats.com/gb/store/afters-walthamstow/xYDl3crlViy5VoX9Jb2RVg" target="_blank" rel="noopener" class="nav-order">Order Now</a>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <span class="hero-eyebrow">Walthamstow E17</span>
+                <h1>Life's Short.<br><em>Eat</em> Dessert<br>First.</h1>
+                <p class="hero-sub">Walthamstow's favourite late-night dessert spot. Falooda, loaded waffles, ice cream scoops, and shakes worth every calorie. Open till midnight, seven days a week.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn-primary">See the Menu &darr;</a>
+                    <a href="#delivery" class="btn-ghost">Order Delivery</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=540&fit=crop&q=80&auto=format" alt="Ice cream scoop">
+                </div>
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1568158879083-c42860933ed7?w=400&h=540&fit=crop&q=80&auto=format" alt="Loaded waffle dessert">
+                    <div class="hero-badge">Open Late ✦</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="strip">
+    <div class="strip-inner" aria-hidden="true">
+        <span>Ice Cream Scoops</span>
+        <span>Falooda</span>
+        <span>Loaded Waffles</span>
+        <span>Chocolate Bar Shakes</span>
+        <span>Fudge Cake</span>
+        <span>Red Velvet</span>
+        <span>Fresh Juices</span>
+        <span>Open Till Midnight</span>
+        <!-- duplicate for seamless loop -->
+        <span>Ice Cream Scoops</span>
+        <span>Falooda</span>
+        <span>Loaded Waffles</span>
+        <span>Chocolate Bar Shakes</span>
+        <span>Fudge Cake</span>
+        <span>Red Velvet</span>
+        <span>Fresh Juices</span>
+        <span>Open Till Midnight</span>
+    </div>
+</div>
+
+<section class="menu" id="menu">
+    <div class="container">
+        <p class="section-eyebrow">Our Menu</p>
+        <h2 class="section-title">The Good Stuff</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop&q=80&auto=format" alt="Ice cream scoops">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Classic</span>
+                    <h3>Ice Cream Scoops</h3>
+                    <p>Generous scoops from a rotating selection of flavours. Mix and match.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?w=400&h=400&fit=crop&q=80&auto=format" alt="Falooda">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Signature</span>
+                    <h3>Falooda</h3>
+                    <p>The real deal — rose syrup, basil seeds, vermicelli, ice cream. A classic, done right.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1568158879083-c42860933ed7?w=400&h=400&fit=crop&q=80&auto=format" alt="Loaded waffles">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Fan Favourite</span>
+                    <h3>Loaded Waffles</h3>
+                    <p>Crisp Belgian waffles, your choice of sauce and ice cream. Dangerously good.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop&q=80&auto=format" alt="Chocolate shake">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Late Night</span>
+                    <h3>Chocolate Bar Shakes</h3>
+                    <p>Thick shakes blended with your favourite chocolate bars. Seriously indulgent.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="delivery" id="delivery">
+    <div class="container">
+        <div class="delivery-inner">
+            <div class="delivery-text">
+                <h2>Can't Make It In? <br>We Deliver.</h2>
+                <p>Order through Uber Eats or Just Eat — delivered fresh to your door.</p>
+            </div>
+            <div class="delivery-btns">
+                <a href="https://www.ubereats.com/gb/store/afters-walthamstow/xYDl3crlViy5VoX9Jb2RVg" target="_blank" rel="noopener" class="delivery-btn uber">
+                    <span class="btn-icon">🛵</span> Uber Eats
+                </a>
+                <a href="https://www.just-eat.co.uk/restaurants-afters---walthamstow-walthamstow" target="_blank" rel="noopener" class="delivery-btn just-eat">
+                    <span class="btn-icon">🍽</span> Just Eat
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-section" id="find-us">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-block">
+                <h2>Opening Hours</h2>
+                <ul class="hours-list">
+                    <li>
+                        <span class="hours-day">Monday – Thursday</span>
+                        <span class="hours-time">12:00 – 23:30</span>
+                    </li>
+                    <li>
+                        <span class="hours-day">Friday</span>
+                        <span class="hours-time late">12:00 – 00:00</span>
+                    </li>
+                    <li>
+                        <span class="hours-day">Saturday</span>
+                        <span class="hours-time late">12:00 – 00:00</span>
+                    </li>
+                    <li>
+                        <span class="hours-day">Sunday</span>
+                        <span class="hours-time">12:00 – 23:30</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h2>Find Us</h2>
+                <div class="map-wrap">
+                    <iframe
+                        src="https://maps.google.com/maps?q=589+Forest+Road,+London+E17+4PP&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy"
+                        title="Afters Walthamstow — 589 Forest Road E17 4PP"></iframe>
+                </div>
+                <div class="address-block">
+                    <div class="address-row">
+                        <span class="address-icon">📍</span>
+                        <div>
+                            <span class="address-label">Address</span>
+                            589 Forest Road, London E17 4PP
+                        </div>
+                    </div>
+                    <div class="address-row">
+                        <span class="address-icon">🚇</span>
+                        <div>
+                            <span class="address-label">Nearest Station</span>
+                            Walthamstow Central (5 min walk)
+                        </div>
+                    </div>
+                    <div class="address-row">
+                        <span class="address-icon">📸</span>
+                        <div>
+                            <span class="address-label">Instagram</span>
+                            <a href="https://www.instagram.com/afters_walthamstow/" target="_blank" rel="noopener">@afters_walthamstow</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Come in for<br><span>Something Sweet.</span></h2>
+        <p>Walk-ins always welcome. No booking needed.<br>Open seven days a week till late.</p>
+        <a href="#find-us" class="btn-primary">Get Directions &darr;</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2026 Afters &mdash; 589 Forest Road, London E17 4PP</p>
+    <p style="margin-top:6px">Website by <a href="/">E17 Studio</a></p>
+</footer>
+
+</body>
+</html>
