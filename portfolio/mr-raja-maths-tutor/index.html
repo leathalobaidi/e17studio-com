@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Raja Maths Tutor | 20 Years Teaching Excellence | Barkingside, East London</title>
+    <meta name="description" content="Expert GCSE maths tuition from a senior teacher with 20+ years at Beal High School. KS3, KS4, Higher & Foundation tier. Online and in-person sessions in Barkingside.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a2744;
+            --navy-deep: #0f1a2e;
+            --gold: #d4a934;
+            --gold-light: #f0d68a;
+            --gold-pale: #fdf6e3;
+            --white: #ffffff;
+            --grey-50: #f8f9fa;
+            --grey-100: #f0f1f3;
+            --grey-200: #e2e4e8;
+            --grey-500: #6b7280;
+            --grey-700: #374151;
+            --green-whatsapp: #25D366;
+            --green-whatsapp-dark: #1fb855;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(26,39,68,0.08);
+            --shadow-md: 0 4px 20px rgba(26,39,68,0.1);
+            --shadow-lg: 0 8px 40px rgba(26,39,68,0.14);
+            --shadow-gold: 0 4px 20px rgba(212,169,52,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--grey-700);
+            line-height: 1.6;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        /* ---- NAV ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--grey-200);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.25rem;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--grey-700);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--navy); }
+        .nav-cta {
+            background: var(--green-whatsapp);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 600 !important;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .nav-cta:hover { background: var(--green-whatsapp-dark); transform: translateY(-1px); }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            padding: 120px 24px 80px;
+            background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 60%, #243b63 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,169,52,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212,169,52,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,169,52,0.15);
+            border: 1px solid rgba(212,169,52,0.3);
+            color: var(--gold-light);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .hero h1 {
+            color: var(--white);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+        .hero-sub {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            max-width: 480px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-whatsapp {
+            background: var(--green-whatsapp);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+        }
+        .btn-whatsapp:hover { background: var(--green-whatsapp-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: var(--shadow-gold);
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(212,169,52,0.4); }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.1); }
+        .stat-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            display: block;
+        }
+        .stat-label {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ---- ANNOUNCEMENT BANNER ---- */
+        .announcement {
+            background: linear-gradient(135deg, var(--gold) 0%, #c49a20 100%);
+            padding: 16px 24px;
+            text-align: center;
+        }
+        .announcement-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .announcement-icon { font-size: 1.3rem; }
+        .announcement p {
+            color: var(--navy-deep);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .announcement a {
+            color: var(--navy-deep);
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        /* ---- SECTIONS ---- */
+        .section {
+            padding: 80px 24px;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            display: inline-block;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            color: var(--grey-500);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        /* ---- WHY MR RAJA ---- */
+        .why { background: var(--grey-50); }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .why-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--grey-200);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .why-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--gold-pale);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        .why-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .why-card p {
+            color: var(--grey-500);
+            font-size: 0.93rem;
+        }
+
+        /* ---- SERVICES ---- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            border: 2px solid var(--grey-200);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .service-card:hover { border-color: var(--gold); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card.featured {
+            background: var(--navy);
+            border-color: var(--navy);
+        }
+        .service-card.featured h3,
+        .service-card.featured p,
+        .service-card.featured .service-price,
+        .service-card.featured .service-detail { color: var(--white); }
+        .service-card.featured .service-price span { color: var(--gold-light); }
+        .service-card.featured .service-tag { background: rgba(212,169,52,0.2); color: var(--gold-light); }
+        .service-tag {
+            display: inline-block;
+            background: var(--gold-pale);
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .service-card h3 { font-size: 1.35rem; margin-bottom: 8px; }
+        .service-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 16px 0;
+        }
+        .service-price span { font-size: 0.9rem; color: var(--grey-500); font-weight: 500; }
+        .service-detail {
+            color: var(--grey-500);
+            font-size: 0.9rem;
+            padding: 8px 0;
+            border-top: 1px solid var(--grey-100);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .service-card.featured .service-detail { border-color: rgba(255,255,255,0.1); }
+        .check {
+            color: var(--green-whatsapp);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .service-card.featured .check { color: var(--gold); }
+
+        /* ---- HOW IT WORKS ---- */
+        .how { background: var(--grey-50); }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            counter-reset: step;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        .step-num {
+            width: 56px;
+            height: 56px;
+            background: var(--navy);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            margin: 0 auto 16px;
+        }
+        .step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .step p { color: var(--grey-500); font-size: 0.9rem; }
+
+        /* ---- ABOUT ---- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            background: var(--navy);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,169,52,0.15), transparent 70%);
+            border-radius: 50%;
+        }
+        .about-quote {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            color: var(--gold-light);
+        }
+        .about-creds {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+        .about-creds li {
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.93rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .about-creds li:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .cred-icon { color: var(--gold); font-size: 1rem; }
+        .about-text h2 { margin-bottom: 20px; }
+        .about-text p { margin-bottom: 16px; color: var(--grey-500); }
+        .about-text p strong { color: var(--navy); }
+
+        /* ---- TESTIMONIALS ---- */
+        .testimonials { background: var(--navy-deep); }
+        .testimonials .section-label { color: var(--gold-light); }
+        .testimonials .section-title { color: var(--white); }
+        .testimonials .section-desc { color: rgba(255,255,255,0.5); }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: transform 0.3s;
+        }
+        .testimonial-card:hover { transform: translateY(-4px); }
+        .stars { color: var(--gold); margin-bottom: 16px; font-size: 1rem; letter-spacing: 2px; }
+        .testimonial-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .testimonial-name {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .testimonial-role {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.8rem;
+        }
+
+        /* ---- FAQ ---- */
+        .faq-list { max-width: 700px; }
+        .faq-item {
+            border-bottom: 1px solid var(--grey-200);
+        }
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            text-align: left;
+        }
+        .faq-q:hover { color: var(--gold); }
+        .faq-arrow {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+        .faq-item.open .faq-arrow { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s;
+            color: var(--grey-500);
+            font-size: 0.93rem;
+        }
+        .faq-item.open .faq-a {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        /* ---- CTA FINAL ---- */
+        .cta-final {
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,169,52,0.1), transparent 60%);
+            border-radius: 50%;
+        }
+        .cta-final-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .cta-final h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            margin-bottom: 16px;
+        }
+        .cta-final p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+        .cta-final .btn { font-size: 1.05rem; padding: 16px 36px; }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: var(--navy-deep);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .footer p {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+        }
+        .footer a { color: var(--gold); text-decoration: none; }
+
+        /* ---- STICKY WHATSAPP ---- */
+        .sticky-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            animation: fadeInUp 0.5s ease-out 1s both;
+        }
+        .sticky-wa a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--green-whatsapp);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .sticky-wa a:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+        .sticky-wa svg { fill: white; width: 30px; height: 30px; }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---- MOBILE ---- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 24px;
+                border-bottom: 1px solid var(--grey-200);
+                box-shadow: var(--shadow-md);
+                gap: 16px;
+            }
+            .hamburger { display: block; }
+
+            .hero { padding: 100px 24px 60px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .stat-card { padding: 16px 12px; }
+            .stat-number { font-size: 1.5rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 32px; }
+            .about-image { order: -1; }
+
+            .section { padding: 60px 24px; }
+
+            .sticky-wa { bottom: 16px; right: 16px; }
+            .sticky-wa a { width: 52px; height: 52px; }
+            .sticky-wa svg { width: 26px; height: 26px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn { width: 100%; justify-content: center; }
+            .steps { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Mr Raja <span>Maths</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#why">Why Me</a></li>
+            <li><a href="#services">Pricing</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://wa.me/447479211624" class="nav-cta" target="_blank" rel="noopener">WhatsApp Me</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge"><span class="pulse"></span> Limited Spaces Available</div>
+            <h1>Your child deserves a maths teacher who <em>actually knows</em> how to teach</h1>
+            <p class="hero-sub">Expert GCSE maths tuition from a senior teacher with 20 years at Beal High School. KS3 and KS4, Higher and Foundation tier.</p>
+            <div class="hero-actions">
+                <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20maths%20tuition.%20" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp Me
+                </a>
+                <a href="#services" class="btn btn-outline">View Pricing</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-card">
+                <span class="stat-number">20</span>
+                <span class="stat-label">Years Teaching</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Years as Head of Maths</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">AP</span>
+                <span class="stat-label">Assistant Principal</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+    <div class="announcement-inner">
+        <span class="announcement-icon">📚</span>
+        <p>Year 11 Easter Revision Course now available. <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20the%20Year%2011%20Easter%20Revision%20Course." target="_blank" rel="noopener">Book your place &rarr;</a></p>
+    </div>
+</div>
+
+<!-- WHY MR RAJA -->
+<section class="section why" id="why">
+    <div class="section-inner">
+        <span class="section-label">Why Mr Raja</span>
+        <h2 class="section-title reveal">Not just a tutor. A senior maths teacher.</h2>
+        <p class="section-desc reveal">There is a world of difference between someone who can do maths and someone who can teach it. Mr Raja has done both at the highest level for two decades.</p>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <div class="why-icon">🎓</div>
+                <h3>Curriculum Expert</h3>
+                <p>As Head of Maths for 5 years, Mr Raja designed and wrote the entire curriculum and assessments at Beal High School. He knows exactly what examiners are looking for.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">📐</div>
+                <h3>All Abilities Welcome</h3>
+                <p>Whether your child is aiming for a grade 9 on Higher tier or building confidence on Foundation, lessons are tailored to their exact level and goals.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">👨‍🏫</div>
+                <h3>Taught by Mr Raja Himself</h3>
+                <p>Every single lesson is delivered personally by Mr Raja. No assistants, no substitutes. You get 20 years of classroom experience in every session.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">📊</div>
+                <h3>Proven Track Record</h3>
+                <p>Led an outstanding maths department and rose to Assistant Principal. His students consistently exceed their target grades and build genuine confidence in maths.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🤝</div>
+                <h3>Small Groups Only</h3>
+                <p>Online groups max out at 10 students. In person groups are capped at 6. Every student gets proper attention and the space to ask questions.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-icon">🕌</div>
+                <h3>Community Focused</h3>
+                <p>Mr Raja is deeply rooted in the local community and understands the values, expectations, and aspirations of the families he works with.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES / PRICING -->
+<section class="section" id="services">
+    <div class="section-inner">
+        <span class="section-label">Tuition Options</span>
+        <h2 class="section-title reveal">Simple, transparent pricing</h2>
+        <p class="section-desc reveal">Choose the format that works for your family. Both options cover KS3, KS4, Higher tier, and Foundation tier.</p>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-tag">Online</span>
+                <h3>Online Tuition</h3>
+                <div class="service-price">£20 <span>per hour</span></div>
+                <div class="service-detail"><span class="check">✓</span> Small groups, up to 10 students</div>
+                <div class="service-detail"><span class="check">✓</span> KS3 and KS4 covered</div>
+                <div class="service-detail"><span class="check">✓</span> Higher and Foundation tier</div>
+                <div class="service-detail"><span class="check">✓</span> Join from anywhere</div>
+                <div class="service-detail"><span class="check">✓</span> Taught by Mr Raja personally</div>
+                <div style="margin-top: 24px;">
+                    <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20online%20maths%20tuition." class="btn btn-gold" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Book Online Tuition</a>
+                </div>
+            </div>
+            <div class="service-card featured reveal">
+                <span class="service-tag">In Person</span>
+                <h3>In Person Tuition</h3>
+                <div class="service-price">£30 <span>per hour</span></div>
+                <div class="service-detail"><span class="check">✓</span> Smaller groups, up to 6 students</div>
+                <div class="service-detail"><span class="check">✓</span> KS3 and KS4 covered</div>
+                <div class="service-detail"><span class="check">✓</span> Higher and Foundation tier</div>
+                <div class="service-detail"><span class="check">✓</span> Located in Barkingside</div>
+                <div class="service-detail"><span class="check">✓</span> Taught by Mr Raja personally</div>
+                <div style="margin-top: 24px;">
+                    <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20in-person%20maths%20tuition%20in%20Barkingside." class="btn btn-whatsapp" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Book In Person</a>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-tag">Special</span>
+                <h3>Year 11 Easter Revision</h3>
+                <div class="service-price" style="font-size:1.5rem;">Limited Places</div>
+                <div class="service-detail"><span class="check">✓</span> Intensive exam preparation</div>
+                <div class="service-detail"><span class="check">✓</span> Targeted revision of key topics</div>
+                <div class="service-detail"><span class="check">✓</span> Past paper practice</div>
+                <div class="service-detail"><span class="check">✓</span> Exam technique coaching</div>
+                <div class="service-detail"><span class="check">✓</span> Perfect for last minute confidence boost</div>
+                <div style="margin-top: 24px;">
+                    <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20the%20Year%2011%20Easter%20Revision%20Course." class="btn btn-gold" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Enquire About Easter Course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how">
+    <div class="section-inner">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title reveal">Getting started takes 2 minutes</h2>
+        <p class="section-desc reveal">No complicated forms. No waiting around. Just send a WhatsApp and Mr Raja will be in touch.</p>
+        <div class="steps">
+            <div class="step reveal">
+                <div class="step-num">1</div>
+                <h3>Send a WhatsApp</h3>
+                <p>Message Mr Raja on 07479 211 624 with your child's name, year group, maths set or tier, and whether you want online or in person.</p>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">2</div>
+                <h3>Get a Response</h3>
+                <p>Mr Raja will get back to you personally to discuss your child's needs and find the right session for them.</p>
+            </div>
+            <div class="step reveal">
+                <div class="step-num">3</div>
+                <h3>Start Learning</h3>
+                <p>Your child joins their next session and starts building confidence, exam technique, and real understanding of maths.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-image reveal">
+                <p class="about-quote">"I believe every student can succeed in maths with the right teaching and the right support."</p>
+                <ul class="about-creds">
+                    <li><span class="cred-icon">★</span> 20 years teaching at Beal High School</li>
+                    <li><span class="cred-icon">★</span> Head of Maths for 5 years</li>
+                    <li><span class="cred-icon">★</span> Designed and wrote the maths curriculum</li>
+                    <li><span class="cred-icon">★</span> Designed and wrote all assessments</li>
+                    <li><span class="cred-icon">★</span> Led an outstanding department</li>
+                    <li><span class="cred-icon">★</span> Currently an Assistant Principal</li>
+                </ul>
+            </div>
+            <div class="about-text reveal">
+                <span class="section-label">About Mr Raja</span>
+                <h2>Two decades of turning maths anxiety into maths confidence</h2>
+                <p>I am not a part time tutor who dabbles in teaching. I am a <strong>senior school leader</strong> with 20 years of full time classroom experience at Beal High School, one of the largest schools in East London.</p>
+                <p>As <strong>Head of Maths</strong>, I built the department from the ground up, writing the curriculum and assessments that hundreds of students sat each year. I know what the exam boards want because I have spent years preparing students for exactly those exams.</p>
+                <p>Now as <strong>Assistant Principal</strong>, I have the leadership experience and educational insight to understand not just maths, but how students learn, where they get stuck, and what it takes to get them unstuck.</p>
+                <p>Every lesson is taught by me personally. No outsourcing. No assistants. Just a proven teacher who genuinely cares about your child's progress.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
+    <div class="section-inner">
+        <span class="section-label">What Parents Say</span>
+        <h2 class="section-title reveal">Trusted by families across East London</h2>
+        <p class="section-desc reveal">Parents and students who have worked with Mr Raja over the years.</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"Mr Raja made such a difference for my son. He went from dreading maths to actually enjoying it. His grades jumped two levels in less than a term."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SA</div>
+                    <div>
+                        <div class="testimonial-name">Parent of Year 11 student</div>
+                        <div class="testimonial-role">Higher Tier GCSE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"What sets Mr Raja apart is that he actually understands how to teach, not just how to do maths. My daughter finally feels confident going into her exams."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">FK</div>
+                    <div>
+                        <div class="testimonial-name">Parent of Year 10 student</div>
+                        <div class="testimonial-role">Foundation Tier GCSE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p>"We tried other tutors before but none came close. Mr Raja's experience as a Head of Maths means he knows exactly what the examiners want. Highly recommend."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">NH</div>
+                    <div>
+                        <div class="testimonial-name">Parent of Year 9 student</div>
+                        <div class="testimonial-role">KS3 Maths</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+    <div class="section-inner">
+        <span class="section-label">Frequently Asked</span>
+        <h2 class="section-title reveal">Common questions</h2>
+        <p class="section-desc reveal">Everything parents usually want to know before booking.</p>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <button class="faq-q">What year groups do you cover? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">Mr Raja teaches KS3 (Years 7, 8, and 9) and KS4 (Years 10 and 11), covering both Higher and Foundation tier GCSE maths.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">Who actually teaches the lessons? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">Every single lesson is taught by Mr Raja himself. There are no assistants or substitute teachers. You are getting a senior school leader with 20 years of experience in every session.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">How big are the groups? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">Online sessions have a maximum of 10 students. In person sessions in Barkingside are capped at 6. This means every student gets proper individual attention.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">Where are in person lessons held? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">In person sessions take place in Barkingside, East London. Send a WhatsApp for the exact location details.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">How do I book? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">Simply send a WhatsApp message to 07479 211 624 with your child's name, year group, maths set or tier of entry, and whether you want online or in person. Mr Raja will respond personally.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">Do you offer one to one tuition? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">Currently, Mr Raja offers small group tuition to keep costs affordable for families. Contact him on WhatsApp to discuss your requirements.</div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q">What about the Easter revision course? <span class="faq-arrow">+</span></button>
+                <div class="faq-a">The Year 11 Easter Revision Course is an intensive programme designed to prepare students for their GCSE maths exams. Spaces are limited, so get in touch early to secure a place.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+    <div class="cta-final-inner">
+        <h2>Ready to give your child the edge in maths?</h2>
+        <p>Send a quick WhatsApp with your child's details and Mr Raja will be in touch.</p>
+        <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20maths%20tuition.%20%0A%0AStudent%20name%3A%20%0AYear%20group%3A%20%0AMaths%20set%2Ftier%3A%20%0AOnline%20or%20In%20Person%3A%20" class="btn btn-whatsapp" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Send WhatsApp Now
+        </a>
+        <p style="margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.4);">07479 211 624 · Barkingside, East London</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; 2025 Mr Raja Maths Tuition. All rights reserved.</p>
+</footer>
+
+<!-- STICKY WHATSAPP -->
+<div class="sticky-wa">
+    <a href="https://wa.me/447479211624?text=Hi%20Mr%20Raja%2C%20I%27m%20interested%20in%20maths%20tuition." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+</div>
+
+<script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
