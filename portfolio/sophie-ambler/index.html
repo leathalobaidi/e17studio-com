@@ -135,7 +135,7 @@ nav.scrolled{border-color:var(--border);box-shadow:0 2px 24px rgba(16,12,8,0.07)
 .ci-email:hover{border-color:var(--crimson)}
 footer{background:var(--dark-bg);color:rgba(232,222,202,0.45);padding:2.2rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:'Source Serif 4',serif;font-size:0.8rem;letter-spacing:0.06em}
 footer a{color:var(--gold-pale);text-decoration:none}
-.footer-links{display:flex;gap:2rem}
+.footer-links{display:flex;gap:2rem}.footer-links a{white-space:nowrap}
 .footer-credit{width:100%;text-align:center;padding-top:1rem;border-top:1px solid rgba(232,222,202,0.08);font-size:0.72rem;letter-spacing:0.12em;color:rgba(232,222,202,0.25)}
 .footer-credit a{color:rgba(196,148,42,0.5);border-bottom:1px solid rgba(196,148,42,0.2)}
 .ornament{text-align:center;color:var(--gold);letter-spacing:1rem;font-size:0.88rem;margin-top:2.5rem;opacity:0.55}
@@ -308,6 +308,7 @@ html.dark .book-sub{color:rgba(232,222,202,0.5)}
   .bq{font-size:0.84rem;padding:0.7rem 0.9rem 0.7rem 1rem}
   .bq::before{font-size:2.5rem;top:-0.4rem}
   footer{padding:1.5rem 1.2rem}
+  .footer-links{flex-direction:column;gap:0.6rem;align-items:center}
   .hero-strip{display:none}
   .theme-toggle{width:26px;height:26px}
   .theme-toggle svg{width:12px;height:12px}
@@ -622,9 +623,6 @@ html.dark .book-sub{color:rgba(232,222,202,0.5)}
     <a href="https://georginacapel.com/authors/sophie-th%C3%A9r%C3%A8se-ambler" target="_blank">Georgina Capel Associates</a>
   </div>
   <div class="footer-credit">Built by <a href="https://e17studio.com" target="_blank">E17 Studio</a> &mdash; Web Design</div>
-  <div style="width:100%;text-align:center;padding-top:1rem;border-top:1px solid rgba(232,222,202,0.08);font-family:'Source Serif 4',serif;font-size:0.72rem;letter-spacing:0.14em;color:rgba(232,222,202,0.25)">
-    Built by <a href="https://e17studio.com" target="_blank" style="color:rgba(196,148,42,0.5);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='rgba(196,148,42,0.9)'" onmouseout="this.style.color='rgba(196,148,42,0.5)'">E17 Studio</a> — Web Design
-  </div>
 </footer>
 
 <script>
