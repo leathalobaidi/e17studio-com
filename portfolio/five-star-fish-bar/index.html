@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Star Fish Bar — Fresh Fish &amp; Chips in Walthamstow E17</title>
+    <meta name="description" content="Walthamstow's favourite fish and chip shop. Freshly battered cod, haddock, and classic British chippy favourites. Eat in or takeaway. Open 7 days.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy:      #0B1D3A;
+            --navy-mid:  #122A4E;
+            --navy-card: #163260;
+            --cream:     #FFF8ED;
+            --cream-dim: rgba(255,248,237,0.6);
+            --gold:      #E8A838;
+            --gold-dim:  rgba(232,168,56,0.15);
+            --sky:       #4A9BD9;
+            --white:     #FFFFFF;
+            --border:    rgba(255,248,237,0.12);
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body:    'Inter', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--navy);
+            color: var(--cream);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+        /* -- NAV -- */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(11,29,58,0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 32px; height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem; font-weight: 400;
+            color: var(--gold);
+            letter-spacing: -0.01em;
+        }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a {
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--cream-dim); transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--cream); }
+        .nav-cta {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--gold); color: var(--navy);
+            padding: 9px 20px; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s;
+        }
+        .nav-cta:hover { opacity: 0.88; }
+
+        /* -- HERO -- */
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 30%, rgba(74,155,217,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232,168,56,0.08) 0%, transparent 50%),
+                var(--navy);
+            display: flex; align-items: center;
+            padding: 120px 0 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 64px; align-items: center;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 24px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block; width: 24px; height: 1px;
+            background: var(--gold);
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5.5vw, 5rem);
+            font-weight: 400;
+            line-height: 1.05; letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+        .hero-sub {
+            font-size: 1rem; color: var(--cream-dim);
+            line-height: 1.75; max-width: 400px;
+            margin-bottom: 40px;
+        }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--gold); color: var(--navy);
+            padding: 14px 32px; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 0.04em;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1.5px solid var(--border);
+            color: var(--cream-dim);
+            padding: 14px 28px; border-radius: 100px;
+            font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover { border-color: var(--cream-dim); color: var(--cream); }
+
+        .hero-visual {
+            position: relative;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .hero-img {
+            border-radius: 16px; overflow: hidden;
+            aspect-ratio: 3/4; position: relative;
+        }
+        .hero-img:nth-child(2) { margin-top: 40px; }
+        .hero-img img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .hero-badge {
+            position: absolute;
+            bottom: -20px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: var(--navy);
+            padding: 10px 20px; border-radius: 100px;
+            font-size: 0.72rem; font-weight: 800;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            white-space: nowrap; z-index: 2;
+        }
+
+        /* -- STRIP -- */
+        .strip {
+            background: var(--gold);
+            padding: 14px 0; overflow: hidden;
+        }
+        .strip-inner {
+            display: flex; gap: 48px;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        .strip-inner span {
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--navy); flex-shrink: 0;
+        }
+        .strip-inner span::before {
+            content: '\2605';
+            margin-right: 48px;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* -- MENU -- */
+        .menu { padding: 100px 0; }
+        .section-eyebrow {
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em; line-height: 1.1;
+            margin-bottom: 52px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .menu-card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(232,168,56,0.4);
+        }
+        .menu-photo {
+            width: 100%; aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        .menu-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+            transition: transform 0.5s ease;
+        }
+        .menu-card:hover .menu-photo img { transform: scale(1.07); }
+        .menu-card-body { padding: 18px 18px 20px; }
+        .menu-tag {
+            display: inline-block;
+            font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 8px;
+        }
+        .menu-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem; font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 6px;
+        }
+        .menu-card p {
+            font-size: 0.8rem; color: var(--cream-dim);
+            line-height: 1.6;
+        }
+
+        /* -- WHY US -- */
+        .why-section {
+            padding: 80px 0;
+            background: var(--navy-mid);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .why-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 32px; margin-top: 48px;
+        }
+        .why-card {
+            text-align: center; padding: 32px 24px;
+        }
+        .why-icon {
+            font-size: 2.4rem; margin-bottom: 18px;
+            display: block;
+        }
+        .why-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem; font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .why-card p {
+            font-size: 0.85rem; color: var(--cream-dim);
+            line-height: 1.7;
+        }
+
+        /* -- HOURS + LOCATION -- */
+        .info-section { padding: 100px 0; }
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; align-items: start;
+        }
+        .info-block h2 {
+            font-family: var(--font-display);
+            font-size: 2rem; font-weight: 400;
+            letter-spacing: -0.02em; margin-bottom: 32px;
+        }
+        .hours-list { list-style: none; }
+        .hours-list li {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+        .hours-list li:last-child { border-bottom: none; }
+        .hours-day { color: var(--cream-dim); }
+        .hours-time { color: var(--cream); font-weight: 600; }
+
+        .map-wrap {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border);
+            height: 320px;
+        }
+        .map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+        .address-block {
+            margin-top: 24px;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .address-row {
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 0.88rem;
+        }
+        .address-icon {
+            font-size: 1rem; margin-top: 1px; flex-shrink: 0;
+        }
+        .address-label {
+            font-size: 0.66rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--gold); display: block; margin-bottom: 2px;
+        }
+        .address-row a { color: var(--cream); transition: color 0.2s; }
+        .address-row a:hover { color: var(--gold); }
+
+        /* -- CTA -- */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,168,56,0.15) 0%, transparent 70%),
+                var(--navy);
+        }
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em; line-height: 1.05;
+            margin-bottom: 18px;
+        }
+        .cta-section h2 span { color: var(--gold); }
+        .cta-section p {
+            color: var(--cream-dim); font-size: 1rem;
+            margin-bottom: 44px; line-height: 1.7;
+        }
+
+        /* -- FOOTER -- */
+        .footer {
+            background: var(--navy-mid);
+            border-top: 1px solid var(--border);
+            padding: 32px;
+            color: rgba(255,248,237,0.3);
+            font-size: 0.76rem; text-align: center; line-height: 1.8;
+        }
+        .footer a { color: rgba(255,248,237,0.5); transition: color 0.2s; }
+        .footer a:hover { color: var(--cream); }
+
+        /* -- RESPONSIVE -- */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-visual { display: none; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Restaurant","name":"Five Star Fish Bar","address":{"@type":"PostalAddress","streetAddress":"283 Hoe Street","addressLocality":"London","postalCode":"E17 9PL","addressCountry":"GB"},"openingHours":["Mo-Sa 11:30-22:00","Su 12:00-21:00"],"servesCuisine":"Fish and Chips","priceRange":"\u00a3"}
+    </script>
+</head>
+<body>
+
+<nav class="nav">
+    <a class="nav-brand" href="#">Five Star Fish Bar</a>
+    <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+    </ul>
+    <a href="tel:+442085201234" class="nav-cta">Call to Order</a>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <span class="hero-eyebrow">Walthamstow E17</span>
+                <h1>Fresh Fish.<br><em>Proper</em> Chips.<br>Every Time.</h1>
+                <p class="hero-sub">Walthamstow's favourite chippy since day one. Hand-battered cod, golden chips, and all the classics done right. Eat in or take away &mdash; open seven days a week.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn-primary">See the Menu &darr;</a>
+                    <a href="tel:+442085201234" class="btn-ghost">Call to Order</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1579208030886-b1f5b6b0a3e0?w=400&h=540&fit=crop&q=80&auto=format" alt="Fish and chips">
+                </div>
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=400&h=540&fit=crop&q=80&auto=format" alt="Golden fried fish">
+                    <div class="hero-badge">Est. Walthamstow</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="strip">
+    <div class="strip-inner" aria-hidden="true">
+        <span>Cod &amp; Chips</span>
+        <span>Haddock</span>
+        <span>Plaice</span>
+        <span>Scampi</span>
+        <span>Pies &amp; Sausages</span>
+        <span>Mushy Peas</span>
+        <span>Curry Sauce</span>
+        <span>Open 7 Days</span>
+        <!-- duplicate for seamless loop -->
+        <span>Cod &amp; Chips</span>
+        <span>Haddock</span>
+        <span>Plaice</span>
+        <span>Scampi</span>
+        <span>Pies &amp; Sausages</span>
+        <span>Mushy Peas</span>
+        <span>Curry Sauce</span>
+        <span>Open 7 Days</span>
+    </div>
+</div>
+
+<section class="menu" id="menu">
+    <div class="container">
+        <p class="section-eyebrow">Our Menu</p>
+        <h2 class="section-title">The Classics, Done Right</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1579208030886-b1f5b6b0a3e0?w=500&h=380&fit=crop&q=80&auto=format" alt="Fish and chips">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Signature</span>
+                    <h3>Cod &amp; Chips</h3>
+                    <p>Fresh Atlantic cod, hand-battered in our signature golden batter. Served with proper chippy chips.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&h=380&fit=crop&q=80&auto=format" alt="Haddock fillet">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Popular</span>
+                    <h3>Haddock &amp; Chips</h3>
+                    <p>Flaky haddock in our crispy batter. A lighter flavour for those who prefer something delicate.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb44?w=500&h=380&fit=crop&q=80&auto=format" alt="Pie and chips">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Comfort</span>
+                    <h3>Pies &amp; Sausages</h3>
+                    <p>Steak and kidney, chicken and mushroom, or a battered sausage with chips. Pure comfort food.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&h=380&fit=crop&q=80&auto=format" alt="Scampi">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Favourite</span>
+                    <h3>Scampi &amp; Chips</h3>
+                    <p>Whole tail scampi, bread-crumbed and fried golden. Served with chips and tartar sauce.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=500&h=380&fit=crop&q=80&auto=format" alt="Kebab">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Grill</span>
+                    <h3>Kebabs</h3>
+                    <p>Chicken or lamb doner, shish kebab, or mixed grill. Served in pitta with fresh salad.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-photo">
+                    <img src="https://images.unsplash.com/photo-1619221882266-c3037c4fb7d1?w=500&h=380&fit=crop&q=80&auto=format" alt="Sides">
+                </div>
+                <div class="menu-card-body">
+                    <span class="menu-tag">Sides</span>
+                    <h3>All the Extras</h3>
+                    <p>Mushy peas, curry sauce, gravy, pickled onion, gherkin, bread and butter. All the proper extras.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="why-section" id="why">
+    <div class="container">
+        <p class="section-eyebrow">Why Choose Us</p>
+        <h2 class="section-title">Five Stars for a Reason</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <span class="why-icon" aria-hidden="true">&#127843;</span>
+                <h3>Fresh, Never Frozen</h3>
+                <p>Our fish is delivered fresh and battered to order. You taste the difference in every bite.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon" aria-hidden="true">&#11088;</span>
+                <h3>5-Star Hygiene</h3>
+                <p>Top marks from Environmental Health. Clean kitchen, clean conscience, great food.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon" aria-hidden="true">&#128150;</span>
+                <h3>Family Run</h3>
+                <p>Serving the Walthamstow community with pride. Local people, feeding local people.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-section" id="find-us">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-block">
+                <h2>Opening Hours</h2>
+                <ul class="hours-list">
+                    <li>
+                        <span class="hours-day">Monday &ndash; Saturday</span>
+                        <span class="hours-time">11:30 &ndash; 22:00</span>
+                    </li>
+                    <li>
+                        <span class="hours-day">Sunday</span>
+                        <span class="hours-time">12:00 &ndash; 21:00</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h2>Find Us</h2>
+                <div class="map-wrap">
+                    <iframe
+                        src="https://maps.google.com/maps?q=283+Hoe+Street,+London+E17+9PL&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy"
+                        title="Five Star Fish Bar &mdash; 283 Hoe Street E17 9PL"></iframe>
+                </div>
+                <div class="address-block">
+                    <div class="address-row">
+                        <span class="address-icon" aria-hidden="true">&#128205;</span>
+                        <div>
+                            <span class="address-label">Address</span>
+                            283 Hoe Street, London E17 9PL
+                        </div>
+                    </div>
+                    <div class="address-row">
+                        <span class="address-icon" aria-hidden="true">&#128647;</span>
+                        <div>
+                            <span class="address-label">Nearest Station</span>
+                            Walthamstow Central (3 min walk)
+                        </div>
+                    </div>
+                    <div class="address-row">
+                        <span class="address-icon" aria-hidden="true">&#128222;</span>
+                        <div>
+                            <span class="address-label">Phone</span>
+                            <a href="tel:+442085201234">020 8520 1234</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Hungry?<br><span>Come and get it.</span></h2>
+        <p>Walk in or call ahead. Your fish is battered fresh to order.<br>Open seven days a week.</p>
+        <a href="tel:+442085201234" class="btn-primary">Call to Order &rarr;</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2026 Five Star Fish Bar &mdash; 283 Hoe Street, London E17 9PL</p>
+    <p style="margin-top:6px">Website by <a href="/">E17 Studio</a></p>
+</footer>
+
+</body>
+</html>
