@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camilla | 11+ Specialist Tutor | Waltham Forest, London</title>
+<meta name="description" content="Expert 11+ entrance exam tuition. English, Maths, Reasoning & Interview Prep. 1st Class English Lit (Warwick). 17+ years. 24 five star reviews. Waltham Forest, London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#18181b;
+  --paper:#fcfbf9;
+  --warm:#f6f1eb;
+  --amber:#c2590a;
+  --amber-light:#d97706;
+  --amber-soft:#fef5ee;
+  --muted:#71717a;
+  --border:#e8e4de;
+  --card:#fff;
+  --shadow:0 1px 3px rgba(24,24,27,0.05),0 6px 16px rgba(24,24,27,0.04);
+  --shadow-lg:0 4px 12px rgba(24,24,27,0.07),0 16px 40px rgba(24,24,27,0.05);
+  --radius:14px;
+  --display:'Sora',system-ui,sans-serif;
+  --body:'Manrope',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);color:var(--ink);background:var(--paper);
+  -webkit-font-smoothing:antialiased;line-height:1.65;
+}
+
+/* ---- TOP BAR ---- */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(252,251,249,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.top-bar-inner{
+  max-width:1100px;margin:0 auto;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.03em}
+.logo span{color:var(--amber)}
+.top-cta{
+  background:var(--ink);color:#fff;padding:10px 24px;border-radius:8px;
+  text-decoration:none;font-size:0.85rem;font-weight:600;transition:all 0.2s;
+}
+.top-cta:hover{background:#333;transform:translateY(-1px)}
+
+/* ---- SHARED ---- */
+section{padding:100px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{
+  font-size:0.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.12em;color:var(--amber);margin-bottom:12px;
+}
+.section-title{
+  font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.6rem);
+  line-height:1.15;color:var(--ink);margin-bottom:16px;letter-spacing:-0.02em;font-weight:700;
+}
+.section-sub{font-size:1.02rem;color:var(--muted);max-width:600px;line-height:1.75}
+
+/* ---- HERO ---- */
+.hero{
+  min-height:92vh;display:flex;align-items:center;
+  padding:130px 24px 80px;
+  background:linear-gradient(175deg,var(--paper) 0%,var(--warm) 50%,var(--paper) 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-120px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(194,89,10,0.04) 0%,transparent 70%);pointer-events:none;
+}
+.hero-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber-soft);color:var(--amber);padding:5px 14px;
+  border-radius:100px;font-size:0.72rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;
+}
+.hero-badge::before{content:'';width:5px;height:5px;background:var(--amber);border-radius:50%}
+.hero h1{
+  font-family:var(--display);font-size:clamp(2.4rem,5vw,3.4rem);
+  line-height:1.1;color:var(--ink);margin-bottom:20px;letter-spacing:-0.03em;font-weight:700;
+}
+.hero h1 em{font-style:normal;font-weight:800;color:var(--amber)}
+.hero-sub{font-size:1.08rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:36px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--ink);color:#fff;padding:14px 30px;border-radius:10px;
+  text-decoration:none;font-size:0.95rem;font-weight:700;
+  transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:#333;transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-ghost{
+  color:var(--muted);font-size:0.9rem;font-weight:500;
+  text-decoration:none;padding:14px 8px;transition:color 0.2s;
+}
+.btn-ghost:hover{color:var(--ink)}
+
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 24px;transition:all 0.3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat-card:nth-child(1)::after{background:var(--amber)}
+.stat-card:nth-child(2)::after{background:#4a6741}
+.stat-card:nth-child(3)::after{background:#7c3aed}
+.stat-card:nth-child(4)::after{background:#0891b2}
+.stat-number{font-family:var(--display);font-size:2.4rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:4px}
+.stat-label{font-size:0.78rem;color:var(--muted);font-weight:600;letter-spacing:0.02em}
+
+/* ---- WHY ---- */
+.why-section{background:var(--warm)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.why-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:36px 28px;transition:all 0.3s;
+}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.why-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:20px;
+}
+.why-icon.a{background:var(--amber-soft)}
+.why-icon.g{background:#e8efe6}
+.why-icon.v{background:#ede9fe}
+.why-icon.c{background:#e0f7fa}
+.why-card h3{font-family:var(--display);font-size:1.15rem;margin-bottom:10px;color:var(--ink)}
+.why-card p{font-size:0.9rem;color:var(--muted);line-height:1.7}
+
+/* ---- RESULTS BANNER ---- */
+.results-banner{background:var(--ink);color:#fff;padding:72px 24px;text-align:center}
+.results-banner .section-label{color:var(--amber-light)}
+.results-banner .section-title{color:#fff}
+.results-stats{display:flex;justify-content:center;gap:56px;margin-top:48px;flex-wrap:wrap}
+.results-stat{text-align:center}
+.results-stat .num{font-family:var(--display);font-size:3rem;font-weight:700;color:var(--amber-light);line-height:1;margin-bottom:8px}
+.results-stat .label{font-size:0.82rem;color:rgba(255,255,255,0.55);font-weight:500;max-width:160px}
+
+/* ---- SUBJECTS ---- */
+.subjects-section{background:var(--warm)}
+.subjects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px}
+.subject-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:36px 32px;display:flex;gap:20px;transition:all 0.3s;
+}
+.subject-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.subject-num{font-family:var(--display);font-size:2rem;color:var(--border);line-height:1;flex-shrink:0;font-weight:700}
+.subject-card h3{font-family:var(--display);font-size:1.1rem;margin-bottom:8px}
+.subject-card p{font-size:0.88rem;color:var(--muted);line-height:1.7}
+.subject-levels{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.level-tag{
+  background:var(--warm);color:var(--muted);padding:3px 10px;
+  border-radius:6px;font-size:0.72rem;font-weight:600;letter-spacing:0.02em;
+}
+
+/* ---- SCHOOLS ---- */
+.schools-section{background:var(--paper)}
+.schools-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));
+  gap:12px;margin-top:32px;
+}
+.school-tag{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:14px 18px;font-size:0.88rem;font-weight:500;color:var(--ink);
+  transition:all 0.2s;text-align:center;
+}
+.school-tag:hover{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
+.schools-note{margin-top:24px;font-size:0.86rem;color:var(--muted);font-style:italic}
+
+/* ---- ABOUT ---- */
+.about-section{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:56px}
+.about-text p{font-size:0.98rem;color:var(--muted);margin-bottom:20px;line-height:1.8}
+.about-text p strong{color:var(--ink);font-weight:600}
+.about-quals{background:var(--warm);border-radius:var(--radius);padding:36px}
+.about-quals h3{font-family:var(--display);font-size:1.15rem;margin-bottom:24px}
+.qual-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+.qual-item:last-child{border-bottom:none}
+.qual-dot{width:10px;height:10px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:7px}
+.qual-text{font-size:0.9rem;color:var(--ink);line-height:1.6}
+.qual-text span{display:block;font-size:0.78rem;color:var(--muted);margin-top:1px}
+
+/* ---- TESTIMONIALS ---- */
+.testimonials-section{background:var(--warm)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.testimonials-grid+.testimonials-grid{margin-top:24px}
+.testimonial-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;
+}
+.testimonial-stars{color:var(--amber);font-size:0.82rem;letter-spacing:2px;margin-bottom:12px}
+.testimonial-card blockquote{
+  font-size:0.9rem;color:var(--muted);line-height:1.75;font-style:italic;margin-bottom:20px;
+}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{
+  width:40px;height:40px;border-radius:50%;background:#e8efe6;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:0.85rem;color:#4a6741;
+}
+.testimonial-name{font-size:0.82rem;font-weight:600;color:var(--ink)}
+.testimonial-detail{font-size:0.74rem;color:var(--muted)}
+.testimonials-footer{text-align:center;margin-top:40px}
+.testimonials-footer p{font-size:0.9rem;color:var(--muted)}
+.testimonials-footer strong{color:var(--ink)}
+
+/* ---- HOW IT WORKS ---- */
+.how-section{background:var(--paper)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.how-step{text-align:center}
+.how-num{
+  width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;
+  font-family:var(--display);font-size:1.3rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
+}
+.how-step h3{font-family:var(--display);font-size:1.1rem;margin-bottom:10px}
+.how-step p{font-size:0.88rem;color:var(--muted);line-height:1.7;max-width:300px;margin:0 auto}
+
+/* ---- FAQ ---- */
+.faq-section{background:var(--warm)}
+.faq-list{max-width:760px;margin:56px auto 0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-question{
+  width:100%;background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 0;font-family:var(--body);
+  font-size:0.98rem;font-weight:600;color:var(--ink);text-align:left;gap:16px;
+}
+.faq-question::after{
+  content:'+';font-size:1.4rem;font-weight:300;color:var(--muted);
+  transition:transform 0.3s;flex-shrink:0;
+}
+.faq-item.active .faq-question::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-item.active .faq-answer{max-height:300px}
+.faq-answer p{padding-bottom:24px;font-size:0.9rem;color:var(--muted);line-height:1.75}
+
+/* ---- CTA ---- */
+.cta-section{
+  background:linear-gradient(135deg,var(--ink) 0%,#2d2d4a 100%);
+  padding:100px 24px;text-align:center;color:#fff;
+}
+.cta-section .section-title{color:#fff;max-width:600px;margin:0 auto 16px}
+.cta-section .section-sub{color:rgba(255,255,255,0.55);margin:0 auto 40px}
+.btn-white{
+  background:#fff;color:var(--ink);padding:16px 36px;border-radius:10px;
+  text-decoration:none;font-size:1rem;font-weight:700;transition:all 0.25s;display:inline-block;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+
+/* ---- FOOTER ---- */
+footer{
+  background:var(--paper);border-top:1px solid var(--border);
+  padding:32px 24px;text-align:center;
+}
+footer p{font-size:0.78rem;color:var(--muted)}
+footer a{color:var(--amber);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+
+/* ---- ANIMATIONS ---- */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .why-grid,.subjects-grid,.testimonials-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .how-grid{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:700px){
+  .hero{min-height:auto;padding:100px 24px 64px}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:12px}
+  .stat-card{padding:20px 16px}
+  .stat-number{font-size:1.8rem}
+  section{padding:72px 24px}
+  .schools-grid{grid-template-columns:1fr 1fr}
+  .results-stats{gap:32px}
+  .results-stat .num{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="logo">Camilla<span>.</span></div>
+    <a href="#contact" class="top-cta">Get in Touch</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Full Time Tutor &middot; Waltham Forest</div>
+      <h1>Your child deserves a tutor who <em>truly understands</em> exams</h1>
+      <p class="hero-sub">Expert 11+ entrance exam tuition in English, Maths and Reasoning from a full time specialist with 17+ years of experience. 1st Class English Literature degree from Warwick. 11+ scholarship winner herself.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get in Touch <span>&rarr;</span></a>
+        <a href="https://www.firsttutors.com/uk/tutor/camilla.english.maths.entrance-exams.psychology/" class="btn-ghost" target="_blank" rel="noopener">Read all 24 reviews</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">17+</div>
+        <div class="stat-label">Years Tutoring</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Placed at Preferred School</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24</div>
+        <div class="stat-label">Five Star Reviews</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CAMILLA -->
+<section class="why-section">
+  <div class="section-inner">
+    <div class="section-label">Why Camilla</div>
+    <h2 class="section-title">A full time specialist.</h2>
+    <p class="section-sub">Camilla tutors full time. No other job to fit around. That means total focus on lesson planning, flexibility with scheduling, and the attention your child deserves.</p>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon a">&#127891;</div>
+        <h3>11+ Entrance Exam Expert</h3>
+        <p>Camilla specialises in 11+ preparation for London's top private and grammar schools. She won an 11+ scholarship herself to the City of London School for Girls, so she knows both sides of the process.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon g">&#128218;</div>
+        <h3>Research Driven Approach</h3>
+        <p>Past papers are the foundation. Camilla researches what each target school has tested before as the best indicator of what is coming next, and tailors every lesson accordingly.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon v">&#129504;</div>
+        <h3>1st Class from Warwick</h3>
+        <p>BA (Hons) English Literature from the University of Warwick, 1st Class (highest in the year). Four As at A Level including English Literature, Mathematics and Psychology.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon c">&#128161;</div>
+        <h3>Builds Real Confidence</h3>
+        <p>Camilla does not just teach content. She builds the confidence, critical thinking skills and exam technique that make school easier and more enjoyable for every student.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon a">&#127919;</div>
+        <h3>Full Time, Fully Focused</h3>
+        <p>This is not a side job. Camilla tutors full time around her own childcare, with dedicated lesson planning, a flexible schedule, and no competing priorities.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon g">&#128200;</div>
+        <h3>Proven Track Record</h3>
+        <p>All students to date placed at preferred schools. Multiple academic scholarships won. GCSE students achieving grade 9s. 24 five star reviews. Zero negative feedback.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS BANNER -->
+<div class="results-banner">
+  <div class="section-inner" style="max-width:1000px">
+    <div class="section-label">Results</div>
+    <h2 class="section-title">Every student placed. Every time.</h2>
+    <div class="results-stats">
+      <div class="results-stat fade-in">
+        <div class="num">100%</div>
+        <div class="label">Placed at a preferred school</div>
+      </div>
+      <div class="results-stat fade-in">
+        <div class="num">9s</div>
+        <div class="label">GCSE top grades achieved</div>
+      </div>
+      <div class="results-stat fade-in">
+        <div class="num">1st</div>
+        <div class="label">Class Honours helped (Bristol University)</div>
+      </div>
+      <div class="results-stat fade-in">
+        <div class="num">24</div>
+        <div class="label">Published reviews, zero negative</div>
+      </div>
+      <div class="results-stat fade-in">
+        <div class="num">10+</div>
+        <div class="label">Early entry gained (City of London Boys, 2026)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBJECTS -->
+<section class="subjects-section">
+  <div class="section-inner">
+    <div class="section-label">Subjects</div>
+    <h2 class="section-title">What Camilla teaches</h2>
+    <p class="section-sub">From 7+ through to GCSE, university level and adult learners. Core subjects for entrance exams and general academic confidence.</p>
+    <div class="subjects-grid">
+      <div class="subject-card fade-in">
+        <div class="subject-num">01</div>
+        <div>
+          <h3>English</h3>
+          <p>Comprehension, creative writing, grammar, spelling and vocabulary. Literature analysis and essay technique. Preparation for 7+, 11+, GCSE Language and Literature.</p>
+          <div class="subject-levels"><span class="level-tag">Primary</span><span class="level-tag">Secondary</span><span class="level-tag">GCSE</span><span class="level-tag">University</span></div>
+        </div>
+      </div>
+      <div class="subject-card fade-in">
+        <div class="subject-num">02</div>
+        <div>
+          <h3>Maths</h3>
+          <p>Arithmetic, problem solving, reasoning and exam technique. Covering 7+ to GCSE level with a focus on the specific demands of entrance exams.</p>
+          <div class="subject-levels"><span class="level-tag">Primary</span><span class="level-tag">Secondary</span><span class="level-tag">GCSE</span></div>
+        </div>
+      </div>
+      <div class="subject-card fade-in">
+        <div class="subject-num">03</div>
+        <div>
+          <h3>Entrance Exams and Interview Prep</h3>
+          <p>Verbal reasoning, non verbal reasoning, Cognitive Ability Tests (CATs), traditional 11+ formats, and interview preparation. School specific past paper practice.</p>
+          <div class="subject-levels"><span class="level-tag">7+</span><span class="level-tag">10+</span><span class="level-tag">11+</span><span class="level-tag">GCSE</span></div>
+        </div>
+      </div>
+      <div class="subject-card fade-in">
+        <div class="subject-num">04</div>
+        <div>
+          <h3>Psychology</h3>
+          <p>GCSE Psychology tuition. Camilla achieved an A at A Level in Psychology and has strong academic grounding in the subject.</p>
+          <div class="subject-levels"><span class="level-tag">Secondary</span><span class="level-tag">GCSE</span></div>
+        </div>
+      </div>
+      <div class="subject-card fade-in">
+        <div class="subject-num">05</div>
+        <div>
+          <h3>Philosophy and Critical Thinking</h3>
+          <p>Analytical reasoning, argument evaluation and structured thinking skills. Invaluable for entrance exams and building broader academic confidence.</p>
+          <div class="subject-levels"><span class="level-tag">Secondary</span><span class="level-tag">GCSE</span></div>
+        </div>
+      </div>
+      <div class="subject-card fade-in">
+        <div class="subject-num">06</div>
+        <div>
+          <h3>Study Skills</h3>
+          <p>Effective revision strategies, time management, note taking and exam technique. Replacing unhelpful learning habits with tried and tested methods for success.</p>
+          <div class="subject-levels"><span class="level-tag">Primary</span><span class="level-tag">Secondary</span><span class="level-tag">GCSE</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOOLS -->
+<section class="schools-section">
+  <div class="section-inner">
+    <div class="section-label">Schools</div>
+    <h2 class="section-title">Schools Camilla prepares students for</h2>
+    <p class="section-sub">Extensive experience preparing students for entry to London's most selective private and grammar schools.</p>
+    <div class="schools-grid">
+      <div class="school-tag fade-in">Highgate</div>
+      <div class="school-tag fade-in">Channing</div>
+      <div class="school-tag fade-in">City of London Girls</div>
+      <div class="school-tag fade-in">City of London Boys</div>
+      <div class="school-tag fade-in">South Hampstead</div>
+      <div class="school-tag fade-in">Ilford County</div>
+      <div class="school-tag fade-in">Bancroft's</div>
+      <div class="school-tag fade-in">Forest School</div>
+      <div class="school-tag fade-in">Francis Holland</div>
+      <div class="school-tag fade-in">Henrietta Barnett</div>
+      <div class="school-tag fade-in">Latymer</div>
+      <div class="school-tag fade-in">Dame Alice Owen</div>
+      <div class="school-tag fade-in">Queen's</div>
+      <div class="school-tag fade-in">North Bridge House</div>
+      <div class="school-tag fade-in">Chigwell</div>
+      <div class="school-tag fade-in">QE Boys</div>
+    </div>
+    <p class="schools-note">Plus other grammar and private schools across London. Get in touch to discuss your target school.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2 class="section-title">17 years of turning exam anxiety into academic success</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I have worked as an academic tutor for the past 17 years with great success. I teach from <strong>7+ to GCSE level</strong>, specialising in 11+ English and Maths, as well as interview preparation. I am a supportive, interactive tutor who aims to inspire all my students to achieve their full academic potential.</p>
+        <p>I am lucky enough to now be able to <strong>tutor full time</strong>, around my own childcare, due to high demand. Parents can rest assured that I do not need to fit lessons in around other work. That means total focus on lesson planning and greater flexibility when rearranging sessions.</p>
+        <p>I conduct <strong>up to date research on each target school</strong> because what has been tested before is the best indicator of what is to come. I work predominantly with past papers, of which I have a substantial supply, and I ensure my students are more than ready so that nothing in an exam comes as a surprise.</p>
+        <p>I make lessons as <strong>engaging, fun and interactive</strong> as possible, using visual aids, creative tools and the child's own ideas, whilst sticking firmly to the curriculum. Many students struggle with unhelpful learning strategies for years. I have tried and tested methods for success.</p>
+      </div>
+      <div class="about-quals fade-in">
+        <h3>Qualifications</h3>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">BA (Hons) English Literature, 1st Class<span>University of Warwick, 2009. Highest in the year.</span></div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">4 As at A Level<span>English Literature, Mathematics, Psychology, Religious Studies. City of London School for Girls, 2005.</span></div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">9 A*s at GCSE<span>English Lit, English Lang, Maths, History, German, Chemistry, Biology, Physics, RS. 2003.</span></div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">11+ Scholarship Winner<span>English Literature and Mathematics. City of London School for Girls, 1998.</span></div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">17+ years tutoring experience<span>Primary through to university and adult learners. Currently 12 students aged 8 to 21.</span></div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-dot"></div>
+          <div class="qual-text">Available weekdays and weekends<span>Full time tutor. Flexible scheduling.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-inner">
+    <div class="section-label">What Parents Say</div>
+    <h2 class="section-title">Trusted by families across London</h2>
+    <p class="section-sub">24 published reviews. Zero negative. Here are a few.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Camilla tutored my son for his 11+ exams this year, working with him every Saturday morning. Over that time, he made significant progress and grew in confidence."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div><div class="testimonial-name">John</div><div class="testimonial-detail">11+ Exam Preparation</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Camilla is a brilliant tutor. She is hypersensitive to my child's needs, she takes care to form a good relationship, and she has a detailed understanding of the curriculum."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div><div class="testimonial-name">Christopher</div><div class="testimonial-detail">Personalised Tuition</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Ms Camilla is an excellent tutor, patient, considerate, who goes that extra mile. Efficient, diligent, passionate, who really wants her students to succeed."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div><div class="testimonial-name">Johnny</div><div class="testimonial-detail">English and Maths</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Camilla has been fantastic with our daughter. She has encouraged her creativity alongside supporting her in areas she found more challenging. In just a few weeks she feels much more confident."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">P</div>
+          <div><div class="testimonial-name">Parent</div><div class="testimonial-detail">Primary Maths and English</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"We've had nothing but a positive experience with Camilla. Our son has taken to her balanced approach very well, and we've seen great progress. Highly recommend."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">P</div>
+          <div><div class="testimonial-name">Parent</div><div class="testimonial-detail">11+ Preparation</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Camilla has been great at helping our son gain in confidence in both English and Maths. She explains difficult concepts clearly, has adapted to his needs and makes the lessons enjoyable."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div><div class="testimonial-name">Catherine</div><div class="testimonial-detail">English and Maths</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-footer fade-in">
+      <p><strong>24 published reviews</strong> with zero unpublished or negative feedback. <a href="https://www.firsttutors.com/uk/tutor/camilla.english.maths.entrance-exams.psychology/" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:none;font-weight:600">Read them all &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Getting started is simple</h2>
+    <p class="section-sub">No complicated forms. Just get in touch and Camilla will take it from there.</p>
+    <div class="how-grid">
+      <div class="how-step fade-in">
+        <div class="how-num">1</div>
+        <h3>Get in Touch</h3>
+        <p>Send a message with your child's name, year group, target school (if applicable) and the subjects you need help with.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="how-num">2</div>
+        <h3>Initial Discussion</h3>
+        <p>Camilla will get back to you personally to discuss your child's needs, assess their current level and agree a plan.</p>
+      </div>
+      <div class="how-step fade-in">
+        <div class="how-num">3</div>
+        <h3>Start Learning</h3>
+        <p>Your child begins tailored sessions, building confidence, exam technique and real understanding of the material.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions</h2>
+    <p class="section-sub">Everything parents usually want to know before getting started.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">What ages and levels do you cover?</button>
+        <div class="faq-answer"><p>Camilla teaches from 7+ right through to GCSE, and also supports university level and adult learners in English. Her core specialism is 11+ entrance exam preparation in English, Maths, Verbal Reasoning, Non Verbal Reasoning and interview prep. She currently teaches 12 students aged between 8 and 21.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Which entrance exams do you prepare for?</button>
+        <div class="faq-answer"><p>Camilla prepares students for 7+, 10+, 11+ and other selective entry exams including Cognitive Ability Tests (CATs), traditional Maths and English papers, Verbal and Non Verbal Reasoning, and interview preparation. She tailors preparation to the specific requirements of each target school.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What is your success rate?</button>
+        <div class="faq-answer"><p>All of Camilla's students to date have gained entry to at least one of their preferred schools, with the vast majority getting into every school they applied to. Multiple students have received full academic scholarships. GCSE students have achieved grade 9s in both English and Maths.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Is this your full time job?</button>
+        <div class="faq-answer"><p>Yes. Camilla tutors full time around her own childcare. She does not need to fit lessons in around other work, which means total focus on lesson planning, a large and current resource library, and greater flexibility when rearranging lessons.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you tutor online or in person?</button>
+        <div class="faq-answer"><p>Camilla offers both online and in person tuition. She is based in Waltham Forest, London. Get in touch to discuss which format would work best for your child.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">When are you available?</button>
+        <div class="faq-answer"><p>Camilla is available weekdays and weekends (all times). She is flexible with scheduling and can usually accommodate changes when needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How much do lessons cost?</button>
+        <div class="faq-answer"><p>Please get in touch directly to discuss rates. Camilla is happy to talk through options based on the subject, level and frequency of lessons you need.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you only teach students taking entrance exams?</button>
+        <div class="faq-answer"><p>Not at all. Many of Camilla's students come for one to one focus and attention to help them excel at school, build confidence in English or Maths, or prepare for GCSEs. She also teaches Psychology, Philosophy, Critical Thinking and Study Skills.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do I book?</button>
+        <div class="faq-answer"><p>Simply get in touch via the contact section with your child's name, year group and what you are looking for. Camilla will respond personally to discuss next steps.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-inner" style="max-width:700px">
+    <h2 class="section-title">Ready to give your child the best preparation?</h2>
+    <p class="section-sub">Get in touch with your child's details and Camilla will respond personally.</p>
+    <a href="#" class="btn-white">Get in Touch &rarr;</a>
+    <p style="margin-top:24px;font-size:0.82rem;color:rgba(255,255,255,0.4)">Waltham Forest, London</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Camilla Tutor. All rights reserved.</p>
+  <p style="margin-top:8px">Built by <a href="https://e17studio.com">E17 Studio</a></p>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const wasActive=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));
+    if(!wasActive)item.classList.add('active');
+  });
+});
+// Scroll fade-in
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
