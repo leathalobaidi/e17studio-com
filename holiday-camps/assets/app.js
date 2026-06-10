@@ -530,7 +530,10 @@ function setPlanEntry(weekId, childId, entry) {
 
 function entryCost(entry, weekId) {
   if (!entry) return null;
-  if (entry.type !== "camp") return { value: 0, estimate: false, label: "no camp cost" };
+  if (entry.type !== "camp") {
+    const v = Number.isFinite(entry.cost) ? entry.cost : 0;
+    return { value: v, estimate: false, label: v ? "your own figure" : "no camp cost" };
+  }
   const p = providerById(entry.campId);
   if (!p) return null;
   return weekCost(p, weekId);
@@ -568,15 +571,14 @@ function renderPlanner() {
     const cells = state.children.map((c) => {
       const entry = planEntry(wk.id, c.id);
       const cost = entryCost(entry, wk.id);
-      if (entry && entry.type === "camp") {
-        if (cost && cost.value != null) weekTotal += cost.value; else weekUnknown += 1;
+      if (entry) {
+        if (cost && cost.value != null) weekTotal += cost.value;
+        else if (entry.type === "camp") weekUnknown += 1;
       }
       const label = assignmentLabel(entry);
       const meta = entryMeta(entry, wk.id);
       const costText = entry
-        ? (entry.type === "camp"
-            ? (cost ? `${money(cost.value)}${cost.estimate ? " est." : ""}` : "£? — confirm")
-            : "£0")
+        ? (cost ? `${money(cost.value)}${cost.estimate ? " est." : ""}` : "£? — confirm")
         : "";
       return `<td class="plan-cell">
         <button class="assign-btn ${entry ? "is-set" : ""}" type="button"
@@ -631,7 +633,12 @@ function renderBudget() {
         if (!wk.stub) uncovered[c.id].push(wk.id);
         return;
       }
-      if (entry.type !== "camp") return;
+      if (entry.type !== "camp") {
+        const v = Number.isFinite(entry.cost) ? entry.cost : 0;
+        perChild[c.id] += v;
+        grand += v;
+        return;
+      }
       const p = providerById(entry.campId);
       const cost = entryCost(entry, wk.id);
       if (cost && cost.value != null) {
@@ -812,13 +819,28 @@ function renderPicker() {
   const customs = [
     { type: "leave", label: "Annual leave — I'm off that week" },
     { type: "family", label: "Family / grandparents cover" },
-    { type: "swap", label: "Friend or childcare swap" },
-    { type: "other", label: "Something else…" }
+    { type: "swap", label: "Friend or childcare swap" }
   ].map((c) => `
     <button class="picker-option is-custom" type="button" data-pick-custom="${c.type}">
       <span class="po-name">${escapeHtml(c.label)}</span>
       <span class="po-cost">£0</span>
     </button>`).join("");
+
+  const cur = current && current.type === "other" ? current : null;
+  const customCampForm = `
+    <p class="picker-group-title">Camp not in this list? Add your own</p>
+    <div class="custom-camp-form">
+      <label class="field"><span>Camp name</span>
+        <input type="text" id="customCampName" maxlength="34"
+          placeholder="e.g. Vestry holiday club"
+          value="${cur ? escapeHtml(cur.label || "") : ""}"></label>
+      <label class="field"><span>Cost for this week (£)</span>
+        <input type="number" id="customCampCost" min="0" step="0.01" inputmode="decimal"
+          placeholder="0"
+          value="${cur && Number.isFinite(cur.cost) && cur.cost ? cur.cost : ""}"></label>
+      <button class="btn btn-add" type="button" data-pick-customcamp="1">${cur ? "Save changes" : "Add to this week"}</button>
+    </div>
+    <p class="picker-note">Goes straight into your totals like any other camp. Leave the cost blank for £0 — tap the cell again later to edit.</p>`;
 
   els.pickerBody.innerHTML = [
     current ? `<button class="picker-remove" type="button" data-pick-remove="1">Remove “${escapeHtml(assignmentLabel(current))}” from this week</button>` : "",
@@ -828,6 +850,7 @@ function renderPicker() {
     group("Workshops & sessions (part-week)", sessions, { unconfirmed: true }),
     group("Free HAF camps (benefits-related FSM)", hafOnly, { unconfirmed: true }),
     hafOnly.length ? `<p class="picker-note">*HAF places are free for eligible children and include food — book via the <a href="https://eequ.org/hafwalthamforest" target="_blank" rel="noreferrer">Eequ feed</a> when summer sessions open.</p>` : "",
+    customCampForm,
     `<p class="picker-group-title">Not a camp</p>`,
     customs,
     `<label class="toggle-chip" style="margin:10px 6px 0">
@@ -846,6 +869,7 @@ function renderPicker() {
 function handlePickerClick(event) {
   const campBtn = event.target.closest("[data-pick-camp]");
   const customBtn = event.target.closest("[data-pick-custom]");
+  const customCampBtn = event.target.closest("[data-pick-customcamp]");
   const removeBtn = event.target.closest("[data-pick-remove]");
   const assignWeekBtn = event.target.closest("[data-assign-week]");
 
@@ -865,14 +889,16 @@ function handlePickerClick(event) {
   if (campBtn) {
     setPlanEntry(weekId, childId, { type: "camp", campId: campBtn.dataset.pickCamp });
     els.pickerDialog.close();
+  } else if (customCampBtn) {
+    const nameInput = els.pickerBody.querySelector("#customCampName");
+    const costInput = els.pickerBody.querySelector("#customCampCost");
+    const label = ((nameInput && nameInput.value) || "").trim().slice(0, 34) || "My own camp";
+    const raw = parseFloat(costInput && costInput.value);
+    const cost = Number.isFinite(raw) && raw >= 0 ? Math.round(raw * 100) / 100 : 0;
+    setPlanEntry(weekId, childId, { type: "other", label, cost });
+    els.pickerDialog.close();
   } else if (customBtn) {
-    const type = customBtn.dataset.pickCustom;
-    let label;
-    if (type === "other") {
-      label = prompt("What's covering this week? (e.g. holiday away, childminder)") || "Other";
-      if (label.length > 28) label = label.slice(0, 28);
-    }
-    setPlanEntry(weekId, childId, { type, label });
+    setPlanEntry(weekId, childId, { type: customBtn.dataset.pickCustom });
     els.pickerDialog.close();
   } else if (removeBtn) {
     setPlanEntry(weekId, childId, null);
@@ -898,10 +924,8 @@ function planSummaryText() {
       }
       const cost = entryCost(entry, wk.id);
       let costText = "£0";
-      if (entry.type === "camp") {
-        if (cost && cost.value != null) { costText = money(cost.value) + (cost.estimate ? " est." : ""); total += cost.value; }
-        else { costText = "£? confirm"; unknown += 1; }
-      }
+      if (cost && cost.value != null) { costText = money(cost.value) + (cost.estimate ? " est." : ""); total += cost.value; }
+      else if (entry.type === "camp") { costText = "£? confirm"; unknown += 1; }
       lines.push(`  ${wk.label} (${wk.dates}): ${assignmentLabel(entry)} — ${costText}`);
     });
     lines.push(`  Total: ${money(total)}${unknown ? ` + ${unknown} unpriced` : ""}`);

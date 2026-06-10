@@ -417,7 +417,7 @@ section { scroll-margin-top: 24px; }
 
 input, select, button { font: inherit; }
 
-input[type="text"], input[type="search"], select {
+input[type="text"], input[type="search"], input[type="number"], select {
   width: 100%;
   min-height: 46px;
   border: 1.5px solid var(--line-strong);
@@ -975,6 +975,19 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 }
 
 .picker-note { margin: 10px 6px 0; color: var(--muted); font-size: 0.84rem; }
+
+.custom-camp-form {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  gap: 10px;
+  align-items: end;
+  padding: 2px 6px;
+}
+.custom-camp-form .btn { min-height: 46px; white-space: nowrap; }
+
+@media (max-width: 680px) {
+  .custom-camp-form { grid-template-columns: 1fr; }
+}
 
 /* ───────────────────────── Motion & a11y ───────────────────────── */
 
