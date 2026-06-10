@@ -1030,6 +1030,88 @@ function handlePickerClick(event) {
   }
 }
 
+/* ─────────── calendar export (.ics — Apple Calendar, Outlook, Google) ─────────── */
+
+function icsEscape(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+}
+
+function icsFold(line) {
+  // RFC 5545 §3.1: fold content lines longer than 75 octets
+  const out = [];
+  let l = line;
+  while (l.length > 74) { out.push(l.slice(0, 74)); l = " " + l.slice(74); }
+  out.push(l);
+  return out.join("\r\n");
+}
+
+function addDaysCompact(iso, n) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10).replace(/-/g, "");
+}
+
+/* [1,2,3,5] → [[1,3],[5,5]] — one calendar event per contiguous run of days */
+function contiguousRuns(days) {
+  const sorted = [...days].sort((a, b) => a - b);
+  const runs = [];
+  let start = sorted[0], prev = sorted[0];
+  for (const d of sorted.slice(1)) {
+    if (d === prev + 1) { prev = d; continue; }
+    runs.push([start, prev]); start = d; prev = d;
+  }
+  runs.push([start, prev]);
+  return runs;
+}
+
+function planCalendarText() {
+  const events = [];
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  P.weeks.forEach((wk) => {
+    state.children.forEach((c) => {
+      const entry = planEntry(wk.id, c.id);
+      if (!entry) return;
+      const label = assignmentLabel(entry);
+      const info = entryDays(entry, wk.id);
+      const cost = entryCost(entry, wk.id);
+      const p = entry.type === "camp" ? providerById(entry.campId) : null;
+      const descBits = [];
+      if (p) {
+        descBits.push(`Venue: ${p.venue}${p.address ? ", " + p.address : ""}`);
+        descBits.push(`Hours: ${hoursLabel(p)}`);
+        descBits.push(`Booking: ${p.source.url}`);
+      }
+      if (cost && cost.value != null) descBits.push(`Cost: ${money(cost.value)}${cost.estimate ? " (est.)" : ""}`);
+      else if (entry.type === "camp") descBits.push("Cost: confirm with provider");
+      descBits.push("Planned with the E17 Holiday Camp Planner (e17studio.com/holiday-camps) — confirm details with the provider before the day.");
+      contiguousRuns(info.days).forEach(([a, b]) => {
+        events.push([
+          "BEGIN:VEVENT",
+          `UID:e17hc-${wk.id}-${c.id}-${a}${b}@e17studio.com`,
+          `DTSTAMP:${stamp}`,
+          `DTSTART;VALUE=DATE:${addDaysCompact(wk.mon, a - 1)}`,
+          `DTEND;VALUE=DATE:${addDaysCompact(wk.mon, b)}`,
+          icsFold(`SUMMARY:${icsEscape(`${c.name}: ${label}`)}`),
+          ...(p ? [icsFold(`LOCATION:${icsEscape(`${p.venue}${p.address ? ", " + p.address : ""}`)}`)] : []),
+          icsFold(`DESCRIPTION:${icsEscape(descBits.join("\n"))}`),
+          "TRANSP:TRANSPARENT",
+          "END:VEVENT"
+        ].join("\r\n"));
+      });
+    });
+  });
+  if (!events.length) return null;
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//E17 Studio//Holiday Camp Planner//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    icsFold("X-WR-CALNAME:E17 holiday camps — summer 2026"),
+    events.join("\r\n"),
+    "END:VCALENDAR"
+  ].join("\r\n") + "\r\n";
+}
+
 /* ────────────────────────── copy / print / clear ────────────────────────── */
 
 function planSummaryText() {
@@ -1073,6 +1155,27 @@ function bindPlannerActions() {
   });
 
   document.querySelector("#printPlan").addEventListener("click", () => window.print());
+
+  document.querySelector("#calendarPlan").addEventListener("click", (e) => {
+    const btn = e.currentTarget;
+    const ics = planCalendarText();
+    if (!ics) {
+      btn.textContent = "Nothing planned yet";
+      setTimeout(() => { btn.textContent = "Add to calendar"; }, 1800);
+      return;
+    }
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "e17-holiday-camp-plan.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    btn.textContent = "Downloaded ✓";
+    setTimeout(() => { btn.textContent = "Add to calendar"; }, 1800);
+  });
 
   document.querySelector("#clearPlan").addEventListener("click", () => {
     if (!Object.keys(state.plan).length) return;
@@ -1296,3 +1399,6 @@ function init() {
 }
 
 init();
+
+// Exposed for the automated test suite only — not a public API.
+window.E17_DEBUG = { planCalendarText };

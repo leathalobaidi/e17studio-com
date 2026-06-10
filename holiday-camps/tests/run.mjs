@@ -171,6 +171,10 @@ if (!SKIP_UI) {
   assert(o.filters.afterReset === D.providers.length, "filters reset restores all cards", JSON.stringify(o.filters));
   assert(o.filters.confirmedOnly > 0 && o.filters.confirmedOnly < D.providers.length, "confirmed-only filter narrows", JSON.stringify(o.filters));
   assert(o.store.children === 2 && o.store.planWeeks >= 4, "plan persisted to localStorage", JSON.stringify(o.store));
+  assert(o.ics && o.ics.hasCal && o.ics.crlf, "ICS calendar generates (RFC 5545 envelope, CRLF)", JSON.stringify(o.ics));
+  assert(o.ics.events === 6, "6 all-day calendar events (one per assignment run)", JSON.stringify(o.ics));
+  assert(o.ics.lssWeekStart && o.ics.ymcaMonWedEnd, "event date ranges correct (Mon 27 Jul start; Mon–Wed ends Thu, exclusive)", JSON.stringify(o.ics));
+  assert(o.ics.vestryTitle, "event titles are child + camp name", JSON.stringify(o.ics));
 
   const o2 = chromeRun(); // run 2: same profile → persistence
   assert(o2.mode === "verify", "run 2 loads saved state");
@@ -304,6 +308,17 @@ function AUTOTEST_SRC() { return String.raw`
 
       const s = JSON.parse(localStorage.getItem("e17planner.v1"));
       out.store = { children: s.children.length, planWeeks: Object.keys(s.plan).length };
+
+      // calendar export
+      const ics = window.E17_DEBUG && window.E17_DEBUG.planCalendarText();
+      out.ics = ics ? {
+        hasCal: ics.startsWith("BEGIN:VCALENDAR") && ics.includes("END:VCALENDAR"),
+        events: (ics.match(/BEGIN:VEVENT/g) || []).length,
+        lssWeekStart: ics.includes("DTSTART;VALUE=DATE:20260727"),
+        ymcaMonWedEnd: ics.includes("DTEND;VALUE=DATE:20260730"),
+        vestryTitle: ics.includes("SUMMARY:Maya: Vestry holiday club"),
+        crlf: ics.includes("\r\n")
+      } : { missing: true };
     } else {
       out.persisted = { chips: $$(".child-chip").length, setCells: $$(".assign-btn.is-set").length, grandText: grandText() };
     }
