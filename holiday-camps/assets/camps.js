@@ -1,5 +1,5 @@
 window.E17_DIRECTORY = {
-  updated: "2026-06-09",
+  updated: "2026-06-10",
   providers: [
     {
       id: "waltham-forest-haf",
@@ -16,9 +16,9 @@ window.E17_DIRECTORY = {
       funding: ["Free/HAF", "FSM eligible"],
       hours: "Varies by provider",
       price: "Free for eligible benefit-related free school meal places",
-      summary: "Official Waltham Forest route for seasonal HAF activities and meals. Use the live Eequ feed to see open sessions, eligibility and booking status.",
+      summary: "Official Waltham Forest route for seasonal HAF activities and meals. Use the live Eequ feed to see open sessions, eligibility and booking status. Summer 2026 bookings open at 9am on Monday 22 June.",
       goodFor: "Families eligible for HAF support, and anyone checking the broadest seasonal activity list.",
-      booking: "Book through the Waltham Forest HAF / Eequ listing.",
+      booking: "Book through the Waltham Forest HAF / Eequ listing — summer bookings open 9am Mon 22 June.",
       confidence: "Live council route",
       source: {
         label: "Waltham Forest holiday activities",
@@ -69,15 +69,21 @@ window.E17_DIRECTORY = {
       categories: ["Full day", "Multi-activity", "SEND aware"],
       funding: ["Paid"],
       hours: "8:00am-5:50pm",
-      price: "See provider fee page",
-      summary: "Inclusive holiday clubs for primary school aged children, running during school holidays from the Lloyd Park and Higham Hill centres.",
+      price: "GBP 48.30 per day on the fees page, plus a one-off GBP 24.08 registration fee",
+      summary: "Inclusive holiday clubs for primary school aged children, running during school holidays from the Lloyd Park and Higham Hill centres. Bookings for the Summer 2026 holiday club open at 9am on Monday 15 June.",
       goodFor: "Families near Lloyd Park or Higham Hill looking for a long-day local club.",
-      booking: "Apply through Lloyd Park Children's Charity holiday club booking.",
-      confidence: "Provider page checked",
+      booking: "Apply through Lloyd Park Children's Charity holiday club booking — summer bookings open 9am Mon 15 June.",
+      confidence: "Provider and fees pages checked",
       source: {
         label: "Lloyd Park Children's Charity holiday club",
         url: "https://www.tlpcc.org.uk/teatime-and-holiday-club"
-      }
+      },
+      secondarySources: [
+        {
+          label: "Lloyd Park Children's Charity fees",
+          url: "https://www.tlpcc.org.uk/fees-and-funding"
+        }
+      ]
     },
     {
       id: "church-hill-playscheme",
@@ -91,17 +97,23 @@ window.E17_DIRECTORY = {
       ageMax: 8,
       ageLabel: "3-8",
       categories: ["Full day", "Early years", "Play"],
-      funding: ["Paid"],
-      hours: "8:00am-6:00pm with shorter blocks",
-      price: "Daytime GBP 49; whole day GBP 65; breakfast/tea add-ons",
-      summary: "Holiday playscheme for Church Hill, Low Hall and local children, with play activities such as baking, clay modelling and outdoor experiences.",
+      funding: ["Paid", "Tax-Free Childcare", "Childcare vouchers"],
+      hours: "Core day 9:00am-4:00pm; breakfast 8-9am and tea 4-6pm add-ons (full day 8:00am-6:00pm)",
+      price: "Core day GBP 49; full day GBP 65; breakfast GBP 7; tea GBP 14",
+      summary: "Holiday playscheme for Church Hill, Low Hall and local children, with play activities such as baking, clay modelling and outdoor experiences. Summer 2026 runs Tue 21 July to Fri 21 August (no Mon 20 July); minimum 2 days, packed lunch needed.",
       goodFor: "Younger children who need a nursery-style local holiday day.",
-      booking: "Download forms and return them to the school office or by email.",
-      confidence: "Provider page checked",
+      booking: "Return the Summer 2026 booking form to the school office by email — last booking date Fri 10 July.",
+      confidence: "Summer 2026 booking form checked",
       source: {
         label: "Church Hill holiday playscheme",
         url: "https://www.fans.waltham.sch.uk/holiday-playscheme"
-      }
+      },
+      secondarySources: [
+        {
+          label: "Summer 2026 booking form",
+          url: "https://www.fans.waltham.sch.uk/attachments/download.asp?file=742&type=docx"
+        }
+      ]
     },
     {
       id: "mission-grove",
@@ -116,12 +128,12 @@ window.E17_DIRECTORY = {
       ageLabel: "3-11 on school page; 4-11 in HAF feed",
       categories: ["Full day", "Multi-activity", "HAF"],
       funding: ["Paid", "Free/HAF"],
-      hours: "Check booking form",
-      price: "Cooked lunch option listed at GBP 3 per day; confirm club fees",
-      summary: "School-run holiday club with sport, art, creative and cooking activities. The school page links to a Summer 2026 application.",
+      hours: "8:45am-4:45pm; extra hours 7:45-8:45am and 4:45-5:45pm at GBP 5 each",
+      price: "GBP 25 per day; extra hours GBP 5 each; cooked lunch GBP 3 per day; some trips cost extra (ages 5+ only)",
+      summary: "School-run holiday club with sport, art, creative and cooking activities. The Summer 2026 club runs Mon 20 July for four weeks until Fri 14 August, booked day by day on the school's application form.",
       goodFor: "Families close to Mission Grove who want a school-based multi-activity club.",
-      booking: "Use the school application form or the Eequ HAF listing when active.",
-      confidence: "Provider page checked",
+      booking: "Use the school's Summer 2026 application form, or the Eequ HAF listing for funded places.",
+      confidence: "Summer 2026 application form checked",
       source: {
         label: "Mission Grove Holiday Club",
         url: "https://www.missiongroveschool.co.uk/page/?title=Holiday+Club&pid=547"
@@ -148,10 +160,10 @@ window.E17_DIRECTORY = {
       funding: ["Paid", "Free/HAF"],
       hours: "Varies by site",
       price: "Check live booking site",
-      summary: "Waltham Forest activity and childcare provider with school holiday clubs across multiple sites; also appears in HAF listings.",
+      summary: "Waltham Forest activity and childcare provider with school holiday clubs across multiple sites (the clubs page lists Thorpe Hall Primary School); also appears in HAF listings, with funded spaces at some sites for benefits-related free school meal families.",
       goodFor: "Families who want a broad, activity-led club and can check live venues by holiday.",
-      booking: "Book through Active London iPAL or through Eequ for HAF sessions.",
-      confidence: "Provider and HAF pages checked",
+      booking: "Book through Active London iPAL (login needed to see live camps) or through Eequ for HAF sessions.",
+      confidence: "Provider pages checked; summer weeks sit behind the iPAL login",
       source: {
         label: "Active London",
         url: "https://active-london.com/"
@@ -189,26 +201,26 @@ window.E17_DIRECTORY = {
     },
     {
       id: "ptc-sports-henry-maynard",
-      name: "PTC Sports Henry Maynard Holiday Club",
+      name: "PTC Sports Holiday Club (Gwyn Jones)",
       kind: "Multi-sports holiday club",
-      area: "Walthamstow",
-      areas: ["Walthamstow"],
-      venue: "Henry Maynard Primary School (Infants Site)",
-      address: "Maynard Road, Walthamstow, E17 9JE",
+      area: "Leytonstone",
+      areas: ["Leytonstone", "Leyton", "Walthamstow"],
+      venue: "Gwyn Jones Primary School",
+      address: "219 Hainault Road, Leytonstone, E11 1EU",
       ageMin: 4,
       ageMax: 12,
       ageLabel: "4-12",
       categories: ["Full day", "Sports", "Multi-activity", "Dance"],
       funding: ["Paid"],
-      hours: "Current ClassForKids listing: 9:00am-5:00pm, 26-29 May 2026",
-      price: "Current ClassForKids listing: GBP 120 full week or GBP 32 single day",
-      summary: "PTC Sports multi-sports holiday club at Henry Maynard, with over 25 activities for mixed abilities including Tri Golf, hockey, basketball, football, dance, gymnastics, mini games, tennis, dodgeball and fencing.",
-      goodFor: "Primary-age children who want a full sports day at a Walthamstow school site.",
-      booking: "Book through the current PTC Sports ClassForKids camp listing, or start from the PTC Henry Maynard page.",
-      confidence: "Current ClassForKids listing checked",
+      hours: "Summer 2026: 9:00am-4:30pm",
+      price: "Summer 2026: GBP 140 full week or GBP 30 single day",
+      summary: "PTC Sports multi-sports holiday club with over 25 activities for mixed abilities including Tri Golf, hockey, basketball, football, dance, gymnastics, mini games, tennis, dodgeball and fencing. Summer 2026 runs at Gwyn Jones Primary School, Leytonstone, Mon 20 July to Fri 21 August (five Mon-Fri weeks); packed lunch needed (no nuts). The Henry Maynard (Walthamstow) site hosted the May half-term camp, but no Henry Maynard summer listing had appeared when checked.",
+      goodFor: "Primary-age children who want a full sports day at a school site on the Leytonstone/Walthamstow border.",
+      booking: "Book through the PTC Sports ClassForKids summer camp listing.",
+      confidence: "Summer 2026 ClassForKids listing checked",
       source: {
-        label: "PTC Sports Henry Maynard booking",
-        url: "https://ptcsports.classforkids.io/camp/115"
+        label: "PTC Sports summer booking (Gwyn Jones)",
+        url: "https://ptcsports.classforkids.io/camp/117"
       },
       secondarySources: [
         {
@@ -218,36 +230,6 @@ window.E17_DIRECTORY = {
         {
           label: "PTC Sports holiday clubs",
           url: "https://ptcsports.co.uk/school-services/holiday-clubs/"
-        }
-      ]
-    },
-    {
-      id: "time-for-change-kids",
-      name: "Time for Change Kids",
-      kind: "Full-day holiday club",
-      area: "Walthamstow",
-      areas: ["Walthamstow"],
-      venue: "Our Lady of Fatima Church Hall and Match Day Centres",
-      address: "Walthamstow venues; current booking page lists Our Lady of Fatima Church Hall",
-      ageMin: 4,
-      ageMax: 12,
-      ageLabel: "School-age; booking page metadata lists 5-12 for some camps",
-      categories: ["Full day", "Multi-activity", "HAF", "Play"],
-      funding: ["Paid", "Free/HAF"],
-      hours: "8:00am-6:00pm on provider site; current camp has 8:30am early drop-off and late pickup add-ons",
-      price: "Check booking page; add-ons listed for early drop-off, late pickup, lunch and snacks",
-      summary: "Ofsted-registered childcare provider offering holiday clubs with sports, dance, arts and crafts, inflatables, slime making and varied activity days.",
-      goodFor: "Families needing a long-day Walthamstow activity club with wraparound-style hours.",
-      booking: "Book through the Time for Change Kids Pembee booking page.",
-      confidence: "Provider and booking pages checked",
-      source: {
-        label: "Time for Change Kids",
-        url: "https://timeforchangekids.com/"
-      },
-      secondarySources: [
-        {
-          label: "Time for Change summer holiday club booking",
-          url: "https://tfckids.pembee.app/activity/683a97eee120b6f3450acab5"
         }
       ]
     },
@@ -266,10 +248,10 @@ window.E17_DIRECTORY = {
       funding: ["Paid"],
       hours: "8:00am-6:00pm",
       price: "May 2026 listing: GBP 36 single day, GBP 144 full week, GBP 18 half day",
-      summary: "Multi-activity holiday club with indoor activities including arts and crafts, football, tennis, movie watching and more.",
+      summary: "Multi-activity holiday club with indoor activities including arts and crafts, football, tennis, movie watching and more. No summer 2026 listing had appeared on ClassForKids or the provider site when checked 10 June — May prices are a guide only.",
       goodFor: "Working parents looking for an all-day local club at an E17 venue.",
-      booking: "Book through the Future Stars ClassForKids page.",
-      confidence: "Current booking page checked",
+      booking: "Watch the Future Stars ClassForKids camps page for the summer listing.",
+      confidence: "Checked 10 June 2026 — summer listing not yet live",
       source: {
         label: "Future Stars holiday club booking",
         url: "https://future-stars-development.classforkids.io/camp/92"
@@ -296,10 +278,10 @@ window.E17_DIRECTORY = {
       funding: ["Paid", "Free/HAF"],
       hours: "Examples include 9:00am-5:00pm and 10:00am-3:00pm",
       price: "Paid and HAF-funded routes; check venue page",
-      summary: "Football, multi-sports and swimming camp provider with recurring Waltham Forest holiday programmes and HAF sessions.",
+      summary: "Football, multi-sports and swimming camp provider with recurring Waltham Forest holiday programmes and HAF sessions. Summer 2026 paid camps were not yet on the bookings site when checked 10 June; their HAF camps at Woodside Primary and George Tomlinson Primary are on the Eequ feed.",
       goodFor: "Children who want football or multi-sports, including HAF-funded places at selected venues.",
-      booking: "Book through WO Sports bookings or Eequ HAF when applicable.",
-      confidence: "Provider and HAF pages checked",
+      booking: "Book through WO Sports bookings (summer camps to appear) or Eequ HAF when applicable.",
+      confidence: "Checked 10 June 2026 — summer camps not yet listed",
       source: {
         label: "WO Sports",
         url: "https://wo-sports.co.uk/"
@@ -488,25 +470,29 @@ window.E17_DIRECTORY = {
       name: "Leyton Orient Trust football camps",
       kind: "Football and HAF camps",
       area: "Walthamstow / Leyton",
-      areas: ["Walthamstow", "Leyton"],
-      venue: "Peter May Sports Centre and SCORE Centre",
-      address: "Peter May Sports Centre, Walthamstow; SCORE Centre, Leyton",
+      areas: ["Walthamstow", "Leyton", "Woodford", "Loughton"],
+      venue: "Peter May Sports Centre, SCORE Centre and Roding Valley High School (summer 2026 camps)",
+      address: "Peter May Sports Centre, Walthamstow; SCORE Centre, Leyton; Roding Valley High School, Loughton",
       ageMin: 6,
       ageMax: 14,
-      ageLabel: "6-13 on official football camp page; 8-14 in HAF feed",
+      ageLabel: "6-13 for summer holiday camps; 8-14 in HAF feed",
       categories: ["Football", "Sports", "HAF"],
       funding: ["Paid", "Free/HAF"],
-      hours: "Varies by holiday",
-      price: "Check live booking",
-      summary: "Leyton Orient community football camps and HAF sessions in nearby Walthamstow and Leyton venues.",
-      goodFor: "Children who want club-linked football coaching and HAF options when available.",
-      booking: "Check Leyton Orient announcements and Eequ HAF listings.",
-      confidence: "Official page found; seasonal availability changes",
+      hours: "Summer 2026 camps: 10:00am-3:00pm, Mon-Thu",
+      price: "Summer 2026: GBP 100 per four-day week at Roding Valley High School",
+      summary: "Leyton Orient community football camps and HAF sessions. Summer 2026 holiday camps are listed at Roding Valley High School (Loughton): five Mon-Thu weeks from 27 July to 27 August, ages 6-13. No Peter May or SCORE Centre summer camp had been announced when checked; their HAF sessions appear on the Eequ feed.",
+      goodFor: "Children who want club-linked football coaching, and HAF options when available.",
+      booking: "Book summer camps through the official Leyton Orient soccer schools site; check Eequ for HAF places.",
+      confidence: "Official soccer schools listing checked",
       source: {
-        label: "Leyton Orient camp news",
-        url: "https://www.leytonorient.com/news/2025/march/15/book-now--football-camps-for-easter-and-may-half-term/"
+        label: "Leyton Orient soccer schools",
+        url: "https://officialsoccerschools.co.uk/leytonorient/"
       },
       secondarySources: [
+        {
+          label: "Leyton Orient camp news",
+          url: "https://www.leytonorient.com/news/2026/april/23/Book-now--May-half-term-football-camps/"
+        },
         {
           label: "Leyton Orient HAF at SCORE Centre",
           url: "https://eequ.org/book/leyton-orient-haf-score-centre-with-leyton-orient-trust-7132"
@@ -527,11 +513,11 @@ window.E17_DIRECTORY = {
       categories: ["Full day", "Multi-activity", "Teen"],
       funding: ["Paid"],
       hours: "Arrival 8:30am-9:15am; collection 4:30pm-5:30pm; paid early/late extras",
-      price: "Check Camp Beaumont dates and prices",
-      summary: "Large multi-activity day camp at Woodbridge High School, close to Woodford, Wanstead, Chingford and surrounding areas.",
+      price: "Check Camp Beaumont dates and prices; extended hours GBP 7.50 per session or GBP 15 per day",
+      summary: "Large multi-activity day camp at Woodbridge High School, close to Woodford, Wanstead, Chingford and surrounding areas. Week-by-week dates and prices only show inside the Camp Beaumont booking flow.",
       goodFor: "Families who can travel slightly further for a large commercial camp with broad age grouping.",
       booking: "Book through Camp Beaumont.",
-      confidence: "Provider page checked",
+      confidence: "Provider page re-checked 10 June 2026",
       source: {
         label: "Camp Beaumont Woodbridge High School",
         url: "https://www.campbeaumont.co.uk/our-camps/woodbridge-high-school"
@@ -551,11 +537,11 @@ window.E17_DIRECTORY = {
       categories: ["Full day", "Multi-activity", "Sports", "Arts", "Coding"],
       funding: ["Paid", "Tax-Free Childcare", "Childcare vouchers", "Sibling discount"],
       hours: "Standard 8:30am-5:30pm; extended hours 8:00am-6:00pm",
-      price: "Check live Barracudas prices and availability; early booking, sibling discounts and payment options listed",
-      summary: "Large activity day camp at Woodford County High School for Easter, summer and October half term, with sports, creative activities, Skills Builder courses and summer extras such as aqua slide/water park where available.",
+      price: "Check live Barracudas prices and availability; sibling code SIBLING10 saves GBP 5 per day per child when booking 10+ individual days for 2+ children",
+      summary: "Large activity day camp at Woodford County High School for Easter, summer and October half term, with sports, creative activities, Skills Builder courses and summer extras such as aqua slide/water park where available. Booking is open for Summer 2026; day prices only show in the live booking flow.",
       goodFor: "Families who can travel to Woodford for a long-day commercial camp with lots of activity choice and childcare-payment options.",
       booking: "Book through the Barracudas Woodford camp page and check live availability for the holiday period.",
-      confidence: "Current Barracudas Woodford page checked",
+      confidence: "Booking open for Summer 2026 — page checked 10 June",
       source: {
         label: "Barracudas Woodford",
         url: "https://www.barracudas.co.uk/camps/woodford"
@@ -894,12 +880,12 @@ window.E17_DIRECTORY = {
       ageLabel: "4.5-15",
       categories: ["Full day", "Multi-activity", "Sports", "Arts", "Swimming"],
       funding: ["Paid"],
-      hours: "Standard day 8:30am-5:30pm; early/late options can extend to 8:00am-6:00pm",
-      price: "Summer 2026 date page lists GBP 246 for a five-day week and GBP 197 for a four-day bank-holiday week",
-      summary: "Long-day holiday camp at Forest School with swimming, bouncy castles, inflatables, arts and crafts, multi-sports and rotating specials such as archery, laser tag, go-karts or cookery.",
+      hours: "Standard day 8:30am-5:30pm; early/late options can extend to 8:00am-6:00pm (GBP 4 each)",
+      price: "GBP 246 per five-day week (all summer 2026 weeks are five-day); sibling discount GBP 15 per week",
+      summary: "Long-day holiday camp at Forest School with swimming, bouncy castles, inflatables, arts and crafts, multi-sports and rotating specials such as archery, laser tag, go-karts or cookery. Summer 2026 runs eight Mon-Fri weeks from 6 July to 28 August; when checked on 10 June every week from 20 July onwards was waitlist-only, with places left on the 6-17 July weeks.",
       goodFor: "Families near the E17/Snaresbrook edge who need a long day and a broad activity mix.",
-      booking: "Book through the Sylvestrian holiday activities page or its Pembee booking system.",
-      confidence: "Current dates and provider pages checked",
+      booking: "Book through the Sylvestrian Pembee booking system — join waitlists promptly for the school-holiday weeks.",
+      confidence: "Summer 2026 Pembee week listings checked",
       source: {
         label: "Sylvestrian holiday activities",
         url: "https://www.sylvestrian-leisure.co.uk/holiday-activities/"
@@ -1006,6 +992,36 @@ window.E17_DIRECTORY = {
       ]
     },
     {
+      id: "vestry-school-of-dance",
+      name: "Vestry School of Dance Summer School",
+      kind: "Dance and performing arts summer school",
+      area: "Walthamstow",
+      areas: ["Walthamstow", "Chingford"],
+      venue: "Walthamstow and Chingford venues; school base 18 Brookscroft Road — confirm summer school venue when booking",
+      address: "18 Brookscroft Road, Walthamstow, E17 4LH",
+      ageMin: 2,
+      ageMax: 18,
+      ageLabel: "School teaches ages 2-18 — confirm summer school age range when booking",
+      categories: ["Dance", "Drama", "Workshop"],
+      funding: ["Paid"],
+      hours: "Contact the school for summer school hours",
+      price: "Contact the school for the summer school price",
+      summary: "Long-established Walthamstow dance and performing arts school (founded 1996, around 680 pupils across Walthamstow and Chingford venues). Its 2026 Summer School runs two weeks — 20-24 July and 24-28 August — with a few places left on both when checked.",
+      goodFor: "Children who want a dance and performing-arts holiday week with a long-running local school.",
+      booking: "Contact Vestry on 07933 314 415 or lyndseyvestry@gmail.com to book summer school places.",
+      confidence: "Provider news page checked",
+      source: {
+        label: "Vestry School of Dance news (summer school)",
+        url: "https://vestryschoolofdance.co.uk/news/"
+      },
+      secondarySources: [
+        {
+          label: "Vestry School of Dance",
+          url: "https://vestryschoolofdance.co.uk/"
+        }
+      ]
+    },
+    {
       id: "study-right-stem",
       name: "Study Right STEM and Creative Club",
       kind: "STEM and creative HAF club",
@@ -1087,14 +1103,12 @@ window.E17_DIRECTORY = {
   hafSnapshot: [
     { name: "SCK Martial Arts Holiday Camp", venue: "439 High Road Leyton", area: "Leyton", ageMin: 7, ageMax: 16, ages: "7-16" },
     { name: "Endorphins Waltham Forest HAF SEND only", venue: "1a Alders Ave", area: "Walthamstow / Woodford", ageMin: 8, ageMax: 16, ages: "8-16" },
-    { name: "Waltham Forest Easter HAF for SEND children", venue: "Leytonstone Toy Library and Play Centre", area: "Leytonstone", ageMin: 5, ageMax: 16, ages: "5-16" },
     { name: "Epping Forest Adventure with The Hive", venue: "The Hive", area: "Loughton", ageMin: 8, ageMax: 12, ages: "8-12" },
     { name: "Dynamic Coaching Waltham Forest", venue: "Kelmscott School", area: "Walthamstow", ageMin: 5, ageMax: 16, ages: "5-16" },
     { name: "Carousel of Fun and NERF Battles Camp", venue: "South Chingford Congregational Church", area: "Chingford", ageMin: 5, ageMax: 12, ages: "5-12" },
     { name: "Study Right STEM and Creative Club", venue: "Study Right Walthamstow Tuition Centre", area: "Walthamstow", ageMin: 8, ageMax: 16, ages: "8-16" },
     { name: "Easter Arts and Crafts and Roller Disco", venue: "St Mary's Welcome Centre", area: "Walthamstow", ageMin: 8, ageMax: 16, ages: "8-16" },
     { name: "The Gifted HAF Sports Programme", venue: "Willowfield School", area: "Walthamstow", ageMin: 11, ageMax: 16, ages: "11-16" },
-    { name: "Waltham Forest HAF at Leytonstone School", venue: "Leytonstone School", area: "Leytonstone", ageMin: 5, ageMax: 11, ages: "5-11" },
     { name: "Leyton Orient HAF at SCORE Centre", venue: "SCORE Centre", area: "Leyton", ageMin: 8, ageMax: 14, ages: "8-14" },
     { name: "Malearn Holiday Club at Greenleaf Primary School", venue: "80 Greenleaf Road", area: "Walthamstow", ageMin: 4, ageMax: 11, ages: "4-11" },
     { name: "Acro Dance Drama Camp Chingford Week 2", venue: "Parkside Primary", area: "Chingford", ageMin: 4, ageMax: 11, ages: "4-11" },
@@ -1111,8 +1125,11 @@ window.E17_DIRECTORY = {
     { name: "Mission Grove Summer Holiday Club 2026", venue: "Buxton Road", area: "Walthamstow", ageMin: 4, ageMax: 11, ages: "4-11" },
     { name: "Acro, Dance and Drama Camp Walthamstow Week 1", venue: "Hillyfield Primary Academy Park Site", area: "Walthamstow", ageMin: 4, ageMax: 11, ages: "4-11" },
     { name: "Handsworth Primary School Easter Camp 2026", venue: "Handsworth Avenue", area: "Highams Park", ageMin: 5, ageMax: 12, ages: "5-12" },
+    { name: "St Andrews Youth Developments Sport Camp HAF", venue: "140 Shernhall Street", area: "Walthamstow", ageMin: 6, ageMax: 16, ages: "6-16" },
     { name: "Treasure Our Youth HAF Summer Club 2026", venue: "Mission Grove Primary School", area: "Walthamstow", ageMin: 11, ageMax: 15, ages: "11-15" },
     { name: "SUMMER HAF Programme 2026 - Sporting Pillars", venue: "Feel Good Too Centre", area: "Leyton", ageMin: 8, ageMax: 16, ages: "8-16" },
+    { name: "Handsworth Primary School Summer 26 Camp", venue: "Handsworth Primary School", area: "Highams Park", ageMin: 4, ageMax: 12, ages: "4-12" },
+    { name: "Project Zero Summer 26 HAF Activities", venue: "The Outset Centre Community Youth Hub", area: "Walthamstow", ageMin: 8, ageMax: 16, ages: "8-16" },
     { name: "Spring Break Active London - Thorpe Hall", venue: "Thorpe Hall Primary School", area: "Walthamstow", ageMin: 5, ageMax: 11, ages: "5-11" },
     { name: "HAF EASTER 2026 - Bubbles and Smiles", venue: "George Mitchell Academy", area: "Leyton", ageMin: 5, ageMax: 16, ages: "5-16" }
   ]

@@ -4,7 +4,7 @@
  * RULES FOR THIS FILE
  * - camps.js stays the verified source of truth and is never edited by the planner.
  * - Every field here is derived ONLY from the verified text already in camps.js
- *   or from the .firecrawl scrapes captured on 2026-06-09. Nothing is inferred.
+ *   or from the .firecrawl scrapes captured on 2026-06-09/10. Nothing is inferred.
  * - null / missing means "unknown — confirm with provider". The UI must say so.
  * - weeks: planner week numbers (1-6 + stub 7) the provider has CONFIRMED dates for.
  * - weeksLikely: provider runs summer camps but week-level dates are unconfirmed.
@@ -13,7 +13,7 @@
  */
 
 window.E17_PLANNER = {
-  updated: "2026-06-09",
+  updated: "2026-06-10",
 
   // Term dates from Waltham Forest Council "Holiday pattern" PDFs 2025-26 and
   // 2026-27 (downloaded and checked 9 June 2026).
@@ -42,7 +42,7 @@ window.E17_PLANNER = {
     "waltham-forest-haf": {
       plannerRole: "route",
       weeksLikely: true,
-      weeksBasis: "HAF programmes run each school holiday; summer sessions appear on the Eequ feed closer to the holiday.",
+      weeksBasis: "HAF programmes run each school holiday; the Eequ feed says Summer 2026 bookings open at 9am on Monday 22 June.",
       haf: true
     },
 
@@ -59,32 +59,41 @@ window.E17_PLANNER = {
 
     "lloyd-park-childrens-charity": {
       weeksLikely: true,
-      weeksBasis: "Runs every school holiday from Lloyd Park and Higham Hill centres; week list and fees are on the provider's booking page.",
+      weeksBasis: "Runs every school holiday from Lloyd Park and Higham Hill centres; Summer 2026 bookings open 9am Mon 15 June — the week list appears on the booking page then.",
+      price: { day: 48.3 },
+      priceBasis: "£48.30 per day on the charity's fees page (checked 10 Jun 2026); one-off £24.08 registration fee also listed.",
       hours: { start: "08:00", end: "17:50" },
       coverage: "working",
       sendAware: true
     },
 
     "church-hill-playscheme": {
-      weeksLikely: true,
-      weeksBasis: "School-run playscheme each holiday; return the booking form to the school office for summer weeks.",
+      weeks: [1, 2, 3, 4, 5],
+      daysPerWeek: { "1": 4 },
+      weeksBasis: "Summer 2026 booking form: Tue 21–Fri 24 Jul (4 days), then Mon–Fri weeks 27–31 Jul, 3–7 Aug, 10–14 Aug, 17–21 Aug. Last booking date Fri 10 July; minimum 2 days.",
       price: { day: 49, dayExtended: 65 },
-      priceBasis: "Daytime day £49; whole day (8:00–18:00) £65; breakfast/tea add-ons — from the school page.",
-      hours: { start: "08:00", end: "18:00" },
+      priceBasis: "Summer 2026 booking form: £49 core day (9:00–16:00) / £65 full day (8:00–18:00); breakfast £7, tea £14.",
+      hours: { start: "09:00", end: "16:00", extStart: "08:00", extEnd: "18:00" },
       coverage: "working",
-      earlyYears: true
+      earlyYears: true,
+      tfc: true, vouchers: true,
+      lunch: { policy: "bring", note: "Packed lunch needed — the nursery does not provide lunch. Tea is cooked on site for the 4–6pm block." }
     },
 
     "mission-grove": {
-      weeksLikely: true,
-      weeksBasis: "School page links a live Summer 2026 application, and 'Mission Grove Summer Holiday Club 2026' appears on the Eequ HAF feed.",
+      weeks: [1, 2, 3, 4],
+      weeksBasis: "School application form: Mon 20 July for four weeks until Fri 14 August 2026, booked day by day. 'Mission Grove Summer Holiday Club 2026' is also on the Eequ HAF feed.",
+      price: { day: 25 },
+      priceBasis: "£25 per day on the Summer 2026 application form; extra hours (7:45–8:45am / 4:45–5:45pm) £5 each; some trips £15 extra (ages 5+).",
+      hours: { start: "08:45", end: "16:45", extStart: "07:45", extEnd: "17:45" },
+      coverage: "working",
       haf: true,
-      lunch: { policy: "buy", note: "Cooked lunch listed at £3/day on the school page (HAF places include food)." }
+      lunch: { policy: "buy", note: "Cooked lunch £3/day on the application form, or bring a packed lunch (HAF places include food)." }
     },
 
     "active-london": {
       weeksLikely: true,
-      weeksBasis: "Runs WF holiday clubs every holiday across multiple sites — summer venues/dates appear on iPAL closer to the holiday.",
+      weeksBasis: "Runs WF holiday clubs every holiday across multiple sites (clubs page lists Thorpe Hall Primary) — summer weeks sit behind the iPAL booking login (checked 10 Jun 2026).",
       haf: true
     },
 
@@ -98,30 +107,20 @@ window.E17_PLANNER = {
     },
 
     "ptc-sports-henry-maynard": {
-      weeksLikely: true,
-      weeksBasis: "Latest confirmed ClassForKids listing was May half-term (Mon 25–Fri 29 May, £120/wk, £32/day). Summer weeks not yet published when checked — watch the booking page.",
-      price: { day: 32, week: 120 },
-      priceBasis: "May 2026 half-term listing — treat as a guide for summer pricing.",
-      priceStale: "May 2026 listing",
-      hours: { start: "09:00", end: "17:00" },
-      coverage: "standard"
-    },
-
-    "time-for-change-kids": {
-      weeksLikely: true,
-      weeksBasis: "Summer holiday club booking is live on Pembee; pick exact days/weeks there. Site states 8:00–18:00 with early drop-off and late pickup add-ons.",
-      hours: { start: "08:00", end: "18:00" },
-      coverage: "working",
-      ofsted: true,
-      haf: true,
-      lunch: { policy: "buy", note: "Lunch and snacks listed as add-ons on the booking page." }
+      weeks: [1, 2, 3, 4, 5],
+      weeksBasis: "ClassForKids summer listing (Gwyn Jones Primary, Leytonstone): five Mon–Fri weeks, 20 Jul – 21 Aug 2026, 9:00–4:30 — spaces available when checked 10 Jun. No Henry Maynard summer listing has appeared.",
+      price: { day: 30, week: 140 },
+      priceBasis: "Summer 2026 ClassForKids listing: £140 full week / £30 single day.",
+      hours: { start: "09:00", end: "16:30" },
+      coverage: "standard",
+      lunch: { policy: "bring", note: "Packed lunch needed (no nut content) plus a refillable water bottle." }
     },
 
     "future-stars-walthamstow": {
       weeksLikely: true,
-      weeksBasis: "Runs full-day camps each holiday at Match Day Centres; the dated listing checked was May half-term — confirm summer weeks on ClassForKids.",
+      weeksBasis: "Runs full-day camps each holiday at Match Day Centres; no summer 2026 listing on ClassForKids or the provider site when checked 10 Jun — watch the camps page.",
       price: { day: 36, week: 144, halfDay: 18 },
-      priceBasis: "May 2026 listing: £36 day / £144 week / £18 half-day.",
+      priceBasis: "May 2026 listing: £36 day / £144 week / £18 half-day — treat as a guide until the summer listing appears.",
       priceStale: "May 2026 listing",
       hours: { start: "08:00", end: "18:00" },
       coverage: "working"
@@ -129,7 +128,7 @@ window.E17_PLANNER = {
 
     "wo-sports": {
       weeksLikely: true,
-      weeksBasis: "Recurring WF holiday programmes (paid + HAF); summer venues and dates go live on their booking site.",
+      weeksBasis: "Recurring WF holiday programmes (paid + HAF); the bookings site still showed only term-time courses and May camps on 10 Jun — summer camps to appear. HAF camps at Woodside and George Tomlinson are on the Eequ feed.",
       haf: true,
       coverage: "varies"
     },
@@ -191,15 +190,19 @@ window.E17_PLANNER = {
     },
 
     "leyton-orient-trust": {
-      weeksLikely: true,
-      weeksBasis: "Camps each school holiday at Peter May / SCORE centres; summer announcement and HAF places appear nearer the holiday.",
+      weeks: [2, 3, 4, 5, 6],
+      daysPerWeek: { "2": 4, "3": 4, "4": 4, "5": 4, "6": 4 },
+      weeksBasis: "Official soccer-schools listing: five Mon–Thu summer weeks at Roding Valley High School (27–30 Jul, 3–6 Aug, 10–13 Aug, 17–20 Aug, 24–27 Aug), 10am–3pm, ages 6–13. No Peter May/SCORE summer camp announced when checked 10 Jun; HAF places via Eequ.",
+      price: { week: 100 },
+      priceBasis: "£100 per Mon–Thu week on the official soccer-schools summer listings.",
+      hours: { start: "10:00", end: "15:00" },
       haf: true,
-      coverage: "varies"
+      coverage: "short"
     },
 
     "camp-beaumont-woodbridge": {
       weeksLikely: true,
-      weeksBasis: "Large commercial camp running through the summer holidays — pick exact weeks on the Camp Beaumont booking site.",
+      weeksBasis: "Large commercial camp running through the summer holidays — week-by-week dates and prices only show inside the booking flow (checked 10 Jun 2026).",
       hours: { start: "08:30", end: "17:30" },
       coverage: "working",
       teen: true
@@ -207,7 +210,7 @@ window.E17_PLANNER = {
 
     "barracudas-woodford": {
       weeksLikely: true,
-      weeksBasis: "Runs through the summer at Woodford County High School — live availability and week prices on the Barracudas site.",
+      weeksBasis: "Booking open for Summer 2026 at Woodford County High School (checked 10 Jun) — live availability and week prices on the Barracudas site; SIBLING10 saves £5/day for 2+ children over 10+ days.",
       hours: { start: "08:30", end: "17:30", extStart: "08:00", extEnd: "18:00" },
       coverage: "working",
       tfc: true, vouchers: true, siblingDiscount: true
@@ -296,14 +299,15 @@ window.E17_PLANNER = {
     },
 
     "sylvestrian-leisure-holiday-activities": {
-      weeksLikely: true,
-      weeksBasis: "Runs long-day camps through the summer at Forest School; the dates page lists £246 five-day weeks and £197 four-day bank-holiday weeks — pick exact weeks on Pembee.",
-      price: { week: 246, weekAlt: 197, weekAltLabel: "4-day bank-holiday week" },
-      priceBasis: "Summer 2026 dates page: £246 five-day week / £197 four-day bank-holiday week.",
+      weeks: [1, 2, 3, 4, 5, 6],
+      weeksBasis: "Pembee lists eight Summer Camp weeks, Mon 6 Jul – Fri 28 Aug 2026 (planner weeks 1–6 = camp weeks 3–8). All six school-holiday weeks were 'waitlist available' on 10 Jun, with places left on the 6–17 Jul weeks — join waitlists promptly.",
+      price: { week: 246 },
+      priceBasis: "£246 five-day week on the dates page; all eight summer weeks are five-day (the £197 rate applies only to four-day bank-holiday weeks, none this summer). Early/late add-ons £4 each; £15/week sibling discount.",
       hours: { start: "08:30", end: "17:30", extStart: "08:00", extEnd: "18:00" },
       coverage: "working",
       ofsted: true,
-      swimming: true
+      swimming: true,
+      siblingDiscount: true
     },
 
     "perform-walthamstow-village": {
@@ -329,6 +333,12 @@ window.E17_PLANNER = {
       hours: { start: "10:00", end: "16:00", extStart: "09:00", extEnd: "16:00" },
       coverage: "standard",
       ofsted: true, tfc: true, vouchers: true
+    },
+
+    "vestry-school-of-dance": {
+      weeks: [1, 6],
+      weeksBasis: "Provider news page lists Summer School Week 1: 20–24 July and Week 2: 24–28 August 2026 — 'a few places left on both weeks' when checked 10 Jun. Hours, price and venue: contact the school.",
+      coverage: "varies"
     },
 
     "study-right-stem": {
