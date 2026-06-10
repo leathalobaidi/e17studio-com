@@ -148,6 +148,34 @@ function weekById(id) {
   return P.weeks.find((w) => w.id === Number(id)) || null;
 }
 
+const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+/* Which weekdays a provider actually runs in a given week (drives the day toggles). */
+function allowedDaysFor(provider, weekId) {
+  const pl = plannerOf(provider);
+  if (pl.fridaysOnly) return [5];
+  const n = pl.daysPerWeek && pl.daysPerWeek[String(weekId)];
+  if (n) return [1, 2, 3, 4, 5].slice(0, n);
+  const wk = weekById(weekId);
+  if (wk && wk.stub) return [1, 2, 3, 4, 5].slice(0, wk.days);
+  return [1, 2, 3, 4, 5];
+}
+
+/* Resolve an entry's selected days: explicit selection, else the full pattern. */
+function entryDays(entry, weekId) {
+  if (entry.type === "camp") {
+    const p = providerById(entry.campId);
+    const allowed = p ? allowedDaysFor(p, weekId) : [1, 2, 3, 4, 5];
+    const sel = Array.isArray(entry.days) && entry.days.length
+      ? entry.days.filter((d) => allowed.includes(d))
+      : allowed;
+    return { days: sel.length ? sel : allowed, allowed, isDefault: !(Array.isArray(entry.days) && entry.days.length) };
+  }
+  const allowed = [1, 2, 3, 4, 5];
+  const sel = Array.isArray(entry.days) && entry.days.length ? entry.days : allowed;
+  return { days: sel, allowed, isDefault: !(Array.isArray(entry.days) && entry.days.length) };
+}
+
 /* Cost of one provider for one planner week.
  * Returns {value, estimate, label, basis} or null when unpriced. */
 function weekCost(provider, weekId) {
@@ -531,24 +559,48 @@ function setPlanEntry(weekId, childId, entry) {
 function entryCost(entry, weekId) {
   if (!entry) return null;
   if (entry.type !== "camp") {
-    const v = Number.isFinite(entry.cost) ? entry.cost : 0;
-    return { value: v, estimate: false, label: v ? "your own figure" : "no camp cost" };
+    const base = Number.isFinite(entry.cost) ? entry.cost : 0;
+    if (entry.costBasis === "day") {
+      const n = entryDays(entry, weekId).days.length;
+      return { value: Math.round(base * n * 100) / 100, estimate: false, label: `${money(base)} × ${n} day${n === 1 ? "" : "s"}` };
+    }
+    return { value: base, estimate: false, label: base ? "your own figure" : "no camp cost" };
   }
   const p = providerById(entry.campId);
   if (!p) return null;
+  // Part-week selection: price by day rate where one is published.
+  if (Array.isArray(entry.days) && entry.days.length) {
+    const info = entryDays(entry, weekId);
+    if (info.days.length < info.allowed.length) {
+      if (isHafOnly(p)) return { value: 0, estimate: false, label: "Free (HAF, if eligible)" };
+      const pr = plannerOf(p).price || {};
+      if (Number.isFinite(pr.day)) {
+        const v = pr.day * info.days.length;
+        return { value: v, estimate: true, label: `${money(pr.day)} × ${info.days.length} day${info.days.length === 1 ? "" : "s"}` };
+      }
+      return null; // only a week price is published — part-week cost unknown
+    }
+  }
   return weekCost(p, weekId);
 }
 
 function entryMeta(entry, weekId) {
-  if (!entry || entry.type !== "camp") return "";
-  const p = providerById(entry.campId);
-  if (!p) return "";
-  const pl = plannerOf(p);
+  if (!entry) return "";
   const bits = [];
-  if (pl.fridaysOnly) bits.push("Friday only");
-  else if (pl.daysPerWeek && pl.daysPerWeek[String(weekId)]) bits.push(`${pl.daysPerWeek[String(weekId)]} days`);
-  if (pl.weeks && !pl.weeks.includes(Number(weekId))) bits.push("⚠ dates unconfirmed");
-  else if (pl.weeksLikely && !(pl.weeks || []).length) bits.push("⚠ confirm dates");
+  if (entry.type === "camp") {
+    const p = providerById(entry.campId);
+    if (!p) return "";
+    const pl = plannerOf(p);
+    const info = entryDays(entry, weekId);
+    if (!info.isDefault && info.days.length < info.allowed.length) {
+      bits.push(info.days.map((d) => DAY_LABELS[d - 1]).join(" "));
+    } else if (pl.fridaysOnly) bits.push("Friday only");
+    else if (pl.daysPerWeek && pl.daysPerWeek[String(weekId)]) bits.push(`${pl.daysPerWeek[String(weekId)]} days`);
+    if (pl.weeks && !pl.weeks.includes(Number(weekId))) bits.push("⚠ dates unconfirmed");
+    else if (pl.weeksLikely && !(pl.weeks || []).length) bits.push("⚠ confirm dates");
+  } else if (entry.costBasis === "day" && Array.isArray(entry.days) && entry.days.length < 5) {
+    bits.push(entry.days.map((d) => DAY_LABELS[d - 1]).join(" "));
+  }
   return bits.join(" · ");
 }
 
@@ -634,7 +686,8 @@ function renderBudget() {
         return;
       }
       if (entry.type !== "camp") {
-        const v = Number.isFinite(entry.cost) ? entry.cost : 0;
+        const cc = entryCost(entry, wk.id);
+        const v = cc && Number.isFinite(cc.value) ? cc.value : 0;
         perChild[c.id] += v;
         grand += v;
         return;
@@ -826,7 +879,23 @@ function renderPicker() {
       <span class="po-cost">£0</span>
     </button>`).join("");
 
+  // Day editor for the current assignment (camps, and custom camps priced per day).
+  const dayEditor = (() => {
+    if (!current) return "";
+    if (current.type !== "camp" && current.costBasis !== "day") return "";
+    const info = entryDays(current, wk.id);
+    const cost = entryCost(current, wk.id);
+    return `<div class="day-editor">
+      <span class="day-editor-label">Days:</span>
+      ${[1, 2, 3, 4, 5].map((d) => `
+        <button type="button" class="day-chip ${info.days.includes(d) ? "is-on" : ""}"
+          data-day-toggle="${d}" ${info.allowed.includes(d) ? "" : "disabled"}>${DAY_LABELS[d - 1]}</button>`).join("")}
+      <span class="day-editor-cost">${cost ? money(cost.value) + (cost.estimate ? " est." : "") : "£? — no day rate published, ask provider"}</span>
+    </div>`;
+  })();
+
   const cur = current && current.type === "other" ? current : null;
+  const curDays = cur && Array.isArray(cur.days) && cur.days.length ? cur.days : [1, 2, 3, 4, 5];
   const customCampForm = `
     <p class="picker-group-title">Camp not in this list? Add your own</p>
     <div class="custom-camp-form">
@@ -834,16 +903,27 @@ function renderPicker() {
         <input type="text" id="customCampName" maxlength="34"
           placeholder="e.g. Vestry holiday club"
           value="${cur ? escapeHtml(cur.label || "") : ""}"></label>
-      <label class="field"><span>Cost for this week (£)</span>
+      <label class="field"><span>Cost (£)</span>
         <input type="number" id="customCampCost" min="0" step="0.01" inputmode="decimal"
           placeholder="0"
           value="${cur && Number.isFinite(cur.cost) && cur.cost ? cur.cost : ""}"></label>
+      <label class="field"><span>That's the price…</span>
+        <select id="customCampBasis">
+          <option value="week" ${cur && cur.costBasis === "day" ? "" : "selected"}>for the week</option>
+          <option value="day" ${cur && cur.costBasis === "day" ? "selected" : ""}>per day</option>
+        </select></label>
       <button class="btn btn-add" type="button" data-pick-customcamp="1">${cur ? "Save changes" : "Add to this week"}</button>
     </div>
-    <p class="picker-note">Goes straight into your totals like any other camp. Leave the cost blank for £0 — tap the cell again later to edit.</p>`;
+    <div class="custom-days">
+      <span class="day-editor-label">Days:</span>
+      ${[1, 2, 3, 4, 5].map((d) => `
+        <button type="button" class="day-chip ${curDays.includes(d) ? "is-on" : ""}" data-form-day="${d}">${DAY_LABELS[d - 1]}</button>`).join("")}
+    </div>
+    <p class="picker-note">Goes straight into your totals like any other camp. Pick the days, and if you only know the day rate choose "per day" — it multiplies up for you.</p>`;
 
   els.pickerBody.innerHTML = [
     current ? `<button class="picker-remove" type="button" data-pick-remove="1">Remove “${escapeHtml(assignmentLabel(current))}” from this week</button>` : "",
+    dayEditor,
     wk.stub ? `<p class="picker-note">ℹ ${escapeHtml(wk.note)}</p>` : "",
     group("Confirmed for this week", confirmed),
     group("Runs in summer — confirm exact dates", likely, { unconfirmed: true }),
@@ -886,16 +966,41 @@ function handlePickerClick(event) {
   if (!pickerCtx || pickerCtx.mode !== "cell") return;
   const { weekId, childId } = pickerCtx;
 
+  const formDayBtn = event.target.closest("[data-form-day]");
+  if (formDayBtn) { formDayBtn.classList.toggle("is-on"); return; }
+
+  const dayBtn = event.target.closest("[data-day-toggle]");
+  if (dayBtn) {
+    const d = Number(dayBtn.dataset.dayToggle);
+    const cur = planEntry(weekId, childId);
+    if (!cur) return;
+    const info = entryDays(cur, weekId);
+    const days = info.days.includes(d)
+      ? info.days.filter((x) => x !== d)
+      : [...info.days, d].sort((a, b) => a - b);
+    if (!days.length) return; // keep at least one day
+    setPlanEntry(weekId, childId, { ...cur, days });
+    renderPicker();
+    return;
+  }
+
   if (campBtn) {
     setPlanEntry(weekId, childId, { type: "camp", campId: campBtn.dataset.pickCamp });
     els.pickerDialog.close();
   } else if (customCampBtn) {
     const nameInput = els.pickerBody.querySelector("#customCampName");
     const costInput = els.pickerBody.querySelector("#customCampCost");
+    const basisInput = els.pickerBody.querySelector("#customCampBasis");
     const label = ((nameInput && nameInput.value) || "").trim().slice(0, 34) || "My own camp";
     const raw = parseFloat(costInput && costInput.value);
     const cost = Number.isFinite(raw) && raw >= 0 ? Math.round(raw * 100) / 100 : 0;
-    setPlanEntry(weekId, childId, { type: "other", label, cost });
+    const costBasis = (basisInput && basisInput.value) === "day" ? "day" : "week";
+    const days = [...els.pickerBody.querySelectorAll("[data-form-day].is-on")]
+      .map((b) => Number(b.dataset.formDay)).sort((a, b) => a - b);
+    setPlanEntry(weekId, childId, {
+      type: "other", label, cost, costBasis,
+      days: days.length && days.length < 5 ? days : undefined
+    });
     els.pickerDialog.close();
   } else if (customBtn) {
     setPlanEntry(weekId, childId, { type: customBtn.dataset.pickCustom });
@@ -926,7 +1031,8 @@ function planSummaryText() {
       let costText = "£0";
       if (cost && cost.value != null) { costText = money(cost.value) + (cost.estimate ? " est." : ""); total += cost.value; }
       else if (entry.type === "camp") { costText = "£? confirm"; unknown += 1; }
-      lines.push(`  ${wk.label} (${wk.dates}): ${assignmentLabel(entry)} — ${costText}`);
+      const meta = entryMeta(entry, wk.id);
+      lines.push(`  ${wk.label} (${wk.dates}): ${assignmentLabel(entry)}${meta ? ` (${meta})` : ""} — ${costText}`);
     });
     lines.push(`  Total: ${money(total)}${unknown ? ` + ${unknown} unpriced` : ""}`);
     lines.push("");

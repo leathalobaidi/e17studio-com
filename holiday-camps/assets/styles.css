@@ -978,15 +978,52 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 
 .custom-camp-form {
   display: grid;
-  grid-template-columns: 1.5fr 1fr auto;
+  grid-template-columns: 1.4fr 0.8fr 1fr auto;
   gap: 10px;
   align-items: end;
   padding: 2px 6px;
 }
 .custom-camp-form .btn { min-height: 46px; white-space: nowrap; }
 
+.day-editor, .custom-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 6px 2px;
+}
+.day-editor {
+  margin: 4px 0 2px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: #fffefa;
+  padding: 10px;
+}
+.day-editor-label {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.day-chip {
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.84rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.day-chip.is-on { background: var(--green); border-color: var(--green-deep); color: #fff; }
+.day-chip:disabled { opacity: 0.35; cursor: not-allowed; }
+.day-editor-cost { margin-left: auto; font-weight: 800; color: var(--green-deep); font-size: 0.9rem; }
+
 @media (max-width: 680px) {
   .custom-camp-form { grid-template-columns: 1fr; }
+  .day-editor-cost { margin-left: 0; width: 100%; }
 }
 
 /* ───────────────────────── Motion & a11y ───────────────────────── */

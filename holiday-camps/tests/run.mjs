@@ -101,13 +101,13 @@ if (!SKIP_UI) {
 
   // Independently recompute expected money figures from the data.
   const price = (id) => (P.byId[id] || {}).price || {};
-  const expVestryEdited = 90;
+  const expVestryEdited = 90;                                                // ends as £30/day × Mon–Wed
   const expLss = price("little-soccer-stars-walthamstow").day * 5;          // wk2, est
   const expGravity = price("gravity-performing-arts").week;                  // wk1
-  const expYmca = price("ymca-y-kidz").day * 5;                              // wk2, est
+  const expYmca3 = price("ymca-y-kidz").day * 3;                             // wk2, toggled to Mon–Wed
   const expStrings = price("the-strings-club-walthamstow").day * 5;          // wk6, est
   const expMayaTotal = expVestryEdited + expLss + 0 /*leave wk3*/ + expStrings;
-  const expLeoTotal = expGravity + expYmca;
+  const expLeoTotal = expGravity + expYmca3;
   const expGrand = expMayaTotal + expLeoTotal;
   const money = (n) => "£" + (Number.isInteger(n) ? String(n) : n.toFixed(2));
 
@@ -157,7 +157,12 @@ if (!SKIP_UI) {
   assert(o.customCamp.prefill.name === "Vestry holiday club" && o.customCamp.prefill.btn === "Save changes",
     "custom camp prefills for editing", JSON.stringify(o.customCamp.prefill));
   assert(o.customCamp.edited === money(expVestryEdited), "custom camp cost editable → £90", o.customCamp.edited);
-  assert(o.assignments.setCells === 8, "all 8 assignments stick", `got ${o.assignments.setCells}`);
+  assert(o.assignments.setCells === 6, "all 6 assigned cells stick", `got ${o.assignments.setCells}`);
+  assert(o.dayEditor.present && o.dayEditor.chips === 5, "day editor renders with 5 day chips", JSON.stringify(o.dayEditor));
+  assert(o.dayEditor.cellCost === money(expYmca3) + " est.", `part-week pricing: YMCA Mon–Wed = ${money(expYmca3)} est.`, o.dayEditor.cellCost);
+  assert(o.dayEditor.cellMeta.includes("Mon Tue Wed"), "cell meta shows chosen days", o.dayEditor.cellMeta);
+  assert(o.customDay.cost === money(expVestryEdited), `per-day custom camp: £30 × 3 days = ${money(expVestryEdited)}`, o.customDay.cost);
+  assert(o.customDay.meta.includes("Mon Tue Wed"), "custom camp meta shows chosen days", o.customDay.meta);
   assert(o.assignments.mayaTotal === money(expMayaTotal), `Maya total recomputes to ${money(expMayaTotal)}`, o.assignments.mayaTotal);
   assert(o.assignments.leoTotal === money(expLeoTotal), `Leo total recomputes to ${money(expLeoTotal)}`, o.assignments.leoTotal);
   assert(o.assignments.grandText.includes(money(expGrand)), `grand total recomputes to ${money(expGrand)}`, o.assignments.grandText);
@@ -167,7 +172,7 @@ if (!SKIP_UI) {
 
   const o2 = chromeRun(); // run 2: same profile → persistence
   assert(o2.mode === "verify", "run 2 loads saved state");
-  assert(o2.persisted.chips === 2 && o2.persisted.setCells === 8, "children + all 8 cells survive reload", JSON.stringify(o2.persisted));
+  assert(o2.persisted.chips === 2 && o2.persisted.setCells === 6, "children + all 6 cells survive reload", JSON.stringify(o2.persisted));
   assert(o2.persisted.grandText.includes(money(expGrand)), "grand total survives reload", o2.persisted.grandText);
   assert((o2.jsErrors || []).length === 0, "no JS errors (run 2)", (o2.jsErrors || []).join("; "));
 
@@ -245,6 +250,31 @@ function AUTOTEST_SRC() { return String.raw`
       await open(1, leo); await pick('[data-pick-camp="gravity-performing-arts"]');
       await open(2, leo); await pick('[data-pick-camp="ymca-y-kidz"]');
       await sleep(150);
+
+      // day toggles: Leo's YMCA week → Mon–Wed only
+      await open(2, leo);
+      out.dayEditor = { present: !!dlg.querySelector(".day-editor"), chips: dlg.querySelectorAll("[data-day-toggle]").length };
+      dlg.querySelector('[data-day-toggle="5"]').click(); await sleep(90);
+      dlg.querySelector('[data-day-toggle="4"]').click(); await sleep(90);
+      $("#pickerClose").click(); await sleep(120);
+      const leoCell2 = document.querySelector('.assign-btn[data-week="2"][data-child="' + leo + '"].is-set');
+      out.dayEditor.cellCost = leoCell2.querySelector(".assign-cost").textContent.trim();
+      out.dayEditor.cellMeta = (leoCell2.querySelector(".assign-meta") || { textContent: "" }).textContent.trim();
+
+      // custom camp priced per day: Vestry → £30/day × Mon–Wed (still £90)
+      document.querySelector('.assign-btn[data-week="1"][data-child="' + maya + '"].is-set').click();
+      await sleep(90);
+      $("#customCampCost").value = "30";
+      $("#customCampBasis").value = "day";
+      dlg.querySelector('[data-form-day="4"]').click();
+      dlg.querySelector('[data-form-day="5"]').click();
+      await pick("[data-pick-customcamp]");
+      const mayaCell1 = document.querySelector('.assign-btn[data-week="1"][data-child="' + maya + '"].is-set');
+      out.customDay = {
+        cost: mayaCell1.querySelector(".assign-cost").textContent.trim(),
+        meta: (mayaCell1.querySelector(".assign-meta") || { textContent: "" }).textContent.trim()
+      };
+      await sleep(100);
       const cards = [...$$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
       const moneyOf = (t) => { const m = /£[\d.]+/.exec(t); return m ? m[0] : ""; };
       out.assignments = {
