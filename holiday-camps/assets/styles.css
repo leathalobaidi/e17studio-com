@@ -82,7 +82,7 @@ a { color: inherit; }
   align-content: space-between;
   background:
     linear-gradient(100deg, rgba(15, 30, 23, 0.88) 8%, rgba(15, 30, 23, 0.55) 46%, rgba(15, 30, 23, 0.18)),
-    url("./e17-holiday-camps-banner.png") center / cover no-repeat;
+    url("./e17-holiday-camps-banner.jpg") center / cover no-repeat;
   color: #fdfaf1;
 }
 
