@@ -1,0 +1,32 @@
+name: Holiday camps — live site canary
+
+on:
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Live page serves and initialises
+        run: |
+          node -e '
+          (async () => {
+            const page = await fetch("https://e17studio.com/holiday-camps/", { cache: "no-store" });
+            const html = await page.text();
+            const app = await fetch("https://e17studio.com/holiday-camps/assets/app.js", { cache: "no-store" });
+            const js = await app.text();
+            const checks = {
+              pageStatus: page.status === 200,
+              heroPresent: html.includes("Six weeks of summer"),
+              plannerPresent: html.includes("plannerTable"),
+              appStatus: app.status === 200,
+              appIntact: js.includes("E17_PLANNER") && js.includes("data-pick-customcamp")
+            };
+            console.log(JSON.stringify(checks, null, 2));
+            if (Object.values(checks).some(v => !v)) process.exit(1);
+            console.log("Canary green.");
+          })().catch(e => { console.error(e); process.exit(1); });
+          '

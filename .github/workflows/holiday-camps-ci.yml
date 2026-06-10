@@ -1,0 +1,20 @@
+name: Holiday camps — tests
+
+on:
+  push:
+    paths:
+      - "holiday-camps/**"
+      - ".github/workflows/holiday-camps-ci.yml"
+  pull_request:
+    paths:
+      - "holiday-camps/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Data integrity + UI end-to-end (headless Chrome)
+        run: node holiday-camps/tests/run.mjs
