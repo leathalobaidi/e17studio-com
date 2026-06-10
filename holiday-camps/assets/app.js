@@ -787,14 +787,24 @@ function pickerOptionHtml(provider, weekId, opts = {}) {
   if (pl.fridaysOnly) warns.push("Friday only — covers one day of this week");
   if (pl.priceStale) warns.push(`Price from ${pl.priceStale}`);
   if (opts.ageWarn) warns.push(`Listed ages ${provider.ageLabel} — outside this child's age`);
+  const allowed = allowedDaysFor(provider, weekId);
+  const dayRate = (pl.price || {}).day;
+  const daysBtn = allowed.length > 1
+    ? `<button class="btn-mini btn-mini-ghost" type="button" data-pick-camp-days="${escapeHtml(provider.id)}">
+         Pick days${Number.isFinite(dayRate) ? ` · ${money(dayRate)}/day` : ""}
+       </button>`
+    : "";
   return `
-    <button class="picker-option ${opts.current ? "is-current" : ""}" type="button"
-      data-pick-camp="${escapeHtml(provider.id)}">
+    <div class="picker-option ${opts.current ? "is-current" : ""}">
       <span class="po-name">${escapeHtml(provider.name)}</span>
       <span class="po-cost">${escapeHtml(costText)}</span>
       <span class="po-meta">${escapeHtml(provider.ageLabel)} · ${escapeHtml(hoursLabel(provider))} · ${escapeHtml(provider.area)}</span>
       ${warns.length ? `<span class="po-warn">⚠ ${escapeHtml(warns.join(" · "))}</span>` : ""}
-    </button>`;
+      <span class="po-actions">
+        <button class="btn-mini" type="button" data-pick-camp="${escapeHtml(provider.id)}">Whole week</button>
+        ${daysBtn}
+      </span>
+    </div>`;
 }
 
 function renderPicker() {
@@ -968,6 +978,15 @@ function handlePickerClick(event) {
 
   const formDayBtn = event.target.closest("[data-form-day]");
   if (formDayBtn) { formDayBtn.classList.toggle("is-on"); return; }
+
+  const campDaysBtn = event.target.closest("[data-pick-camp-days]");
+  if (campDaysBtn) {
+    // Assign the camp but keep the picker open on the day editor.
+    setPlanEntry(weekId, childId, { type: "camp", campId: campDaysBtn.dataset.pickCampDays });
+    renderPicker();
+    els.pickerBody.scrollTop = 0;
+    return;
+  }
 
   const dayBtn = event.target.closest("[data-day-toggle]");
   if (dayBtn) {

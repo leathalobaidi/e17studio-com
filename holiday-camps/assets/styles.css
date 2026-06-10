@@ -954,7 +954,29 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
   background: #fff;
   cursor: pointer;
 }
-.picker-option:hover { border-color: var(--green); background: var(--green-tint); }
+button.picker-option:hover { border-color: var(--green); background: var(--green-tint); }
+div.picker-option { cursor: default; }
+
+.po-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+.btn-mini {
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1.5px solid var(--green);
+  border-radius: 999px;
+  background: var(--green-tint);
+  color: var(--green-deep);
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.btn-mini:hover { background: var(--green); color: #fff; }
+.btn-mini-ghost { border-style: dashed; background: #fff; }
 .picker-option .po-name { font-weight: 800; font-size: 0.97rem; }
 .picker-option .po-cost { font-weight: 800; color: var(--green-deep); white-space: nowrap; }
 .picker-option .po-meta { grid-column: 1 / -1; color: var(--muted); font-size: 0.83rem; }

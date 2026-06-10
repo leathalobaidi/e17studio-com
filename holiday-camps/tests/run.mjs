@@ -152,6 +152,8 @@ if (!SKIP_UI) {
   assert(o.children.chips.length === 2 && o.children.plannerRows === 7 && o.children.headerCols === 4,
     "two children → 7-week × 2-child grid", JSON.stringify(o.children));
   assert(o.picker.groups.some((g) => g.includes("Add your own")), "custom-camp form group present", o.picker.groups.join(" | "));
+  assert(o.picker.weekBtns > 0 && o.picker.dayBtns > 0, "camp options offer whole-week AND pick-days buttons", JSON.stringify({ week: o.picker.weekBtns, days: o.picker.dayBtns }));
+  assert(o.pickDaysFlow.dialogStillOpen && o.pickDaysFlow.editorShown, "pick-days path assigns and opens the day editor", JSON.stringify(o.pickDaysFlow));
   assert(o.customCamp.added.label === "Vestry holiday club" && o.customCamp.added.cost === money(85.5),
     "custom camp added with cost £85.50", JSON.stringify(o.customCamp.added));
   assert(o.customCamp.prefill.name === "Vestry holiday club" && o.customCamp.prefill.btn === "Save changes",
@@ -227,7 +229,11 @@ function AUTOTEST_SRC() { return String.raw`
 
       // picker inspection + custom camp on wk1/maya
       await open(1, maya);
-      out.picker = { groups: [...dlg.querySelectorAll(".picker-group-title")].map((g) => g.textContent.trim()) };
+      out.picker = {
+        groups: [...dlg.querySelectorAll(".picker-group-title")].map((g) => g.textContent.trim()),
+        weekBtns: dlg.querySelectorAll(".picker-option [data-pick-camp]").length,
+        dayBtns: dlg.querySelectorAll(".picker-option [data-pick-camp-days]").length
+      };
       out.customCamp = {};
       $("#customCampName").value = "Vestry holiday club";
       $("#customCampCost").value = "85.50";
@@ -246,7 +252,11 @@ function AUTOTEST_SRC() { return String.raw`
       // rest of the plan
       await open(2, maya); await pick('[data-pick-camp="little-soccer-stars-walthamstow"]');
       await open(3, maya); await pick('[data-pick-custom="leave"]');
-      await open(6, maya); await pick('[data-pick-camp="the-strings-club-walthamstow"]');
+      // Strings via the "pick days" path: assigns and keeps the day editor open
+      await open(6, maya);
+      await pick('[data-pick-camp-days="the-strings-club-walthamstow"]');
+      out.pickDaysFlow = { dialogStillOpen: dlg.open, editorShown: !!dlg.querySelector(".day-editor") };
+      $("#pickerClose").click(); await sleep(120); // keep all 5 days → totals unchanged
       await open(1, leo); await pick('[data-pick-camp="gravity-performing-arts"]');
       await open(2, leo); await pick('[data-pick-camp="ymca-y-kidz"]');
       await sleep(150);
