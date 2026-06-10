@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E17 Holiday Camp Planner — Summer 2026, Walthamstow</title>
+    <meta
+      name="description"
+      content="Plan your children's summer 2026 week by week: every holiday camp in and around Walthamstow with verified dates, prices, hours, free HAF places and a budget calculator."
+    />
+    <link rel="canonical" href="https://e17studio.com/holiday-camps/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="E17 Holiday Camp Planner — Summer 2026, Walthamstow" />
+    <meta property="og:description" content="Every holiday camp in and around E17 with verified dates, prices and free HAF places — plus a week-by-week planner that adds up the cost as you go." />
+    <meta property="og:url" content="https://e17studio.com/holiday-camps/" />
+    <meta property="og:image" content="https://e17studio.com/holiday-camps/assets/e17-holiday-camps-banner.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#plan">Skip to your plan</a>
+
+    <header class="site-hero">
+      <nav class="topbar" aria-label="Page sections">
+        <a class="brand" href="#top" aria-label="E17 Holiday Camp Planner home">
+          <span class="brand-mark" aria-hidden="true">E17</span>
+          <span>Holiday Camp Planner</span>
+        </a>
+        <div class="nav-links">
+          <a href="#find">Find camps</a>
+          <a href="#plan">Your plan</a>
+          <a href="#money">Money help</a>
+          <a href="#haf">Free places</a>
+          <a href="#checklist">Checklist</a>
+        </div>
+      </nav>
+
+      <div class="hero-content" id="top">
+        <p class="eyebrow">Walthamstow · Summer 2026 · every fact checked 9 June 2026</p>
+        <h1>Six weeks of summer, <em>sorted.</em></h1>
+        <p class="hero-copy">
+          Every holiday camp in and around E17 — with verified dates, prices, day
+          lengths and free council-funded places — plus a week-by-week planner
+          that adds up the cost as you go.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#children">Start planning</a>
+          <a class="btn btn-ghost" href="#find">Browse all camps</a>
+        </div>
+      </div>
+      <div class="bunting" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <!-- ───────────────────────── Key dates ───────────────────────── -->
+      <section class="dates-band" id="dates" aria-label="Key summer 2026 dates">
+        <div class="date-card">
+          <span class="date-label">Last school day</span>
+          <span class="date-value">Mon 20 July</span>
+          <span class="date-note">most WF schools — check yours</span>
+        </div>
+        <div class="date-card">
+          <span class="date-label">Weeks to cover</span>
+          <span class="date-value">6 weeks</span>
+          <span class="date-note">Tue 21 July → Mon 31 Aug</span>
+        </div>
+        <div class="date-card">
+          <span class="date-label">Bank holiday</span>
+          <span class="date-value">Mon 31 Aug</span>
+          <span class="date-note">no camps needed that day</span>
+        </div>
+        <div class="date-card">
+          <span class="date-label">Back to school</span>
+          <span class="date-value">Wed 2 Sept</span>
+          <span class="date-note">Tue 1 Sep is INSET for most</span>
+        </div>
+        <p class="dates-source">
+          Term dates from the
+          <a href="https://www.walthamforest.gov.uk/schools-education-and-learning/school-term-and-closure-dates/school-holiday-and-term-dates" target="_blank" rel="noreferrer">Waltham Forest Council calendar</a>
+          (2025-26 &amp; 2026-27 holiday patterns) — individual schools can vary, so confirm yours.
+          October half term: Mon 26 – Fri 30 Oct 2026.
+        </p>
+      </section>
+
+      <!-- ───────────────────────── How it works ───────────────────────── -->
+      <section class="steps-band" aria-label="How to use this planner">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Add your children</h3>
+          <p>Tell the planner each child's age so every list, price and picker is filtered to camps that actually take them.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Shortlist &amp; compare</h3>
+          <p>Browse the directory, tap ♥ on anything promising, then compare hours, prices and food side by side.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>Fill the grid, watch the budget</h3>
+          <p>Assign a camp (or annual leave, or grandparents) to each week. The planner totals the cost and flags uncovered weeks.</p>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── Children setup ───────────────────────── -->
+      <section class="children-section" id="children" aria-label="Your children">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Step 1</p>
+            <h2>Who are we planning for?</h2>
+          </div>
+        </div>
+        <div class="children-panel">
+          <form id="childForm" class="child-form" autocomplete="off">
+            <label class="field child-name-field" for="childName">
+              <span>Name (optional)</span>
+              <input id="childName" type="text" maxlength="20" placeholder="e.g. Maya" />
+            </label>
+            <label class="field child-age-field" for="childAge">
+              <span>Age this summer</span>
+              <select id="childAge" required>
+                <option value="" disabled selected>Age…</option>
+              </select>
+            </label>
+            <button class="btn btn-solid" type="submit">Add child</button>
+          </form>
+          <div class="child-chips" id="childChips" aria-live="polite"></div>
+          <p class="children-hint" id="childrenHint">
+            Saved on this device only — nothing leaves your browser.
+          </p>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── Directory + filters ───────────────────────── -->
+      <section class="directory-section" id="find">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Step 2 · Directory</p>
+            <h2>Find the right camps</h2>
+          </div>
+          <p id="resultCount" class="result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="filter-band" aria-label="Find camps">
+          <div class="filter-grid">
+            <label class="field search-field" for="searchInput">
+              <span>Search</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Football, drama, Lloyd Park, SEND…"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field" for="areaFilter">
+              <span>Area</span>
+              <select id="areaFilter"></select>
+            </label>
+            <label class="field" for="categoryFilter">
+              <span>Activity</span>
+              <select id="categoryFilter"></select>
+            </label>
+            <label class="field" for="fundingFilter">
+              <span>Funding</span>
+              <select id="fundingFilter"></select>
+            </label>
+            <label class="field" for="dayLengthFilter">
+              <span>Day length</span>
+              <select id="dayLengthFilter">
+                <option value="all">Any day length</option>
+                <option value="working">Working-day friendly (drop ~8:30, collect ~17:30+)</option>
+                <option value="standard">Standard day (roughly 9–4)</option>
+                <option value="short">Short / half day</option>
+              </select>
+            </label>
+            <label class="field" for="priceFilter">
+              <span>Price</span>
+              <select id="priceFilter">
+                <option value="all">Any price</option>
+                <option value="free">Free / HAF places</option>
+                <option value="under40">Under £40 a day</option>
+                <option value="40to60">£40–£60 a day</option>
+                <option value="over60">Over £60 a day</option>
+                <option value="unpriced">Price not published yet</option>
+              </select>
+            </label>
+            <label class="field" for="sortSelect">
+              <span>Sort by</span>
+              <select id="sortSelect">
+                <option value="az">Name A–Z</option>
+                <option value="price">Day price (low → high)</option>
+                <option value="hours">Longest day first</option>
+                <option value="confirmed">Confirmed 2026 dates first</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="age-row" aria-label="Age and date filters">
+            <span class="age-row-label">Ages:</span>
+            <button class="age-chip is-active" type="button" data-age="any">Any age</button>
+            <button class="age-chip" type="button" data-age="under5">Under 5</button>
+            <button class="age-chip" type="button" data-age="primary">5–11</button>
+            <button class="age-chip" type="button" data-age="teen">12+</button>
+            <span id="childAgeChips"></span>
+            <label class="toggle-chip" for="confirmedOnly">
+              <input type="checkbox" id="confirmedOnly" />
+              <span>Confirmed summer 2026 dates only</span>
+            </label>
+            <button class="reset-button" type="button" id="resetFilters">Reset all</button>
+          </div>
+        </div>
+
+        <div class="card-grid" id="providerGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>
+          No camps match those filters. Try widening the day length or price, or
+          clear the “confirmed dates” toggle — lots of providers publish summer
+          dates late June.
+        </p>
+      </section>
+
+      <!-- ───────────────────────── Compare ───────────────────────── -->
+      <section class="compare-section" id="compare">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Shortlist</p>
+            <h2>Compare your shortlist</h2>
+          </div>
+          <p class="result-count" id="compareCount" aria-live="polite"></p>
+        </div>
+        <p class="compare-hint" id="compareHint">
+          Tap the ♥ on any camp card and it appears here, side by side — hours,
+          prices, food and funding in one view.
+        </p>
+        <div class="table-wrap compare-wrap" id="compareWrap" hidden>
+          <table id="compareTable" class="compare-table"></table>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── Planner ───────────────────────── -->
+      <section class="planner-section" id="plan">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Step 3 · The grid</p>
+            <h2>Your summer, week by week</h2>
+          </div>
+          <div class="planner-actions">
+            <button class="btn btn-ghost" type="button" id="copyPlan">Copy summary</button>
+            <button class="btn btn-ghost" type="button" id="printPlan">Print plan</button>
+            <button class="btn btn-danger" type="button" id="clearPlan">Clear plan</button>
+          </div>
+        </div>
+
+        <p class="planner-hint">
+          Tap any cell to choose a camp for that child and week — or mark it as
+          annual leave, family cover or a friend swap. Costs use verified prices
+          where published; everything else shows as “£?” until you confirm with
+          the provider.
+        </p>
+
+        <div class="planner-empty" id="plannerEmpty">
+          <p><strong>Add a child above to unlock the grid.</strong> The planner
+          builds one column per child across all six weeks of summer 2026.</p>
+        </div>
+
+        <div class="table-wrap planner-wrap" id="plannerWrap" hidden>
+          <table class="planner-table" id="plannerTable"></table>
+        </div>
+
+        <div class="budget-band" id="budgetBand" hidden>
+          <div class="budget-cards" id="budgetCards"></div>
+          <div class="budget-notes" id="budgetNotes" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── Money help ───────────────────────── -->
+      <section class="money-section" id="money">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Make it cheaper</p>
+            <h2>Four ways to cut the bill</h2>
+          </div>
+        </div>
+        <div class="money-grid">
+          <article class="money-card">
+            <h3>1 · Free HAF places</h3>
+            <p>
+              If your child gets <strong>benefits-related free school meals</strong>,
+              the council's Holiday Activities &amp; Food programme funds free
+              camp places <em>with a meal included</em>. Summer sessions appear on
+              the Eequ feed in the run-up to the holidays.
+            </p>
+            <p class="money-meta" id="hafProviderCount"></p>
+            <a class="text-link" href="https://eequ.org/hafwalthamforest" target="_blank" rel="noreferrer">Check the live HAF list</a>
+          </article>
+          <article class="money-card">
+            <h3>2 · Tax-Free Childcare — 20% off</h3>
+            <p>
+              For every £8 you pay in, the government adds £2 (up to £500 every
+              3 months per child, usually until the September after their 11th
+              birthday). The provider must be <strong>Ofsted-registered and signed
+              up</strong> — ask for their registration number before paying.
+            </p>
+            <p class="money-meta" id="tfcProviderCount"></p>
+            <a class="text-link" href="https://www.gov.uk/tax-free-childcare" target="_blank" rel="noreferrer">Set up on GOV.UK</a>
+          </article>
+          <article class="money-card">
+            <h3>3 · Sibling &amp; early-bird discounts</h3>
+            <p>
+              Several providers knock money off for second children or early
+              booking — it's flagged on the camp cards. Booking two children
+              into the same camp the same week is also the easiest drop-off
+              logistics you'll ever have.
+            </p>
+            <p class="money-meta" id="siblingProviderCount"></p>
+          </article>
+          <article class="money-card">
+            <h3>4 · Mix the week types</h3>
+            <p>
+              The classic money-saving pattern: anchor must-work weeks with a
+              full-day club (£36–£65/day), drop in one special week your child
+              will rave about (theatre, science — £150–£345/week), and cover the
+              rest with annual leave and family. The planner prices each mix as
+              you build it.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── HAF snapshot ───────────────────────── -->
+      <section class="haf-section" id="haf">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Council-funded route</p>
+            <h2>Waltham Forest HAF snapshot</h2>
+          </div>
+          <a class="text-link" href="https://eequ.org/hafwalthamforest" target="_blank" rel="noreferrer">
+            Open live Eequ list ↗
+          </a>
+        </div>
+        <div class="haf-note">
+          <strong>How to read this:</strong> HAF places are seasonal and
+          eligibility-led. This table is the public Eequ feed as captured on
+          9 June 2026 — entries named “Summer” are highlighted. The live booking
+          page is always the source of truth.
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Camp</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Ages</th>
+                <th scope="col">Area</th>
+              </tr>
+            </thead>
+            <tbody id="hafTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── Checklist ───────────────────────── -->
+      <section class="checklist-section" id="checklist">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Before you book</p>
+            <h2>The ask-the-provider checklist</h2>
+          </div>
+          <p class="result-count" id="checklistCount" aria-live="polite"></p>
+        </div>
+        <p class="compare-hint">
+          Ten minutes on these now saves a fraught first morning later. Ticks are
+          saved on this device, and the checklist prints with your plan.
+        </p>
+        <ul class="checklist" id="checklistList"></ul>
+      </section>
+
+      <!-- ───────────────────────── Sources ───────────────────────── -->
+      <section class="sources-section" id="sources">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark">Verification</p>
+            <h2>Sources checked — 9 June 2026</h2>
+          </div>
+        </div>
+        <div class="source-grid" id="sourceGrid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Built as a local parent-facing planning aid. Prices, dates and places
+        change fast in camp season — always confirm dates, eligibility,
+        Ofsted/registration status, SEND support and prices with the provider
+        before booking. Every figure on this page links back to a source checked
+        on 9 June 2026. Your plan, shortlist and ticks are stored only in this
+        browser.
+      </p>
+      <p class="footer-credit">
+        A free community tool from
+        <a href="https://e17studio.com/" target="_blank" rel="noreferrer">E17 Studio</a>
+        — websites for East London businesses.
+      </p>
+    </footer>
+
+    <!-- ───────────────────────── Camp picker dialog ───────────────────────── -->
+    <dialog id="pickerDialog" class="picker-dialog" aria-labelledby="pickerTitle">
+      <div class="picker-head">
+        <h3 id="pickerTitle">Choose cover</h3>
+        <button class="picker-close" type="button" id="pickerClose" aria-label="Close">×</button>
+      </div>
+      <p class="picker-sub" id="pickerSub"></p>
+      <div class="picker-body" id="pickerBody"></div>
+    </dialog>
+
+    <script src="assets/camps.js"></script>
+    <script src="assets/planner-data.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
