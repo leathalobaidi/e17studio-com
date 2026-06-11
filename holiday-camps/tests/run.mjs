@@ -314,7 +314,7 @@ function AUTOTEST_SRC() { return String.raw`
       $("#pickerClose").click();
       await sleep(120);
 
-      const cards = [...$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
+      const cards = [...$$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
       const moneyOf = (t) => { const m = /£[\d.]+/.exec(t); return m ? m[0] : ""; };
       out.assignments = {
         setCells: $$(".assign-btn.is-set").length,
