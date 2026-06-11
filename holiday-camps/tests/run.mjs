@@ -153,6 +153,8 @@ if (!SKIP_UI) {
     let html = readFileSync(path.join(SITE, "index.html"), "utf8");
     html = html.replace(/<link rel="preconnect"[^>]*>\s*/g, "");
     html = html.replace(/<link[^>]*fonts\.googleapis[^>]*>\s*/g, "");
+    // Strip the Cloudflare Web Analytics beacon so the UI test runs fully offline.
+    html = html.replace(/<script[^>]*cloudflareinsights[^>]*><\/script>\s*/g, "");
     html = html.replace('<script src="assets/camps.js"></script>',
       `<script>window.__testErrors=[];window.addEventListener('error',e=>window.__testErrors.push(String(e.message).slice(0,200)));</script>\n<script src="assets/camps.js"></script>`);
     html = html.replace("</body>", `<script src="autotest.js"></script>\n</body>`);
