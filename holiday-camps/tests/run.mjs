@@ -4,14 +4,23 @@
  * Zero dependencies. Runs locally (macOS) and in CI (ubuntu).
  *
  *   node holiday-camps/tests/run.mjs [--site-dir <path>] [--skip-ui]
+ *                                    [--prepare-only] [--results <dump1> <dump2> <dump3> <dump4>]
  *
  * Part 1: data-layer integrity (no browser) — loads camps.js + planner-data.js
  *         in a VM and validates cross-references, formats and provenance.
  * Part 2: UI end-to-end — builds a temp copy of the page with an injected
- *         autotest, drives it in headless Chrome (add children, build a plan,
- *         add a custom camp with a cost, filters, persistence across runs)
- *         and asserts the rendered output against expectations recomputed
- *         independently from the data files.
+ *         autotest and drives it in headless Chrome over four runs sharing one
+ *         profile: (1) build a plan (children, custom camp, filters, day
+ *         toggles, booked ticks, share link, .ics export), (2) reload to check
+ *         persistence, (3) open a #plan= share link and REPLACE the local
+ *         plan, (4) open another and MERGE it. Output is asserted against
+ *         expectations recomputed independently from the data files.
+ *
+ * Some Macs wedge on node→Chrome spawns, or Chrome dumps the DOM but never
+ * exits (holding the profile lock). There, run --prepare-only to build the
+ * temp site and print four shell-direct Chrome commands, run those from a
+ * shell (SIGTERM Chrome once the dump contains TESTOUT_END), then re-run with
+ * --results <the 4 dumps> to apply the same assertions.
  */
 import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -24,6 +33,13 @@ const args = process.argv.slice(2);
 const argVal = (flag) => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : null; };
 const SITE = path.resolve(argVal("--site-dir") || path.join(path.dirname(fileURLToPath(import.meta.url)), ".."));
 const SKIP_UI = args.includes("--skip-ui");
+const PREPARE_ONLY = args.includes("--prepare-only");
+const resultsAt = args.indexOf("--results");
+const RESULT_FILES = resultsAt >= 0 ? args.slice(resultsAt + 1, resultsAt + 5) : null;
+if (RESULT_FILES && RESULT_FILES.length < 4) {
+  console.error("--results needs the 4 DOM dumps from runs 1–4, in order");
+  process.exit(2);
+}
 
 let failures = 0;
 let checks = 0;
@@ -111,38 +127,70 @@ if (!SKIP_UI) {
   const expGrand = expMayaTotal + expLeoTotal;
   const money = (n) => "£" + (Number.isInteger(n) ? String(n) : n.toFixed(2));
 
-  // Build the temp test page.
+  // Shared-plan link fixtures for the import runs (3: replace, 4: merge).
+  const shareFixture = (obj) => "#plan=" + Buffer.from(JSON.stringify(obj), "utf8").toString("base64url");
+  const R3_HASH = shareFixture({
+    v: 1,
+    children: [{ id: "zshare1", name: "Zara", age: 7 }],
+    plan: { 2: { zshare1: { type: "camp", campId: "ymca-y-kidz", booked: true } } }
+  });
+  const R4_HASH = shareFixture({
+    v: 1,
+    children: [{ id: "oshare2", name: "Omar", age: 10 }],
+    plan: { 3: { oshare2: { type: "leave" } } }
+  });
+
+  // Build the temp test page (skipped when ingesting --results dumps).
   const TMP = path.join(os.tmpdir(), "e17-ci-test");
   const PROF = path.join(os.tmpdir(), "e17-ci-prof");
-  rmSync(TMP, { recursive: true, force: true });
-  rmSync(PROF, { recursive: true, force: true });
-  mkdirSync(path.join(TMP, "assets"), { recursive: true });
-  for (const f of ["camps.js", "planner-data.js", "app.js", "styles.css"]) {
-    copyFileSync(path.join(SITE, "assets", f), path.join(TMP, "assets", f));
+  if (!RESULT_FILES) {
+    rmSync(TMP, { recursive: true, force: true });
+    rmSync(PROF, { recursive: true, force: true });
+    mkdirSync(path.join(TMP, "assets"), { recursive: true });
+    for (const f of ["camps.js", "planner-data.js", "app.js", "styles.css"]) {
+      copyFileSync(path.join(SITE, "assets", f), path.join(TMP, "assets", f));
+    }
+    let html = readFileSync(path.join(SITE, "index.html"), "utf8");
+    html = html.replace(/<link rel="preconnect"[^>]*>\s*/g, "");
+    html = html.replace(/<link[^>]*fonts\.googleapis[^>]*>\s*/g, "");
+    html = html.replace('<script src="assets/camps.js"></script>',
+      `<script>window.__testErrors=[];window.addEventListener('error',e=>window.__testErrors.push(String(e.message).slice(0,200)));</script>\n<script src="assets/camps.js"></script>`);
+    html = html.replace("</body>", `<script src="autotest.js"></script>\n</body>`);
+    writeFileSync(path.join(TMP, "index.html"), html);
+    writeFileSync(path.join(TMP, "autotest.js"), AUTOTEST_SRC());
   }
-  let html = readFileSync(path.join(SITE, "index.html"), "utf8");
-  html = html.replace(/<link rel="preconnect"[^>]*>\s*/g, "");
-  html = html.replace(/<link[^>]*fonts\.googleapis[^>]*>\s*/g, "");
-  html = html.replace('<script src="assets/camps.js"></script>',
-    `<script>window.__testErrors=[];window.addEventListener('error',e=>window.__testErrors.push(String(e.message).slice(0,200)));</script>\n<script src="assets/camps.js"></script>`);
-  html = html.replace("</body>", `<script src="autotest.js"></script>\n</body>`);
-  writeFileSync(path.join(TMP, "index.html"), html);
-  writeFileSync(path.join(TMP, "autotest.js"), AUTOTEST_SRC());
 
-  const chromeRun = () => {
-    const res = spawnSync(CHROME, [
-      "--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
-      "--hide-scrollbars", ...(process.env.CI ? ["--no-sandbox"] : []),
-      `--user-data-dir=${PROF}`, "--virtual-time-budget=9000", "--dump-dom",
-      "file://" + path.join(TMP, "index.html")
-    ], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024, timeout: 120000 });
-    const m = /TESTOUT_START(.*?)TESTOUT_END/s.exec(res.stdout || "");
-    if (!m) throw new Error("no TESTOUT in DOM dump (stderr: " + String(res.stderr).slice(-200) + ")");
+  const readOut = (text, stderr = "") => {
+    const m = /TESTOUT_START(.*?)TESTOUT_END/s.exec(text || "");
+    if (!m) throw new Error("no TESTOUT in DOM dump" + (stderr ? " (stderr: " + String(stderr).slice(-200) + ")" : ""));
     const decoded = m[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#0?39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
     return JSON.parse(decoded);
   };
+  const CHROME_FLAGS = [
+    "--headless=new", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+    "--hide-scrollbars", ...(process.env.CI ? ["--no-sandbox"] : []),
+    `--user-data-dir=${PROF}`, "--virtual-time-budget=12000", "--dump-dom"
+  ];
+  const RUN_URLS = ["", "", R3_HASH, "?merge" + R4_HASH].map((s) => "file://" + path.join(TMP, "index.html") + s);
+  const chromeRun = (url) => {
+    const res = spawnSync(CHROME, [...CHROME_FLAGS, url],
+      { encoding: "utf8", maxBuffer: 64 * 1024 * 1024, timeout: 120000 });
+    return readOut(res.stdout, res.stderr);
+  };
 
-  const o = chromeRun(); // run 1: build mode
+  if (PREPARE_ONLY) {
+    console.log("Prepared " + TMP + ". Run these IN ORDER (they share one profile), then re-run with --results:\n");
+    RUN_URLS.forEach((u, i) => {
+      console.log(`"${CHROME}" ${CHROME_FLAGS.join(" ")} '${u}' > /tmp/e17-out${i + 1}.html 2>/dev/null`);
+    });
+    console.log(`\nnode tests/run.mjs --site-dir "${SITE}" --results /tmp/e17-out1.html /tmp/e17-out2.html /tmp/e17-out3.html /tmp/e17-out4.html`);
+    process.exit(0);
+  }
+  const runOut = (n) => RESULT_FILES
+    ? readOut(readFileSync(RESULT_FILES[n - 1], "utf8"))
+    : chromeRun(RUN_URLS[n - 1]);
+
+  const o = runOut(1); // run 1: build mode
   assert(o.mode === "build", "run 1 started with clean storage");
   assert((o.jsErrors || []).length === 0, "no JS errors (run 1)", (o.jsErrors || []).join("; "));
   assert(o.static.cards === D.providers.length, `all ${D.providers.length} provider cards render`, `got ${o.static.cards}`);
@@ -180,15 +228,43 @@ if (!SKIP_UI) {
   assert(o.ics.events === 6, "6 all-day calendar events (one per assignment run)", JSON.stringify(o.ics));
   assert(o.ics.lssWeekStart && o.ics.ymcaMonWedEnd, "event date ranges correct (Mon 27 Jul start; Mon–Wed ends Thu, exclusive)", JSON.stringify(o.ics));
   assert(o.ics.vestryTitle, "event titles are child + camp name", JSON.stringify(o.ics));
+  assert(o.booked.toggles === 5, "booked toggles on all 5 bookable cells", `got ${o.booked.toggles}`);
+  assert(o.booked.cellText === "booked ✓" && o.booked.pressed === "true", "cell toggle flips to booked ✓", JSON.stringify({ text: o.booked.cellText, pressed: o.booked.pressed }));
+  assert(/2 of 5/.test(o.booked.card) && /bookings made/.test(o.booked.card), 'budget band shows "2 of 5 … bookings made"', o.booked.card);
+  assert(o.booked.untoggled === "not booked" && /1 of 5/.test(o.booked.cardAfterUntoggle), "booked toggle reverses cleanly", JSON.stringify({ text: o.booked.untoggled, card: o.booked.cardAfterUntoggle }));
+  assert(o.booked.stored === true, "booked flags persist to localStorage");
+  assert(o.share.waShown && o.share.waTarget, "Share plan reveals a wa.me link", JSON.stringify(o.share));
+  assert(o.share.children.join(",") === "Maya,Leo" && o.share.planWeeks === 4, "share payload carries both children + 4 planned weeks", JSON.stringify({ children: o.share.children, weeks: o.share.planWeeks }));
+  assert(o.share.bookedCarried === true, "share payload carries booked status");
 
-  const o2 = chromeRun(); // run 2: same profile → persistence
+  const o2 = runOut(2); // run 2: same profile → persistence
   assert(o2.mode === "verify", "run 2 loads saved state");
   assert(o2.persisted.chips === 2 && o2.persisted.setCells === 6, "children + all 6 cells survive reload", JSON.stringify(o2.persisted));
   assert(o2.persisted.grandText.includes(money(expGrand)), "grand total survives reload", o2.persisted.grandText);
+  assert(o2.persisted.bookedCells === 2 && /2 of 5/.test(o2.persisted.bookingsCard), "booked ticks survive reload", JSON.stringify({ cells: o2.persisted.bookedCells, card: o2.persisted.bookingsCard }));
   assert((o2.jsErrors || []).length === 0, "no JS errors (run 2)", (o2.jsErrors || []).join("; "));
 
-  rmSync(TMP, { recursive: true, force: true });
-  rmSync(PROF, { recursive: true, force: true });
+  const o3 = runOut(3); // run 3: open a shared link → replace local plan
+  assert(o3.mode === "import", "run 3 enters import mode from the #plan= hash");
+  assert(o3.import.bannerShown && o3.import.title === "Load this shared plan?", 'banner offers "Load this shared plan?"', JSON.stringify({ title: o3.import.title }));
+  assert(/Zara \(7\)/.test(o3.import.text) && /1 week/.test(o3.import.text), "banner describes the incoming plan", o3.import.text);
+  assert(o3.import.mergeOffered === true, "merge option offered when a local plan exists");
+  assert(o3.import.chipsBefore === 2 && o3.import.chips.length === 1 && o3.import.chips[0].startsWith("Zara"), "replace swaps local children for the shared one", JSON.stringify(o3.import.chips));
+  assert(o3.import.setCells === 1 && o3.import.bookedCells === 1, "shared assignment lands with its booked tick", JSON.stringify({ set: o3.import.setCells, booked: o3.import.bookedCells }));
+  assert(o3.import.bannerGone && o3.import.hashCleared, "banner closes and #plan= hash is dropped");
+  assert(o3.import.storeChildren.join(",") === "Zara", "replacement persisted to localStorage", o3.import.storeChildren.join(","));
+  assert((o3.jsErrors || []).length === 0, "no JS errors (run 3)", (o3.jsErrors || []).join("; "));
+
+  const o4 = runOut(4); // run 4: second shared link → merge into local plan
+  assert(o4.mode === "import" && o4.import.action === "merge", "run 4 takes the merge path");
+  assert(o4.import.chipsBefore === 1 && o4.import.storeChildren.join(",") === "Zara,Omar", "merge keeps Zara and adds Omar", o4.import.storeChildren.join(","));
+  assert(o4.import.setCells === 2 && o4.import.bookedCells === 1, "merge keeps existing cells and adds the shared one", JSON.stringify({ set: o4.import.setCells, booked: o4.import.bookedCells }));
+  assert((o4.jsErrors || []).length === 0, "no JS errors (run 4)", (o4.jsErrors || []).join("; "));
+
+  if (!RESULT_FILES) {
+    rmSync(TMP, { recursive: true, force: true });
+    rmSync(PROF, { recursive: true, force: true });
+  }
 }
 
 report();
@@ -208,10 +284,13 @@ function AUTOTEST_SRC() { return String.raw`
   try {
     let verify = false;
     try { verify = (JSON.parse(localStorage.getItem("e17planner.v1") || "{}").children || []).length >= 2; } catch {}
-    out.mode = verify ? "verify" : "build";
+    const importMode = /^#plan=/.test(location.hash);
+    out.mode = importMode ? "import" : verify ? "verify" : "build";
     const grandText = () => { const g = $(".budget-card.grand"); return g ? g.textContent.replace(/\s+/g, " ").trim() : ""; };
+    const cardTexts = () => [...$$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
+    const bookingsCard = () => cardTexts().find((t) => t.indexOf("bookings made") >= 0) || "";
 
-    if (!verify) {
+    if (out.mode === "build") {
       out.static = {
         cards: $$(".camp-card").length,
         resultCount: ($("#resultCount") || {}).textContent || "",
@@ -344,8 +423,71 @@ function AUTOTEST_SRC() { return String.raw`
         vestryTitle: ics.includes("SUMMARY:Maya: Vestry holiday club"),
         crlf: ics.includes("\r\n")
       } : { missing: true };
+
+      // booked tracking: tick two bookings, then untick/re-tick one
+      const toggleSel = (week, child) => '.booked-toggle[data-booked-week="' + week + '"][data-booked-child="' + child + '"]';
+      const clickBooked = async (week, child) => { document.querySelector(toggleSel(week, child)).click(); await sleep(110); };
+      out.booked = { toggles: $$(".booked-toggle").length };
+      await clickBooked(1, leo);
+      await clickBooked(2, maya);
+      const leoToggle = document.querySelector(toggleSel(1, leo));
+      out.booked.cellText = leoToggle.textContent.trim();
+      out.booked.pressed = leoToggle.getAttribute("aria-pressed");
+      out.booked.card = bookingsCard();
+      await clickBooked(1, leo);
+      out.booked.untoggled = document.querySelector(toggleSel(1, leo)).textContent.trim();
+      out.booked.cardAfterUntoggle = bookingsCard();
+      await clickBooked(1, leo); // back on — run 2 checks it survives reload
+      const sb = JSON.parse(localStorage.getItem("e17planner.v1"));
+      out.booked.stored = !!(sb.plan["1"][leo].booked && sb.plan["2"][maya].booked);
+
+      // share link: button reveals a wa.me link whose #plan= hash round-trips
+      $("#sharePlan").click();
+      await sleep(160);
+      const wa = $("#waShare");
+      const waHref = wa.getAttribute("href") || "";
+      let payload = null;
+      try {
+        const hashPart = decodeURIComponent(waHref.split("text=")[1] || "").split("#plan=")[1] || "";
+        const b64 = hashPart.replace(/-/g, "+").replace(/_/g, "/");
+        const bin = atob(b64 + "=".repeat((4 - (b64.length % 4)) % 4));
+        payload = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+      } catch (e) { payload = null; }
+      out.share = {
+        waShown: !wa.hidden,
+        waTarget: waHref.indexOf("https://wa.me/?text=") === 0,
+        children: payload && Array.isArray(payload.children) ? payload.children.map((c) => c.name) : [],
+        planWeeks: payload && payload.plan ? Object.keys(payload.plan).length : 0,
+        bookedCarried: !!(payload && payload.plan && payload.plan["1"] && payload.plan["1"][leo] && payload.plan["1"][leo].booked)
+      };
+    } else if (out.mode === "import") {
+      const banner = $("#shareBanner");
+      const useMerge = location.search.indexOf("merge") >= 0;
+      out.import = {
+        bannerShown: !banner.hidden,
+        title: (banner.querySelector(".share-banner-title") || {}).textContent || "",
+        text: ($("#shareBannerText") || {}).textContent || "",
+        mergeOffered: !$("#shareMerge").hidden,
+        chipsBefore: $$(".child-chip").length,
+        action: useMerge ? "merge" : "replace"
+      };
+      (useMerge ? $("#shareMerge") : $("#shareUse")).click();
+      await sleep(160);
+      const si = JSON.parse(localStorage.getItem("e17planner.v1"));
+      out.import.chips = [...$$(".child-chip")].map((c) => c.textContent.trim().slice(0, 10));
+      out.import.setCells = $$(".assign-btn.is-set").length;
+      out.import.bookedCells = $$(".booked-toggle.is-booked").length;
+      out.import.bannerGone = banner.hidden;
+      out.import.hashCleared = location.hash.indexOf("plan=") < 0;
+      out.import.storeChildren = si.children.map((c) => c.name);
     } else {
-      out.persisted = { chips: $$(".child-chip").length, setCells: $$(".assign-btn.is-set").length, grandText: grandText() };
+      out.persisted = {
+        chips: $$(".child-chip").length,
+        setCells: $$(".assign-btn.is-set").length,
+        grandText: grandText(),
+        bookedCells: $$(".booked-toggle.is-booked").length,
+        bookingsCard: bookingsCard()
+      };
     }
   } catch (e) {
     out.fatal = String(e && e.stack ? e.stack : e).slice(0, 400);
