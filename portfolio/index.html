@@ -156,6 +156,11 @@ a { text-decoration: none; color: inherit; }
   pointer-events: none;
   background: #eee;
 }
+.preview-shot {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: block; background: #eee;
+}
 .preview-overlay {
   position: absolute; inset: 0;
   cursor: pointer;
@@ -317,6 +322,34 @@ a { text-decoration: none; color: inherit; }
 <!-- ─── PORTFOLIO GRID ─── -->
 <div class="portfolio-wrap">
   <div class="portfolio-grid">
+
+    <!-- E17 Holiday Camp Planner (LIVE — our own free community tool) -->
+    <div class="project-card reveal">
+      <div class="browser-chrome">
+        <span class="b-dot"></span><span class="b-dot"></span><span class="b-dot"></span>
+        <span class="b-url">e17studio.com/holiday-camps</span>
+      </div>
+      <div class="preview-area">
+        <img class="preview-shot" src="/holiday-camps-preview.jpg" alt="E17 Holiday Camp Planner — week-by-week summer planner for Walthamstow" loading="lazy">
+        <a href="/holiday-camps/" class="preview-overlay" target="_blank" rel="noopener">
+          <span class="view-btn">Open the Planner &rarr;</span>
+        </a>
+      </div>
+      <div class="card-info">
+        <div class="card-meta">
+          <div class="card-name">E17 Holiday Camp Planner</div>
+          <div class="card-type">Free community tool &middot; Walthamstow E17</div>
+          <div class="card-tags">
+            <span class="tag tag-live">Live</span>
+            <span class="tag">Web App</span>
+            <span class="tag">39 Camps</span>
+          </div>
+        </div>
+        <a href="/holiday-camps/" class="card-action" target="_blank" rel="noopener">
+          Open &rarr;
+        </a>
+      </div>
+    </div>
 
     <!-- Sophie Ambler -->
     <div class="project-card reveal">
