@@ -150,10 +150,15 @@ function weekById(id) {
 
 const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-/* Which weekdays a provider actually runs in a given week (drives the day toggles). */
+/* Which weekdays a provider actually runs in a given week (drives the day toggles).
+ * dayPattern lists explicit weekdays (1=Mon … 5=Fri) for weeks that don't start on
+ * Monday — e.g. Church Hill's Tue–Fri first week; daysPerWeek covers plain
+ * first-N-days weeks (Mon–Thu camps, the Mon–Wed final Soccer Stars week). */
 function allowedDaysFor(provider, weekId) {
   const pl = plannerOf(provider);
   if (pl.fridaysOnly) return [5];
+  const pat = pl.dayPattern && pl.dayPattern[String(weekId)];
+  if (Array.isArray(pat) && pat.length) return pat.filter((d) => d >= 1 && d <= 5);
   const n = pl.daysPerWeek && pl.daysPerWeek[String(weekId)];
   if (n) return [1, 2, 3, 4, 5].slice(0, n);
   const wk = weekById(weekId);
@@ -818,6 +823,21 @@ function renderPicker() {
     els.pickerSub.textContent = "Pick the weeks to add — solid buttons are provider-confirmed 2026 weeks.";
     els.pickerBody.innerHTML = state.children.map((c) => {
       const fits = ageFits(provider, c.age);
+      const dayRows = P.weeks.filter((w) => !w.stub).map((w) => {
+        const current = planEntry(w.id, c.id);
+        const isThis = current && current.type === "camp" && current.campId === provider.id;
+        if (!isThis) return "";
+        const info = entryDays(current, w.id);
+        const cost = entryCost(current, w.id);
+        return `<div class="day-editor is-inline">
+          <span class="day-editor-label">Wk ${w.id}:</span>
+          ${[1, 2, 3, 4, 5].map((d) => `
+            <button type="button" class="day-chip ${info.days.includes(d) ? "is-on" : ""}"
+              data-camp-day="${d}" data-camp-day-week="${w.id}" data-camp-day-child="${escapeHtml(c.id)}"
+              ${info.allowed.includes(d) ? "" : "disabled"}>${DAY_LABELS[d - 1]}</button>`).join("")}
+          <span class="day-editor-cost">${cost ? money(cost.value) + (cost.estimate ? " est." : "") : "£? — no day rate published"}</span>
+        </div>`;
+      }).join("");
       return `<div>
         <p class="picker-group-title"><span class="child-dot" style="background:${c.color};display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px"></span>${escapeHtml(c.name)} (${c.age})${fits ? "" : " — ⚠ outside listed ages " + escapeHtml(provider.ageLabel)}</p>
         <div class="age-row" style="margin:0 6px 6px">
@@ -833,8 +853,9 @@ function renderPicker() {
             </button>`;
           }).join("")}
         </div>
+        ${dayRows}
       </div>`;
-    }).join("") + `<p class="picker-note">Tap a week to add or remove it. Dashed weeks mean the provider hasn't published dates for that week — confirm before counting on it.</p>`;
+    }).join("") + `<p class="picker-note">Tap a week to add or remove it — its days appear underneath, already set to every day this camp runs, so untick any your child will skip. Dashed weeks mean the provider hasn't published dates for that week — confirm before counting on it.</p>`;
     return;
   }
 
@@ -963,14 +984,32 @@ function handlePickerClick(event) {
   const removeBtn = event.target.closest("[data-pick-remove]");
   const assignWeekBtn = event.target.closest("[data-assign-week]");
 
-  if (pickerCtx && pickerCtx.mode === "camp" && assignWeekBtn) {
-    const weekId = Number(assignWeekBtn.dataset.assignWeek);
-    const childId = assignWeekBtn.dataset.assignChild;
-    const current = planEntry(weekId, childId);
-    const isThis = current && current.type === "camp" && current.campId === pickerCtx.campId;
-    setPlanEntry(weekId, childId, isThis ? null : { type: "camp", campId: pickerCtx.campId });
-    renderPicker();
-    return;
+  if (pickerCtx && pickerCtx.mode === "camp") {
+    const campDayBtn = event.target.closest("[data-camp-day]");
+    if (campDayBtn) {
+      const weekId = Number(campDayBtn.dataset.campDayWeek);
+      const childId = campDayBtn.dataset.campDayChild;
+      const cur = planEntry(weekId, childId);
+      if (!cur) return;
+      const d = Number(campDayBtn.dataset.campDay);
+      const info = entryDays(cur, weekId);
+      const days = info.days.includes(d)
+        ? info.days.filter((x) => x !== d)
+        : [...info.days, d].sort((a, b) => a - b);
+      if (!days.length) return; // keep at least one day
+      setPlanEntry(weekId, childId, { ...cur, days });
+      renderPicker();
+      return;
+    }
+    if (assignWeekBtn) {
+      const weekId = Number(assignWeekBtn.dataset.assignWeek);
+      const childId = assignWeekBtn.dataset.assignChild;
+      const current = planEntry(weekId, childId);
+      const isThis = current && current.type === "camp" && current.campId === pickerCtx.campId;
+      setPlanEntry(weekId, childId, isThis ? null : { type: "camp", campId: pickerCtx.campId });
+      renderPicker();
+      return;
+    }
   }
 
   if (!pickerCtx || pickerCtx.mode !== "cell") return;

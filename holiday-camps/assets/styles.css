@@ -1028,6 +1028,12 @@ div.picker-option { cursor: default; }
   text-transform: uppercase;
   color: var(--ink-soft);
 }
+.day-editor.is-inline {
+  margin: 0 6px 10px;
+  border-style: solid;
+  border-color: var(--line);
+  padding: 8px 10px;
+}
 .day-chip {
   min-height: 36px;
   padding: 0 11px;

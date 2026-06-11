@@ -70,6 +70,7 @@ window.E17_PLANNER = {
     "church-hill-playscheme": {
       weeks: [1, 2, 3, 4, 5],
       daysPerWeek: { "1": 4 },
+      dayPattern: { "1": [2, 3, 4, 5] },
       weeksBasis: "Summer 2026 booking form: Tue 21–Fri 24 Jul (4 days), then Mon–Fri weeks 27–31 Jul, 3–7 Aug, 10–14 Aug, 17–21 Aug. Last booking date Fri 10 July; minimum 2 days.",
       price: { day: 49, dayExtended: 65 },
       priceBasis: "Summer 2026 booking form: £49 core day (9:00–16:00) / £65 full day (8:00–18:00); breakfast £7, tea £14.",

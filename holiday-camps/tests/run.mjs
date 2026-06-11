@@ -165,6 +165,11 @@ if (!SKIP_UI) {
   assert(o.dayEditor.cellMeta.includes("Mon Tue Wed"), "cell meta shows chosen days", o.dayEditor.cellMeta);
   assert(o.customDay.cost === money(expVestryEdited), `per-day custom camp: £30 × 3 days = ${money(expVestryEdited)}`, o.customDay.cost);
   assert(o.customDay.meta.includes("Mon Tue Wed"), "custom camp meta shows chosen days", o.customDay.meta);
+  assert(o.campMode.rowShown, "camp dialog: selecting a week reveals its day row", JSON.stringify(o.campMode));
+  assert(o.campMode.fridayOn && o.campMode.disabledCount === 4, "camp dialog: Fridays-only camp enables only Fri", JSON.stringify(o.campMode));
+  assert(o.campMode.cost.includes("£60"), "camp dialog: day row carries the week's cost", o.campMode.cost);
+  assert(o.campMode.churchHillWk1 === "2,3,4,5", "Church Hill week 1 day pattern is Tue–Fri", o.campMode.churchHillWk1);
+  assert(o.campMode.removedAgain, "camp dialog: re-tapping the week removes it", "entry still present");
   assert(o.assignments.mayaTotal === money(expMayaTotal), `Maya total recomputes to ${money(expMayaTotal)}`, o.assignments.mayaTotal);
   assert(o.assignments.leoTotal === money(expLeoTotal), `Leo total recomputes to ${money(expLeoTotal)}`, o.assignments.leoTotal);
   assert(o.assignments.grandText.includes(money(expGrand)), `grand total recomputes to ${money(expGrand)}`, o.assignments.grandText);
@@ -288,8 +293,28 @@ function AUTOTEST_SRC() { return String.raw`
         cost: mayaCell1.querySelector(".assign-cost").textContent.trim(),
         meta: (mayaCell1.querySelector(".assign-meta") || { textContent: "" }).textContent.trim()
       };
-      await sleep(100);
-      const cards = [...$$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
+
+      // camp-mode dialog: tapping a week reveals its day row (Chillie = Fridays only).
+      // Self-contained — assigns Leo wk3 then removes it, so fixture totals are untouched.
+      document.querySelector('[data-addplan="chillie-kids-club"]').click();
+      await sleep(110);
+      dlg.querySelector('[data-assign-week="3"][data-assign-child="' + leo + '"]').click();
+      await sleep(110);
+      const campDayChips = [...dlg.querySelectorAll('[data-camp-day][data-camp-day-week="3"][data-camp-day-child="' + leo + '"]')];
+      out.campMode = {
+        rowShown: campDayChips.length === 5,
+        fridayOn: campDayChips.some((b) => b.dataset.campDay === "5" && b.classList.contains("is-on")),
+        disabledCount: campDayChips.filter((b) => b.disabled).length,
+        cost: (dlg.querySelector(".day-editor-cost") || { textContent: "" }).textContent.trim(),
+        churchHillWk1: allowedDaysFor(providerById("church-hill-playscheme"), 1).join(",")
+      };
+      dlg.querySelector('[data-assign-week="3"][data-assign-child="' + leo + '"]').click();
+      await sleep(110);
+      out.campMode.removedAgain = !planEntry(3, leo);
+      $("#pickerClose").click();
+      await sleep(120);
+
+      const cards = [...$(".budget-card")].map((c) => c.textContent.replace(/\s+/g, " ").trim());
       const moneyOf = (t) => { const m = /£[\d.]+/.exec(t); return m ? m[0] : ""; };
       out.assignments = {
         setCells: $$(".assign-btn.is-set").length,
