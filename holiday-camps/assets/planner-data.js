@@ -13,7 +13,7 @@
  */
 
 window.E17_PLANNER = {
-  updated: "2026-06-10",
+  updated: "2026-06-11",
 
   // Term dates from Waltham Forest Council "Holiday pattern" PDFs 2025-26 and
   // 2026-27 (downloaded and checked 9 June 2026).
@@ -279,14 +279,17 @@ window.E17_PLANNER = {
     },
 
     "noisy-book-club-summer": {
-      weeksLikely: true,
-      weeksBasis: "Summer 2026 chapters run 10:00–15:00 on listed July and August dates (12 seats/day) — pick exact dates on the summer site and check the chapter's age band.",
+      weeks: [1, 2, 3, 4],
+      daysPerWeek: { "1": 4, "2": 3, "3": 4 },
+      dayPattern: { "1": [1, 2, 3, 4], "2": [1, 2, 3], "3": [2, 3, 4, 5] },
+      weeksBasis: "Summer 2026 chapters (12 seats/day, 10am–3pm): Ch1 Art & Growth Mindset Mon–Thu 20–23 Jul (£260, FULL — waiting list), Ch2 Making Mon–Wed 27–29 Jul (£195), Ch3 Making Tue–Fri 4–7 Aug (£260), Ch4 content-TBD Mon–Fri 10–14 Aug (register interest). Ages 5–11 (Ch4 from 6). Odd single days run a waiting list.",
       price: { day: 65 },
-      priceBasis: "£65/day; chapter bundles £195–£270 on the summer 2026 page.",
+      priceBasis: "£65/day; chapter prices £195 (3 days) to £260 (4 days); 2nd & 3rd child 5% off. Chapter 4 price not yet listed.",
       hours: { start: "10:00", end: "15:00" },
       coverage: "short",
       siblingDiscount: true,
-      smallGroup: true
+      smallGroup: true,
+      lunch: { policy: "bring", note: "Packed lunch and water bottle daily; healthy fruit/veg snacks provided." }
     },
 
     "showkids-walthamstow": {

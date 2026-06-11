@@ -1,5 +1,5 @@
 window.E17_DIRECTORY = {
-  updated: "2026-06-10",
+  updated: "2026-06-11",
   providers: [
     {
       id: "waltham-forest-haf",
@@ -805,19 +805,19 @@ window.E17_DIRECTORY = {
       kind: "Books, art and growth-mindset summer club",
       area: "Walthamstow Central",
       areas: ["Walthamstow"],
-      venue: "One of Six Cabin and nearby Noisy Book Club HQ",
-      address: "One of Six Cabin, 259A High Street, E17 7BH; nearby HQ on some days",
+      venue: "One of Six Cabin (Walthamstow Central) and nearby Noisy Book Club HQ",
+      address: "One of Six Cabin, 259A High Street, E17 7BH; a few days at Noisy Book Club HQ, 5-minute walk",
       ageMin: 5,
       ageMax: 11,
-      ageLabel: "5-11 generally; some chapters are 8+ or Year 6",
+      ageLabel: "5-11 (Chapter 4 ages 6-11)",
       categories: ["Short day", "Arts", "Books", "Creative", "Workshop"],
       funding: ["Paid", "Sibling discount"],
-      hours: "Summer 2026 chapters run 10:00am-3:00pm on listed July and August dates",
-      price: "GBP 65 per day; chapter bundles listed from GBP 195 to GBP 270",
-      summary: "Small-group summer club built around books, creativity, art, textiles and growth mindset. The summer page lists 12 seats per day and themed chapters for ages 5-11, Year 6 transition and 8+ groups.",
+      hours: "10:00am-3:00pm daily",
+      price: "GBP 65 per day; chapter prices GBP 195 (3 days) to GBP 260 (4 days); 2nd and 3rd child 5% off",
+      summary: "Small-group summer club (12 seats a day) built around books, art, textiles, making and growth mindset. Summer 2026 runs as four dated chapters: Art & Growth Mindset (Mon-Thu 20-23 Jul), Making & Growth Mindset (Mon-Wed 27-29 Jul and Tue-Fri 4-7 Aug), and a content-TBD chapter (Mon-Fri 10-14 Aug, ages 6-11). Bring a packed lunch; healthy snacks provided.",
       goodFor: "Children who like stories, making things and confidence-building work in a small local group.",
-      booking: "Book through the Noisy Book Club summer site and check the chapter age band before booking.",
-      confidence: "Current summer 2026 page checked",
+      booking: "Book a chapter through the Noisy Book Club summer site and check its age band and dates. Sold-out chapters and odd single days run a waiting list.",
+      confidence: "Current summer 2026 page checked 11 June 2026",
       source: {
         label: "Noisy Book Club Summer Club",
         url: "https://summer.noisybookclub.com/"
