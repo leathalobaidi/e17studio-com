@@ -753,6 +753,27 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 .assign-cost { font-size: 0.84rem; color: var(--green-deep); font-weight: 800; }
 .assign-cost.is-unknown { color: var(--tomato); }
 
+.booked-toggle {
+  width: 100%;
+  margin-top: 5px;
+  min-height: 30px;
+  padding: 2px 10px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.booked-toggle:hover { border-color: var(--green); color: var(--green-deep); background: var(--green-tint); }
+.booked-toggle.is-booked {
+  border: 1.5px solid var(--green-deep);
+  background: var(--green);
+  color: #fff;
+}
+
 .row-total { font-weight: 800; white-space: nowrap; background: #fffdf2; }
 
 .stub-row td { background: #f6f2e6; }
@@ -774,6 +795,8 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 }
 .budget-card.grand { background: var(--green); color: #fff; border-color: var(--green-deep); }
 .budget-card.grand .budget-label { color: var(--marigold); }
+.budget-card.bookings { background: var(--sky); border-color: var(--sky-deep); }
+.budget-card.bookings .budget-label { color: var(--sky-deep); }
 .budget-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--tomato); }
 .budget-value { font-family: var(--font-display); font-size: 1.85rem; font-weight: 760; line-height: 1.05; }
 .budget-sub { font-size: 0.84rem; color: inherit; opacity: 0.82; }
@@ -1049,10 +1072,36 @@ div.picker-option { cursor: default; }
 .day-chip:disabled { opacity: 0.35; cursor: not-allowed; }
 .day-editor-cost { margin-left: auto; font-weight: 800; color: var(--green-deep); font-size: 0.9rem; }
 
+.my-price-row { align-items: end; }
+.my-price-field { flex: 1; min-width: 200px; }
+.my-price-field input { min-height: 44px; }
+
 @media (max-width: 680px) {
   .custom-camp-form { grid-template-columns: 1fr; }
   .day-editor-cost { margin-left: 0; width: 100%; }
 }
+
+/* ───────────────────────── Shared-plan offer banner ───────────────────────── */
+
+.share-banner {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(620px, calc(100vw - 24px));
+  z-index: 60;
+  margin: 0;
+  padding: 18px 20px 16px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--marigold-tint);
+  box-shadow: var(--shadow-pop);
+}
+.share-banner[hidden] { display: none; }
+.share-banner-title { margin: 0 0 4px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 740; }
+.share-banner-text { margin: 0 0 12px; color: var(--ink-soft); font-size: 0.94rem; }
+.share-banner-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.share-banner-actions .btn { min-height: 42px; padding: 0 16px; font-size: 0.92rem; }
 
 /* ───────────────────────── Motion & a11y ───────────────────────── */
 
@@ -1103,7 +1152,7 @@ div.picker-option { cursor: default; }
   .site-hero, .dates-band .date-card:nth-child(3), .steps-band, .children-section,
   .directory-section, .compare-section, .money-section, .haf-section,
   .sources-section, .planner-actions, .planner-hint, .planner-empty,
-  .bunting, .hero-actions, .picker-dialog {
+  .bunting, .hero-actions, .picker-dialog, .share-banner {
     display: none !important;
   }
   .dates-band { margin: 0 0 12px; box-shadow: none; border: 1px solid #000; grid-template-columns: repeat(4, 1fr); }
@@ -1119,6 +1168,9 @@ div.picker-option { cursor: default; }
   .planner-wrap, .table-wrap { border: 1px solid #000; box-shadow: none; overflow: visible; }
   .planner-table th { background: #eee !important; color: #000; }
   .assign-btn { border: 1px solid #999; min-height: 0; }
+  /* booked state must survive print — plain text, no pill chrome */
+  .booked-toggle { border: 0; background: none; width: auto; min-height: 0; padding: 1px 0 0; font-size: 8.5pt; color: #666; }
+  .booked-toggle.is-booked { background: none; color: #000; }
   .budget-card { box-shadow: none; border: 1px solid #000; }
   .budget-card.grand { background: #eee; color: #000; }
   .check-item { border: 1px solid #999; }

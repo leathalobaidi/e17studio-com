@@ -77,7 +77,7 @@
         <div class="date-card">
           <span class="date-label">Back to school</span>
           <span class="date-value">Wed 2 Sept</span>
-          <span class="date-note">Tue 1 Sep is INSET for most</span>
+          <span class="date-note">most WF schools · The Winns starts Thu 3 Sept</span>
         </div>
         <p class="dates-source">
           Term dates from the
@@ -248,6 +248,9 @@
             <h2>Your summer, week by week</h2>
           </div>
           <div class="planner-actions">
+            <button class="btn btn-ghost" type="button" id="sharePlan"
+              title="Copies a link that carries this plan — send it to a partner and they can load it">Share plan</button>
+            <a class="btn btn-ghost" id="waShare" hidden href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp ↗</a>
             <button class="btn btn-ghost" type="button" id="calendarPlan"
               title="Downloads an .ics file that opens in Apple Calendar and Outlook, and imports into Google Calendar">Add to calendar</button>
             <button class="btn btn-ghost" type="button" id="copyPlan">Copy summary</button>
@@ -260,9 +263,14 @@
           Tap any cell to choose a camp for that child and week — or mark it as
           annual leave, family cover or a friend swap. Costs use verified prices
           where published; everything else shows as “£?” until you confirm with
-          the provider. When it's settled, <strong>Add to calendar</strong>
+          the provider. Once you've actually booked a week, tick
+          <strong>booked</strong> on its cell — the budget below counts your
+          bookings. When it's settled, <strong>Add to calendar</strong>
           downloads the whole plan for your Apple, Outlook or Google calendar —
           every camp as an all-day event with venue, hours and booking link.
+          <strong>Share plan</strong> packs the children and week choices into
+          the link itself (nothing is uploaded) — send it by WhatsApp and the
+          other parent can load or merge it on their device.
         </p>
 
         <div class="planner-empty" id="plannerEmpty">
@@ -410,6 +418,17 @@
         — websites for East London businesses.
       </p>
     </footer>
+
+    <!-- ───────────────────────── Shared-plan offer ───────────────────────── -->
+    <section class="share-banner" id="shareBanner" hidden aria-live="polite" aria-label="Shared plan offer">
+      <p class="share-banner-title">Load this shared plan?</p>
+      <p class="share-banner-text" id="shareBannerText"></p>
+      <div class="share-banner-actions">
+        <button class="btn btn-solid" type="button" id="shareUse">Use this plan</button>
+        <button class="btn btn-ghost" type="button" id="shareMerge">Merge with mine</button>
+        <button class="btn btn-ghost" type="button" id="shareDismiss">No thanks</button>
+      </div>
+    </section>
 
     <!-- ───────────────────────── Camp picker dialog ───────────────────────── -->
     <dialog id="pickerDialog" class="picker-dialog" aria-labelledby="pickerTitle">
