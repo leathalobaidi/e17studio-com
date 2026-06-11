@@ -21,7 +21,7 @@ window.E17_PLANNER = {
     lastSchoolDay: { iso: "2026-07-20", label: "Mon 20 July 2026", note: "Last school day for most Waltham Forest schools (some take it as INSET — check yours)." },
     holidayStart: { iso: "2026-07-21", label: "Tue 21 July 2026" },
     bankHoliday: { iso: "2026-08-31", label: "Mon 31 August 2026" },
-    backToSchool: { iso: "2026-09-02", label: "Wed 2 September 2026", note: "Tue 1 Sep is a closure/INSET day on the council calendar — most children return Wed 2 Sep. The Winns Primary starts Thu 3 September. Confirm your school." },
+    backToSchool: { iso: "2026-09-02", label: "Wed 2 September 2026", note: "Tue 1 Sep is a closure/INSET day on the council calendar — most children return Wed 2 Sep. Confirm your school." },
     octoberHalfTerm: { label: "Mon 26 – Fri 30 October 2026" },
     source: { label: "Waltham Forest Council holiday pattern 2025-26 / 2026-27", url: "https://www.walthamforest.gov.uk/schools-education-and-learning/school-term-and-closure-dates/school-holiday-and-term-dates" }
   },
@@ -34,8 +34,8 @@ window.E17_PLANNER = {
     { id: 4, label: "Week 4", dates: "Mon 10 – Fri 14 August", mon: "2026-08-10", days: 5, note: "" },
     { id: 5, label: "Week 5", dates: "Mon 17 – Fri 21 August", mon: "2026-08-17", days: 5, note: "" },
     { id: 6, label: "Week 6", dates: "Mon 24 – Fri 28 August", mon: "2026-08-24", days: 5, note: "" },
-    { id: 7, label: "Final stretch", dates: "Mon 31 Aug – Wed 2 Sep", mon: "2026-08-31", days: 3, stub: true,
-      note: "Mon 31 Aug is a bank holiday. Most WF schools return Wed 2 Sep, so only Tue 1 Sep needs cover — The Winns starts Thu 3 Sep, so Winns families may need Tue and Wed. Few camps publish dates for this week; check directly." }
+    { id: 7, label: "Final stretch", dates: "Mon 31 Aug – Tue 1 Sep", mon: "2026-08-31", days: 2, stub: true,
+      note: "Mon 31 Aug is a bank holiday and most WF schools return Wed 2 Sep — for most families only Tue 1 Sep needs cover. Few camps publish dates for this week; check directly." }
   ],
 
   byId: {
