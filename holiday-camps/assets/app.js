@@ -1265,24 +1265,57 @@ function planSummaryText() {
 }
 
 function bindPlannerActions() {
+  // The plain tool link — no names, no plan. Safe to broadcast to a group:
+  // everyone who opens it gets their own private, blank planner.
+  const toolUrl = () => location.origin + location.pathname;
+
+  const tellBtn = document.querySelector("#tellParents");
+  const tellWa = document.querySelector("#tellWa");
+  if (tellBtn) {
+    tellBtn.addEventListener("click", async () => {
+      const url = toolUrl();
+      const msg = `Free local tool for planning summer holiday camps in and around Walthamstow — every camp with dates, prices and free council places, plus a week-by-week planner you fill in yourself: ${url}`;
+      tellWa.href = "https://wa.me/?text=" + encodeURIComponent(msg);
+      tellWa.hidden = false;
+      try {
+        await navigator.clipboard.writeText(url);
+        tellBtn.textContent = "Tool link copied ✓";
+      } catch {
+        tellBtn.textContent = "Use WhatsApp →";
+      }
+      setTimeout(() => { tellBtn.textContent = "Tell other parents"; }, 2000);
+    });
+  }
+
   const shareBtn = document.querySelector("#sharePlan");
   const waShare = document.querySelector("#waShare");
+  const SHARE_LABEL = "Share my plan (private)";
   shareBtn.addEventListener("click", async () => {
     if (!state.children.length) {
       shareBtn.textContent = "Add a child first";
-      setTimeout(() => { shareBtn.textContent = "Share plan"; }, 1800);
+      setTimeout(() => { shareBtn.textContent = SHARE_LABEL; }, 1800);
       return;
     }
+    // Hard guard: this link reveals where the children are each week. Make the
+    // user confirm so it can't be mistaken for the broadcast link.
+    const names = state.children.map((c) => c.name).join(" and ");
+    const plural = state.children.length > 1;
+    const okay = window.confirm(
+      `This makes a PRIVATE link that shows ${names}'s name${plural ? "s" : ""} and which camp they're at each week — in other words, where ${plural ? "they'll" : (state.children[0].name + " will")} be.\n\n` +
+      `Only send it to someone you'd trust with that, like a partner or grandparent. To share the planner with a group of parents, close this and use “Tell other parents” instead.\n\n` +
+      `Copy the private link?`
+    );
+    if (!okay) return;
     const url = planShareUrl();
     waShare.href = "https://wa.me/?text=" + encodeURIComponent(`Our summer 2026 holiday camp plan — week-by-week cover and costs: ${url}`);
     waShare.hidden = false;
     try {
       await navigator.clipboard.writeText(url);
-      shareBtn.textContent = "Link copied ✓";
+      shareBtn.textContent = "Private link copied ✓";
     } catch {
       shareBtn.textContent = "Copy blocked — use WhatsApp";
     }
-    setTimeout(() => { shareBtn.textContent = "Share plan"; }, 1800);
+    setTimeout(() => { shareBtn.textContent = SHARE_LABEL; }, 2200);
   });
 
   document.querySelector("#copyPlan").addEventListener("click", async (e) => {

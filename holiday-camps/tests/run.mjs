@@ -233,9 +233,11 @@ if (!SKIP_UI) {
   assert(/2 of 5/.test(o.booked.card) && /bookings made/.test(o.booked.card), 'budget band shows "2 of 5 … bookings made"', o.booked.card);
   assert(o.booked.untoggled === "not booked" && /1 of 5/.test(o.booked.cardAfterUntoggle), "booked toggle reverses cleanly", JSON.stringify({ text: o.booked.untoggled, card: o.booked.cardAfterUntoggle }));
   assert(o.booked.stored === true, "booked flags persist to localStorage");
-  assert(o.share.waShown && o.share.waTarget, "Share plan reveals a wa.me link", JSON.stringify(o.share));
+  assert(o.tell.waShown && o.tell.cleanLink && o.tell.noNames, "Tell-other-parents copies a plain link — no #plan=, no names", JSON.stringify(o.tell));
+  assert(o.share.waShown && o.share.waTarget, "Share-my-plan reveals a wa.me link (after confirm)", JSON.stringify(o.share));
   assert(o.share.children.join(",") === "Maya,Leo" && o.share.planWeeks === 4, "share payload carries both children + 4 planned weeks", JSON.stringify({ children: o.share.children, weeks: o.share.planWeeks }));
   assert(o.share.bookedCarried === true, "share payload carries booked status");
+  assert(o.share.declinedStaysHidden === true, "declining the share confirm copies nothing", JSON.stringify({ declinedStaysHidden: o.share.declinedStaysHidden }));
 
   const o2 = runOut(2); // run 2: same profile → persistence
   assert(o2.mode === "verify", "run 2 loads saved state");
@@ -441,9 +443,20 @@ function AUTOTEST_SRC() { return String.raw`
       const sb = JSON.parse(localStorage.getItem("e17planner.v1"));
       out.booked.stored = !!(sb.plan["1"][leo].booked && sb.plan["2"][maya].booked);
 
-      // share link: button reveals a wa.me link whose #plan= hash round-trips
+      // "Tell other parents": copies the plain tool link — NO #plan=, NO names.
+      out.tell = { waBefore: !!($("#tellWa") && !$("#tellWa").hidden) };
+      $("#tellParents").click();
+      await sleep(140);
+      const tellHref = ($("#tellWa") || { getAttribute: () => "" }).getAttribute("href") || "";
+      out.tell.waShown = !!($("#tellWa") && !$("#tellWa").hidden);
+      out.tell.cleanLink = tellHref.indexOf("#plan=") < 0;
+      out.tell.noNames = tellHref.indexOf("Maya") < 0 && tellHref.indexOf("Leo") < 0;
+
+      // "Share my plan (private)": guarded by a confirm() — accept it, then the
+      // button reveals a wa.me link whose #plan= hash round-trips with the data.
+      window.confirm = () => true;
       $("#sharePlan").click();
-      await sleep(160);
+      await sleep(200);
       const wa = $("#waShare");
       const waHref = wa.getAttribute("href") || "";
       let payload = null;
@@ -460,6 +473,13 @@ function AUTOTEST_SRC() { return String.raw`
         planWeeks: payload && payload.plan ? Object.keys(payload.plan).length : 0,
         bookedCarried: !!(payload && payload.plan && payload.plan["1"] && payload.plan["1"][leo] && payload.plan["1"][leo].booked)
       };
+      // Guard actually blocks when declined.
+      window.confirm = () => false;
+      $("#waShare").hidden = true;
+      $("#sharePlan").click();
+      await sleep(160);
+      out.share.declinedStaysHidden = $("#waShare").hidden;
+      window.confirm = () => true;
     } else if (out.mode === "import") {
       const banner = $("#shareBanner");
       const useMerge = location.search.indexOf("merge") >= 0;
