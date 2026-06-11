@@ -432,6 +432,46 @@ img { max-width: 100%; display: block; }
 .pill-white { background: rgba(42,31,20,0.08); color: var(--dark); }
 .pill-demo { background: var(--red-dim); color: var(--red); }
 
+/* ─── Community Tool ─── */
+.tool-wrap {
+  background: var(--cream);
+  border-top: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
+  padding: 100px 28px;
+}
+.tool-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+.tool-content .section-title { margin-bottom: 20px; }
+.tool-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(34,160,70,0.15); color: #1a8f40;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 6px 14px; border-radius: 50px; margin-bottom: 20px;
+}
+.tool-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #1a8f40; }
+.tool-lead { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; max-width: 460px; }
+.tool-lead strong { color: var(--dark); font-weight: 600; }
+.tool-points { list-style: none; margin: 0 0 32px; display: grid; gap: 11px; }
+.tool-point { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.4; }
+.tool-point::before { content: '\2713'; color: var(--red); font-weight: 800; flex-shrink: 0; }
+.tool-preview {
+  display: block;
+  background: var(--cream-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(42,31,20,0.13);
+  transition: transform 0.3s ease, box-shadow 0.3s;
+}
+.tool-preview:hover { transform: translateY(-6px) rotate(0.4deg); box-shadow: 0 28px 64px rgba(42,31,20,0.2); }
+.tool-shot { width: 100%; display: block; }
+
 /* ─── Process ─── */
 .process-grid {
   display: grid;
@@ -806,6 +846,8 @@ img { max-width: 100%; display: block; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(2) { border-right: none; }
   .showcase-grid { grid-template-columns: 1fr; max-width: 460px; }
+  .tool-inner { grid-template-columns: 1fr; gap: 36px; }
+  .tool-preview { order: -1; }
   .process-grid { grid-template-columns: 1fr; }
   .process-step { border-right: none; border-bottom: 2px solid var(--border-dark); }
   .process-step:last-child { border-bottom: none; }
@@ -819,6 +861,7 @@ img { max-width: 100%; display: block; }
   .stat-num { font-size: 2.4rem; }
   .section { padding: 72px 20px; }
   .showcase-wrap { padding: 72px 20px; }
+  .tool-wrap { padding: 72px 20px; }
   .package-wrap { padding: 72px 20px; }
   .contact-wrap { padding: 72px 20px; }
   .contact-form { padding: 24px; }
@@ -837,11 +880,18 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<!-- ─── ANNOUNCE ─── -->
+<div class="announce">
+  &#127890; New &amp; free for local families: the E17 Holiday Camp Planner is live
+  <a href="/holiday-camps/">Open it &rarr;</a>
+</div>
+
 <!-- ─── NAV ─── -->
 <nav class="nav" id="nav">
   <a href="/" class="nav-logo">e17studio</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
+    <li><a href="#tool">Free Planner</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
@@ -961,6 +1011,34 @@ img { max-width: 100%; display: block; }
         <span class="pill pill-demo">Demo</span>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ─── COMMUNITY TOOL ─── -->
+<div class="tool-wrap" id="tool">
+  <div class="tool-inner">
+    <div class="tool-content reveal">
+      <div class="tool-badge"><span class="tool-badge-dot"></span>Live &middot; Free for local families</div>
+      <h2 class="section-title">I built the neighbourhood<br>a free thing.</h2>
+      <p class="tool-lead">
+        The <strong>E17 Holiday Camp Planner</strong> &mdash; every summer holiday
+        camp in and around Walthamstow in one place, with a week-by-week planner
+        that adds up the cost as you go. Free, no sign-up, built for local parents.
+      </p>
+      <ul class="tool-points">
+        <li class="tool-point">39 local camps &mdash; verified dates, prices &amp; ages</li>
+        <li class="tool-point">Plan each child week by week, see the cost live</li>
+        <li class="tool-point">Free council-funded (HAF) places flagged</li>
+      </ul>
+      <a href="/holiday-camps/" class="btn-big">Open the planner &rarr;</a>
+    </div>
+    <a href="/holiday-camps/" class="tool-preview reveal" aria-label="Open the E17 Holiday Camp Planner">
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <span class="browser-url">e17studio.com/holiday-camps</span>
+      </div>
+      <img class="tool-shot" src="/holiday-camps-preview.jpg" alt="E17 Holiday Camp Planner — week-by-week summer planner for Walthamstow" loading="lazy">
+    </a>
   </div>
 </div>
 
