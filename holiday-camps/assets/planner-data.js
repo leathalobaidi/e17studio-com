@@ -361,6 +361,13 @@ window.E17_PLANNER = {
       weeksLikely: true,
       weeksBasis: "HAF-funded martial arts camp — summer sessions appear on the Eequ feed when the programme opens.",
       haf: true
+    },
+
+    "petite-productions": {
+      weeks: [2, 3],
+      weeksBasis: "Workshops page lists two summer 2026 weeks at both Highams Park and Blackhorse Road: The Spongebob Musical Mon 27–Fri 31 July (week 2) and Backstage to the Future Mon 3–Fri 7 August (week 3). A 3-day ticket option is also offered.",
+      hours: { start: "09:00", end: "16:00" },
+      coverage: "standard"
     }
   }
 };

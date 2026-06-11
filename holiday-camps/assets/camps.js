@@ -1098,6 +1098,36 @@ window.E17_DIRECTORY = {
         label: "SCK Martial Arts on Eequ HAF",
         url: "https://eequ.org/book/sck-martial-arts-holiday-camp-with-sck-martial-arts-holiday-camp-29869"
       }
+    },
+    {
+      id: "petite-productions",
+      name: "Petite Productions Holiday Workshops",
+      kind: "Musical theatre holiday workshop",
+      area: "Highams Park / Walthamstow",
+      areas: ["Highams Park", "Walthamstow", "Chingford"],
+      venue: "Highams Park and Blackhorse Road (Walthamstow) venues",
+      address: "Highams Park, E4 and Blackhorse Road, Walthamstow, E17; exact venue confirmed at booking",
+      ageMin: 4,
+      ageMax: 13,
+      ageLabel: "4-13, sorted into age-appropriate groups",
+      categories: ["Full day", "Drama", "Music", "Dance", "Arts"],
+      funding: ["Paid"],
+      hours: "9:00am-4:00pm Monday to Friday",
+      price: "Check the Bookwhen booking page; book-now-pay-later and 3-day-ticket options available. No childcare vouchers or Tax-Free Childcare; no-refund policy.",
+      summary: "Musical theatre holiday workshops where children learn songs, choreography and script-writing to build a themed mini-production performed to family on the Friday, plus arts and crafts, cooking, games and outdoor time. Founded 2016. Summer 2026 themes: The Spongebob Musical (27-31 July) and Backstage to the Future (3-7 August).",
+      goodFor: "Children who love performing and want a full-week musical-theatre workshop with a Friday showcase, in Highams Park or Walthamstow.",
+      booking: "Book the Highams Park or Blackhorse Road week through Petite Productions on Bookwhen; 3-day tickets available.",
+      confidence: "Provider workshops and Bookwhen pages checked 11 June 2026",
+      source: {
+        label: "Petite Productions holiday workshops",
+        url: "https://www.petiteproductions.co.uk/workshops"
+      },
+      secondarySources: [
+        {
+          label: "Petite Productions booking (Bookwhen)",
+          url: "https://bookwhen.com/petiteproductions"
+        }
+      ]
     }
   ],
   hafSnapshot: [
