@@ -1,5 +1,5 @@
 window.E17_DIRECTORY = {
-  updated: "2026-06-11",
+  updated: "2026-06-12",
   providers: [
     {
       id: "waltham-forest-haf",
@@ -1126,6 +1126,36 @@ window.E17_DIRECTORY = {
         {
           label: "Petite Productions booking (Bookwhen)",
           url: "https://bookwhen.com/petiteproductions"
+        }
+      ]
+    },
+    {
+      id: "ryan-fc-girls",
+      name: "Ryan FC Girls Summer Football Camp",
+      kind: "Girls-only football camp",
+      area: "Walthamstow",
+      areas: ["Walthamstow"],
+      venue: "Match Day Centre",
+      address: "Match Day Centre, Walthamstow, E17 4LL",
+      ageMin: 5,
+      ageMax: 11,
+      ageLabel: "Girls only; current school years 1-6",
+      categories: ["Football", "Sports", "Girls only"],
+      funding: ["Paid"],
+      hours: "Check the sign-up form",
+      price: "Check the sign-up form",
+      summary: "Girls-only summer football camp run by the Ryan FC Girls charity, with skill-building, mini matches, team challenges and making new friends. All levels and girls from all clubs welcome. Summer 2026 runs 27 July to 14 August at the Match Day Centre (E17 4LL).",
+      goodFor: "Girls in school years 1-6 who want a friendly, confidence-building football camp in a girls-only environment.",
+      booking: "Sign up through the Ryan FC Girls Google form linked from the camp page.",
+      confidence: "Provider camp page checked 12 June 2026",
+      source: {
+        label: "Ryan FC Girls football camp",
+        url: "https://ryanfcgirls.com/football-camp"
+      },
+      secondarySources: [
+        {
+          label: "Ryan FC Girls",
+          url: "https://ryanfcgirls.com/"
         }
       ]
     }

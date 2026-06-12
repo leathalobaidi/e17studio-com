@@ -13,7 +13,7 @@
  */
 
 window.E17_PLANNER = {
-  updated: "2026-06-11",
+  updated: "2026-06-12",
 
   // Term dates from Waltham Forest Council "Holiday pattern" PDFs 2025-26 and
   // 2026-27 (downloaded and checked 9 June 2026).
@@ -371,6 +371,12 @@ window.E17_PLANNER = {
       weeksBasis: "Workshops page lists two summer 2026 weeks at both Highams Park and Blackhorse Road: The Spongebob Musical Mon 27–Fri 31 July (week 2) and Backstage to the Future Mon 3–Fri 7 August (week 3). A 3-day ticket option is also offered.",
       hours: { start: "09:00", end: "16:00" },
       coverage: "standard"
+    },
+
+    "ryan-fc-girls": {
+      weeks: [2, 3, 4],
+      weeksBasis: "Camp page lists the summer 2026 girls-only camp running 27 July – 14 August 2026 (school years 1-6) at the Match Day Centre, E17 4LL. Exact daily times and price are on the sign-up form.",
+      coverage: "varies"
     }
   }
 };
