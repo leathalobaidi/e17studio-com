@@ -375,8 +375,12 @@ window.E17_PLANNER = {
 
     "ryan-fc-girls": {
       weeks: [2, 3, 4],
-      weeksBasis: "Camp page lists the summer 2026 girls-only camp running 27 July – 14 August 2026 (school years 1-6) at the Match Day Centre, E17 4LL. Exact daily times and price are on the sign-up form.",
-      coverage: "varies"
+      weeksBasis: "Sign-up form lists three girls-only weeks at Matchday Centres (E17 4LL, Pitch 10), ages 6-11, 9am–3pm: 27–31 Jul (week 2), 3–7 Aug (week 3), 10–14 Aug (week 4). Single days bookable.",
+      price: { day: 30, week: 130 },
+      priceBasis: "£30 per day or £130 for the full 5-day week (sign-up form, checked 12 Jun 2026).",
+      hours: { start: "09:00", end: "15:00" },
+      coverage: "standard",
+      lunch: { policy: "bring", note: "Bring a packed lunch and a water bottle; astro surface, so suitable footwear." }
     }
   }
 };
