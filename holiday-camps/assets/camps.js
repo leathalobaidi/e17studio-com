@@ -1113,11 +1113,11 @@ window.E17_DIRECTORY = {
       categories: ["Full day", "Drama", "Music", "Dance", "Arts"],
       funding: ["Paid"],
       hours: "9:00am-4:00pm Monday to Friday",
-      price: "Check the Bookwhen booking page; book-now-pay-later and 3-day-ticket options available. No childcare vouchers or Tax-Free Childcare; no-refund policy.",
-      summary: "Musical theatre holiday workshops where children learn songs, choreography and script-writing to build a themed mini-production performed to family on the Friday, plus arts and crafts, cooking, games and outdoor time. Founded 2016. Summer 2026 themes: The Spongebob Musical (27-31 July) and Backstage to the Future (3-7 August).",
-      goodFor: "Children who love performing and want a full-week musical-theatre workshop with a Friday showcase, in Highams Park or Walthamstow.",
-      booking: "Book the Highams Park or Blackhorse Road week through Petite Productions on Bookwhen; 3-day tickets available.",
-      confidence: "Provider workshops and Bookwhen pages checked 11 June 2026",
+      price: "GBP 45 per day, GBP 225 for the full Monday-Friday 9am-4pm week, or GBP 135 for a 3-day ticket; discounted sibling rate GBP 405 per week. Flexible/instalment payments offered; book via Bookwhen.",
+      summary: "Musical theatre holiday workshops taught by industry professionals - dance, choreography, vocal training and song-learning, acting and script-writing, building to a Friday show for parents, plus themed arts and crafts, cooking, games and outdoor time. Founded 2016, for ages 4-13 in age-appropriate groups. Summer 2026 runs all five weeks at both Highams Park and Blackhorse Road (Walthamstow): The SpongeBob Musical (27-31 July), Backstage to the Future (3-7 August), Uniquely Me - The Musical (10-14 August), Seussical the Musical (17-21 August) and Broadway Beach Bash (24-28 August).",
+      goodFor: "Children who love performing and want a musical-theatre workshop week with a Friday showcase, in Highams Park or Walthamstow; full-week or flexible 3-day tickets.",
+      booking: "Book the Highams Park or Blackhorse Road weeks through Petite Productions on Bookwhen; full-week, 3-day and sibling tickets available.",
+      confidence: "Dates, prices and description confirmed by director Sophie Glibbery (Petite Productions) 12 June 2026; provider and Bookwhen pages checked 11 June 2026",
       source: {
         label: "Petite Productions holiday workshops",
         url: "https://www.petiteproductions.co.uk/workshops"

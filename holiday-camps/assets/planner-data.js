@@ -367,8 +367,10 @@ window.E17_PLANNER = {
     },
 
     "petite-productions": {
-      weeks: [2, 3],
-      weeksBasis: "Workshops page lists two summer 2026 weeks at both Highams Park and Blackhorse Road: The Spongebob Musical Mon 27–Fri 31 July (week 2) and Backstage to the Future Mon 3–Fri 7 August (week 3). A 3-day ticket option is also offered.",
+      weeks: [2, 3, 4, 5, 6],
+      weeksBasis: "Director confirmed (email + flyer, 12 Jun 2026) the workshops run all five summer weeks at both Highams Park and Blackhorse Road: The SpongeBob Musical 27–31 Jul (week 2), Backstage to the Future 3–7 Aug (week 3), Uniquely Me 10–14 Aug (week 4), Seussical the Musical 17–21 Aug (week 5) and Broadway Beach Bash 24–28 Aug (week 6). 9am–4pm Mon–Fri; 3-day tickets also offered.",
+      price: { day: 45, week: 225 },
+      priceBasis: "£45/day, £225 for the full Mon–Fri week, £135 for a 3-day ticket, £405 sibling rate; flexible payments (director email + flyer, 12 Jun 2026).",
       hours: { start: "09:00", end: "16:00" },
       coverage: "standard"
     },
