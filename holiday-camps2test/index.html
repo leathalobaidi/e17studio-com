@@ -128,6 +128,7 @@
 
       /* cards */
       .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+      .grid[hidden] { display: none; }
       .card {
         background: var(--panel); border: 1.5px solid var(--line); border-radius: var(--radius);
         padding: 18px; box-shadow: var(--shadow-pop); display: flex; flex-direction: column; gap: 9px;
@@ -148,6 +149,28 @@
       .card .foot { margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--line-strong); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
       .card .foot .book { font-size: .82rem; color: var(--muted); }
       .card .foot a { font-weight: 700; color: var(--tomato); text-decoration: none; font-size: .9rem; white-space: nowrap; }
+
+      .resultbar-right { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+      .viewswitch { display: inline-flex; gap: 4px; background: var(--panel); border: 1.5px solid var(--line-strong); border-radius: 999px; padding: 4px; }
+      .viewswitch button { font-family: var(--font-body); font-weight: 700; font-size: .86rem; border: 0; background: transparent; color: var(--ink-soft); padding: 7px 13px; border-radius: 999px; cursor: pointer; }
+      .viewswitch button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+      .tt-wrap { overflow-x: auto; border: 1.5px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-pop); background: var(--panel); }
+      .tt-wrap[hidden] { display: none; }
+      table.tt { border-collapse: collapse; width: 100%; min-width: 760px; }
+      table.tt th, table.tt td { border: 1px solid var(--line); vertical-align: top; padding: 8px; text-align: left; }
+      table.tt thead th { position: sticky; top: 64px; background: var(--green); color: #fff; font-family: var(--font-display); font-weight: 640; font-size: .95rem; z-index: 2; }
+      table.tt th.band { background: var(--marigold-tint); color: var(--marigold-deep); font-family: var(--font-body); text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; width: 92px; white-space: nowrap; }
+      .tt-item { font-size: .82rem; line-height: 1.22; padding: 5px 7px; border-radius: 8px; background: var(--paper); border: 1px solid var(--line); margin-bottom: 6px; }
+      .tt-item:last-child { margin-bottom: 0; }
+      .tt-item .p { font-weight: 700; }
+      .tt-item .t { color: var(--muted); font-size: .78rem; }
+      .tt-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+      .dot-baby { background: var(--sky-deep); } .dot-after { background: var(--green); } .dot-weekend { background: var(--plum); } .dot-other { background: var(--marigold-deep); }
+      .tt-emptycell { color: var(--line-strong); font-size: .8rem; }
+      .tt-flex { margin-top: 16px; background: var(--panel); border: 1.5px dashed var(--line-strong); border-radius: var(--radius); padding: 14px 16px; font-size: .9rem; color: var(--ink-soft); }
+      .tt-flex[hidden] { display: none; }
+      .tt-flex strong { color: var(--ink); }
 
       .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
       footer.site { border-top: 1.5px solid var(--line); padding: 26px 0 50px; color: var(--muted); font-size: .88rem; }
@@ -222,6 +245,16 @@
               <select id="day" aria-label="Filter by day"></select>
             </div>
             <div class="fgroup">
+              <span>Time</span>
+              <select id="time" aria-label="Filter by time of day">
+                <option value="all">Any time</option>
+                <option value="Morning">Morning (before 12pm)</option>
+                <option value="Afternoon">Afternoon (12–5pm)</option>
+                <option value="Evening">Evening (after 5pm)</option>
+                <option value="TBC">Time to confirm</option>
+              </select>
+            </div>
+            <div class="fgroup">
               <span>Show</span>
               <div class="switches">
                 <label class="toggle"><input type="checkbox" id="freeOnly" /> Free only</label>
@@ -233,11 +266,19 @@
 
         <div class="resultbar">
           <strong id="count">…</strong>
-          <button class="linkbtn" id="reset" type="button">Reset filters</button>
+          <div class="resultbar-right">
+            <div class="viewswitch" role="group" aria-label="View as">
+              <button id="view-cards" type="button" aria-pressed="true">▦ Cards</button>
+              <button id="view-tt" type="button" aria-pressed="false">🗓 Timetable</button>
+            </div>
+            <button class="linkbtn" id="reset" type="button">Reset filters</button>
+          </div>
         </div>
 
         <div class="grid" id="grid"></div>
         <div class="empty" id="empty" hidden>No activities match those filters — try widening them.</div>
+        <div class="tt-wrap" id="timetable" hidden></div>
+        <div class="tt-flex" id="ttflex" hidden></div>
       </section>
     </main>
 
@@ -249,7 +290,8 @@
 
     <script>
       const DATA_URL = "term-time-data.json";
-      const state = { view: "termtime", q: "", stream: "all", age: "all", day: "all", free: false, verified: false };
+      const state = { view: "termtime", q: "", stream: "all", age: "all", day: "all", time: "all", free: false, verified: false, ttView: "cards" };
+      const WD = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
       let DATA = [];
 
       const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -269,6 +311,35 @@
         "Teens (11+)": [11, 99],
       };
 
+      // expand "Monday-Friday" / "Weekend" / single days into weekday names; [] = flexible/TBC
+      function expandDays(days) {
+        const set = new Set();
+        (days || []).forEach((tok) => {
+          const t = String(tok).toLowerCase();
+          const range = t.match(/(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\s*(?:-|–|to)\s*(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/);
+          if (range) {
+            const a = WD.findIndex((w) => w.toLowerCase() === range[1]);
+            const b = WD.findIndex((w) => w.toLowerCase() === range[2]);
+            if (a >= 0 && b >= 0 && a <= b) { for (let i = a; i <= b; i++) set.add(WD[i]); return; }
+          }
+          if (t.includes("weekend")) { set.add("Saturday"); set.add("Sunday"); return; }
+          WD.forEach((w) => { if (t.includes(w.toLowerCase())) set.add(w); });
+        });
+        return WD.filter((w) => set.has(w));
+      }
+      function startMin(timeStr) {
+        if (!timeStr) return null;
+        const m = String(timeStr).match(/\b([01]?\d|2[0-3]):([0-5]\d)\b/);
+        return m ? parseInt(m[1], 10) * 60 + parseInt(m[2], 10) : null;
+      }
+      function timeBand(rec) {
+        const s = startMin(rec.time);
+        if (s != null) { if (s < 720) return "Morning"; if (s < 1020) return "Afternoon"; return "Evening"; }
+        if (/after school|end of school/i.test(rec.time || "")) return "Afternoon";
+        return "TBC";
+      }
+      const DOT = { "Babies & toddlers": "dot-baby", "After school": "dot-after", "Weekend": "dot-weekend" };
+
       function ageMatch(rec, band) {
         if (band === "all") return true;
         if (rec.ageMin == null) return true; // unknown age -> don't exclude
@@ -278,7 +349,9 @@
       }
       function dayMatch(rec, day) {
         if (day === "all") return true;
-        return (rec.days || []).some((d) => String(d).toLowerCase().includes(day.toLowerCase()));
+        const ex = expandDays(rec.days);
+        if (ex.length === 0) return true; // flexible / multiple / TBC → could run any day
+        return ex.includes(day);
       }
       function visible(rec) {
         const q = state.q.trim().toLowerCase();
@@ -289,6 +362,7 @@
         if (state.stream !== "all" && streamOf(rec.cat) !== state.stream) return false;
         if (!ageMatch(rec, state.age)) return false;
         if (!dayMatch(rec, state.day)) return false;
+        if (state.time !== "all" && timeBand(rec) !== state.time) return false;
         if (state.free && !rec.free) return false;
         if (state.verified && !rec.verified) return false;
         return true;
@@ -319,12 +393,64 @@
 
       function render() {
         const rows = DATA.filter(visible);
-        document.getElementById("count").textContent =
-          `Showing ${rows.length} of ${DATA.length} activities`;
-        const grid = document.getElementById("grid");
-        const empty = document.getElementById("empty");
-        grid.innerHTML = rows.map(cardHTML).join("");
-        empty.hidden = rows.length !== 0;
+        document.getElementById("count").textContent = `Showing ${rows.length} of ${DATA.length} activities`;
+        const cards = state.ttView === "cards";
+        document.getElementById("grid").hidden = !cards;
+        document.getElementById("empty").hidden = !(cards && rows.length === 0);
+        document.getElementById("timetable").hidden = cards;
+        if (cards) {
+          document.getElementById("grid").innerHTML = rows.map(cardHTML).join("");
+          document.getElementById("ttflex").hidden = true;
+        } else {
+          renderTimetable(rows);
+        }
+      }
+
+      function renderTimetable(rows) {
+        const bands = ["Morning", "Afternoon", "Evening", "TBC"];
+        const bandLabel = { Morning: "Morning", Afternoon: "Afternoon", Evening: "Evening", TBC: "Time TBC" };
+        const scheduled = rows.filter((r) => expandDays(r.days).length > 0);
+        const flexible = rows.filter((r) => expandDays(r.days).length === 0);
+        const daysPresent = WD.filter((d) => scheduled.some((r) => expandDays(r.days).includes(d)));
+        const tt = document.getElementById("timetable");
+
+        if (!daysPresent.length) {
+          tt.innerHTML = `<p style="padding:18px;color:var(--muted)">No day-scheduled activities match these filters.</p>`;
+        } else {
+          const itemHTML = (r) => {
+            const dot = DOT[streamOf(r.cat)] || "dot-other";
+            const t = startMin(r.time) != null ? r.time : (/after school|end of school/i.test(r.time || "") ? "After school" : "Time TBC");
+            return `<div class="tt-item"><span class="tt-dot ${dot}"></span><span class="p">${esc(r.provider)}</span><div class="t">${esc(t)}</div></div>`;
+          };
+          const cell = (d, b) => {
+            const items = scheduled.filter((r) => expandDays(r.days).includes(d) && timeBand(r) === b);
+            return items.length ? `<td>${items.map(itemHTML).join("")}</td>` : `<td><span class="tt-emptycell">—</span></td>`;
+          };
+          let html = `<table class="tt"><thead><tr><th class="band">Time</th>${daysPresent.map((d) => `<th>${d.slice(0, 3)}</th>`).join("")}</tr></thead><tbody>`;
+          bands.forEach((b) => {
+            const any = scheduled.some((r) => timeBand(r) === b && expandDays(r.days).some((d) => daysPresent.includes(d)));
+            if (!any) return;
+            html += `<tr><th class="band">${bandLabel[b]}</th>${daysPresent.map((d) => cell(d, b)).join("")}</tr>`;
+          });
+          html += `</tbody></table>`;
+          tt.innerHTML = html;
+        }
+
+        const flex = document.getElementById("ttflex");
+        if (flexible.length) {
+          const names = flexible.map((r) => esc(r.provider + (r.listing ? " — " + r.listing : ""))).slice(0, 40).join("; ");
+          flex.innerHTML = `<strong>${flexible.length} activities run on flexible / multiple days or by arrangement</strong> — not placed on the grid: ${names}${flexible.length > 40 ? " …" : ""}`;
+          flex.hidden = false;
+        } else {
+          flex.hidden = true;
+        }
+      }
+
+      function setTTView(v) {
+        state.ttView = v;
+        document.getElementById("view-cards").setAttribute("aria-pressed", v === "cards");
+        document.getElementById("view-tt").setAttribute("aria-pressed", v === "timetable");
+        render();
       }
 
       function setView(view) {
@@ -382,12 +508,16 @@
           render();
         });
         document.getElementById("day").addEventListener("change", (e) => { state.day = e.target.value; render(); });
+        document.getElementById("time").addEventListener("change", (e) => { state.time = e.target.value; render(); });
+        document.getElementById("view-cards").addEventListener("click", () => setTTView("cards"));
+        document.getElementById("view-tt").addEventListener("click", () => setTTView("timetable"));
         document.getElementById("freeOnly").addEventListener("change", (e) => { state.free = e.target.checked; render(); });
         document.getElementById("verifiedOnly").addEventListener("change", (e) => { state.verified = e.target.checked; render(); });
         document.getElementById("reset").addEventListener("click", () => {
-          Object.assign(state, { q: "", stream: "all", age: "all", day: "all", free: false, verified: false });
+          Object.assign(state, { q: "", stream: "all", age: "all", day: "all", time: "all", free: false, verified: false });
           document.getElementById("q").value = "";
           document.getElementById("day").value = "all";
+          document.getElementById("time").value = "all";
           document.getElementById("freeOnly").checked = false;
           document.getElementById("verifiedOnly").checked = false;
           document.querySelectorAll("#streamChips .chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.stream === "all"));
