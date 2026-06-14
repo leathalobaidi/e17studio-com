@@ -1192,6 +1192,40 @@ window.E17_DIRECTORY = {
           url: "https://goodshepherdstudios.com/"
         }
       ]
+    },
+    {
+      id: "wee-movers-holiday",
+      name: "Wee Movers Creative Holiday School",
+      kind: "Creative arts & dance holiday camp",
+      area: "Leyton",
+      areas: ["Leyton"],
+      venue: "St Joseph's Infant School",
+      address: "St Joseph's Infant School, Marsh Lane, London E10 7BL (Leyton; short walk from Leyton Cricket Ground)",
+      ageMin: 4,
+      ageMax: 10,
+      ageLabel: "Ages 4-10",
+      categories: ["Full day", "Dance", "Arts", "Multi-activity"],
+      funding: ["Paid"],
+      hours: "10:00am-4:00pm; wrap-around care available from 9:00am to 6:00pm",
+      price: "GBP 318 for the 5-day week, including a daily hot lunch (by Deeney's) and an afternoon snack; sibling discount (code SUMMERSIBLING2026); bring a packed lunch instead to save GBP 6/day (code NOLUNCHSUMMER). Subsidised places and SEN support available on request.",
+      summary: "Inclusive creative holiday school from children's dance company Wee Movers (founder Fiona Campbell), exploring movement and making with professional artists. Days mix circus skills (Revel Puck), dance and yoga, artist-led workshops and outdoor landscape painting, forest school and nature walks, clothes upcycling and sewing, and outdoor sports and games. SEN support and subsidised places offered. Summer 2026 runs three weeks at the new St Joseph's Infant School (Leyton) venue: Mon 20-24 July, Mon 27-31 July and Mon 3-7 August, 10am-4pm with wrap-around care.",
+      goodFor: "Creative children aged 4-10 who enjoy dance, art and the outdoors; an inclusive setting with SEN support, wrap-around care and meals included, in Leyton.",
+      booking: "Book each week through the Wee Movers shopfront; wrap-around care is arranged by email before the camp. Contact info@weemovers.co.uk for subsidised places or SEN support.",
+      confidence: "Provider Creative Holiday Schools page and week-one product page checked 14 June 2026; introduced by founder Fiona Campbell",
+      source: {
+        label: "Wee Movers Creative Holiday Schools",
+        url: "https://www.weemovers.co.uk/holiday-clubs"
+      },
+      secondarySources: [
+        {
+          label: "Wee Movers week-one booking",
+          url: "https://www.weemovers.co.uk/shopfront/p/creative-school-summer26-week-one"
+        },
+        {
+          label: "Wee Movers",
+          url: "https://www.weemovers.co.uk/"
+        }
+      ]
     }
   ],
   hafSnapshot: [
