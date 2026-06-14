@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>E17 Family Activities — prototype (Holiday camps + Term-time)</title>
+    <meta name="description" content="Prototype: a single top filter switching between summer holiday camps and term-time activities across Walthamstow E17." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1d2b22; --ink-soft: #44544b; --muted: #5f6e66;
+        --paper: #faf5e9; --panel: #fffdf6; --line: #ded8c4; --line-strong: #c9c2aa;
+        --green: #1e5e46; --green-deep: #14402f; --green-tint: #e4eee6;
+        --tomato: #c93e20; --tomato-bright: #e2502f; --tomato-tint: #fbe9e2;
+        --marigold: #f4b942; --marigold-deep: #9a6a10; --marigold-tint: #fdf0d3;
+        --sky: #cfe7e3; --sky-deep: #145f63; --plum: #7c4070;
+        --shadow-pop: 5px 6px 0 rgba(29, 43, 34, 0.16);
+        --shadow-soft: 0 14px 34px rgba(29, 43, 34, 0.12);
+        --radius: 14px; --radius-sm: 9px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Atkinson Hyperlegible", "Trebuchet MS", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0; color: var(--ink); background: var(--paper);
+        font-family: var(--font-body); font-size: 1rem; line-height: 1.5;
+      }
+      h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; margin: 0; }
+      p { margin: 0; }
+      a { color: inherit; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+      /* prototype ribbon */
+      .proto {
+        position: fixed; left: 14px; bottom: 14px;
+        background: var(--tomato); color: #fff; font-weight: 700; letter-spacing: .14em;
+        font-size: .66rem; padding: 7px 14px; border-radius: 999px; z-index: 60; box-shadow: var(--shadow-soft);
+      }
+
+      /* sticky masthead with the master toggle */
+      .masthead {
+        position: sticky; top: 0; z-index: 40;
+        background: rgba(250, 245, 233, 0.92); backdrop-filter: blur(8px);
+        border-bottom: 1.5px solid var(--line);
+      }
+      .masthead-inner { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 12px 20px; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; text-decoration: none; }
+      .brand-mark {
+        display: inline-grid; place-items: center; width: 38px; height: 38px;
+        background: var(--green); color: var(--marigold); border-radius: 10px; font-size: .9rem; letter-spacing: .02em;
+      }
+      .brand small { display: block; font-family: var(--font-body); font-weight: 400; color: var(--muted); font-size: .72rem; }
+
+      .toggle-label { margin-left: auto; font-size: .82rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+      .switch {
+        display: inline-flex; background: var(--panel); border: 2px solid var(--ink);
+        border-radius: 999px; padding: 4px; box-shadow: var(--shadow-pop);
+      }
+      .switch button {
+        font-family: var(--font-body); font-weight: 700; font-size: .95rem;
+        border: 0; background: transparent; color: var(--ink-soft);
+        padding: 9px 18px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+        transition: background .15s, color .15s;
+      }
+      .switch button[aria-pressed="true"] { background: var(--green); color: #fff; }
+      .switch button:focus-visible { outline: 3px solid var(--marigold); outline-offset: 2px; }
+
+      /* hero */
+      .hero { padding: 34px 0 8px; }
+      .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .74rem; font-weight: 700; color: var(--tomato); }
+      .hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); margin: 8px 0 10px; line-height: 1.04; }
+      .hero h1 em { font-style: italic; color: var(--green); }
+      .hero p { max-width: 60ch; color: var(--ink-soft); font-size: 1.06rem; }
+
+      .panel { padding: 18px 0 60px; }
+      .panel[hidden] { display: none; }
+
+      /* holiday-camps summary card */
+      .promo {
+        margin-top: 14px; background: var(--green); color: #fff; border-radius: var(--radius);
+        padding: 28px; box-shadow: var(--shadow-soft); display: grid; gap: 16px;
+      }
+      .promo h2 { color: #fff; font-size: 1.7rem; }
+      .promo p { color: #e9f1ec; max-width: 62ch; }
+      .promo .stats { display: flex; flex-wrap: wrap; gap: 10px; }
+      .promo .stat { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 7px 14px; font-size: .9rem; font-weight: 700; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px; align-self: start;
+        font-family: var(--font-body); font-weight: 700; text-decoration: none; cursor: pointer;
+        padding: 12px 20px; border-radius: 999px; border: 2px solid transparent;
+      }
+      .btn-solid { background: var(--marigold); color: var(--ink); box-shadow: var(--shadow-pop); }
+      .btn-solid:hover { background: #ffce5e; }
+
+      /* filter bar */
+      .intro { color: var(--ink-soft); max-width: 66ch; margin: 6px 0 16px; }
+      .filters {
+        background: var(--panel); border: 1.5px solid var(--line); border-radius: var(--radius);
+        padding: 18px; box-shadow: var(--shadow-pop); display: grid; gap: 14px;
+      }
+      .filters .search { display: flex; align-items: center; gap: 10px; border: 2px solid var(--ink); border-radius: 999px; padding: 10px 16px; background: #fff; }
+      .filters .search input { border: 0; outline: 0; font-family: var(--font-body); font-size: 1rem; width: 100%; background: transparent; }
+      .frow { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+      .fgroup { display: grid; gap: 6px; }
+      .fgroup > span { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .chip {
+        font-family: var(--font-body); font-weight: 700; font-size: .88rem; cursor: pointer;
+        background: var(--marigold-tint); color: var(--marigold-deep); border: 1.5px solid var(--line-strong);
+        border-radius: 999px; padding: 7px 13px;
+      }
+      .chip[aria-pressed="true"] { background: var(--green); color: #fff; border-color: var(--green-deep); }
+      select { font-family: var(--font-body); font-size: .95rem; padding: 9px 12px; border-radius: var(--radius-sm); border: 1.5px solid var(--line-strong); background: #fff; color: var(--ink); }
+      .switches { display: flex; gap: 18px; flex-wrap: wrap; }
+      .toggle { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .92rem; cursor: pointer; }
+      .toggle input { width: 18px; height: 18px; accent-color: var(--green); }
+
+      .resultbar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 22px 0 14px; flex-wrap: wrap; }
+      .resultbar strong { font-family: var(--font-display); font-size: 1.2rem; }
+      .linkbtn { background: none; border: 0; color: var(--tomato); font-weight: 700; cursor: pointer; font-family: var(--font-body); font-size: .95rem; }
+
+      /* cards */
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+      .card {
+        background: var(--panel); border: 1.5px solid var(--line); border-radius: var(--radius);
+        padding: 18px; box-shadow: var(--shadow-pop); display: flex; flex-direction: column; gap: 9px;
+      }
+      .card .tagrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .tag { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 4px 9px; border-radius: 999px; }
+      .tag.s-baby { background: var(--sky); color: var(--sky-deep); }
+      .tag.s-after { background: var(--green-tint); color: var(--green-deep); }
+      .tag.s-weekend { background: #efe1ed; color: var(--plum); }
+      .tag.s-other { background: var(--marigold-tint); color: var(--marigold-deep); }
+      .vbadge { font-size: .72rem; font-weight: 700; color: var(--green); display: inline-flex; align-items: center; gap: 4px; }
+      .kicker { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+      .card h3 { font-size: 1.18rem; line-height: 1.12; }
+      .meta { display: grid; gap: 5px; margin-top: 2px; font-size: .92rem; color: var(--ink-soft); }
+      .meta .row { display: flex; gap: 8px; }
+      .meta .row .ic { width: 18px; flex: none; text-align: center; }
+      .price { font-weight: 700; color: var(--ink); }
+      .card .foot { margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--line-strong); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .card .foot .book { font-size: .82rem; color: var(--muted); }
+      .card .foot a { font-weight: 700; color: var(--tomato); text-decoration: none; font-size: .9rem; white-space: nowrap; }
+
+      .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
+      footer.site { border-top: 1.5px solid var(--line); padding: 26px 0 50px; color: var(--muted); font-size: .88rem; }
+      footer.site a { color: var(--tomato); font-weight: 700; }
+      @media (max-width: 600px) {
+        .toggle-label { display: none; }
+        .masthead-inner { gap: 12px; }
+        .switch { width: 100%; }
+        .switch button { flex: 1; justify-content: center; padding: 9px 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="proto" aria-hidden="true">PROTOTYPE</div>
+
+    <div class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">E17</span>
+          <span>Family Activities<small>Walthamstow · prototype</small></span>
+        </a>
+        <span class="toggle-label" aria-hidden="true">View</span>
+        <div class="switch" role="group" aria-label="Choose what to browse">
+          <button id="tab-holiday" type="button" aria-pressed="false" data-view="holiday">🏕️ Holiday camps</button>
+          <button id="tab-termtime" type="button" aria-pressed="true" data-view="termtime">📅 Term-time activities</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="wrap" id="top">
+      <section class="hero">
+        <p class="eyebrow" id="hero-eyebrow">Term-time · weekly clubs &amp; classes</p>
+        <h1 id="hero-title">Everything on in E17, <em>one filter away.</em></h1>
+        <p id="hero-sub">Flip the switch at the top between the summer <strong>holiday-camp planner</strong> and the new <strong>term-time</strong> directory — same site, one master filter.</p>
+      </section>
+
+      <!-- HOLIDAY CAMPS VIEW -->
+      <section class="panel" id="panel-holiday" hidden>
+        <div class="promo">
+          <h2>Your live summer holiday-camp planner</h2>
+          <p>This is the existing tool, unchanged — every holiday camp in and around E17 with verified dates, prices and free HAF places, plus a week-by-week budget calculator. The top filter would simply sit above it.</p>
+          <div class="stats">
+            <span class="stat">41 camps</span>
+            <span class="stat">6 summer weeks</span>
+            <span class="stat">Budget calculator</span>
+            <span class="stat">Free HAF places</span>
+          </div>
+          <a class="btn btn-solid" href="https://e17studio.com/holiday-camps/">Open the holiday-camp planner →</a>
+        </div>
+      </section>
+
+      <!-- TERM-TIME VIEW -->
+      <section class="panel" id="panel-termtime">
+        <p class="intro">A directory of weekly term-time clubs and classes across E17 — baby &amp; toddler groups, after-school clubs and weekend activities. Use the filters to narrow by type, age, day and price.</p>
+
+        <div class="filters" aria-label="Term-time filters">
+          <label class="search">
+            <span aria-hidden="true">🔎</span>
+            <input id="q" type="search" placeholder="Search provider, class or venue…" aria-label="Search term-time activities" />
+          </label>
+          <div class="frow">
+            <div class="fgroup">
+              <span>Type</span>
+              <div class="chips" id="streamChips"></div>
+            </div>
+            <div class="fgroup">
+              <span>Age</span>
+              <div class="chips" id="ageChips"></div>
+            </div>
+            <div class="fgroup">
+              <span>Day</span>
+              <select id="day" aria-label="Filter by day"></select>
+            </div>
+            <div class="fgroup">
+              <span>Show</span>
+              <div class="switches">
+                <label class="toggle"><input type="checkbox" id="freeOnly" /> Free only</label>
+                <label class="toggle"><input type="checkbox" id="verifiedOnly" /> Verified only</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resultbar">
+          <strong id="count">…</strong>
+          <button class="linkbtn" id="reset" type="button">Reset filters</button>
+        </div>
+
+        <div class="grid" id="grid"></div>
+        <div class="empty" id="empty" hidden>No activities match those filters — try widening them.</div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <p><strong>Prototype only.</strong> Not linked from the live site and not indexed. Term-time data: <span id="dataline">…</span> from public sources, checked 14 June 2026. Holiday-camp data is the live planner at <a href="https://e17studio.com/holiday-camps/">e17studio.com/holiday-camps</a>.</p>
+      </div>
+    </footer>
+
+    <script>
+      const DATA_URL = "term-time-data.json";
+      const state = { view: "termtime", q: "", stream: "all", age: "all", day: "all", free: false, verified: false };
+      let DATA = [];
+
+      const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      const streamOf = (cat) => {
+        const c = (cat || "").toLowerCase();
+        if (c.includes("baby") || c.includes("toddler")) return "Babies & toddlers";
+        if (c.includes("after school")) return "After school";
+        if (c.includes("weekend")) return "Weekend";
+        return "Other";
+      };
+      const streamClass = (s) => ({ "Babies & toddlers": "s-baby", "After school": "s-after", "Weekend": "s-weekend" }[s] || "s-other");
+      const AGE_BANDS = {
+        all: null,
+        "Babies (0–1)": [0, 1],
+        "Toddlers (1–4)": [1, 4],
+        "Primary (5–11)": [5, 11],
+        "Teens (11+)": [11, 99],
+      };
+
+      function ageMatch(rec, band) {
+        if (band === "all") return true;
+        if (rec.ageMin == null) return true; // unknown age -> don't exclude
+        const [blo, bhi] = AGE_BANDS[band];
+        const rhi = rec.ageMax == null ? 99 : rec.ageMax;
+        return rec.ageMin <= bhi && rhi >= blo;
+      }
+      function dayMatch(rec, day) {
+        if (day === "all") return true;
+        return (rec.days || []).some((d) => String(d).toLowerCase().includes(day.toLowerCase()));
+      }
+      function visible(rec) {
+        const q = state.q.trim().toLowerCase();
+        if (q) {
+          const hay = [rec.provider, rec.listing, rec.venue, rec.sub].join(" ").toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (state.stream !== "all" && streamOf(rec.cat) !== state.stream) return false;
+        if (!ageMatch(rec, state.age)) return false;
+        if (!dayMatch(rec, state.day)) return false;
+        if (state.free && !rec.free) return false;
+        if (state.verified && !rec.verified) return false;
+        return true;
+      }
+
+      function cardHTML(r) {
+        const s = streamOf(r.cat);
+        const v = r.verified ? `<span class="vbadge" title="Verified from a public source">✓ Verified</span>` : "";
+        const days = (r.days || []).join(", ");
+        const when = [days, r.time].filter(Boolean).join(" · ");
+        const place = [r.venue, r.postcode].filter(Boolean).join(", ");
+        const parent = r.parent ? ` · ${esc(r.parent)}` : "";
+        const book = r.booking ? `<span class="book">Book via ${esc(r.booking)}</span>` : "<span class='book'></span>";
+        const src = r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">Source ↗</a>` : "";
+        return `<article class="card">
+          <div class="tagrow"><span class="tag ${streamClass(s)}">${esc(s)}</span>${v}</div>
+          <div class="kicker">${esc(r.provider)}</div>
+          <h3>${esc(r.listing || r.provider)}</h3>
+          <div class="meta">
+            ${r.ages ? `<div class="row"><span class="ic">👶</span><span>${esc(r.ages)}</span></div>` : ""}
+            ${when ? `<div class="row"><span class="ic">📅</span><span>${esc(when)}</span></div>` : ""}
+            ${place ? `<div class="row"><span class="ic">📍</span><span>${esc(place)}</span></div>` : ""}
+            <div class="row"><span class="ic">💷</span><span class="price">${esc(r.price || "Not published")}${parent}</span></div>
+          </div>
+          <div class="foot">${book}${src}</div>
+        </article>`;
+      }
+
+      function render() {
+        const rows = DATA.filter(visible);
+        document.getElementById("count").textContent =
+          `Showing ${rows.length} of ${DATA.length} activities`;
+        const grid = document.getElementById("grid");
+        const empty = document.getElementById("empty");
+        grid.innerHTML = rows.map(cardHTML).join("");
+        empty.hidden = rows.length !== 0;
+      }
+
+      function setView(view) {
+        state.view = view;
+        document.getElementById("tab-holiday").setAttribute("aria-pressed", view === "holiday");
+        document.getElementById("tab-termtime").setAttribute("aria-pressed", view === "termtime");
+        document.getElementById("panel-holiday").hidden = view !== "holiday";
+        document.getElementById("panel-termtime").hidden = view !== "termtime";
+        const eb = document.getElementById("hero-eyebrow"), ht = document.getElementById("hero-title"), hs = document.getElementById("hero-sub");
+        if (view === "holiday") {
+          eb.textContent = "Summer 2026 · holiday camps";
+          ht.innerHTML = 'Six weeks of summer, <em>sorted.</em>';
+          hs.innerHTML = 'The existing planner — flip to <strong>Term-time activities</strong> to see the new directory the top filter would unlock.';
+        } else {
+          eb.innerHTML = "Term-time · weekly clubs &amp; classes";
+          ht.innerHTML = 'Everything on in E17, <em>one filter away.</em>';
+          hs.innerHTML = 'Flip the switch at the top between the summer <strong>holiday-camp planner</strong> and the new <strong>term-time</strong> directory — same site, one master filter.';
+        }
+      }
+
+      function buildFacets() {
+        // streams
+        const streams = ["all", "Babies & toddlers", "After school", "Weekend", "Other"];
+        const present = new Set(DATA.map((r) => streamOf(r.cat)));
+        document.getElementById("streamChips").innerHTML = streams
+          .filter((s) => s === "all" || present.has(s))
+          .map((s) => `<button class="chip" type="button" data-stream="${esc(s)}" aria-pressed="${s === "all"}">${s === "all" ? "All" : esc(s)}</button>`)
+          .join("");
+        // ages
+        document.getElementById("ageChips").innerHTML = Object.keys(AGE_BANDS)
+          .map((b) => `<button class="chip" type="button" data-age="${esc(b)}" aria-pressed="${b === "all"}">${b === "all" ? "All ages" : esc(b)}</button>`)
+          .join("");
+        // days
+        const order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        const daysPresent = order.filter((d) => DATA.some((r) => (r.days || []).some((x) => String(x).toLowerCase().includes(d.toLowerCase()))));
+        document.getElementById("day").innerHTML =
+          `<option value="all">All days</option>` + daysPresent.map((d) => `<option value="${d}">${d}</option>`).join("");
+      }
+
+      function wire() {
+        document.querySelectorAll(".switch button").forEach((b) =>
+          b.addEventListener("click", () => setView(b.dataset.view))
+        );
+        document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value; render(); });
+        document.getElementById("streamChips").addEventListener("click", (e) => {
+          const b = e.target.closest("[data-stream]"); if (!b) return;
+          state.stream = b.dataset.stream;
+          document.querySelectorAll("#streamChips .chip").forEach((c) => c.setAttribute("aria-pressed", c === b));
+          render();
+        });
+        document.getElementById("ageChips").addEventListener("click", (e) => {
+          const b = e.target.closest("[data-age]"); if (!b) return;
+          state.age = b.dataset.age;
+          document.querySelectorAll("#ageChips .chip").forEach((c) => c.setAttribute("aria-pressed", c === b));
+          render();
+        });
+        document.getElementById("day").addEventListener("change", (e) => { state.day = e.target.value; render(); });
+        document.getElementById("freeOnly").addEventListener("change", (e) => { state.free = e.target.checked; render(); });
+        document.getElementById("verifiedOnly").addEventListener("change", (e) => { state.verified = e.target.checked; render(); });
+        document.getElementById("reset").addEventListener("click", () => {
+          Object.assign(state, { q: "", stream: "all", age: "all", day: "all", free: false, verified: false });
+          document.getElementById("q").value = "";
+          document.getElementById("day").value = "all";
+          document.getElementById("freeOnly").checked = false;
+          document.getElementById("verifiedOnly").checked = false;
+          document.querySelectorAll("#streamChips .chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.stream === "all"));
+          document.querySelectorAll("#ageChips .chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.age === "all"));
+          render();
+        });
+      }
+
+      fetch(DATA_URL)
+        .then((r) => r.json())
+        .then((rows) => {
+          DATA = rows;
+          const providers = new Set(rows.map((r) => r.provider)).size;
+          const verified = rows.filter((r) => r.verified).length;
+          document.getElementById("dataline").textContent =
+            `${rows.length} listings · ${providers} providers · ${verified} verified`;
+          buildFacets();
+          wire();
+          setView("termtime");
+          render();
+        })
+        .catch((e) => {
+          document.getElementById("count").textContent = "Could not load data.";
+          console.error(e);
+        });
+    </script>
+  </body>
+</html>
