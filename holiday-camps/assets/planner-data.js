@@ -415,7 +415,8 @@ window.E17_PLANNER = {
       daysPerWeek: 4,
       dayPattern: { "2": [1, 2, 3, 4], "3": [1, 2, 3, 4], "6": [1, 2, 3, 4] },
       hours: { start: "09:30", end: "15:30", extEnd: "16:30" },
-      coverage: "standard"
+      coverage: "standard",
+      lunch: { policy: "bring", note: "No lunch provided - bring a packed lunch and snacks." }
     }
   }
 };

@@ -1242,10 +1242,10 @@ window.E17_DIRECTORY = {
       funding: ["Paid", "Sibling discount"],
       hours: "9:30am-3:30pm; optional wrap-around to 4:30pm (GBP 8 per child)",
       price: "GBP 220 per 4-day camp; subsidised and sibling rate GBP 200; optional wrap-around hour to 4:30pm GBP 8/child. Book via the Make It Do It Linktree.",
-      summary: "Artist-led creative art camp run by Make It Do It at Good Shepherd Studios in Leytonstone - drawing, painting, sculpture, weaving, print and collage plus outdoor time, play and free creative time. Summer 2026 runs three four-day camps: 'Future Nature' (climate, nature and hopeful futures) on Mon 27-Thu 30 July and Mon 3-Thu 6 August, and 'Colour Lab' (colour, mood and media in art) on Mon 24-Thu 27 August.",
+      summary: "Artist-led creative art camp run by Make It Do It at Good Shepherd Studios in Leytonstone - drawing, painting, sculpture, weaving, print and collage plus outdoor time, play and free creative time. Summer 2026 runs three four-day camps: 'Future Nature' (climate, nature and hopeful futures) on Mon 27-Thu 30 July and Mon 3-Thu 6 August, and 'Colour Lab' (colour, mood and media in art) on Mon 24-Thu 27 August. No lunch is provided, so children bring their own packed lunch.",
       goodFor: "Creative children aged 5-10 who love making art across lots of media, in Leytonstone; standard and subsidised/sibling rates.",
       booking: "Book each camp through the Make It Do It Linktree (Anna payment links); questions to makeitdoitlondon@googlemail.com.",
-      confidence: "Dates, themes and prices confirmed by Make It Do It (Tara), the Make It Do It Linktree and the summer flyers, 14 June 2026; ages and times from the provider's Easter & May 2026 camps at the same venue (not stated on the summer flyers)",
+      confidence: "Dates, themes and prices confirmed by Make It Do It (Tara), the Make It Do It Linktree and the summer flyers, 14 June 2026; ages and times from the provider's Easter & May 2026 camps at the same venue (not stated on the summer flyers); no lunch provided - children bring a packed lunch (confirmed)",
       source: {
         label: "Make It Do It booking (Linktree)",
         url: "https://linktr.ee/makeitdoit"
