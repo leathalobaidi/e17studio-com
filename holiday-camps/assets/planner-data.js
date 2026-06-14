@@ -405,6 +405,17 @@ window.E17_PLANNER = {
       coverage: "standard",
       sendAware: true,
       lunch: { policy: "included", note: "Daily lunch (Deeney's) and afternoon snack included; vegetarian or meat, free from nuts, sesame and raw egg. Bring your own to save £6/day." }
+    },
+
+    "make-it-do-it": {
+      weeks: [2, 3, 6],
+      weeksBasis: "Provider email, Linktree and summer flyers: three 4-day camps at Good Shepherd Studios, Leytonstone - 'Future Nature' Mon 27-Thu 30 Jul (week 2) and Mon 3-Thu 6 Aug (week 3), 'Colour Lab' Mon 24-Thu 27 Aug (week 6). Mon-Thu only.",
+      price: { week: 220 },
+      priceBasis: "£220 per 4-day camp (standard); £200 subsidised/sibling; optional wrap-around to 4.30pm £8/child (Linktree + provider email, 14 Jun 2026).",
+      daysPerWeek: 4,
+      dayPattern: { "2": [1, 2, 3, 4], "3": [1, 2, 3, 4], "6": [1, 2, 3, 4] },
+      hours: { start: "09:30", end: "15:30", extEnd: "16:30" },
+      coverage: "standard"
     }
   }
 };
