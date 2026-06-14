@@ -383,6 +383,17 @@ window.E17_PLANNER = {
       hours: { start: "09:00", end: "15:00" },
       coverage: "standard",
       lunch: { policy: "bring", note: "Bring a packed lunch and a water bottle; astro surface, so suitable footwear." }
+    },
+
+    "myths-maps-monsters": {
+      weeks: [1],
+      weeksBasis: "Tickettailor lists a single 3-day camp in week 1 - 'The Labours of Heracles', Tue 21, Wed 22, Thu 23 July 2026, ages 5-11, 9.30am–3.30pm. Single days or all three bookable.",
+      price: { day: 50, week: 135 },
+      priceBasis: "£50/day or £135 for the three days (9.30am–3.30pm). Early drop-off from 8.30am: £60/day or £165 for three days. Limited low-income tickets £20/day on an honesty basis (Tickettailor, checked 14 Jun 2026).",
+      daysPerWeek: 3,
+      dayPattern: { "1": [2, 3, 4] },
+      hours: { start: "09:30", end: "15:30", extStart: "08:30" },
+      coverage: "standard"
     }
   }
 };

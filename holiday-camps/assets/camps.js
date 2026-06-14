@@ -1158,6 +1158,40 @@ window.E17_DIRECTORY = {
           url: "https://ryanfcgirls.com/"
         }
       ]
+    },
+    {
+      id: "myths-maps-monsters",
+      name: "Myths, Maps & Monsters Summer Camp",
+      kind: "Mythology-themed activity camp",
+      area: "Leytonstone",
+      areas: ["Leytonstone"],
+      venue: "Good Shepherd Studios",
+      address: "Good Shepherd Studios, 15A Davies Lane, Leytonstone, London E11 3DR",
+      ageMin: 5,
+      ageMax: 11,
+      ageLabel: "Ages 5-11",
+      categories: ["Full day", "Drama", "Arts", "Multi-activity"],
+      funding: ["Paid"],
+      hours: "9:30am-3:30pm (early drop-off from 8:30am for an extra charge)",
+      price: "GBP 50 per day or GBP 135 for the three-day camp (9:30am-3:30pm); early drop-off from 8:30am GBP 60/day or GBP 165 for three days; limited low-income tickets GBP 20/day on an honesty basis; book single days or all three via Tickettailor.",
+      summary: "Mythology-themed summer activity camp run by Myths, Maps & Monsters at Good Shepherd Studios in Leytonstone. Summer 2026 is 'The Labours of Heracles' - a three-day Greek-myth adventure (Tue 21, Wed 22, Thu 23 July) for children aged 5-11, with a different labour each day: sword battles, archery, puzzles, dodgeball, arts and crafts, poetry and rock music. Single days or the full three days can be booked.",
+      goodFor: "Imaginative children aged 5-11 who love stories, drama and active games; flexible single-day or three-day booking in Leytonstone.",
+      booking: "Book single days or the three-day pass through Myths, Maps & Monsters on Tickettailor.",
+      confidence: "Tickettailor event page, provider site and Good Shepherd Studios venue checked 14 June 2026; introduced by venue host We Flock CIC",
+      source: {
+        label: "Myths, Maps & Monsters camp (Tickettailor)",
+        url: "https://www.tickettailor.com/events/mythsmapsmonsters/2209466"
+      },
+      secondarySources: [
+        {
+          label: "Myths, Maps & Monsters",
+          url: "https://www.mythsmapsandmonsters.co.uk/"
+        },
+        {
+          label: "Good Shepherd Studios",
+          url: "https://goodshepherdstudios.com/"
+        }
+      ]
     }
   ],
   hafSnapshot: [
