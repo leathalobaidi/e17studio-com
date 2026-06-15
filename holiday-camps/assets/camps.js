@@ -1256,6 +1256,36 @@ window.E17_DIRECTORY = {
           url: "https://goodshepherdstudios.com/events"
         }
       ]
+    },
+    {
+      id: "infinite-jest",
+      name: "Infinite Jest Drama Camp",
+      kind: "Drama holiday camp",
+      area: "Leyton",
+      areas: ["Leyton"],
+      venue: "Cornerstone Church",
+      address: "Cornerstone Church, 149 Canterbury Road, Leyton, London E10 6EH",
+      ageMin: 5,
+      ageMax: 11,
+      ageLabel: "Ages 5-11",
+      categories: ["Full day", "Drama", "Dance", "Arts"],
+      funding: ["Paid", "Tax-Free Childcare", "Sibling discount"],
+      hours: "9:30am-3:30pm; wrap-around care 8:30am-5:30pm",
+      price: "GBP 43 per day; sibling rate GBP 38 per day; Tax-Free Childcare accepted; book via Pebble.",
+      summary: "Drama holiday camp from Infinite Jest Theatre Company at Cornerstone Church, Leyton, for ages 5-11 - acting and theatre skills, song, dance, improvisation, storytelling, crafting and mindfulness. Summer 2026 is 'By the Seaside - A Summer Holiday Party Week', Mon 3 - Fri 7 August, 9.30am-3.30pm with 8.30am-5.30pm wrap-around.",
+      goodFor: "Children aged 5-11 who love performing - drama, song and dance with a party-week feel, in Leyton; Tax-Free Childcare accepted and wrap-around care available.",
+      booking: "Book through Pebble (activities.bookpebble.co.uk); contact Henry Everett on 07906 446 849 or info@infinitejest.co.uk.",
+      confidence: "Details confirmed by provider Henry Everett (Infinite Jest Theatre Company) by email 15 June 2026; camp name verified on the Pebble booking page",
+      source: {
+        label: "Infinite Jest by the Seaside (Pebble booking)",
+        url: "https://activities.bookpebble.co.uk/activity/infinite-jest-by-the-seaside-a-summer-holiday-party-week-london-b445da3e-6d37-402c-a401-4a3bfd7bbd3c"
+      },
+      secondarySources: [
+        {
+          label: "Infinite Jest Theatre Company",
+          url: "https://www.infinitejest.co.uk/drama-camps"
+        }
+      ]
     }
   ],
   hafSnapshot: [

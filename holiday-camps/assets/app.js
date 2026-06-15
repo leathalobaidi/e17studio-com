@@ -1197,7 +1197,7 @@ function planCalendarText() {
       }
       if (cost && cost.value != null) descBits.push(`Cost: ${money(cost.value)}${cost.estimate ? " (est.)" : ""}`);
       else if (entry.type === "camp") descBits.push("Cost: confirm with provider");
-      descBits.push("Planned with E17 Kids — Holiday Camp Planner (e17studio.com/holiday-camps) — confirm details with the provider before the day.");
+      descBits.push("Planned with the E17 Holiday Camp Planner (e17studio.com/holiday-camps) — confirm details with the provider before the day.");
       contiguousRuns(info.days).forEach(([a, b]) => {
         events.push([
           "BEGIN:VEVENT",
@@ -1218,10 +1218,10 @@ function planCalendarText() {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//E17 Kids//Holiday Camp Planner//EN",
+    "PRODID:-//E17 Studio//Holiday Camp Planner//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
-    icsFold("X-WR-CALNAME:E17 Kids — holiday camps, summer 2026"),
+    icsFold("X-WR-CALNAME:E17 holiday camps — summer 2026"),
     events.join("\r\n"),
     "END:VCALENDAR"
   ].join("\r\n") + "\r\n";
@@ -1233,8 +1233,8 @@ function planSummaryText() {
   const lines = [];
   let bookable = 0;
   let booked = 0;
-  lines.push("E17 KIDS — HOLIDAY CAMP PLAN, SUMMER 2026");
-  lines.push(`Made with E17 Kids — Holiday Camp Planner (data checked ${D.updated}).`);
+  lines.push("E17 HOLIDAY CAMP PLAN — SUMMER 2026");
+  lines.push(`Made with the E17 Holiday Camp Planner (data checked ${D.updated}).`);
   lines.push("");
   state.children.forEach((c) => {
     lines.push(`${c.name} (age ${c.age})`);
