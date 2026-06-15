@@ -401,7 +401,7 @@ window.E17_PLANNER = {
       weeksBasis: "Creative Holiday Schools page lists three summer 2026 weeks at St Joseph's Infant School, Leyton (E10 7BL), ages 4-10, 10am–4pm: Mon 20–24 Jul (week 1), Mon 27–31 Jul (week 2), Mon 3–7 Aug (week 3). Full-week booking only.",
       price: { week: 318 },
       priceBasis: "£318 for the 5-day week incl. daily lunch (Deeney's) + afternoon snack; sibling discount (SUMMERSIBLING2026); packed-lunch option saves £6/day (NOLUNCHSUMMER). Subsidised places on request (provider page + week-one product, 14 Jun 2026).",
-      hours: { start: "10:00", end: "16:00", extStart: "09:00", extEnd: "18:00" },
+      hours: { start: "10:00", end: "16:00", extStart: "09:00", extEnd: "17:00" },
       coverage: "standard",
       sendAware: true,
       lunch: { policy: "included", note: "Daily lunch (Deeney's) and afternoon snack included; vegetarian or meat, free from nuts, sesame and raw egg. Bring your own to save £6/day." }
