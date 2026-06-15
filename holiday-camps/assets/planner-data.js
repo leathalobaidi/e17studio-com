@@ -417,6 +417,15 @@ window.E17_PLANNER = {
       hours: { start: "09:30", end: "15:30", extEnd: "16:30" },
       coverage: "standard",
       lunch: { policy: "bring", note: "No lunch provided - bring a packed lunch and snacks." }
+    },
+
+    "infinite-jest": {
+      weeks: [3],
+      weeksBasis: "Provider confirmed (email 15 Jun 2026) one summer 2026 week at Cornerstone Church, Leyton (E10 6EH), ages 5-11: 'By the Seaside' Mon 3 - Fri 7 August, 9.30am-3.30pm.",
+      price: { day: 43 },
+      priceBasis: "£43 per day (5-day week = £215); sibling rate £38/day; Tax-Free Childcare accepted (provider email, 15 Jun 2026).",
+      hours: { start: "09:30", end: "15:30", extStart: "08:30", extEnd: "17:30" },
+      coverage: "standard"
     }
   }
 };
