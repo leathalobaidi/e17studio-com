@@ -553,7 +553,7 @@
     icon: "🔔",
     summary: "No waiting list for a sold-out camp week — Follow the provider instead. " +
       "Your follow is recorded against them, and you're emailed their timetable the moment new " +
-      "holiday-camp dates go live. A separate tick opts you into their own newsletter, just like Happity.",
+      "holiday-camp dates go live. A separate tick opts you into their own newsletter, following the same marketplace pattern.",
     render: render,
     selfTest: selfTest
   });

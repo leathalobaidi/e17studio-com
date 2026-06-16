@@ -707,7 +707,7 @@
     icon: "📣",
     summary: "Parents who view your camp profile can Follow you — followers accrue automatically. " +
       "See your follower list and numbers, with timetable-only followers starred out, and export the " +
-      "parents who opted into your own marketing as CSV (Privacy Policy required), just like Happity.",
+      "parents who opted into your own marketing as CSV (Privacy Policy required), following the same marketplace pattern.",
     render: render,
     selfTest: selfTest
   });

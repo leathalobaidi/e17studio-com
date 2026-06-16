@@ -350,7 +350,7 @@
         root.innerHTML =
           '<p class="hcbc-intro">Complete a booking and we\'ll show the confirmation — ' +
             'with a <b>unique booking reference</b> and a preview of the email that would be sent. ' +
-            'Then look a reference up, just like Happity\'s "Where can I find my booking reference?".</p>' +
+            'Then look a reference up, following the same marketplace pattern\'s "Where can I find my booking reference?".</p>' +
           '<div class="hcbc-grid">' +
             '<label class="hcbc-field"><span>Camp</span><select id="hcbc-prov">' + provOpts + "</select></label>" +
             '<label class="hcbc-field"><span>Week</span><select id="hcbc-week">' + weekOpts + "</select></label>" +

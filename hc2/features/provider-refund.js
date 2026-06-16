@@ -511,7 +511,7 @@
 
             '<div id="hcrfMsg" style="margin-top:10px;font-size:13px"></div>' +
             refundsHtml +
-            '<p style="margin-top:14px;font-size:11.5px;color:#808080">📝 Cancelling a class does <strong>not</strong> issue a refund — cancellation and refund are two separate steps, just like Happity. Refunds take 5–10 business days to reach the parent.</p>' +
+            '<p style="margin-top:14px;font-size:11.5px;color:#808080">📝 Cancelling a class does <strong>not</strong> issue a refund — cancellation and refund are two separate steps, following the same marketplace pattern. Refunds take 5–10 business days to reach the parent.</p>' +
           '</div>';
 
         wire();

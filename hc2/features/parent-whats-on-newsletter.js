@@ -769,7 +769,7 @@
     icon: "📮",
     summary: "Subscribe to the Sunday-night What's On holiday-camp newsletter. We capture three " +
       "tailoring preferences — your area, your child's age band, and the days you're free — and each " +
-      "week match the live camp directory to your family, just like Happity. Unsubscribe or amend " +
+      "week match the live camp directory to your family, following the same marketplace pattern. Unsubscribe or amend " +
       "your details any time.",
     render: render,
     selfTest: selfTest

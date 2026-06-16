@@ -569,7 +569,7 @@
     title: "Online-class Zoom link",
     side: "parent",
     icon: "💻",
-    summary: "Booked an online holiday camp? Your confirmation arrives straightaway, but the Zoom join link is emailed only ~1hr before the session starts — for child safety — just like Happity's online Zoom classes. It is never in the booking confirmation.",
+    summary: "Booked an online holiday camp? Your confirmation arrives straightaway, but the Zoom join link is emailed only ~1hr before the session starts — for child safety — following the source marketplace pattern for online Zoom classes. It is never in the booking confirmation.",
     render: render,
     selfTest: selfTest
   });

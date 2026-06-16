@@ -472,7 +472,7 @@
         '<p style="font-size:14px;color:#383838;margin:0 0 12px">' +
           "Bookings &amp; payments breakdown for <strong>" + esc(state.provider.name) + "</strong>. " +
           "Filter by Stripe payment status, then export the breakdown as a CSV / Stripe-style spreadsheet — " +
-          "just like Happity.</p>" +
+          "following the same marketplace pattern.</p>" +
         '<div style="display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px">' + chips + "</div>" +
         '<div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px">' + summaryCards + "</div>" +
         '<div style="display:flex;gap:8px;margin:0 0 12px">' +

@@ -452,7 +452,7 @@
     title: "Pay on the door",
     side: "parent",
     icon: "💷",
-    summary: "Spot camps you can just turn up to and pay at the venue. Pay-on-the-door camps show a 'Pay on the door' label and hide the online checkout — no pre-booking needed, just like Happity's on-the-door drop-ins.",
+    summary: "Spot camps you can just turn up to and pay at the venue. Pay-on-the-door camps show a 'Pay on the door' label and hide the online checkout — no pre-booking needed, following the source marketplace pattern for on-the-door drop-ins.",
     render: render,
     selfTest: selfTest
   });

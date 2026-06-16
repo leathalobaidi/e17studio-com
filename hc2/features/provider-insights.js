@@ -364,7 +364,7 @@
           'and how many <strong>enquiries</strong> you received — over the period you choose.</p>' +
         '<p style="font-size:12.5px;color:var(--muted,#808080);margin:0 0 10px">' +
           'Change the <strong>period</strong> dropdown and every count re-totals across that window — ' +
-          'just like Happity Insights.</p>');
+          'following the same marketplace pattern Insights.</p>');
       mountEl.appendChild(intro);
 
       // Period selector row.

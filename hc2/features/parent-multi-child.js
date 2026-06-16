@@ -538,7 +538,7 @@
     title: "Book for multiple children & extra adults",
     side: "parent",
     icon: "👧👦",
-    summary: "Add sibling and additional-adult tickets at checkout — but only the ones each camp actually offers, just like Happity. Sibling places need a full-price place alongside them.",
+    summary: "Add sibling and additional-adult tickets at checkout — but only the ones each camp actually offers, following the same marketplace pattern. Sibling places need a full-price place alongside them.",
     render: render,
     selfTest: selfTest
   });

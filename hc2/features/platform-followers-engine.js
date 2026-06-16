@@ -447,7 +447,7 @@
       "The platform's <strong>timetable-email engine</strong>. By default it distributes camp " +
       "timetables to followers <strong>4× a year — at the start of each term</strong>. " +
       "<strong>Members' camps send first</strong>, and Members also get <strong>mid-term new-camp alerts</strong> " +
-      "whenever they add a week during the term — just like Happity."));
+      "whenever they add a week during the term — following the same marketplace pattern."));
     wrap.appendChild(HC.util.el("p", {
       style: "font-size:12px;color:var(--muted,#808080);margin:0 0 14px"
     }, "Seeded from the live E17 holiday-camp directory. Followers receive these emails whether or not " +

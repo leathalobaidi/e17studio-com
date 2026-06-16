@@ -300,7 +300,7 @@
       mountEl.innerHTML =
         '<div style="font-family:\'Nunito Sans\',system-ui,sans-serif;color:var(--text,#383838)">' +
           '<p style="font-size:14px;margin:0 0 10px">Personalise your holiday-camp page with images, ' +
-          'just like Happity\'s logo &amp; banner upload. Add a <strong>logo</strong>, a wide <strong>banner</strong> ' +
+          'following the same marketplace pattern\'s logo &amp; banner upload. Add a <strong>logo</strong>, a wide <strong>banner</strong> ' +
           'above your timetable, and up to <strong>' + MAX_GALLERY + '</strong> camp photos. ' +
           'Whatever you attach renders on your camp/profile page below.</p>' +
           '<label style="display:block;font-weight:700;font-size:13px;margin:6px 0 4px">Camp / profile</label>' +

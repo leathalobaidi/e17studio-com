@@ -368,7 +368,7 @@
     title: "Pay-what-you-want donation",
     side: "parent",
     icon: "💛",
-    summary: "Add an optional donation at checkout — on top of a camp ticket, or as the whole payment for a free / pay-what-you-can camp. Booking fees apply to the donation, just like Happity.",
+    summary: "Add an optional donation at checkout — on top of a camp ticket, or as the whole payment for a free / pay-what-you-can camp. Booking fees apply to the donation, following the same marketplace pattern.",
     render: render,
     selfTest: selfTest
   });

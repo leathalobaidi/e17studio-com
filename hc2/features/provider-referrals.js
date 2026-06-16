@@ -411,7 +411,7 @@
       "Invite other holiday-camp operators to join HolidayCamp. When one registers a " +
       "<strong>new</strong> camp business using your <strong>unique link</strong> and we approve them, " +
       "you both get <strong>" + esc(money(CREDIT_GIVE)) + "</strong> credit — Give " + esc(money(CREDIT_GIVE)) +
-      ", Get " + esc(money(CREDIT_GET)) + ", just like Happity."));
+      ", Get " + esc(money(CREDIT_GET)) + ", following the same marketplace pattern."));
     wrap.appendChild(HC.util.el("p", {
       style: "font-size:12px;color:var(--muted,#808080);margin:0 0 14px"
     }, "Refer a Friend · " + esc(seed.name) + ". Unlimited referrals. Credit goes toward Membership or " +
@@ -831,7 +831,7 @@
     icon: "🎁",
     summary: "Get your own unique referral link and invite other holiday-camp operators to join. When one " +
       "registers a NEW camp business with your link and we approve them, you both get £10 credit toward " +
-      "Membership or Featured Listings — Give £10, Get £10, just like Happity. Unlimited referrals; credit " +
+      "Membership or Featured Listings — Give £10, Get £10, following the same marketplace pattern. Unlimited referrals; credit " +
       "expires after 12 months.",
     render: render,
     selfTest: selfTest
