@@ -1286,6 +1286,74 @@ window.E17_DIRECTORY = {
           url: "https://www.infinitejest.co.uk/drama-camps"
         }
       ]
+    },
+    {
+      id: "mb-summer-tottenham",
+      name: "MB Community Summer Camp - Harris Academy Tottenham",
+      kind: "Summer holiday camp",
+      area: "Tottenham (Haringey)",
+      areas: ["Tottenham"],
+      venue: "Harris Academy Tottenham",
+      address: "Harris Academy Tottenham, Ashley Road, Tottenham, London N17 9LN",
+      ageMin: 5,
+      ageMax: 14,
+      ageLabel: "Ages 5-14",
+      categories: ["Full day", "Multi-activity", "HAF"],
+      funding: ["Paid", "Free/HAF", "FSM eligible", "Sibling discount"],
+      hours: "9:30am-3:30pm; extended provision 3:30pm-5:00pm",
+      price: "GBP 15 per day; extended provision GBP 7; hot meal GBP 5; sibling, full-week and early-bird discounts; free HAF places for eligible FSM children. Tax-Free Childcare not accepted.",
+      summary: "Summer holiday camp from MB Community CIC at Harris Academy Tottenham (just over the border in Haringey, N17) for ages 5-14. Four weeks across the summer - 21-24 July, 27-30 July, 3-6 August and 24-27 August 2026 - 9.30am-3.30pm with extended provision to 5pm. Free HAF-funded places for children eligible for benefit-related free school meals.",
+      goodFor: "Families wanting an affordable, activity-packed summer camp for a wide 5-14 age range, with free HAF places - note the venue is in Tottenham (Haringey), just outside Waltham Forest.",
+      booking: "Paid places via Plinth (book.plinth.org.uk); free HAF / FSM places via the MB Community CIC registration form. More at mbcommunitycic.com.",
+      confidence: "Details supplied by provider (MB Community CIC) by email, June 2026",
+      source: {
+        label: "MB Summer Camp - paid places (Plinth)",
+        url: "https://book.plinth.org.uk/e/7I3LcZ5AIoKZ95bkolOO"
+      },
+      secondarySources: [
+        {
+          label: "MB Summer Camp - free HAF / FSM places (form)",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSeYl2k5SRGoqFcDCUx2EIrBiKnTEMp9Cq2BCNB_vu08ayWX6A/viewform"
+        },
+        {
+          label: "MB Community CIC",
+          url: "https://mbcommunitycic.com/"
+        }
+      ]
+    },
+    {
+      id: "mb-summer-chingford",
+      name: "MB Community Summer Camp - Salisbury Manor (Chingford)",
+      kind: "Summer holiday camp",
+      area: "Chingford",
+      areas: ["Chingford"],
+      venue: "Salisbury Manor Primary School",
+      address: "Salisbury Manor Primary School, 4 Burnside Avenue, Chingford, London E4 8YJ",
+      ageMin: 5,
+      ageMax: 14,
+      ageLabel: "Ages 5-14",
+      categories: ["Full day", "Multi-activity", "HAF"],
+      funding: ["Paid", "Free/HAF", "FSM eligible", "Sibling discount"],
+      hours: "9:30am-3:30pm",
+      price: "GBP 20 per day; hot meal GBP 5; sibling and full-week discounts; free HAF places for eligible FSM children. Tax-Free Childcare not accepted.",
+      summary: "Summer holiday camp from MB Community CIC at Salisbury Manor Primary School, Chingford (E4) for ages 5-14. Two weeks - 10-13 August and 17-20 August 2026 - 9.30am-3.30pm. Free HAF-funded places for children eligible for benefit-related free school meals. MB Community CIC also ran the Easter HAF camp at this Burnside Avenue venue.",
+      goodFor: "Chingford families wanting an affordable summer camp for a wide 5-14 age range, with free HAF places for eligible children.",
+      booking: "Paid places via Eequ (eequ.org); free HAF / FSM places via the MB Community CIC registration form. More at mbcommunitycic.com.",
+      confidence: "Details supplied by provider (MB Community CIC) by email, June 2026; Chingford venue corroborated by the borough HAF snapshot (MB Easter Camp, 4 Burnside Avenue)",
+      source: {
+        label: "MB Summer Camp - paid places (Eequ)",
+        url: "https://eequ.org/book/mb-summer-camp-with-mb-community-cic-29119"
+      },
+      secondarySources: [
+        {
+          label: "MB Summer Camp - free HAF / FSM places (form)",
+          url: "https://docs.google.com/forms/d/e/1FAIpQLSevwZNc__CED9eFruk6iwkcoWq-YSnIwJd_rkLk0UC6ZCPvnQ/viewform"
+        },
+        {
+          label: "MB Community CIC",
+          url: "https://mbcommunitycic.com/"
+        }
+      ]
     }
   ],
   hafSnapshot: [

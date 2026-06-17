@@ -426,6 +426,36 @@ window.E17_PLANNER = {
       priceBasis: "£43 per day (5-day week = £215); sibling rate £38/day; Tax-Free Childcare accepted (provider email, 15 Jun 2026).",
       hours: { start: "09:30", end: "15:30", extStart: "08:30", extEnd: "17:30" },
       coverage: "standard"
+    },
+
+    "mb-summer-tottenham": {
+      weeks: [1, 2, 3, 6],
+      weeksBasis: "MB Community CIC email (June 2026): four 4-day weeks at Harris Academy Tottenham (N17 9LN) - Tue 21-Fri 24 Jul (week 1), Mon 27-Thu 30 Jul (week 2), Mon 3-Thu 6 Aug (week 3), Mon 24-Thu 27 Aug (week 6), 9.30am-3.30pm.",
+      daysPerWeek: { "1": 4, "2": 4, "3": 4, "6": 4 },
+      dayPattern: { "1": [2, 3, 4, 5], "2": [1, 2, 3, 4], "3": [1, 2, 3, 4], "6": [1, 2, 3, 4] },
+      price: { day: 15 },
+      priceBasis: "£15 per day; extended provision 3.30-5.00pm adds £7; hot meal £5; sibling, full-week and early-bird discounts; free HAF places for eligible FSM children (MB Community CIC email, June 2026).",
+      hours: { start: "09:30", end: "15:30", extEnd: "17:00" },
+      coverage: "standard",
+      haf: true,
+      tfc: false,
+      siblingDiscount: true,
+      lunch: { policy: "buy", note: "Hot meal £5/day, or bring a packed lunch; HAF places include food." }
+    },
+
+    "mb-summer-chingford": {
+      weeks: [4, 5],
+      weeksBasis: "MB Community CIC email (June 2026): two 4-day weeks at Salisbury Manor Primary, Chingford (E4 8YJ) - Mon 10-Thu 13 Aug (week 4) and Mon 17-Thu 20 Aug (week 5), 9.30am-3.30pm. Same provider as the Easter HAF camp at this Burnside Avenue venue.",
+      daysPerWeek: { "4": 4, "5": 4 },
+      dayPattern: { "4": [1, 2, 3, 4], "5": [1, 2, 3, 4] },
+      price: { day: 20 },
+      priceBasis: "£20 per day; hot meal £5; sibling and full-week discounts; free HAF places for eligible FSM children (MB Community CIC email, June 2026).",
+      hours: { start: "09:30", end: "15:30" },
+      coverage: "standard",
+      haf: true,
+      tfc: false,
+      siblingDiscount: true,
+      lunch: { policy: "buy", note: "Hot meal £5/day, or bring a packed lunch; HAF places include food." }
     }
   }
 };
