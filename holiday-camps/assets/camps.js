@@ -1354,6 +1354,30 @@ window.E17_DIRECTORY = {
           url: "https://mbcommunitycic.com/"
         }
       ]
+    },
+    {
+      id: "build-a-band-sing17",
+      name: "Build a Band! Summer Music Project (Sing17)",
+      kind: "Music holiday project",
+      area: "Walthamstow",
+      areas: ["Walthamstow"],
+      venue: "Greenleaf Road Baptist Church",
+      address: "Greenleaf Road Baptist Church, 4 Greenleaf Road, Walthamstow, London E17 6QQ",
+      ageMin: 7,
+      ageMax: 16,
+      ageLabel: "Year 3 and above",
+      categories: ["Full day", "Music", "Arts"],
+      funding: ["Paid", "Sibling discount", "Concessionary places"],
+      hours: "9:00am-4:00pm; family showcase Fri 28 Aug 3:00pm",
+      price: "GBP 250 per child for the full week; siblings half price; GBP 50 non-refundable deposit, balance by 12 July 2026; limited concessionary (lower-cost) places on request.",
+      summary: "A five-day summer music project from Sing17 at Greenleaf Road Baptist Church, Walthamstow (E17), Mon 24 - Fri 28 August 2026, 9am-4pm. Children (recommended year 3 and above) work in small bands to write, arrange, rehearse and perform - plus band branding, teamwork and stage confidence - ending in a family showcase on the Friday at 3pm. Note: this is not a beginner course; it suits children who already play an instrument (confident singers are welcome and counted as instrumentalists), not absolute beginners. Led by experienced music teachers; all staff DBS-checked and first-aid trained.",
+      goodFor: "Walthamstow children from year 3 up who already play an instrument or sing confidently and want to make music in a band and perform - with sibling and concessionary rates if cost is a barrier.",
+      booking: "Register via the Sing17 Google form; concessionary places by email to we.are.sing17@gmail.com.",
+      confidence: "Details from the provider's registration form and email (Sing17 / Laura Forbes), checked 17 June 2026",
+      source: {
+        label: "Build a Band registration form (Sing17)",
+        url: "https://docs.google.com/forms/d/e/1FAIpQLScnH-4SElRGZsNuD_8w6JYPitxgNzOkjrR4l_am4O7iNLDX-Q/viewform"
+      }
     }
   ],
   hafSnapshot: [

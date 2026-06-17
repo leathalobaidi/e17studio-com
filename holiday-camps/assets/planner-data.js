@@ -456,6 +456,17 @@ window.E17_PLANNER = {
       tfc: false,
       siblingDiscount: true,
       lunch: { policy: "buy", note: "Hot meal £5/day, or bring a packed lunch; HAF places include food." }
+    },
+
+    "build-a-band-sing17": {
+      weeks: [6],
+      weeksBasis: "Registration form (Sing17, checked 17 Jun 2026): one 5-day project, Mon 24 - Fri 28 August 2026, 9am-4pm, at Greenleaf Road Baptist Church (E17 6QQ). Family showcase Fri 28 Aug at 3pm.",
+      price: { week: 250 },
+      priceBasis: "£250 per child for the full week; siblings half price; £50 non-refundable deposit, balance due 12 July 2026 (bank transfer). Limited concessionary lower-cost places on request by email, no evidence required (registration form, 17 Jun 2026).",
+      hours: { start: "09:00", end: "16:00" },
+      coverage: "standard",
+      siblingDiscount: true,
+      lunch: { policy: "bring", note: "Bring a packed lunch, drinks and snacks - no food provided." }
     }
   }
 };
