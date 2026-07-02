@@ -155,9 +155,13 @@ if (!SKIP_UI) {
     html = html.replace(/<link[^>]*fonts\.googleapis[^>]*>\s*/g, "");
     // Strip the Cloudflare Web Analytics beacon so the UI test runs fully offline.
     html = html.replace(/<script[^>]*cloudflareinsights[^>]*><\/script>\s*/g, "");
-    html = html.replace('<script src="assets/camps.js"></script>',
-      `<script>window.__testErrors=[];window.addEventListener('error',e=>window.__testErrors.push(String(e.message).slice(0,200)));</script>\n<script src="assets/camps.js"></script>`);
-    html = html.replace("</body>", `<script src="autotest.js"></script>\n</body>`);
+    // Site scripts now carry `defer`; match either form and keep the error
+    // hook inline (non-defer) so it installs before anything else runs.
+    html = html.replace(/<script src="assets\/camps\.js"( defer)?><\/script>/,
+      `<script>window.__testErrors=[];window.addEventListener('error',e=>window.__testErrors.push(String(e.message).slice(0,200)));</script>\n<script src="assets/camps.js"$1></script>`);
+    // Autotest must execute AFTER the deferred app.js — defer preserves
+    // document order (camps → planner-data → app → autotest).
+    html = html.replace("</body>", `<script src="autotest.js" defer></script>\n</body>`);
     writeFileSync(path.join(TMP, "index.html"), html);
     writeFileSync(path.join(TMP, "autotest.js"), AUTOTEST_SRC());
   }
