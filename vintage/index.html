@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintage Cut Walthamstow | Barber Shop on Hoe Street</title>
+  <meta name="description" content="Vintage Cut is a Walthamstow barber shop on Hoe Street offering clipper cuts, skin fades, beard work, razor shaves, colouring and men's grooming.">
+  <link rel="canonical" href="https://e17studio.com/vintage/">
+  <meta property="og:title" content="Vintage Cut Walthamstow">
+  <meta property="og:description" content="Sharp cuts, clean fades and classic barbering at 77 Hoe Street, Walthamstow.">
+  <meta property="og:url" content="https://e17studio.com/vintage/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://e17studio.com/vintage/images/vintage-cut-chair.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Vintage Cut",
+    "image": "https://e17studio.com/vintage/images/vintage-cut-chair.webp",
+    "telephone": "+447477156879",
+    "url": "https://e17studio.com/vintage/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "77 Hoe Street",
+      "addressLocality": "Walthamstow",
+      "addressRegion": "London",
+      "postalCode": "E17 4SA",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.5872129,
+      "longitude": -0.0205466
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "20:00"
+      }
+    ],
+    "makesOffer": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Men's haircut"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Skin fade"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Full razor shave"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Men's facial waxing"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Black mask treatment"}}
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    :root {
+      --ink: #11100e;
+      --coal: #1d1a17;
+      --smoke: #f3efe8;
+      --paper: #fffaf1;
+      --bone: #d8cbb8;
+      --muted: #756b5f;
+      --red: #bd2d22;
+      --brick: #8e3329;
+      --brass: #b89552;
+      --green: #687863;
+      --line: rgba(17, 16, 14, 0.14);
+      --shadow: rgba(17, 16, 14, 0.22);
+      --display: "Instrument Serif", Georgia, serif;
+      --body: "Inter", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -80px;
+      z-index: 1000;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 10px 14px;
+      border: 1px solid var(--ink);
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 34px;
+      color: var(--paper);
+      background: linear-gradient(to bottom, rgba(17, 16, 14, 0.82), rgba(17, 16, 14, 0.18), transparent);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .brand span:first-child {
+      font-size: 1.2rem;
+    }
+
+    .brand span:last-child {
+      color: rgba(255, 250, 241, 0.72);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255, 250, 241, 0.28);
+      border-radius: 999px;
+      padding: 0 16px;
+      color: rgba(255, 250, 241, 0.88);
+      background: rgba(17, 16, 14, 0.24);
+      backdrop-filter: blur(14px);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .nav-links a.primary {
+      border-color: var(--red);
+      background: var(--red);
+      color: white;
+    }
+
+    .hero {
+      min-height: 76svh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      background: var(--coal);
+      color: var(--paper);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(17, 16, 14, 0.92), rgba(17, 16, 14, 0.56), rgba(17, 16, 14, 0.12)),
+        linear-gradient(0deg, rgba(17, 16, 14, 0.94), rgba(17, 16, 14, 0.04) 45%),
+        url("images/vintage-cut-chair.webp") center / cover;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 110px 0 26px;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--bone);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-family: var(--display);
+      font-size: 5.1rem;
+      line-height: 0.9;
+      font-weight: 400;
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      margin-top: 18px;
+      color: rgba(255, 250, 241, 0.78);
+      font-size: 1.15rem;
+    }
+
+    .hero-actions,
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-actions { margin-top: 24px; }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 0 22px;
+      font-weight: 800;
+      border: 1px solid var(--ink);
+      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    .button.secondary {
+      border-color: rgba(255, 250, 241, 0.45);
+      color: var(--paper);
+      background: rgba(255, 250, 241, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .button.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 34px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 250, 241, 0.16);
+      max-width: 920px;
+    }
+
+    .info-tile {
+      min-height: 112px;
+      padding: 20px;
+      background: rgba(17, 16, 14, 0.74);
+      backdrop-filter: blur(16px);
+    }
+
+    .info-tile strong {
+      display: block;
+      color: var(--paper);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .info-tile span {
+      color: rgba(255, 250, 241, 0.68);
+      font-size: 0.92rem;
+    }
+
+    .sign-strip {
+      background: var(--ink);
+      border-top: 1px solid rgba(255, 250, 241, 0.14);
+    }
+
+    .sign-strip img {
+      width: min(1180px, calc(100% - 48px));
+      height: 94px;
+      margin: 0 auto;
+      object-fit: cover;
+      object-position: center;
+      filter: contrast(1.04) saturate(0.94);
+    }
+
+    main {
+      background:
+        linear-gradient(180deg, var(--paper), var(--smoke) 48%, var(--paper));
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(280px, 0.48fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--brick);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--brick);
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: 3.7rem;
+      line-height: 0.98;
+      font-weight: 400;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .service {
+      min-height: 210px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      background: rgba(255, 250, 241, 0.72);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service h3 {
+      font-size: 1.08rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .service span {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .experience {
+      padding-top: 0;
+    }
+
+    .experience-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(330px, 0.38fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .photo-panel {
+      min-height: 620px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(17, 16, 14, 0.16);
+    }
+
+    .photo-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .visit-panel {
+      border-radius: 8px;
+      padding: 34px;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+    }
+
+    .visit-panel h2 {
+      color: var(--paper);
+      font-size: 3.1rem;
+    }
+
+    .visit-panel p {
+      color: rgba(255, 250, 241, 0.72);
+      margin-top: 16px;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 18px;
+      margin: 30px 0;
+    }
+
+    .detail {
+      border-top: 1px solid rgba(255, 250, 241, 0.18);
+      padding-top: 16px;
+    }
+
+    .detail strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .detail span,
+    .detail a {
+      color: rgba(255, 250, 241, 0.72);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 16px;
+    }
+
+    .hours-band {
+      background: var(--green);
+      color: white;
+      padding: 54px 0;
+    }
+
+    .hours-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.58fr) minmax(320px, 0.42fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hours-band h2 {
+      color: white;
+      font-size: 3.2rem;
+    }
+
+    .hours-band p {
+      color: rgba(255, 255, 255, 0.74);
+      margin-top: 12px;
+      max-width: 580px;
+    }
+
+    .hours-table {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(17, 16, 14, 0.14);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 0.94rem;
+    }
+
+    .hours-row:last-child { border-bottom: 0; }
+
+    .map-section {
+      background: var(--paper);
+      padding-bottom: 100px;
+    }
+
+    .map-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.55fr) minmax(360px, 0.45fr);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 18px 60px rgba(17, 16, 14, 0.08);
+    }
+
+    .map-art {
+      min-height: 360px;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(17, 16, 14, 0.9), rgba(189, 45, 34, 0.72)),
+        url("images/vintage-cut-sign.webp") center / cover;
+    }
+
+    .map-art::after {
+      content: "77 Hoe Street";
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      color: white;
+      font-family: var(--display);
+      font-size: 3rem;
+      line-height: 0.92;
+      max-width: 260px;
+    }
+
+    .map-copy {
+      padding: 38px;
+    }
+
+    .map-copy h2 {
+      font-size: 3rem;
+    }
+
+    .map-copy p {
+      color: var(--muted);
+      margin: 16px 0 24px;
+    }
+
+    .footer {
+      padding: 28px 0;
+      background: var(--ink);
+      color: rgba(255, 250, 241, 0.66);
+      font-size: 0.9rem;
+    }
+
+    .footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer strong { color: var(--paper); }
+
+    .footer a {
+      color: var(--paper);
+      border-bottom: 1px solid rgba(255, 250, 241, 0.35);
+    }
+
+    @media (max-width: 920px) {
+      .nav {
+        height: auto;
+        padding: 16px 20px;
+        gap: 14px;
+      }
+
+      .nav-links a:not(.primary) { display: none; }
+
+      .hero { min-height: 76svh; }
+
+      .hero-inner {
+        width: min(100% - 36px, 740px);
+        padding-top: 104px;
+      }
+
+      h1 { font-size: 4.2rem; }
+      h2 { font-size: 3rem; }
+
+      .quick-info,
+      .section-head,
+      .experience-layout,
+      .hours-inner,
+      .map-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-panel,
+      .visit-panel {
+        min-height: 460px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav {
+        position: absolute;
+      }
+
+      .brand span:first-child { font-size: 1rem; }
+      .brand span:last-child { font-size: 0.68rem; }
+
+      .nav-links a.primary {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 0.82rem;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(90deg, rgba(17, 16, 14, 0.88), rgba(17, 16, 14, 0.42)),
+          linear-gradient(0deg, rgba(17, 16, 14, 0.96), rgba(17, 16, 14, 0.08) 52%),
+          url("images/vintage-cut-chair.webp") center / cover;
+      }
+
+      .hero-inner,
+      .wrap,
+      .sign-strip img {
+        width: calc(100% - 28px);
+      }
+
+      h1 { font-size: 3.4rem; }
+      h2,
+      .visit-panel h2,
+      .hours-band h2,
+      .map-copy h2 {
+        font-size: 2.45rem;
+      }
+
+      .hero-copy p {
+        font-size: 1rem;
+      }
+
+      .hero-actions,
+      .cta-row {
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .quick-info {
+        display: none;
+      }
+
+      .info-tile {
+        min-height: 88px;
+      }
+
+      .sign-strip img {
+        height: 70px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: 168px;
+      }
+
+      .visit-panel,
+      .map-copy {
+        padding: 24px;
+      }
+
+      .photo-panel,
+      .visit-panel,
+      .map-art {
+        min-height: 360px;
+      }
+
+      .map-art::after {
+        left: 22px;
+        bottom: 22px;
+        font-size: 2.35rem;
+      }
+
+      .footer .wrap {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#top" aria-label="Vintage Cut home">
+      <span>Vintage Cut</span>
+      <span>Walthamstow barbers</span>
+    </a>
+    <div class="nav-links" aria-label="Page links">
+      <a href="#services">Services</a>
+      <a href="#visit">Visit</a>
+      <a href="tel:+447477156879" class="primary">Call 07477 156 879</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">77 Hoe Street, Walthamstow</span>
+        <h1>Classic barbering with a clean modern finish.</h1>
+        <p>Vintage Cut is a Hoe Street barber shop for sharp skin fades, clipper cuts, beard work, razor shaves, colour and men's grooming treatments close to Walthamstow Central.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="tel:+447477156879">Call the shop</a>
+          <a class="button secondary" href="https://www.google.com/maps/place/Vintage+Cut/@51.5872129,-0.0208443,21z/data=!4m6!3m5!1s0x48761de8f5650903:0x8ff068567fb824e8!8m2!3d51.5872129!4d-0.0205466!16s%2Fg%2F11h7fyckd1?entry=tts&g_ep=EgoyMDI2MDYyOS4wIPu8ASoASAFQAw%3D%3D&skid=c2c7b762-ecd2-4c32-a1ff-24413613a1a4" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+      <div class="quick-info" aria-label="Shop highlights">
+        <div class="info-tile">
+          <strong>Address</strong>
+          <span>77 Hoe Street, Walthamstow, London E17 4SA</span>
+        </div>
+        <div class="info-tile">
+          <strong>Services</strong>
+          <span>Haircuts, fades, shaving, colouring and grooming treatments</span>
+        </div>
+        <div class="info-tile">
+          <strong>Hours</strong>
+          <span>Public listings show daily opening from 9:00am</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sign-strip" aria-label="Vintage Cut shop sign">
+    <img src="images/vintage-cut-sign.webp" alt="Vintage Cut shop sign with phone number">
+  </div>
+
+  <main id="main">
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="label">Barber services</span>
+            <h2>Everything needed for a sharp refresh.</h2>
+          </div>
+          <p>Public booking listings describe a full barber menu, from everyday trims through to skin fades, razor shaves, colour and face treatments.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service">
+            <div>
+              <h3>Haircuts and clipper work</h3>
+              <p>Clean men's haircuts, clipper cuts and tidy shape-ups for regular maintenance.</p>
+            </div>
+            <span>01</span>
+          </article>
+          <article class="service">
+            <div>
+              <h3>Skin fades</h3>
+              <p>Fresh fades with attention to the blend, neckline and final finish.</p>
+            </div>
+            <span>02</span>
+          </article>
+          <article class="service">
+            <div>
+              <h3>Razor shaves and beard work</h3>
+              <p>Traditional shaving and beard grooming for a polished look.</p>
+            </div>
+            <span>03</span>
+          </article>
+          <article class="service">
+            <div>
+              <h3>Colour and grooming treatments</h3>
+              <p>Hair colouring, men's facial waxing and purifying black mask treatments.</p>
+            </div>
+            <span>04</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="visit">
+      <div class="wrap experience-layout">
+        <div class="photo-panel">
+          <img src="images/vintage-cut-chair.webp" alt="Barber trimming a customer's beard inside Vintage Cut Walthamstow">
+        </div>
+        <aside class="visit-panel" aria-label="Visit Vintage Cut">
+          <div>
+            <span class="label">Visit</span>
+            <h2>Find the shop on Hoe Street.</h2>
+            <p>Vintage Cut sits on Hoe Street, a short walk from Walthamstow Central, with bus stops close by on the main road.</p>
+            <div class="detail-list">
+              <div class="detail">
+                <strong>Address</strong>
+                <span>77 Hoe Street, Walthamstow, London E17 4SA</span>
+              </div>
+              <div class="detail">
+                <strong>Phone</strong>
+                <a href="tel:+447477156879">07477 156 879</a>
+              </div>
+              <div class="detail">
+                <strong>Nearest station</strong>
+                <span>Walthamstow Central</span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-row">
+            <a class="button primary" href="tel:+447477156879">Call now</a>
+            <a class="button secondary" href="https://www.google.com/maps/place/Vintage+Cut/@51.5872129,-0.0208443,21z/data=!4m6!3m5!1s0x48761de8f5650903:0x8ff068567fb824e8!8m2!3d51.5872129!4d-0.0205466!16s%2Fg%2F11h7fyckd1?entry=tts&g_ep=EgoyMDI2MDYyOS4wIPu8ASoASAFQAw%3D%3D&skid=c2c7b762-ecd2-4c32-a1ff-24413613a1a4" target="_blank" rel="noopener">Open map</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="hours-band" aria-labelledby="hours-title">
+      <div class="wrap hours-inner">
+        <div>
+          <span class="eyebrow">Opening hours</span>
+          <h2 id="hours-title">Open daily from morning into the evening.</h2>
+          <p>Public listings show Vintage Cut open every day. Phone ahead if you need the latest appointment availability.</p>
+        </div>
+        <div class="hours-table" aria-label="Opening hours">
+          <div class="hours-row"><span>Monday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Tuesday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Wednesday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Thursday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Friday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Saturday</span><strong>09:00 - 20:00</strong></div>
+          <div class="hours-row"><span>Sunday</span><strong>09:00 - 20:00</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="wrap">
+        <div class="map-card">
+          <div class="map-art" aria-hidden="true"></div>
+          <div class="map-copy">
+            <span class="label">Directions</span>
+            <h2>On the main Walthamstow route.</h2>
+            <p>The shop is listed at 77 Hoe Street, close to Walthamstow Central and the local bus routes running through E17.</p>
+            <div class="cta-row">
+              <a class="button dark" href="https://www.google.com/maps/place/Vintage+Cut/@51.5872129,-0.0208443,21z/data=!4m6!3m5!1s0x48761de8f5650903:0x8ff068567fb824e8!8m2!3d51.5872129!4d-0.0205466!16s%2Fg%2F11h7fyckd1?entry=tts&g_ep=EgoyMDI2MDYyOS4wIPu8ASoASAFQAw%3D%3D&skid=c2c7b762-ecd2-4c32-a1ff-24413613a1a4" target="_blank" rel="noopener">Open in Google Maps</a>
+              <a class="button" href="tel:+447477156879">Call 07477 156 879</a>
+            </div>
+            <p class="note">Service and hours information is based on public business listings and should be confirmed directly with the shop for urgent visits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>Vintage Cut</strong> · 77 Hoe Street, Walthamstow, London E17 4SA</p>
+      <p><a href="https://e17studio.com">Site by E17 Studio</a></p>
+    </div>
+  </footer>
+</body>
+</html>
