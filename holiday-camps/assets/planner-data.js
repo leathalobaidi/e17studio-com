@@ -13,7 +13,7 @@
  */
 
 window.E17_PLANNER = {
-  updated: "2026-06-12",
+  updated: "2026-07-02",
 
   // Term dates from Waltham Forest Council "Holiday pattern" PDFs 2025-26 and
   // 2026-27 (downloaded and checked 9 June 2026).
@@ -42,7 +42,7 @@ window.E17_PLANNER = {
     "waltham-forest-haf": {
       plannerRole: "route",
       weeksLikely: true,
-      weeksBasis: "HAF programmes run each school holiday; the Eequ feed says Summer 2026 bookings open at 9am on Monday 22 June.",
+      weeksBasis: "HAF programmes run each school holiday; Summer 2026 bookings opened at 9am on Monday 22 June and are live now on Eequ — eligible children get up to 8 sessions this summer (checked 2 Jul 2026).",
       haf: true
     },
 
@@ -59,7 +59,7 @@ window.E17_PLANNER = {
 
     "lloyd-park-childrens-charity": {
       weeksLikely: true,
-      weeksBasis: "Runs every school holiday from Lloyd Park and Higham Hill centres; Summer 2026 bookings open 9am Mon 15 June — the week list appears on the booking page then.",
+      weeksBasis: "Runs every school holiday from Lloyd Park and Higham Hill centres; Summer 2026 bookings opened 9am Mon 15 June and are live now — apply through the booking page (checked 2 Jul 2026).",
       price: { day: 48.3 },
       priceBasis: "£48.30 per day on the charity's fees page (checked 10 Jun 2026); one-off £24.08 registration fee also listed.",
       hours: { start: "08:00", end: "17:50" },
@@ -72,6 +72,7 @@ window.E17_PLANNER = {
       daysPerWeek: { "1": 4 },
       dayPattern: { "1": [2, 3, 4, 5] },
       weeksBasis: "Summer 2026 booking form: Tue 21–Fri 24 Jul (4 days), then Mon–Fri weeks 27–31 Jul, 3–7 Aug, 10–14 Aug, 17–21 Aug. Last booking date Fri 10 July; minimum 2 days.",
+      bookBy: "2026-07-10",
       price: { day: 49, dayExtended: 65 },
       priceBasis: "Summer 2026 booking form: £49 core day (9:00–16:00) / £65 full day (8:00–18:00); breakfast £7, tea £14.",
       hours: { start: "09:00", end: "16:00", extStart: "08:00", extEnd: "18:00" },
@@ -109,27 +110,26 @@ window.E17_PLANNER = {
 
     "ptc-sports-henry-maynard": {
       weeks: [1, 2, 3, 4, 5],
-      weeksBasis: "ClassForKids summer listing (Gwyn Jones Primary, Leytonstone): five Mon–Fri weeks, 20 Jul – 21 Aug 2026, 9:00–4:30 — spaces available when checked 10 Jun. No Henry Maynard summer listing has appeared.",
+      weeksBasis: "ClassForKids summer listings (checked 2 Jul 2026): Gwyn Jones Primary (camp/117) five Mon–Fri weeks, 20 Jul – 21 Aug 2026, 9:00–4:30; a Henry Maynard Infants Site listing (camp/118) is now also live for the same five weeks, 9:00–5:00 — both bookable.",
       price: { day: 30, week: 140 },
-      priceBasis: "Summer 2026 ClassForKids listing: £140 full week / £30 single day.",
+      priceBasis: "Summer 2026 ClassForKids listings (checked 2 Jul 2026): Gwyn Jones £140 full week / £30 single day (the figures shown here); Henry Maynard Infants Site £150 full week / £32 single day.",
       hours: { start: "09:00", end: "16:30" },
       coverage: "standard",
       lunch: { policy: "bring", note: "Packed lunch needed (no nut content) plus a refillable water bottle." }
     },
 
     "future-stars-walthamstow": {
-      weeksLikely: true,
-      weeksBasis: "Runs full-day camps each holiday at Match Day Centres; no summer 2026 listing on ClassForKids or the provider site when checked 10 Jun — watch the camps page.",
-      price: { day: 36, week: 144, halfDay: 18 },
-      priceBasis: "May 2026 listing: £36 day / £144 week / £18 half-day — treat as a guide until the summer listing appears.",
-      priceStale: "May 2026 listing",
+      weeks: [1, 2, 3, 4, 5, 6],
+      weeksBasis: "Summer 2026 ClassForKids listings (camps 95-98, checked 2 Jul 2026): Weeks 1-6, Mon 20 Jul – Fri 28 Aug 2026 at Match Day Centres — full day 8am-6pm plus early (8-10am), main (10am-3pm) and late (3-6pm) sessions; the full-day option showed 'Limited Spaces Available'.",
+      price: { day: 40, week: 160, halfDay: 20 },
+      priceBasis: "Summer 2026 ClassForKids listings (checked 2 Jul 2026): full day £40/day or £160/week; main session 10am-3pm (shown as half-day) £20/day or £80/week; early or late sessions £10/day or £40/week.",
       hours: { start: "08:00", end: "18:00" },
       coverage: "working"
     },
 
     "wo-sports": {
-      weeksLikely: true,
-      weeksBasis: "Recurring WF holiday programmes (paid + HAF); the bookings site still showed only term-time courses and May camps on 10 Jun — summer camps to appear. HAF camps at Woodside and George Tomlinson are on the Eequ feed.",
+      weeks: [1, 2, 3, 4, 5, 6, 7],
+      weeksBasis: "Summer 2026 camps listed on bookings.wo-sports.co.uk (checked 2 Jul 2026): George Tomlinson multi-sports 20/07–21/08 (weeks 1-5), Score Leyton football 20/07–28/08 (weeks 1-6), Woodside multi-sports/football 20/07–21/08 (weeks 1-5), Leytonstone Leisure Centre multi-sports/swimming 24/08–01/09 (week 6 into the final stretch — check the bank-holiday Monday directly) and St Joseph's Catholic Junior 24–28/08 (week 6). Availability 'Good' or 'Limited' by venue; no prices in the list view. HAF camps at Woodside and George Tomlinson are on the Eequ feed.",
       haf: true,
       coverage: "varies"
     },
@@ -153,10 +153,9 @@ window.E17_PLANNER = {
 
     "mother-nature-science-walthamstow": {
       weeks: [1, 2, 3, 4, 5, 6],
-      weeksBasis: "NE London summer camp lists Weeks C–H: Mon 20 Jul – Fri 28 Aug 2026 (plus earlier weeks from 6 Jul). Confirm Walthamstow School for Girls shows your week in the booking form — weeks not shown for a venue aren't scheduled there.",
-      reconfirm: true,
-      price: { week: 345 },
-      priceBasis: "£345 full week on the 2026 NE London summer listing; confirm by venue/week.",
+      weeksBasis: "NE London summer camp booking form shows all six Walthamstow School for Girls weeks (C–H, Mon 20 Jul – Fri 28 Aug 2026), each in stock and purchasable when checked 2 Jul 2026.",
+      price: { week: 395 },
+      priceBasis: "£395 per full week on the booking form for all six Walthamstow School for Girls weeks (checked 2 Jul 2026 — supersedes the £345 seen on the earlier check); extended hours +£10/day; multi-week/sibling basket discounts.",
       hours: { start: "09:00", end: "15:30", extStart: "08:30", extEnd: "16:00" },
       coverage: "standard",
       vouchers: true
@@ -279,12 +278,12 @@ window.E17_PLANNER = {
     },
 
     "noisy-book-club-summer": {
-      weeks: [1, 2, 3, 4],
-      daysPerWeek: { "1": 4, "2": 3, "3": 4 },
-      dayPattern: { "1": [1, 2, 3, 4], "2": [1, 2, 3], "3": [2, 3, 4, 5] },
-      weeksBasis: "Summer 2026 chapters (12 seats/day, 10am–3pm): Ch1 Art & Growth Mindset Mon–Thu 20–23 Jul (£260, FULL — waiting list), Ch2 Making Mon–Wed 27–29 Jul (£195), Ch3 Making Tue–Fri 4–7 Aug (£260), Ch4 content-TBD Mon–Fri 10–14 Aug (register interest). Ages 5–11 (Ch4 from 6). Odd single days run a waiting list.",
+      weeks: [1, 2, 3, 4, 7],
+      daysPerWeek: { "1": 4, "2": 3, "3": 4, "7": 1 },
+      dayPattern: { "1": [1, 2, 3, 4], "2": [1, 2, 3], "3": [2, 3, 4, 5], "7": [2] },
+      weeksBasis: "Summer 2026 chapters (12 seats/day, 10am–3pm, checked 2 Jul 2026): Ch1 Art & Growth Mindset Mon–Thu 20–23 Jul (£260, FULL — waiting list), Ch2 Making Mon–Wed 27–29 Jul (£195, 6 seats left), Ch3 Making Tue–Fri 4–7 Aug (£260, 7 seats), Ch4 content-TBD Mon–Fri 10–14 Aug (not yet bookable — register interest; now listed ages 5–11), plus 2-day Back to Brave chapters Tue–Wed 1–2 Sep (3 seats; Tue 1 Sep is the final-stretch cover day) and Thu–Fri 3–4 Sep (6 seats). Odd single days run a waiting list.",
       price: { day: 65 },
-      priceBasis: "£65/day; chapter prices £195 (3 days) to £260 (4 days); 2nd & 3rd child 5% off. Chapter 4 price not yet listed.",
+      priceBasis: "£65/day; chapter prices £260 (4 days), £195 (3 days), £130 (2-day Sept chapters); 2nd & 3rd child 5% off (checked 2 Jul 2026).",
       hours: { start: "10:00", end: "15:00" },
       coverage: "short",
       siblingDiscount: true,
@@ -294,7 +293,7 @@ window.E17_PLANNER = {
 
     "showkids-walthamstow": {
       weeks: [1, 6],
-      weeksBasis: "Summer 2026 ShowWeeks listed 20–24 July and 24–28 August, 9:00–16:00.",
+      weeksBasis: "Summer 2026 ShowWeeks listed 20–24 July and 24–28 August, 9:00–16:00. The 20–24 July week is SOLD OUT; the 24–28 August week was still open when checked 2 Jul 2026.",
       price: { weekByWeek: { "1": 295, "6": 265 } },
       priceBasis: "£295 for the July week; £265 for the August week (2026 Walthamstow listings).",
       hours: { start: "09:00", end: "16:00" },
@@ -304,7 +303,7 @@ window.E17_PLANNER = {
 
     "sylvestrian-leisure-holiday-activities": {
       weeks: [1, 2, 3, 4, 5, 6],
-      weeksBasis: "Pembee lists eight Summer Camp weeks, Mon 6 Jul – Fri 28 Aug 2026 (planner weeks 1–6 = camp weeks 3–8). All six school-holiday weeks were 'waitlist available' on 10 Jun, with places left on the 6–17 Jul weeks — join waitlists promptly.",
+      weeksBasis: "Pembee lists eight Summer Camp weeks, Mon 6 Jul – Fri 28 Aug 2026 (planner weeks 1–6 = camp weeks 3–8). On 2 Jul only the 13–17 Jul week still showed 'Places available'; the 6–10 Jul week and all six school-holiday weeks showed 'Waitlist available' — join waitlists promptly.",
       price: { week: 246 },
       priceBasis: "£246 five-day week on the dates page; all eight summer weeks are five-day (the £197 rate applies only to four-day bank-holiday weeks, none this summer). Early/late add-ons £4 each; £15/week sibling discount.",
       hours: { start: "08:30", end: "17:30", extStart: "08:00", extEnd: "18:00" },
@@ -387,7 +386,7 @@ window.E17_PLANNER = {
 
     "myths-maps-monsters": {
       weeks: [1],
-      weeksBasis: "Tickettailor lists a single 3-day camp in week 1 - 'The Labours of Heracles', Tue 21, Wed 22, Thu 23 July 2026, ages 5-11, 9.30am–3.30pm. Single days or all three bookable.",
+      weeksBasis: "Tickettailor lists a single 3-day camp in week 1 - 'The Labours of Heracles', Tue 21, Wed 22, Thu 23 July 2026, ages 5-11, 9.30am–3.30pm. The Tickettailor event showed 'Sold out' when checked 2 Jul 2026 — check for returns.",
       price: { day: 50, week: 135 },
       priceBasis: "£50/day or £135 for the three days (9.30am–3.30pm). Early drop-off from 8.30am: £60/day or £165 for three days. Limited low-income tickets £20/day on an honesty basis (Tickettailor, checked 14 Jun 2026).",
       daysPerWeek: 3,
@@ -421,7 +420,7 @@ window.E17_PLANNER = {
 
     "infinite-jest": {
       weeks: [3],
-      weeksBasis: "Provider confirmed (email 15 Jun 2026) one summer 2026 week at Cornerstone Church, Leyton (E10 6EH), ages 5-11: 'By the Seaside' Mon 3 - Fri 7 August, 9.30am-3.30pm.",
+      weeksBasis: "Provider confirmed (email 15 Jun 2026) one summer 2026 week at Cornerstone Church, Leyton (E10 6EH), ages 5-11: 'By the Seaside' Mon 3 - Fri 7 August, 9.30am-3.30pm. SOLD OUT on Pebble (zero spots on every date, no waitlist) when checked 2 Jul 2026.",
       price: { day: 43 },
       priceBasis: "£43 per day (5-day week = £215); sibling rate £38/day; Tax-Free Childcare accepted (provider email, 15 Jun 2026).",
       hours: { start: "09:30", end: "15:30", extStart: "08:30", extEnd: "17:30" },

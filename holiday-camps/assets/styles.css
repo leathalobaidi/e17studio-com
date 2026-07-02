@@ -18,7 +18,7 @@
   --tomato-bright: #e2502f;
   --tomato-tint: #fbe9e2;
   --marigold: #f4b942;
-  --marigold-deep: #9a6a10;
+  --marigold-deep: #7d5509; /* darkened for WCAG contrast on tinted backgrounds */
   --marigold-tint: #fdf0d3;
   --sky: #cfe7e3;
   --sky-deep: #145f63;
@@ -73,6 +73,20 @@ a { color: inherit; }
 }
 .skip-link:focus { left: 0; }
 
+/* Visually hidden, still read by screen readers (standard clip pattern) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ───────────────────────── Hero ───────────────────────── */
 
 .site-hero {
@@ -83,7 +97,24 @@ a { color: inherit; }
   background:
     linear-gradient(100deg, rgba(15, 30, 23, 0.88) 8%, rgba(15, 30, 23, 0.55) 46%, rgba(15, 30, 23, 0.18)),
     url("./e17-holiday-camps-banner.jpg") center / cover no-repeat;
+  background:
+    linear-gradient(100deg, rgba(15, 30, 23, 0.88) 8%, rgba(15, 30, 23, 0.55) 46%, rgba(15, 30, 23, 0.18)),
+    image-set(
+      url("./e17-holiday-camps-banner-1600.webp") type("image/webp"),
+      url("./e17-holiday-camps-banner.jpg") type("image/jpeg")
+    ) center / cover no-repeat;
   color: #fdfaf1;
+}
+
+@media (max-width: 680px) {
+  .site-hero {
+    background:
+      linear-gradient(100deg, rgba(15, 30, 23, 0.88) 8%, rgba(15, 30, 23, 0.55) 46%, rgba(15, 30, 23, 0.18)),
+      image-set(
+        url("./e17-holiday-camps-banner-1000.webp") type("image/webp"),
+        url("./e17-holiday-camps-banner.jpg") type("image/jpeg")
+      ) center / cover no-repeat;
+  }
 }
 
 .topbar {
@@ -217,6 +248,21 @@ h1 em {
   border-color: var(--tomato);
 }
 .btn-danger:hover { background: var(--tomato-tint); }
+
+/* Sublabel line inside share/action buttons */
+.btn-sub {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.85;
+  line-height: 1.25;
+}
+
+/* Generic disabled affordance (JS toggles this on buttons/links) */
+.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
 
 /* Bunting strip along the hero's bottom edge */
 .bunting {
@@ -413,6 +459,35 @@ section { scroll-margin-top: 24px; }
 }
 .search-field { grid-column: span 2; }
 
+/* "More filters" disclosure — summary styled as a tappable pill */
+#moreFilters { margin-top: 14px; }
+#moreFilters > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--green-deep);
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#moreFilters > summary::-webkit-details-marker { display: none; }
+#moreFilters > summary::after { content: "▾"; font-size: 0.8em; }
+#moreFilters > summary:hover { border-color: var(--green); background: var(--green-tint); }
+#moreFilters[open] > summary {
+  margin-bottom: 12px;
+  border-color: var(--green);
+  background: var(--green-tint);
+}
+#moreFilters[open] > summary::after { content: "▴"; }
+
 .field {
   display: grid;
   gap: 6px;
@@ -437,6 +512,8 @@ input[type="text"], input[type="search"], input[type="number"], select {
   font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
+  /* 16px minimum stops iOS Safari auto-zooming on focus; labels via .field stay small-caps */
+  font-size: 1rem;
 }
 
 input:focus, select:focus, button:focus-visible, a:focus-visible, .toggle-chip input:focus-visible + span {
@@ -506,12 +583,14 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, .toggle-chip i
   background: var(--panel);
   box-shadow: 0 6px 18px rgba(29, 43, 34, 0.07);
   animation: card-in 0.45s ease both;
-  animation-delay: calc(var(--i, 0) * 45ms);
+  /* cap the stagger so long lists don't sit invisible for seconds */
+  animation-delay: calc(min(var(--i, 0), 8) * 45ms);
 }
 @keyframes card-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
 }
+.no-anim .camp-card { animation: none; }
 
 .camp-card.is-shortlisted { border-color: var(--tomato); box-shadow: 4px 5px 0 rgba(201, 62, 32, 0.25); }
 
@@ -566,11 +645,35 @@ input:focus, select:focus, button:focus-visible, a:focus-visible, .toggle-chip i
 .badge-haf { background: var(--green-tint); color: var(--green-deep); border-color: #b9d2bd; }
 .badge-tfc { background: var(--sky); color: var(--sky-deep); }
 .badge-ofsted { background: var(--marigold-tint); color: var(--marigold-deep); border-color: #ecd9a8; }
-.badge-sibling { background: var(--tomato-tint); color: var(--tomato); }
+.badge-sibling { background: var(--tomato-tint); color: #b23317; /* darker tomato for contrast on tint */ }
 .badge-send { background: #efe6f3; color: var(--plum); }
 .badge-food { background: #f4efe2; color: #6b5b22; }
 .badge-confirmed { background: var(--green); color: #fff; }
 .badge-tbc { background: #f0ede1; color: var(--muted); border-color: var(--line-strong); }
+/* Availability pill — self-sufficient so it works with or without .badge */
+.badge-waitlist {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: #fdf0d5;
+  color: #7d5509;
+  border: 1px solid #e3c88a;
+}
+
+/* Booking-deadline callout (entry.bookBy) */
+.deadline-note {
+  margin: 0;
+  color: #b23317;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
 
 .quick-facts {
   display: grid;
@@ -699,6 +802,24 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 /* ───────────────────────── Planner ───────────────────────── */
 
 .planner-hint { color: var(--muted); max-width: 760px; margin-bottom: 16px; }
+/* Works as a <details class="planner-hint"> too — muted, low-key summary line */
+details.planner-hint > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  list-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+details.planner-hint > summary::-webkit-details-marker { display: none; }
+details.planner-hint > summary::after { content: "▾"; font-size: 0.8em; }
+details.planner-hint[open] > summary::after { content: "▴"; }
+details.planner-hint > :not(summary) { margin-top: 4px; }
 
 .planner-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .planner-actions .btn { min-height: 42px; padding: 0 14px; font-size: 0.9rem; border-width: 1.5px; }
@@ -763,8 +884,8 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
 
 .booked-toggle {
   width: 100%;
-  margin-top: 5px;
-  min-height: 30px;
+  margin-top: 8px; /* mis-tap guard: clear separation from the assign button */
+  min-height: 40px;
   padding: 2px 10px;
   border: 1.5px dashed var(--line-strong);
   border-radius: 999px;
@@ -802,7 +923,7 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
   gap: 2px;
 }
 .budget-card.grand { background: var(--green); color: #fff; border-color: var(--green-deep); }
-.budget-card.grand .budget-label { color: var(--marigold); }
+.budget-card.grand .budget-label { color: #fbd98a; /* lighter marigold for contrast on green */ }
 .budget-card.bookings { background: var(--sky); border-color: var(--sky-deep); }
 .budget-card.bookings .budget-label { color: var(--sky-deep); }
 .budget-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--tomato); }
@@ -878,7 +999,7 @@ tr.haf-summer td:first-child::before { content: "☀ "; }
   cursor: pointer;
 }
 .check-item input {
-  width: 20px; height: 20px;
+  width: 22px; height: 22px;
   margin-top: 2px;
   accent-color: var(--green);
   cursor: pointer;
@@ -1078,6 +1199,24 @@ div.picker-option { cursor: default; }
 }
 .day-chip.is-on { background: var(--green); border-color: var(--green-deep); color: #fff; }
 .day-chip:disabled { opacity: 0.35; cursor: not-allowed; }
+/* If day toggles render as checkboxes, keep the touch target comfortable */
+.day-editor input[type="checkbox"],
+.custom-days input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--green);
+  cursor: pointer;
+  flex: none;
+}
+.day-editor label,
+.custom-days label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
 .day-editor-cost { margin-left: auto; font-weight: 800; color: var(--green-deep); font-size: 0.9rem; }
 
 .my-price-row { align-items: end; }
@@ -1136,9 +1275,21 @@ div.picker-option { cursor: default; }
 
 @media (max-width: 680px) {
   .site-hero { min-height: 540px; background-position: 60% center; }
-  .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  /* Sticky compact header so nav stays reachable on phones */
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    position: sticky;
+    top: 0;
+    z-index: 40; /* under .skip-link (50) and .share-banner (60) */
+    width: 100%;
+    margin: 0;
+    padding: 8px 16px;
+    background: rgba(15, 30, 23, 0.95);
+  }
   .nav-links { width: 100%; gap: 2px; }
-  .nav-links a { padding: 0 9px; font-size: 0.86rem; }
+  .nav-links a { padding: 0 9px; font-size: 0.86rem; min-height: 34px; }
   .hero-content { padding: 36px 0 70px; }
   h1 { font-size: 2.7rem; }
   .dates-band { grid-template-columns: 1fr; margin-top: -30px; }
@@ -1150,6 +1301,20 @@ div.picker-option { cursor: default; }
   .section-heading { align-items: flex-start; flex-direction: column; }
   .reset-button { margin-left: 0; }
   .planner-actions { width: 100%; }
+  /* Pin the week column while the planner scrolls sideways
+     (same pattern as .compare-table th:first-child above) */
+  .planner-table thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--green);
+  }
+  .planner-table .week-cell {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--panel);
+  }
 }
 
 /* ───────────────────────── Print: the plan pack ───────────────────────── */

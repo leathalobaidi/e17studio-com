@@ -13,13 +13,26 @@
     <meta property="og:title" content="E17 Holiday Camp Planner — Summer 2026, Walthamstow" />
     <meta property="og:description" content="Every holiday camp in and around E17 with verified dates, prices and free HAF places — plus a week-by-week planner that adds up the cost as you go." />
     <meta property="og:url" content="https://e17studio.com/holiday-camps/" />
-    <meta property="og:image" content="https://e17studio.com/holiday-camps/assets/e17-holiday-camps-banner.jpg" />
+    <meta property="og:image" content="https://e17studio.com/holiday-camps/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://e17studio.com/holiday-camps/assets/og-image.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" type="image/webp" href="assets/e17-holiday-camps-banner-1600.webp" fetchpriority="high" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
@@ -41,7 +54,7 @@
       </nav>
 
       <div class="hero-content" id="top">
-        <p class="eyebrow">Walthamstow &amp; nearby · Summer 2026 · every fact checked 9–12 June 2026</p>
+        <p class="eyebrow">Walthamstow &amp; nearby · Summer 2026 · every fact checked 9 June – 2 July 2026</p>
         <h1>Six weeks of summer, <em>sorted.</em></h1>
         <p class="hero-copy">
           Every holiday camp in and around E17 — plus a few just over the border in
@@ -160,6 +173,9 @@
                 autocomplete="off"
               />
             </label>
+            <details id="moreFilters" open>
+              <summary>More filters</summary>
+              <div class="more-filters-body">
             <label class="field" for="areaFilter">
               <span>Area</span>
               <select id="areaFilter"></select>
@@ -201,6 +217,8 @@
                 <option value="confirmed">Confirmed 2026 dates first</option>
               </select>
             </label>
+              </div>
+            </details>
           </div>
 
           <div class="age-row" aria-label="Age and date filters">
@@ -218,11 +236,12 @@
           </div>
         </div>
 
-        <div class="card-grid" id="providerGrid"></div>
+        <div class="card-grid" id="providerGrid"><p class="grid-loading">Loading camps…</p></div>
         <p class="empty-state" id="emptyState" hidden>
           No camps match those filters. Try widening the day length or price, or
-          clear the “confirmed dates” toggle — lots of providers publish summer
-          dates late June.
+          clear the “confirmed dates” toggle. Looking for free places? HAF
+          summer bookings opened 9am Mon 22 June — live now on Eequ, free
+          places go fast.
         </p>
       </section>
 
@@ -253,10 +272,10 @@
           </div>
           <div class="planner-actions">
             <button class="btn btn-add" type="button" id="tellParents"
-              title="Copies the plain planner link — no names, no plan. Safe to post in a group.">Tell other parents</button>
+              title="Copies the plain planner link — no names, no plan. Safe to post in a group.">Share blank planner<span class="btn-sub">No names — safe for school groups</span></button>
             <a class="btn btn-ghost" id="tellWa" hidden href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp ↗</a>
             <button class="btn btn-ghost" type="button" id="sharePlan"
-              title="Copies a private link that contains your children's names and camps — only for a partner, never a group">Share my plan (private)</button>
+              title="Copies a private link that contains your children's names and camps — only for a partner, never a group">Share MY plan<span class="btn-sub">Includes your children’s names — partner only</span></button>
             <a class="btn btn-ghost" id="waShare" hidden href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp ↗</a>
             <button class="btn btn-ghost" type="button" id="calendarPlan"
               title="Downloads an .ics file that opens in Apple Calendar and Outlook, and imports into Google Calendar">Add to calendar</button>
@@ -266,7 +285,9 @@
           </div>
         </div>
 
-        <p class="planner-hint">
+        <details class="planner-hint">
+          <summary>How sharing &amp; privacy work</summary>
+          <p>
           Tap any cell to choose a camp for that child and week — or mark it as
           annual leave, family cover or a friend swap. Costs use verified prices
           where published; everything else shows as “£?” until you confirm with
@@ -282,7 +303,8 @@
           different: it packs your children's names and camps into the link
           itself (nothing is uploaded), so only ever send that one to a partner
           or family — never a group.
-        </p>
+          </p>
+        </details>
 
         <div class="planner-empty" id="plannerEmpty">
           <p><strong>Add a child above to unlock the grid.</strong> The planner
@@ -367,9 +389,10 @@
         <div class="haf-note">
           <strong>How to read this:</strong> HAF places are seasonal and
           eligibility-led. This table is the public Eequ feed as captured on
-          10 June 2026 — entries named “Summer” are highlighted, and the feed
-          says <strong>summer bookings open 9am Monday 22 June</strong>. The
-          live booking page is always the source of truth.
+          10 June 2026 — entries named “Summer” are highlighted.
+          <strong>HAF summer bookings opened 9am Mon 22 June — live now on
+          Eequ, free places go fast.</strong> The live booking page is always
+          the source of truth.
         </div>
         <div class="table-wrap">
           <table>
@@ -407,7 +430,7 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow dark">Verification</p>
-            <h2>Sources checked — 9–12 June 2026</h2>
+            <h2>Sources checked — 9 June – 2 July 2026</h2>
           </div>
         </div>
         <div class="source-grid" id="sourceGrid"></div>
@@ -420,7 +443,7 @@
         change fast in camp season — always confirm dates, eligibility,
         Ofsted/registration status, SEND support and prices with the provider
         before booking. Every figure on this page links back to a source checked
-        on 9–12 June 2026. Your plan, shortlist and ticks are stored only in
+        on 9 June – 2 July 2026. Your plan, shortlist and ticks are stored only in
         this browser. Visitor numbers are counted with Cloudflare's cookieless,
         privacy-friendly analytics — no personal data, and nothing about your plan.
       </p>
@@ -455,9 +478,9 @@
       <div class="picker-body" id="pickerBody"></div>
     </dialog>
 
-    <script src="assets/camps.js"></script>
-    <script src="assets/planner-data.js"></script>
-    <script src="assets/app.js"></script>
+    <script defer src="assets/camps.js"></script>
+    <script defer src="assets/planner-data.js"></script>
+    <script defer src="assets/app.js"></script>
 
     <!-- Cloudflare Web Analytics — cookieless, privacy-friendly visit counts -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "fa7d8f9b64aa4833b18eecf0ddd1d163"}'></script>

@@ -27,11 +27,20 @@ const state = {
   shortlist: [],        // provider ids
   plan: {},             // { [weekId]: { [childId]: {type, campId?, label?} } }
   checks: [],           // checklist item ids
-  pickerShowAll: false
+  pickerShowAll: false,
+  hafShowAll: false     // HAF table: true after "Show all", reset when filters change
 };
 
 let pickerCtx = null;   // {mode:"cell", weekId, childId} | {mode:"camp", campId}
 let pendingShared = null;   // parsed #plan= payload awaiting the user's decision
+let pickerReturnFocus = null;  // CSS selector re-focused when the picker dialog closes
+let pendingCampId = null;      // camp chosen before any child exists — reopened after add
+let searchDebounceTimer = null;
+let gridHasRendered = false;   // first grid render plays the stagger; later ones don't
+let mobileShowAll = false;     // small screens: true after "Show all N camps" until filters change
+
+const MOBILE_MQ = window.matchMedia("(max-width: 680px)");
+const MOBILE_PAGE_SIZE = 12;
 
 /* ────────────────────────── persistence ────────────────────────── */
 
@@ -87,6 +96,52 @@ function money(n) {
   if (n == null || !Number.isFinite(n)) return null;
   const rounded = Math.round(n * 100) / 100;
   return "£" + (Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2));
+}
+
+/* Escape a value for use inside a querySelector attribute selector. */
+function cssEsc(value) {
+  return window.CSS && CSS.escape ? CSS.escape(String(value)) : String(value).replace(/["\\]/g, "\\$&");
+}
+
+const MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const WEEKDAYS_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+function parseIsoDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+  return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : null;
+}
+
+/* "2026-07-02" → "2 Jul" (null when unparseable — render nothing). */
+function formatShortDate(iso) {
+  const d = parseIsoDate(iso);
+  return d ? `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]}` : null;
+}
+
+/* provider.availability {status:'waitlist'|'full'|'mixed', asOf, note} → display
+ * strings, or null when absent/unrecognised (field is optional per provider). */
+function availabilityInfo(provider) {
+  const av = provider && provider.availability;
+  if (!av || !av.status) return null;
+  const label = { waitlist: "Waitlist-only", full: "Full", mixed: "Some weeks full" }[av.status];
+  if (!label) return null;
+  const asOf = formatShortDate(av.asOf);
+  return { label, asOf, note: av.note || "", text: label + (asOf ? " — as of " + asOf : "") };
+}
+
+/* planner entry bookBy "YYYY-MM-DD" → {label, daysLeft, closed} or null.
+ * Within 14 days the label carries a countdown; past dates read "booking closed". */
+function bookByInfo(pl) {
+  const due = parseIsoDate(pl && pl.bookBy);
+  if (!due) return null;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const daysLeft = Math.round((due - today) / 86400000);
+  let label = `Book by ${WEEKDAYS_SHORT[due.getDay()]} ${due.getDate()} ${MONTHS_FULL[due.getMonth()]}`;
+  if (daysLeft < 0) label += " (booking closed)";
+  else if (daysLeft === 0) label += " (today — last day)";
+  else if (daysLeft <= 14) label += ` (${daysLeft} day${daysLeft === 1 ? "" : "s"} left)`;
+  return { label, daysLeft, closed: daysLeft < 0 };
 }
 
 /* Effective per-day price for sorting/filtering: exact day price first,
@@ -379,6 +434,8 @@ function badgeRow(provider) {
   if ((provider.categories || []).includes("SEND aware") || pl.sendAware) badges.push(`<span class="badge badge-send">SEND aware</span>`);
   if (pl.lunch && pl.lunch.policy === "included") badges.push(`<span class="badge badge-food">Meals included</span>`);
   if (pl.fridaysOnly) badges.push(`<span class="badge badge-tbc">Fridays only</span>`);
+  const av = availabilityInfo(provider);
+  if (av) badges.push(`<span class="badge badge-waitlist"${av.note ? ` title="${escapeHtml(av.note)}"` : ""}>&#9888; ${escapeHtml(av.text)}</span>`);
   return badges.join("");
 }
 
@@ -397,7 +454,7 @@ function priceFact(provider) {
   if (pr.weekBands) bits.push(pr.weekBands.map((b) => money(b.week)).join("–") + "/wk");
   if (Number.isFinite(pr.sessionFrom)) bits.push(`${money(pr.sessionFrom)}–${money(pr.sessionTo)}/session`);
   if (!bits.length) return "Not published — check";
-  return bits.join(" · ") + (pl.priceStale ? " ⚠" : "");
+  return bits.join(" · ") + (pl.priceStale ? ` (${pl.priceStale} — confirm summer rate)` : "");
 }
 
 function weeksFact(provider) {
@@ -422,7 +479,15 @@ function renderProviders() {
   els.resultCount.textContent = `${matches.length} of ${D.providers.length} shown`;
   els.emptyState.hidden = matches.length > 0;
 
-  els.providerGrid.innerHTML = matches.map((provider, i) => {
+  // Small screens: first paint shows a page of cards + "Show all" (reset on filter change).
+  const paginated = MOBILE_MQ.matches && !mobileShowAll && matches.length > MOBILE_PAGE_SIZE;
+  const visible = paginated ? matches.slice(0, MOBILE_PAGE_SIZE) : matches;
+
+  // Only the very first render plays the stagger animation.
+  if (gridHasRendered) els.providerGrid.classList.add("no-anim");
+  gridHasRendered = true;
+
+  els.providerGrid.innerHTML = visible.map((provider, i) => {
     const pl = plannerOf(provider);
     const shortlisted = state.shortlist.includes(provider.id);
     const map = mapLink(provider);
@@ -432,6 +497,9 @@ function renderProviders() {
     const reconfirm = pl.reconfirm
       ? `<p class="provenance">⚠ Reconfirm dates with the provider before booking — see basis below.</p>`
       : "";
+    const bb = bookByInfo(pl);
+    const deadline = bb ? `<p class="deadline-note">⏰ ${escapeHtml(bb.label)}</p>` : "";
+    const checkedShort = formatShortDate(provider.checkedOn) || formatShortDate(D.updated);
     return `
       <article class="camp-card ${shortlisted ? "is-shortlisted" : ""}" style="--i:${i}">
         <div class="card-topline">
@@ -444,6 +512,7 @@ function renderProviders() {
         <h3>${escapeHtml(provider.name)}</h3>
         <p class="venue">${escapeHtml(provider.venue)}${map ? ` · <a href="${map}" target="_blank" rel="noreferrer">map ↗</a>` : ""}</p>
         <div class="badge-row">${badgeRow(provider)}</div>
+        ${deadline}
         <div class="quick-facts">
           <span><strong>Ages</strong>${escapeHtml(provider.ageLabel)}</span>
           <span><strong>Hours</strong>${escapeHtml(hoursLabel(provider))}</span>
@@ -461,17 +530,19 @@ function renderProviders() {
             ${pl.priceBasis ? `<p><strong>Pricing:</strong> ${escapeHtml(pl.priceBasis)}</p>` : ""}
             ${pl.lunch ? `<p><strong>Food:</strong> ${escapeHtml(pl.lunch.note)}</p>` : ""}
             ${stalePrice}${reconfirm}
-            <p class="provenance">Verified against the sources below on ${escapeHtml(D.updated)} (${escapeHtml(provider.confidence)}).</p>
+            <p class="provenance">Verified against the sources below — checked ${escapeHtml(checkedShort || D.updated)} (${escapeHtml(provider.confidence)}).</p>
             <div class="source-row">${sourceLinks(provider)}</div>
           </div>
         </details>
         <div class="card-actions">
           <button class="btn btn-add" type="button" data-addplan="${escapeHtml(provider.id)}">+ Add to plan</button>
-          <a class="btn btn-book" href="${escapeHtml(provider.source.url)}" target="_blank" rel="noreferrer">Book ↗</a>
+          <a class="btn btn-book" href="${escapeHtml(provider.bookingUrl || provider.source.url)}" target="_blank" rel="noreferrer">Book ↗</a>
         </div>
       </article>
     `;
-  }).join("");
+  }).join("") + (paginated
+    ? `<button class="btn-sub show-all-camps" type="button" data-show-all-camps="1">Show all ${matches.length} camps</button>`
+    : "");
 }
 
 /* ────────────────────────── compare ────────────────────────── */
@@ -508,7 +579,7 @@ function renderCompare() {
     </tr>`).join("")}
     <tr>
       <th scope="row">Book</th>
-      ${items.map((p) => `<td><a class="source-link" href="${escapeHtml(p.source.url)}" target="_blank" rel="noreferrer">Open booking ↗</a></td>`).join("")}
+      ${items.map((p) => `<td><a class="source-link" href="${escapeHtml(p.bookingUrl || p.source.url)}" target="_blank" rel="noreferrer">Open booking ↗</a></td>`).join("")}
     </tr>
   </tbody>`;
 
@@ -630,7 +701,28 @@ function entryMeta(entry, weekId) {
   return bits.join(" · ");
 }
 
+/* Planner action buttons are inert-looking (not disabled — handlers already
+ * no-op safely) until the plan has at least one entry. */
+function updatePlannerActionState() {
+  const hasEntries = Object.values(state.plan).some((row) => row && Object.keys(row).length > 0);
+  ["#sharePlan", "#calendarPlan", "#copyPlan", "#printPlan", "#clearPlan"].forEach((sel) => {
+    const btn = document.querySelector(sel);
+    if (!btn) return;
+    if (!("origTitle" in btn.dataset)) btn.dataset.origTitle = btn.getAttribute("title") || "";
+    btn.classList.toggle("is-disabled", !hasEntries);
+    if (!hasEntries) {
+      btn.setAttribute("aria-disabled", "true");
+      btn.setAttribute("title", "Add camps to your plan first");
+    } else {
+      btn.removeAttribute("aria-disabled");
+      if (btn.dataset.origTitle) btn.setAttribute("title", btn.dataset.origTitle);
+      else btn.removeAttribute("title");
+    }
+  });
+}
+
 function renderPlanner() {
+  updatePlannerActionState();
   const hasChildren = state.children.length > 0;
   els.plannerEmpty.hidden = hasChildren;
   els.plannerWrap.hidden = !hasChildren;
@@ -662,8 +754,8 @@ function renderPlanner() {
       return `<td class="plan-cell">
         <button class="assign-btn ${entry ? "is-set" : ""}" type="button"
           data-week="${wk.id}" data-child="${escapeHtml(c.id)}"
-          style="--cc:${c.color}"
-          aria-label="Week ${wk.id}, ${escapeHtml(c.name)}: ${entry ? escapeHtml(label) : "choose cover"}">
+          style="--cc:${c.color}">
+          <span class="sr-only">Week ${wk.id}, ${escapeHtml(c.name)}: </span>
           ${entry
             ? `<span class="assign-name">${escapeHtml(label)}</span>
                ${meta ? `<span class="assign-meta">${escapeHtml(meta)}</span>` : ""}
@@ -707,6 +799,7 @@ function renderBudget() {
   let bookable = 0;
   let bookedCount = 0;
   const staleUsed = new Set();
+  const availPlanned = new Set();
   const uncovered = {};
   const siblingHints = [];
 
@@ -746,6 +839,8 @@ function renderBudget() {
       }
       if (p) {
         sameWeekCamps[p.id] = (sameWeekCamps[p.id] || 0) + 1;
+        const ai = availabilityInfo(p);
+        if (ai) availPlanned.add(`${p.name} — ${ai.text.toLowerCase()}`);
       }
     });
     Object.entries(sameWeekCamps).forEach(([pid, n]) => {
@@ -795,6 +890,9 @@ function renderBudget() {
   if (staleUsed.size) {
     notes.push(`<div class="budget-note warn"><strong>Guide prices used:</strong> ${escapeHtml([...staleUsed].join("; "))} — these are from earlier holidays, so confirm the summer rate.</div>`);
   }
+  if (availPlanned.size) {
+    notes.push(`<div class="budget-note warn"><strong>Availability:</strong> ${escapeHtml([...availPlanned].join("; "))} — check with the provider before counting on a place.</div>`);
+  }
   if (!notes.length && grand > 0) {
     notes.push(`<div class="budget-note">Prices are as published on 9 June 2026 — re-check when booking. “est.” totals multiply a day rate by the days in that week.</div>`);
   }
@@ -803,8 +901,15 @@ function renderBudget() {
 
 /* ────────────────────────── picker dialog ────────────────────────── */
 
+/* Re-focus a control inside the picker body after an innerHTML re-render. */
+function refocusPicker(selector) {
+  const el = els.pickerBody.querySelector(selector);
+  if (el) el.focus();
+}
+
 function openCellPicker(weekId, childId) {
   pickerCtx = { mode: "cell", weekId: Number(weekId), childId };
+  pickerReturnFocus = `.assign-btn[data-week="${cssEsc(weekId)}"][data-child="${cssEsc(childId)}"]`;
   state.pickerShowAll = false;
   renderPicker();
   els.pickerDialog.showModal();
@@ -812,11 +917,26 @@ function openCellPicker(weekId, childId) {
 
 function openCampAssign(campId) {
   if (!state.children.length) {
+    // Remember the camp, explain what to do, and reopen the picker once a child exists.
+    pendingCampId = campId;
+    const p = providerById(campId);
+    let msg = document.querySelector("#childGateMsg");
+    if (!msg) {
+      msg = document.createElement("p");
+      msg.id = "childGateMsg";
+      msg.className = "children-hint child-gate-msg";
+      msg.setAttribute("role", "status");
+      els.childForm.insertAdjacentElement("afterend", msg);
+    }
+    msg.textContent = p
+      ? `Add your child, then we'll pick weeks for ${p.name}.`
+      : "Add your child, then we'll pick weeks for that camp.";
     document.querySelector("#children").scrollIntoView({ behavior: "smooth" });
-    els.childName.focus();
+    els.childName.focus({ preventScroll: true });
     return;
   }
   pickerCtx = { mode: "camp", campId };
+  pickerReturnFocus = `[data-addplan="${cssEsc(campId)}"]`;
   renderPicker();
   els.pickerDialog.showModal();
 }
@@ -833,6 +953,9 @@ function pickerOptionHtml(provider, weekId, opts = {}) {
   if (pl.fridaysOnly) warns.push("Friday only — covers one day of this week");
   if (pl.priceStale) warns.push(`Price from ${pl.priceStale}`);
   if (opts.ageWarn) warns.push(`Listed ages ${provider.ageLabel} — outside this child's age`);
+  const av = availabilityInfo(provider);
+  if (av) warns.push(av.text);
+  const bb = bookByInfo(pl);
   const allowed = allowedDaysFor(provider, weekId);
   const dayRate = (pl.price || {}).day;
   const daysBtn = allowed.length > 1
@@ -846,6 +969,7 @@ function pickerOptionHtml(provider, weekId, opts = {}) {
       <span class="po-cost">${escapeHtml(costText)}</span>
       <span class="po-meta">${escapeHtml(provider.ageLabel)} · ${escapeHtml(hoursLabel(provider))} · ${escapeHtml(provider.area)}</span>
       ${warns.length ? `<span class="po-warn">⚠ ${escapeHtml(warns.join(" · "))}</span>` : ""}
+      ${bb ? `<span class="po-warn deadline-note">⏰ ${escapeHtml(bb.label)}</span>` : ""}
       <span class="po-actions">
         <button class="btn-mini" type="button" data-pick-camp="${escapeHtml(provider.id)}">Whole week</button>
         ${daysBtn}
@@ -862,7 +986,13 @@ function renderPicker() {
     const pl = plannerOf(provider);
     els.pickerTitle.textContent = provider.name;
     els.pickerSub.textContent = "Pick the weeks to add — solid buttons are provider-confirmed 2026 weeks.";
-    els.pickerBody.innerHTML = state.children.map((c) => {
+    const campAv = availabilityInfo(provider);
+    const campBb = bookByInfo(pl);
+    const campNotices = (campAv || campBb) ? `<p class="picker-note deadline-note">${[
+      campAv ? `⚠ ${escapeHtml(campAv.text)}${campAv.note ? ` — ${escapeHtml(campAv.note)}` : ""}` : "",
+      campBb ? `⏰ ${escapeHtml(campBb.label)}` : ""
+    ].filter(Boolean).join(" · ")}</p>` : "";
+    els.pickerBody.innerHTML = campNotices + state.children.map((c) => {
       const fits = ageFits(provider, c.age);
       const dayRows = P.weeks.filter((w) => !w.stub).map((w) => {
         const current = planEntry(w.id, c.id);
@@ -875,6 +1005,7 @@ function renderPicker() {
           ${[1, 2, 3, 4, 5].map((d) => `
             <button type="button" class="day-chip ${info.days.includes(d) ? "is-on" : ""}"
               data-camp-day="${d}" data-camp-day-week="${w.id}" data-camp-day-child="${escapeHtml(c.id)}"
+              aria-pressed="${info.days.includes(d) ? "true" : "false"}"
               ${info.allowed.includes(d) ? "" : "disabled"}>${DAY_LABELS[d - 1]}</button>`).join("")}
           <span class="day-editor-cost">${cost ? money(cost.value) + (cost.estimate ? " est." : "") : "£? — no day rate published"}</span>
         </div>`;
@@ -890,7 +1021,7 @@ function renderPicker() {
               ${confirmed ? "" : 'style="border-style:dashed"'}
               data-assign-week="${w.id}" data-assign-child="${escapeHtml(c.id)}"
               title="${escapeHtml(w.dates)}${confirmed ? "" : " — dates unconfirmed for this provider"}">
-              ${isThis ? "✓ " : ""}Wk ${w.id}
+              ${isThis ? "✓ " : ""}Wk ${w.id}${confirmed ? "" : ` <small>· dates TBC</small><span class="sr-only"> (dates unconfirmed)</span>`}
             </button>`;
           }).join("")}
         </div>
@@ -961,6 +1092,7 @@ function renderPicker() {
       <span class="day-editor-label">Days:</span>
       ${[1, 2, 3, 4, 5].map((d) => `
         <button type="button" class="day-chip ${info.days.includes(d) ? "is-on" : ""}"
+          aria-pressed="${info.days.includes(d) ? "true" : "false"}"
           data-day-toggle="${d}" ${info.allowed.includes(d) ? "" : "disabled"}>${DAY_LABELS[d - 1]}</button>`).join("")}
       <span class="day-editor-cost">${cost ? money(cost.value) + (cost.estimate ? " est." : "") : "£? — no day rate published, ask provider"}</span>
     </div>`;
@@ -989,7 +1121,8 @@ function renderPicker() {
     <div class="custom-days">
       <span class="day-editor-label">Days:</span>
       ${[1, 2, 3, 4, 5].map((d) => `
-        <button type="button" class="day-chip ${curDays.includes(d) ? "is-on" : ""}" data-form-day="${d}">${DAY_LABELS[d - 1]}</button>`).join("")}
+        <button type="button" class="day-chip ${curDays.includes(d) ? "is-on" : ""}"
+          aria-pressed="${curDays.includes(d) ? "true" : "false"}" data-form-day="${d}">${DAY_LABELS[d - 1]}</button>`).join("")}
     </div>
     <p class="picker-note">Goes straight into your totals like any other camp. Pick the days, and if you only know the day rate choose "per day" — it multiplies up for you.</p>`;
 
@@ -1025,6 +1158,7 @@ function renderPicker() {
   if (showAll) showAll.addEventListener("change", (e) => {
     state.pickerShowAll = e.target.checked;
     renderPicker();
+    refocusPicker("#pickerShowAll");
   });
 }
 
@@ -1050,6 +1184,7 @@ function handlePickerClick(event) {
       if (!days.length) return; // keep at least one day
       setPlanEntry(weekId, childId, { ...cur, days });
       renderPicker();
+      refocusPicker(`[data-camp-day="${d}"][data-camp-day-week="${weekId}"][data-camp-day-child="${cssEsc(childId)}"]`);
       return;
     }
     if (assignWeekBtn) {
@@ -1059,6 +1194,7 @@ function handlePickerClick(event) {
       const isThis = current && current.type === "camp" && current.campId === pickerCtx.campId;
       setPlanEntry(weekId, childId, isThis ? null : { type: "camp", campId: pickerCtx.campId });
       renderPicker();
+      refocusPicker(`[data-assign-week="${weekId}"][data-assign-child="${cssEsc(childId)}"]`);
       return;
     }
   }
@@ -1067,7 +1203,11 @@ function handlePickerClick(event) {
   const { weekId, childId } = pickerCtx;
 
   const formDayBtn = event.target.closest("[data-form-day]");
-  if (formDayBtn) { formDayBtn.classList.toggle("is-on"); return; }
+  if (formDayBtn) {
+    formDayBtn.classList.toggle("is-on");
+    formDayBtn.setAttribute("aria-pressed", formDayBtn.classList.contains("is-on") ? "true" : "false");
+    return;
+  }
 
   const campDaysBtn = event.target.closest("[data-pick-camp-days]");
   if (campDaysBtn) {
@@ -1075,6 +1215,7 @@ function handlePickerClick(event) {
     setPlanEntry(weekId, childId, carryBooked(weekId, childId, { type: "camp", campId: campDaysBtn.dataset.pickCampDays }));
     renderPicker();
     els.pickerBody.scrollTop = 0;
+    refocusPicker("[data-day-toggle]:not([disabled])");
     return;
   }
 
@@ -1089,6 +1230,7 @@ function handlePickerClick(event) {
     else delete next.myCost;
     setPlanEntry(weekId, childId, next);
     renderPicker();
+    refocusPicker("[data-set-mycost]");
     return;
   }
 
@@ -1100,6 +1242,7 @@ function handlePickerClick(event) {
     delete next.myCost;
     setPlanEntry(weekId, childId, next);
     renderPicker();
+    refocusPicker("[data-set-mycost]");
     return;
   }
 
@@ -1115,6 +1258,7 @@ function handlePickerClick(event) {
     if (!days.length) return; // keep at least one day
     setPlanEntry(weekId, childId, { ...cur, days });
     renderPicker();
+    refocusPicker(`[data-day-toggle="${d}"]`);
     return;
   }
 
@@ -1492,8 +1636,9 @@ function hafMatches(entry) {
 }
 
 function renderHaf() {
-  const matches = D.hafSnapshot.filter(hafMatches);
-  els.hafTable.innerHTML = matches.map((entry) => `
+  const all = D.hafSnapshot;
+  const matches = state.hafShowAll ? all : all.filter(hafMatches);
+  const rows = matches.map((entry) => `
     <tr class="${/summer/i.test(entry.name) ? "haf-summer" : ""}">
       <td>${escapeHtml(entry.name)}</td>
       <td>${escapeHtml(entry.venue)}</td>
@@ -1501,6 +1646,18 @@ function renderHaf() {
       <td>${escapeHtml(entry.area)}</td>
     </tr>
   `).join("");
+
+  // When the directory filters hide HAF rows, say so — "Show all" lifts only
+  // the HAF filtering; the directory filters above are untouched.
+  let notice = "";
+  if (!state.hafShowAll && matches.length < all.length) {
+    const message = matches.length
+      ? `Showing ${matches.length} of ${all.length} free HAF sessions — filtered by your search/age above.`
+      : `No free HAF sessions match your search/age filters above — all ${all.length} are hidden, not gone.`;
+    notice = `<tr class="haf-filter-note"><td colspan="4">${escapeHtml(message)}
+      <button class="btn-sub" type="button" data-haf-showall="1">Show all</button></td></tr>`;
+  }
+  els.hafTable.innerHTML = rows + notice;
 }
 
 function renderSources() {
@@ -1565,16 +1722,21 @@ function populateSelect(select, label, values) {
 /* ────────────────────────── events & init ────────────────────────── */
 
 function applyFilters() {
+  // Any filter change re-collapses the "Show all" escape hatches.
+  state.hafShowAll = false;
+  mobileShowAll = false;
   renderProviders();
   renderHaf();
 }
 
 function bindAgeChips() {
   document.querySelectorAll(".age-chip[data-age]").forEach((button) => {
+    button.setAttribute("aria-pressed", button.dataset.age === state.age ? "true" : "false");
     button.onclick = () => {
       state.age = button.dataset.age;
       document.querySelectorAll(".age-chip[data-age]").forEach((chip) => {
         chip.classList.toggle("is-active", chip.dataset.age === state.age);
+        chip.setAttribute("aria-pressed", chip.dataset.age === state.age ? "true" : "false");
       });
       applyFilters();
     };
@@ -1582,6 +1744,7 @@ function bindAgeChips() {
 }
 
 function resetFilters() {
+  clearTimeout(searchDebounceTimer); // a pending debounced search must not undo the reset
   Object.assign(state, { search: "", area: "all", category: "all", funding: "all", age: "any", dayLength: "all", price: "all", confirmedOnly: false, sort: "az" });
   els.searchInput.value = "";
   els.areaFilter.value = "all";
@@ -1593,6 +1756,7 @@ function resetFilters() {
   els.confirmedOnly.checked = false;
   document.querySelectorAll(".age-chip[data-age]").forEach((chip) => {
     chip.classList.toggle("is-active", chip.dataset.age === "any");
+    chip.setAttribute("aria-pressed", chip.dataset.age === "any" ? "true" : "false");
   });
   applyFilters();
 }
@@ -1611,7 +1775,13 @@ function init() {
   populateSelect(els.categoryFilter, "activities", categories);
   populateSelect(els.fundingFilter, "funding", funding);
 
-  els.searchInput.addEventListener("input", (e) => { state.search = e.target.value.trim(); applyFilters(); });
+  els.searchInput.addEventListener("input", (e) => {
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(() => {
+      state.search = e.target.value.trim();
+      applyFilters();
+    }, 200);
+  });
   els.areaFilter.addEventListener("change", (e) => { state.area = e.target.value; applyFilters(); });
   els.categoryFilter.addEventListener("change", (e) => { state.category = e.target.value; applyFilters(); });
   els.fundingFilter.addEventListener("change", (e) => { state.funding = e.target.value; applyFilters(); });
@@ -1622,6 +1792,24 @@ function init() {
   document.querySelector("#resetFilters").addEventListener("click", resetFilters);
   bindAgeChips();
 
+  // On small screens start with the extra filters collapsed (guard: the
+  // <details id="moreFilters"> may not exist in every build of the page).
+  const moreFilters = document.querySelector("#moreFilters");
+  if (moreFilters && MOBILE_MQ.matches) moreFilters.removeAttribute("open");
+
+  // The planner empty-state gets a real button: scroll to and focus the child form.
+  if (els.plannerEmpty && !els.plannerEmpty.querySelector("button")) {
+    const startBtn = document.createElement("button");
+    startBtn.type = "button";
+    startBtn.className = "btn btn-add planner-empty-btn";
+    startBtn.textContent = "Add a child to start";
+    startBtn.addEventListener("click", () => {
+      document.querySelector("#children").scrollIntoView({ behavior: "smooth" });
+      els.childName.focus({ preventScroll: true });
+    });
+    els.plannerEmpty.appendChild(startBtn);
+  }
+
   // Children
   els.childForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -1631,6 +1819,14 @@ function init() {
     els.childName.value = "";
     els.childAge.selectedIndex = 0;
     els.childName.focus();
+    // If they tapped "+ Add to plan" before any child existed, resume that flow.
+    if (pendingCampId) {
+      const campId = pendingCampId;
+      pendingCampId = null;
+      const gateMsg = document.querySelector("#childGateMsg");
+      if (gateMsg) gateMsg.remove();
+      if (providerById(campId)) openCampAssign(campId);
+    }
   });
 
   // Delegated clicks: shortlist hearts, add-to-plan, child remove, planner cells
@@ -1638,16 +1834,35 @@ function init() {
     const heart = event.target.closest("[data-shortlist]");
     if (heart) {
       const id = heart.dataset.shortlist;
+      const wasHeart = heart.classList.contains("heart-btn");
       state.shortlist = state.shortlist.includes(id)
         ? state.shortlist.filter((x) => x !== id)
         : [...state.shortlist, id];
       saveState();
       renderProviders();
       renderCompare();
+      if (wasHeart) {
+        // The grid was re-rendered — put focus back on this camp's new heart button.
+        const newHeart = els.providerGrid.querySelector(`.heart-btn[data-shortlist="${cssEsc(id)}"]`);
+        if (newHeart) newHeart.focus();
+      }
       return;
     }
     const add = event.target.closest("[data-addplan]");
     if (add) { openCampAssign(add.dataset.addplan); return; }
+
+    const hafShowAllBtn = event.target.closest("[data-haf-showall]");
+    if (hafShowAllBtn) {
+      state.hafShowAll = true;
+      renderHaf();
+      return;
+    }
+    const showAllCampsBtn = event.target.closest("[data-show-all-camps]");
+    if (showAllCampsBtn) {
+      mobileShowAll = true;
+      renderProviders();
+      return;
+    }
 
     const removeChildBtn = event.target.closest("[data-removechild]");
     if (removeChildBtn) {
@@ -1682,7 +1897,22 @@ function init() {
     if (pickerCtx && pickerCtx.mode === "camp") renderPlanner();
     // The close event is queued async — if the picker was already reopened
     // for another cell, don't clobber the new context.
-    if (!els.pickerDialog.open) pickerCtx = null;
+    if (!els.pickerDialog.open) {
+      pickerCtx = null;
+      // Re-renders destroyed the originating button — re-focus its replacement
+      // (same data attributes) so keyboard/screen-reader users aren't dropped.
+      // Deferred a tick: the browser's own focus restore runs after this event
+      // and would otherwise send focus to a stale (or removed) element.
+      if (pickerReturnFocus) {
+        const selector = pickerReturnFocus;
+        pickerReturnFocus = null;
+        setTimeout(() => {
+          if (els.pickerDialog.open) return; // reopened for another cell meanwhile
+          const returnEl = document.querySelector(selector);
+          if (returnEl) returnEl.focus();
+        }, 0);
+      }
+    }
   });
 
   // Checklist
