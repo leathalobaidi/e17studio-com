@@ -107,13 +107,7 @@ window.E17_DIRECTORY = {
       source: {
         label: "Church Hill holiday playscheme",
         url: "https://www.fans.waltham.sch.uk/holiday-playscheme"
-      },
-      secondarySources: [
-        {
-          label: "Summer 2026 booking form",
-          url: "https://www.fans.waltham.sch.uk/attachments/download.asp?file=742&type=docx"
-        }
-      ]
+      }
     },
     {
       id: "mission-grove",
@@ -826,10 +820,6 @@ window.E17_DIRECTORY = {
         {
           label: "Noisy Book Club",
           url: "https://www.noisybookclub.com/"
-        },
-        {
-          label: "Noisy Book Club workshops",
-          url: "https://www.noisybookclub.com/workshop"
         }
       ]
     },
