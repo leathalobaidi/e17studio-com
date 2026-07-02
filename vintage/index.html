@@ -408,18 +408,37 @@
       align-items: stretch;
     }
 
+    .photo-stack {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) 260px;
+      gap: 14px;
+      min-height: 620px;
+    }
+
     .photo-panel {
+      position: relative;
       min-height: 620px;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 24px 70px rgba(17, 16, 14, 0.16);
     }
 
+    .photo-stack .photo-panel {
+      height: 100%;
+      min-height: 0;
+    }
+
     .photo-panel img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
+    }
+
+    .photo-panel.wide img {
+      object-position: center 42%;
     }
 
     .visit-panel {
@@ -613,9 +632,14 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .photo-stack,
       .photo-panel,
       .visit-panel {
         min-height: 460px;
+      }
+
+      .photo-stack {
+        grid-template-rows: 460px 280px;
       }
     }
 
@@ -696,10 +720,15 @@
         padding: 24px;
       }
 
+      .photo-stack,
       .photo-panel,
       .visit-panel,
       .map-art {
         min-height: 360px;
+      }
+
+      .photo-stack {
+        grid-template-rows: 360px 240px;
       }
 
       .map-art::after {
@@ -807,8 +836,13 @@
 
     <section class="experience" id="visit">
       <div class="wrap experience-layout">
-        <div class="photo-panel">
-          <img src="images/vintage-cut-chair.webp" alt="Barber trimming a customer's beard inside Vintage Cut Walthamstow">
+        <div class="photo-stack">
+          <div class="photo-panel">
+            <img src="images/vintage-cut-chair.webp" alt="Barber trimming a customer's beard inside Vintage Cut Walthamstow">
+          </div>
+          <div class="photo-panel wide">
+            <img src="images/vintage-cut-razor.webp" alt="Barber using a razor during a close shave at Vintage Cut Walthamstow">
+          </div>
         </div>
         <aside class="visit-panel" aria-label="Visit Vintage Cut">
           <div>
