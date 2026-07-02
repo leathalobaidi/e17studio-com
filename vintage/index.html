@@ -10,7 +10,7 @@
   <meta property="og:description" content="Sharp cuts, clean fades and classic barbering at 77 Hoe Street, Walthamstow.">
   <meta property="og:url" content="https://e17studio.com/vintage/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://e17studio.com/vintage/images/vintage-cut-chair.webp">
+  <meta property="og:image" content="https://e17studio.com/vintage/images/vintage-ai-line-art-concept.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     "@context": "https://schema.org",
     "@type": "HairSalon",
     "name": "Vintage Cut",
-    "image": "https://e17studio.com/vintage/images/vintage-cut-chair.webp",
+    "image": "https://e17studio.com/vintage/images/vintage-ai-line-art-concept.webp",
     "telephone": "+447477156879",
     "url": "https://e17studio.com/vintage/",
     "address": {
@@ -57,16 +57,15 @@
     * { margin: 0; }
 
     :root {
-      --ink: #11100e;
-      --coal: #1d1a17;
-      --smoke: #f3efe8;
-      --paper: #fffaf1;
-      --bone: #d8cbb8;
-      --muted: #756b5f;
-      --red: #bd2d22;
-      --brick: #8e3329;
-      --brass: #b89552;
-      --green: #687863;
+      --ink: #15110c;
+      --coal: #231b12;
+      --smoke: #efe4d1;
+      --paper: #fbf1dc;
+      --bone: #ddc9a6;
+      --muted: #6f614f;
+      --accent: #9a7137;
+      --brass: #b58b4b;
+      --wash: #ead8b8;
       --line: rgba(17, 16, 14, 0.14);
       --shadow: rgba(17, 16, 14, 0.22);
       --display: "Instrument Serif", Georgia, serif;
@@ -108,8 +107,8 @@
       justify-content: space-between;
       height: 72px;
       padding: 0 34px;
-      color: var(--paper);
-      background: linear-gradient(to bottom, rgba(17, 16, 14, 0.82), rgba(17, 16, 14, 0.18), transparent);
+      color: var(--ink);
+      background: linear-gradient(to bottom, rgba(251, 241, 220, 0.94), rgba(251, 241, 220, 0.72), transparent);
     }
 
     .brand {
@@ -125,7 +124,7 @@
     }
 
     .brand span:last-child {
-      color: rgba(255, 250, 241, 0.72);
+      color: rgba(21, 17, 12, 0.62);
       font-size: 0.72rem;
       font-weight: 600;
     }
@@ -140,20 +139,20 @@
       min-height: 40px;
       display: inline-flex;
       align-items: center;
-      border: 1px solid rgba(255, 250, 241, 0.28);
+      border: 1px solid rgba(21, 17, 12, 0.18);
       border-radius: 999px;
       padding: 0 16px;
-      color: rgba(255, 250, 241, 0.88);
-      background: rgba(17, 16, 14, 0.24);
+      color: rgba(21, 17, 12, 0.86);
+      background: rgba(251, 241, 220, 0.48);
       backdrop-filter: blur(14px);
       font-size: 0.88rem;
       font-weight: 700;
     }
 
     .nav-links a.primary {
-      border-color: var(--red);
-      background: var(--red);
-      color: white;
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
     }
 
     .hero {
@@ -162,8 +161,8 @@
       align-items: end;
       position: relative;
       overflow: hidden;
-      background: var(--coal);
-      color: var(--paper);
+      background: var(--paper);
+      color: var(--ink);
     }
 
     .hero::before {
@@ -171,9 +170,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(17, 16, 14, 0.92), rgba(17, 16, 14, 0.56), rgba(17, 16, 14, 0.12)),
-        linear-gradient(0deg, rgba(17, 16, 14, 0.94), rgba(17, 16, 14, 0.04) 45%),
-        url("images/vintage-cut-chair.webp") center / cover;
+        linear-gradient(90deg, rgba(251, 241, 220, 0.98) 0%, rgba(251, 241, 220, 0.92) 38%, rgba(251, 241, 220, 0.46) 68%, rgba(251, 241, 220, 0.08) 100%),
+        linear-gradient(0deg, rgba(251, 241, 220, 0.88), rgba(251, 241, 220, 0.08) 45%),
+        url("images/vintage-ai-line-art-concept.webp") center / cover;
     }
 
     .hero-inner {
@@ -191,7 +190,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--bone);
+      color: var(--accent);
       font-size: 0.88rem;
       font-weight: 800;
     }
@@ -200,7 +199,7 @@
       content: "";
       width: 34px;
       height: 2px;
-      background: var(--red);
+      background: var(--accent);
     }
 
     h1 {
@@ -214,7 +213,7 @@
     .hero-copy p {
       max-width: 620px;
       margin-top: 18px;
-      color: rgba(255, 250, 241, 0.78);
+      color: rgba(21, 17, 12, 0.74);
       font-size: 1.15rem;
     }
 
@@ -245,15 +244,15 @@
     }
 
     .button.primary {
-      background: var(--red);
-      border-color: var(--red);
-      color: white;
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
     }
 
     .button.secondary {
-      border-color: rgba(255, 250, 241, 0.45);
-      color: var(--paper);
-      background: rgba(255, 250, 241, 0.08);
+      border-color: rgba(21, 17, 12, 0.3);
+      color: var(--ink);
+      background: rgba(251, 241, 220, 0.56);
       backdrop-filter: blur(12px);
     }
 
@@ -269,26 +268,26 @@
       margin-top: 34px;
       border-radius: 8px;
       overflow: hidden;
-      background: rgba(255, 250, 241, 0.16);
+      background: rgba(21, 17, 12, 0.18);
       max-width: 920px;
     }
 
     .info-tile {
       min-height: 112px;
       padding: 20px;
-      background: rgba(17, 16, 14, 0.74);
+      background: rgba(251, 241, 220, 0.78);
       backdrop-filter: blur(16px);
     }
 
     .info-tile strong {
       display: block;
-      color: var(--paper);
+      color: var(--ink);
       font-size: 1rem;
       margin-bottom: 6px;
     }
 
     .info-tile span {
-      color: rgba(255, 250, 241, 0.68);
+      color: rgba(21, 17, 12, 0.68);
       font-size: 0.92rem;
     }
 
@@ -303,7 +302,7 @@
       margin: 0 auto;
       object-fit: cover;
       object-position: center;
-      filter: contrast(1.04) saturate(0.94);
+      filter: grayscale(0.28) sepia(0.18) contrast(1.08) saturate(0.72);
     }
 
     main {
@@ -332,7 +331,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--brick);
+      color: var(--accent);
       font-size: 0.82rem;
       font-weight: 800;
       margin-bottom: 12px;
@@ -342,7 +341,7 @@
       content: "";
       width: 28px;
       height: 2px;
-      background: var(--brick);
+      background: var(--accent);
     }
 
     h2 {
@@ -368,7 +367,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 24px;
-      background: rgba(255, 250, 241, 0.72);
+      background: rgba(251, 241, 220, 0.82);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -441,6 +440,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      filter: grayscale(0.58) sepia(0.24) contrast(1.06) saturate(0.58);
     }
 
     .photo-panel.wide img {
@@ -497,8 +497,8 @@
     }
 
     .hours-band {
-      background: var(--green);
-      color: white;
+      background: var(--coal);
+      color: var(--paper);
       padding: 54px 0;
     }
 
@@ -510,21 +510,21 @@
     }
 
     .hours-band h2 {
-      color: white;
+      color: var(--paper);
       font-size: 3.2rem;
     }
 
     .hours-band p {
-      color: rgba(255, 255, 255, 0.74);
+      color: rgba(251, 241, 220, 0.74);
       margin-top: 12px;
       max-width: 580px;
     }
 
     .hours-table {
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(251, 241, 220, 0.22);
       border-radius: 8px;
       overflow: hidden;
-      background: rgba(17, 16, 14, 0.14);
+      background: rgba(251, 241, 220, 0.07);
     }
 
     .hours-row {
@@ -532,7 +532,7 @@
       justify-content: space-between;
       gap: 20px;
       padding: 13px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      border-bottom: 1px solid rgba(251, 241, 220, 0.16);
       font-size: 0.94rem;
     }
 
@@ -549,7 +549,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
-      background: white;
+      background: var(--paper);
       box-shadow: 0 18px 60px rgba(17, 16, 14, 0.08);
     }
 
@@ -557,8 +557,8 @@
       min-height: 360px;
       position: relative;
       background:
-        linear-gradient(135deg, rgba(17, 16, 14, 0.9), rgba(189, 45, 34, 0.72)),
-        url("images/vintage-cut-sign.webp") center / cover;
+        linear-gradient(135deg, rgba(21, 17, 12, 0.82), rgba(154, 113, 55, 0.58)),
+        url("images/vintage-ai-line-art-concept.webp") center / cover;
     }
 
     .map-art::after {
@@ -566,7 +566,7 @@
       position: absolute;
       left: 28px;
       bottom: 28px;
-      color: white;
+      color: var(--paper);
       font-family: var(--display);
       font-size: 3rem;
       line-height: 0.92;
@@ -665,9 +665,9 @@
 
       .hero::before {
         background:
-          linear-gradient(90deg, rgba(17, 16, 14, 0.88), rgba(17, 16, 14, 0.42)),
-          linear-gradient(0deg, rgba(17, 16, 14, 0.96), rgba(17, 16, 14, 0.08) 52%),
-          url("images/vintage-cut-chair.webp") center / cover;
+          linear-gradient(90deg, rgba(251, 241, 220, 0.98), rgba(251, 241, 220, 0.72)),
+          linear-gradient(0deg, rgba(251, 241, 220, 0.96), rgba(251, 241, 220, 0.12) 52%),
+          url("images/vintage-ai-line-art-concept.webp") center / cover;
       }
 
       .hero-inner,
