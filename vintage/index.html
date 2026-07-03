@@ -291,19 +291,6 @@
       font-size: 0.92rem;
     }
 
-    .sign-strip {
-      background: var(--ink);
-      border-top: 1px solid rgba(255, 250, 241, 0.14);
-    }
-
-    .sign-strip img {
-      width: min(1180px, calc(100% - 48px));
-      height: 94px;
-      margin: 0 auto;
-      object-fit: cover;
-      object-position: center;
-    }
-
     main {
       background:
         linear-gradient(180deg, var(--paper), var(--smoke) 48%, var(--paper));
@@ -403,33 +390,23 @@
 
     .experience {
       padding-top: 0;
+      padding-bottom: 128px;
     }
 
     .experience-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(330px, 0.38fr);
-      gap: 28px;
-      align-items: stretch;
+      width: min(1120px, calc(100% - 48px));
     }
 
     .photo-stack {
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) 260px;
-      gap: 14px;
-      min-height: 620px;
+      min-height: 560px;
     }
 
     .photo-panel {
       position: relative;
-      min-height: 620px;
+      min-height: 560px;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 24px 70px rgba(17, 16, 14, 0.16);
-    }
-
-    .photo-stack .photo-panel {
-      height: 100%;
-      min-height: 0;
     }
 
     .photo-panel img {
@@ -442,55 +419,8 @@
       filter: grayscale(0.58) sepia(0.24) contrast(1.06) saturate(0.58);
     }
 
-    .photo-panel.wide img {
-      object-position: center 42%;
-    }
-
     .photo-panel img.line-art {
       filter: none;
-    }
-
-    .visit-panel {
-      border-radius: 8px;
-      padding: 34px;
-      background: var(--ink);
-      color: var(--paper);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 620px;
-    }
-
-    .visit-panel h2 {
-      color: var(--paper);
-      font-size: 3.1rem;
-    }
-
-    .visit-panel p {
-      color: rgba(255, 250, 241, 0.72);
-      margin-top: 16px;
-    }
-
-    .detail-list {
-      display: grid;
-      gap: 18px;
-      margin: 30px 0;
-    }
-
-    .detail {
-      border-top: 1px solid rgba(255, 250, 241, 0.18);
-      padding-top: 16px;
-    }
-
-    .detail strong {
-      display: block;
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    .detail span,
-    .detail a {
-      color: rgba(255, 250, 241, 0.72);
     }
 
     .note {
@@ -502,7 +432,7 @@
     .hours-band {
       background: var(--coal);
       color: var(--paper);
-      padding: 54px 0;
+      padding: 78px 0;
     }
 
     .hours-inner {
@@ -629,9 +559,7 @@
       h1 { font-size: 4.2rem; }
       h2 { font-size: 3rem; }
 
-      .quick-info,
       .section-head,
-      .experience-layout,
       .hours-inner,
       .map-card {
         grid-template-columns: 1fr;
@@ -642,13 +570,8 @@
       }
 
       .photo-stack,
-      .photo-panel,
-      .visit-panel {
+      .photo-panel {
         min-height: 460px;
-      }
-
-      .photo-stack {
-        grid-template-rows: 460px 280px;
       }
     }
 
@@ -675,13 +598,12 @@
 
       .hero-inner,
       .wrap,
-      .sign-strip img {
+      .experience-layout {
         width: calc(100% - 28px);
       }
 
       h1 { font-size: 3.4rem; }
       h2,
-      .visit-panel h2,
       .hours-band h2,
       .map-copy h2 {
         font-size: 2.45rem;
@@ -708,12 +630,12 @@
         min-height: 88px;
       }
 
-      .sign-strip img {
-        height: 70px;
-      }
-
       section {
         padding: 64px 0;
+      }
+
+      .experience {
+        padding-bottom: 96px;
       }
 
       .service-grid {
@@ -724,20 +646,14 @@
         min-height: 168px;
       }
 
-      .visit-panel,
       .map-copy {
         padding: 24px;
       }
 
       .photo-stack,
       .photo-panel,
-      .visit-panel,
       .map-art {
         min-height: 360px;
-      }
-
-      .photo-stack {
-        grid-template-rows: 360px 240px;
       }
 
       .map-art::after {
@@ -762,7 +678,7 @@
     </a>
     <div class="nav-links" aria-label="Page links">
       <a href="#services">Services</a>
-      <a href="#visit">Visit</a>
+      <a href="#visit">Studio</a>
       <a href="tel:+447477156879" class="primary">Call 07477 156 879</a>
     </div>
   </nav>
@@ -794,10 +710,6 @@
       </div>
     </div>
   </header>
-
-  <div class="sign-strip" aria-label="Vintage Cut shop sign">
-    <img src="images/vintage-cut-sign-line-art.webp" width="1688" height="350" decoding="async" alt="Vintage Cut shop sign with phone number">
-  </div>
 
   <main id="main">
     <section id="services">
@@ -850,53 +762,6 @@
           <div class="photo-panel">
             <img class="line-art" src="images/vintage-cut-chair-line-art.webp" width="1535" height="1024" loading="lazy" decoding="async" alt="Line-art illustration of a barber trimming a customer's beard inside Vintage Cut Walthamstow">
           </div>
-          <div class="photo-panel wide">
-            <img src="images/vintage-cut-razor.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Barber using a razor during a close shave at Vintage Cut Walthamstow">
-          </div>
-        </div>
-        <aside class="visit-panel" aria-label="Visit Vintage Cut">
-          <div>
-            <span class="label">Visit</span>
-            <h2>Find the shop on Hoe Street.</h2>
-            <p>Vintage Cut sits on Hoe Street, a short walk from Walthamstow Central, with bus stops close by on the main road.</p>
-            <div class="detail-list">
-              <div class="detail">
-                <strong>Address</strong>
-                <span>77 Hoe Street, Walthamstow, London E17 4SA</span>
-              </div>
-              <div class="detail">
-                <strong>Phone</strong>
-                <a href="tel:+447477156879">07477 156 879</a>
-              </div>
-              <div class="detail">
-                <strong>Nearest station</strong>
-                <span>Walthamstow Central</span>
-              </div>
-            </div>
-          </div>
-          <div class="cta-row">
-            <a class="button primary" href="tel:+447477156879">Call now</a>
-            <a class="button secondary" href="https://www.google.com/maps/place/Vintage+Cut/@51.5872129,-0.0208443,21z/data=!4m6!3m5!1s0x48761de8f5650903:0x8ff068567fb824e8!8m2!3d51.5872129!4d-0.0205466!16s%2Fg%2F11h7fyckd1?entry=tts&g_ep=EgoyMDI2MDYyOS4wIPu8ASoASAFQAw%3D%3D&skid=c2c7b762-ecd2-4c32-a1ff-24413613a1a4" target="_blank" rel="noopener">Open map</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="hours-band" aria-labelledby="hours-title">
-      <div class="wrap hours-inner">
-        <div>
-          <span class="eyebrow">Opening hours</span>
-          <h2 id="hours-title">Open daily from morning into the evening.</h2>
-          <p>Public listings show Vintage Cut open every day from 9:00am, with closing times listed between 8:00pm and 8:30pm. Phone ahead for the latest appointment availability.</p>
-        </div>
-        <div class="hours-table" aria-label="Opening hours">
-          <div class="hours-row"><span>Monday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Tuesday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Wednesday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Thursday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Friday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Saturday</span><strong>09:00 - evening</strong></div>
-          <div class="hours-row"><span>Sunday</span><strong>09:00 - evening</strong></div>
         </div>
       </div>
     </section>
@@ -915,6 +780,25 @@
             </div>
             <p class="note">Service and hours information is based on public business listings and should be confirmed directly with the shop for urgent visits.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hours-band" aria-labelledby="hours-title">
+      <div class="wrap hours-inner">
+        <div>
+          <span class="eyebrow">Opening hours</span>
+          <h2 id="hours-title">Open daily from morning into the evening.</h2>
+          <p>Public listings show Vintage Cut open every day from 9:00am, with closing times listed between 8:00pm and 8:30pm. Phone ahead for the latest appointment availability.</p>
+        </div>
+        <div class="hours-table" aria-label="Opening hours">
+          <div class="hours-row"><span>Monday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Tuesday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Wednesday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Thursday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Friday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Saturday</span><strong>09:00 - evening</strong></div>
+          <div class="hours-row"><span>Sunday</span><strong>09:00 - evening</strong></div>
         </div>
       </div>
     </section>
