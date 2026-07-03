@@ -302,7 +302,6 @@
       margin: 0 auto;
       object-fit: cover;
       object-position: center;
-      filter: grayscale(0.28) sepia(0.18) contrast(1.08) saturate(0.72);
     }
 
     main {
@@ -445,6 +444,10 @@
 
     .photo-panel.wide img {
       object-position: center 42%;
+    }
+
+    .photo-panel img.line-art {
+      filter: none;
     }
 
     .visit-panel {
@@ -793,7 +796,7 @@
   </header>
 
   <div class="sign-strip" aria-label="Vintage Cut shop sign">
-    <img src="images/vintage-cut-sign.webp" width="1688" height="350" decoding="async" alt="Vintage Cut shop sign with phone number">
+    <img src="images/vintage-cut-sign-line-art.webp" width="1688" height="350" decoding="async" alt="Vintage Cut shop sign with phone number">
   </div>
 
   <main id="main">
@@ -845,7 +848,7 @@
       <div class="wrap experience-layout">
         <div class="photo-stack">
           <div class="photo-panel">
-            <img src="images/vintage-cut-chair.webp" width="1232" height="1552" loading="lazy" decoding="async" alt="Barber trimming a customer's beard inside Vintage Cut Walthamstow">
+            <img class="line-art" src="images/vintage-cut-chair-line-art.webp" width="1535" height="1024" loading="lazy" decoding="async" alt="Line-art illustration of a barber trimming a customer's beard inside Vintage Cut Walthamstow">
           </div>
           <div class="photo-panel wide">
             <img src="images/vintage-cut-razor.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Barber using a razor during a close shave at Vintage Cut Walthamstow">
