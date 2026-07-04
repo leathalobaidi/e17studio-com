@@ -13,7 +13,7 @@
  */
 
 window.E17_PLANNER = {
-  updated: "2026-07-02",
+  updated: "2026-07-04",
 
   // Term dates from Waltham Forest Council "Holiday pattern" PDFs 2025-26 and
   // 2026-27 (downloaded and checked 9 June 2026).
@@ -210,7 +210,9 @@ window.E17_PLANNER = {
 
     "barracudas-woodford": {
       weeksLikely: true,
-      weeksBasis: "Booking open for Summer 2026 at Woodford County High School (checked 10 Jun) — live availability and week prices on the Barracudas site; SIBLING10 saves £5/day for 2+ children over 10+ days.",
+      weeksBasis: "Booking open for Summer 2026 at Woodford County High School — live Prices & Availability widget shows week 20-24 Jul 'Limited' throughout and week 27-31 Jul mixed 'Available'/'Limited'; SIBLING10 saves £5/day for 2+ children over 10+ days (checked 4 Jul 2026).",
+      price: { week: 259, day: 59 },
+      priceBasis: "£259 full week or £59 single day on the Barracudas Prices & Availability widget (checked 4 Jul 2026); SIBLING10 saves £5/day for 2+ children over 10+ days.",
       hours: { start: "08:30", end: "17:30", extStart: "08:00", extEnd: "18:00" },
       coverage: "working",
       tfc: true, vouchers: true, siblingDiscount: true
@@ -231,7 +233,7 @@ window.E17_PLANNER = {
 
     "ultra-fc": {
       weeksLikely: true,
-      weeksBasis: "Community football camps with Aim2Gain; confirm current summer timetable on the booking page.",
+      weeksBasis: "Community football camps with Aim2Gain — but as of 4 Jul 2026 no summer 2026 holiday camp dates or booking are live on the site (only an 'UPCOMING EVENT! Be the first to know!' email sign-up; book-online lists only football trials/team programmes). Contact the provider to check whether summer camps will run.",
       coverage: "varies"
     },
 
@@ -346,7 +348,7 @@ window.E17_PLANNER = {
 
     "study-right-stem": {
       weeksLikely: true,
-      weeksBasis: "HAF-funded STEM club — summer sessions appear on the Eequ feed when the programme opens.",
+      weeksBasis: "HAF-funded STEM club — as of 4 Jul 2026 the Eequ listing shows 'Next date: None - Register your interest', so no summer 2026 sessions are dated/bookable yet; listing shows a paid Non-HAF ticket at £30/session alongside free HAF places for eligible FSM children.",
       haf: true
     },
 

@@ -1,9 +1,9 @@
 window.E17_DIRECTORY = {
-  updated: "2026-07-02",
+  updated: "2026-07-04",
   providers: [
     {
       id: "waltham-forest-haf",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Waltham Forest Holiday Activity and Food Programme",
       kind: "Council route",
       area: "Borough-wide",
@@ -35,7 +35,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "ymca-y-kidz",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "YMCA Y Kidz Holiday Playscheme",
       kind: "Childcare playscheme",
       area: "Walthamstow / Highams Park",
@@ -60,7 +60,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "lloyd-park-childrens-charity",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Lloyd Park Children's Charity Holiday Club",
       kind: "Inclusive holiday club",
       area: "Lloyd Park / Higham Hill",
@@ -91,7 +91,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "church-hill-playscheme",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       availability: { status: "mixed", asOf: "2026-07-02", note: "Some days already full: Wed 22 July, Wed 5 and Fri 7 August fully booked; in w/c 27 July only Mon 27 is still open, in w/c 10 August only Mon 10; w/c 17-21 August all open (booking form grid, 2 Jul)." },
       name: "Church Hill Nursery Holiday Playscheme",
       kind: "Early years playscheme",
@@ -117,7 +117,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "mission-grove",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Mission Grove Primary Holiday Club",
       kind: "School holiday club",
       area: "Walthamstow",
@@ -148,7 +148,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "active-london",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       bookingUrl: "https://activelondon.ipalbookings.com/",
       name: "Active London",
       kind: "Multi-activity childcare",
@@ -180,7 +180,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "360-active",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "360 Active",
       kind: "Multi-sports and arts camp",
       area: "Walthamstow",
@@ -205,7 +205,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "ptc-sports-henry-maynard",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "PTC Sports Holiday Club (Gwyn Jones)",
       kind: "Multi-sports holiday club",
       area: "Leytonstone",
@@ -240,7 +240,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "future-stars-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "Full-day option still shows 'Limited Spaces Available' on ClassForKids; the separate main/early/late sessions are bookable (checked 4 Jul 2026)." },
       name: "Future Stars Walthamstow",
       kind: "Full-day multi-activity club",
       area: "Walthamstow",
@@ -271,7 +272,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "wo-sports",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "By venue on the booking site: Score Leyton and St Joseph's show 'Good'; George Tomlinson, Woodside and Leytonstone Leisure Centre show 'Limited'. None sold out (checked 4 Jul 2026)." },
       bookingUrl: "https://bookings.wo-sports.co.uk/",
       name: "WO Sports",
       kind: "Sports and HAF camps",
@@ -303,8 +305,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "all-about-dance",
-      checkedOn: "2026-07-02",
-      availability: { status: "mixed", asOf: "2026-07-02", note: "All five summer weeks bookable through the provider site's ClassForKids links, but the free HAF (Eequ) Walthamstow week-1 listing shows no bookable date — register interest there." },
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "All five summer weeks bookable through the provider site's ClassForKids links, but the free HAF (Eequ) Walthamstow week-1 listing shows no bookable date — register interest there (checked 4 Jul 2026)." },
       name: "All About Dance UK",
       kind: "Dance, drama and acro camp",
       area: "Walthamstow / Chingford",
@@ -335,7 +337,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "gravity-performing-arts",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Gravity Performing Arts",
       kind: "Musical theatre holiday camp",
       area: "Walthamstow",
@@ -360,7 +362,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "mother-nature-science-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Mother Nature Science Walthamstow",
       kind: "Science and STEM holiday camp",
       area: "Walthamstow",
@@ -391,7 +393,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "the-strings-club-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "The Strings Club Walthamstow",
       kind: "Music holiday camp",
       area: "Walthamstow",
@@ -422,7 +424,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "football-fun-factory",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Football Fun Factory Walthamstow and Leyton",
       kind: "Football camp",
       area: "Walthamstow / Leytonstone",
@@ -447,7 +449,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "little-soccer-stars-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       bookingUrl: "https://book.littlesoccerstars.co.uk",
       name: "Little Soccer Stars Walthamstow",
       kind: "Football holiday camp",
@@ -518,7 +520,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "camp-beaumont-woodbridge",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Camp Beaumont Woodbridge High School",
       kind: "Multi-activity day camp",
       area: "Woodford Green",
@@ -543,7 +545,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "barracudas-woodford",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "Week of 20-24 July shows 'Limited' on every day and for the full week; week of 27-31 July is 'Available' Mon and Fri but 'Limited' Tue-Thu (Prices & Availability widget, checked 4 Jul 2026)." },
       name: "Barracudas Woodford",
       kind: "Multi-activity day camp",
       area: "Woodford Green",
@@ -556,11 +559,11 @@ window.E17_DIRECTORY = {
       categories: ["Full day", "Multi-activity", "Sports", "Arts", "Coding"],
       funding: ["Paid", "Tax-Free Childcare", "Childcare vouchers", "Sibling discount"],
       hours: "Standard 8:30am-5:30pm; extended hours 8:00am-6:00pm",
-      price: "Check live Barracudas prices and availability; sibling code SIBLING10 saves £5 per day per child when booking 10+ individual days for 2+ children",
-      summary: "Large activity day camp at Woodford County High School for Easter, summer and October half term, with sports, creative activities, Skills Builder courses and summer extras such as aqua slide/water park where available. Booking is open for Summer 2026; day prices only show in the live booking flow.",
+      price: "Summer 2026: £259 full week or £59 single day (Prices & Availability widget, checked 4 Jul 2026); sibling code SIBLING10 saves £5 per day per child when booking 10+ individual days for 2+ children",
+      summary: "Large activity day camp at Woodford County High School for Easter, summer and October half term, with sports, creative activities, Skills Builder courses and summer extras such as aqua slide/water park where available. Booking is open for Summer 2026; the live Prices & Availability widget shows £259 per week or £59 per day (checked 4 Jul 2026).",
       goodFor: "Families who can travel to Woodford for a long-day commercial camp with lots of activity choice and childcare-payment options.",
       booking: "Book through the Barracudas Woodford camp page and check live availability for the holiday period.",
-      confidence: "Booking open for Summer 2026 — page checked 10 June",
+      confidence: "Booking open for Summer 2026; live prices/availability checked 4 Jul 2026",
       source: {
         label: "Barracudas Woodford",
         url: "https://www.barracudas.co.uk/camps/woodford"
@@ -578,7 +581,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "break-tha-cycle",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Break tha Cycle Holiday Clubs",
       kind: "HAF and community holiday club",
       area: "Leytonstone",
@@ -603,7 +606,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "yellow-birds",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Yellow Birds Play Academy",
       kind: "Out of school club",
       area: "Chingford / Waltham Forest",
@@ -628,7 +631,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "ultra-fc",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Ultra FC Holiday Camps",
       kind: "Football camp",
       area: "Walthamstow / Chingford",
@@ -642,10 +645,10 @@ window.E17_DIRECTORY = {
       funding: ["Paid"],
       hours: "Full-day football sessions; confirm current timetable",
       price: "Check booking page",
-      summary: "Football camps run with Aim2Gain in the local Walthamstow and Chingford community.",
+      summary: "Football camps run with Aim2Gain in the local Walthamstow and Chingford community. As of 4 Jul 2026 no summer 2026 holiday camp dates or booking are live on the site — the holiday-camps page carries only an 'UPCOMING EVENT! Be the first to know!' email sign-up, and the book-online page lists only football trials and team programmes. Contact the provider to check whether summer camps will run.",
       goodFor: "Children focused on football skills, games and active days.",
-      booking: "Use Ultra FC booking page.",
-      confidence: "Provider page checked; booking details sparse",
+      booking: "No summer 2026 holiday camp is currently bookable on the Ultra FC site (checked 4 Jul 2026) — register on their 'be the first to know' sign-up or contact them directly.",
+      confidence: "Provider page checked 4 Jul 2026; no summer camp currently listed",
       source: {
         label: "Ultra FC holiday camps",
         url: "https://www.ultrafc.co.uk/holiday-camps"
@@ -653,7 +656,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "art-k-highams-park",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "art-K Highams Park holiday workshops",
       kind: "Art workshop",
       area: "Highams Park",
@@ -678,7 +681,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "creation-station-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "The Creation Station Walthamstow",
       kind: "Creative holiday club",
       area: "Walthamstow",
@@ -703,7 +706,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "cook-with-kasper",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Cook with Kasper",
       kind: "Cooking classes and holiday collaborations",
       area: "Walthamstow",
@@ -738,7 +741,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "better-walthamstow-leisure-centre",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "Junior gym, basketball and table-tennis drop-ins are open and bookable for the summer holidays; no summer-dated gymnastics short course is live yet (page shows 'Future dates TBA') (checked 4 Jul 2026)." },
       name: "Better Walthamstow Leisure Centre holiday activities",
       kind: "Leisure centre holiday sessions",
       area: "Walthamstow",
@@ -793,7 +797,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "chillie-kids-club",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Chillie Kids Club",
       kind: "Creative upcycling holiday club",
       area: "Walthamstow / Portobello Road",
@@ -828,8 +832,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "noisy-book-club-summer",
-      checkedOn: "2026-07-02",
-      availability: { status: "mixed", asOf: "2026-07-02", note: "Per chapter on 2 Jul: 20-23 Jul full (waiting list); 27-29 Jul 6 seats left; 4-7 Aug 7 seats; 10-14 Aug not yet bookable (register interest); 1-2 Sep only 3 seats; 3-4 Sep 6 seats." },
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "Per chapter on 4 Jul: 20-23 Jul full (waiting list); 27-29 Jul 6 seats left; 4-7 Aug 7 seats; 1-2 Sep only 3 seats; 3-4 Sep 6 seats." },
       name: "Noisy Book Club Summer Club",
       kind: "Books, art and growth-mindset summer club",
       area: "Walthamstow Central",
@@ -860,8 +864,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "showkids-walthamstow",
-      checkedOn: "2026-07-02",
-      availability: { status: "mixed", asOf: "2026-07-02", note: "The Greatest ShowKids week (20-24 July) is sold out; A Week in the West End (24-28 August) was still open to book on 2 Jul." },
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "The Greatest ShowKids week (20-24 July) is sold out ('We are now full for this course'); A Week in the West End (24-28 August) was still open to book on 4 Jul." },
       bookingUrl: "https://showkids.co.uk/showweek-application-form/",
       name: "ShowKids Walthamstow",
       kind: "Drama, singing and dance holiday courses",
@@ -897,8 +901,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "sylvestrian-leisure-holiday-activities",
-      checkedOn: "2026-07-02",
-      availability: { status: "mixed", asOf: "2026-07-02", note: "Only the 13-17 July week still showed 'Places available' on Pembee on 2 Jul; the 6-10 July week and every school-holiday week from 20 July onwards is waitlist-only." },
+      checkedOn: "2026-07-04",
+      availability: { status: "mixed", asOf: "2026-07-04", note: "Only the 13-17 July week still showed 'Places available' on Pembee on 4 Jul; the 6-10 July week and every school-holiday week from 20 July onwards is waitlist-only." },
       bookingUrl: "https://sylvestrian-leisure-centre.pembee.app/",
       name: "Sylvestrian Leisure Holiday Activities",
       kind: "Ofsted-registered multi-activity camp",
@@ -934,7 +938,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "perform-walthamstow-village",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       bookingUrl: "https://www.perform.org.uk/holiday-courses/peterpan",
       name: "Perform Walthamstow Village",
       kind: "Drama, dance and singing holiday course",
@@ -966,7 +970,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "stagecoach-chingford-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Stagecoach Chingford and Walthamstow",
       kind: "Performing arts holiday workshops",
       area: "Chingford / Walthamstow",
@@ -997,7 +1001,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "act-out-walthamstow",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Act Out Walthamstow",
       kind: "Performing arts holiday workshops",
       area: "Walthamstow",
@@ -1028,7 +1032,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "vestry-school-of-dance",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Vestry School of Dance Summer School",
       kind: "Dance and performing arts summer school",
       area: "Walthamstow",
@@ -1059,7 +1063,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "study-right-stem",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Study Right STEM and Creative Club",
       kind: "STEM and creative HAF club",
       area: "Walthamstow",
@@ -1073,10 +1077,10 @@ window.E17_DIRECTORY = {
       funding: ["Free/HAF"],
       hours: "Check Eequ listing",
       price: "HAF route where eligible",
-      summary: "Eequ-listed STEM and creative club in Walthamstow for older children and young people.",
+      summary: "Eequ-listed STEM and creative club in Walthamstow for older children and young people. As of 4 Jul 2026 the Eequ listing shows 'Next date: None - Register your interest' — no summer 2026 sessions are scheduled/bookable yet; the listing shows a paid Non-HAF ticket at £30 per session alongside free HAF places for eligible FSM children.",
       goodFor: "Families looking for non-sport HAF options for ages 8+.",
-      booking: "Register interest through Eequ.",
-      confidence: "HAF feed checked",
+      booking: "No dated summer 2026 sessions yet — register interest through Eequ and watch for dates (checked 4 Jul 2026).",
+      confidence: "HAF/Eequ listing checked 4 Jul 2026 — no summer dates live yet",
       source: {
         label: "Study Right on Eequ HAF",
         url: "https://eequ.org/book/study-right-stem-and-creative-club-with-study-right-22183"
@@ -1084,7 +1088,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "upscill-tech-bootcamp",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       bookingUrl: "https://upscill.co.uk/event/register-kids-for-tech-courses-in-walthamstow-e10/",
       name: "UpScill London Tech Bootcamp",
       kind: "Coding and game design bootcamp",
@@ -1116,7 +1120,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "sck-martial-arts",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "SCK Martial Arts Holiday Camp",
       kind: "Martial arts HAF camp",
       area: "Leyton",
@@ -1141,7 +1145,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "petite-productions",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       bookingUrl: "https://bookwhen.com/petiteproductions",
       name: "Petite Productions Holiday Workshops",
       kind: "Musical theatre holiday workshop",
@@ -1173,7 +1177,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "ryan-fc-girls",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Ryan FC Girls Summer Football Camp",
       kind: "Girls-only football camp",
       area: "Walthamstow",
@@ -1204,7 +1208,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "myths-maps-monsters",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       availability: { status: "full", asOf: "2026-07-02", note: "The Tickettailor event page shows 'Sold out' across its dates; the provider's upcoming-shows page still advertises the camp — check for returns." },
       name: "Myths, Maps & Monsters Summer Camp",
       kind: "Mythology-themed activity camp",
@@ -1240,7 +1244,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "wee-movers-holiday",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Wee Movers Creative Holiday School",
       kind: "Creative arts & dance holiday camp",
       area: "Leyton",
@@ -1275,7 +1279,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "make-it-do-it",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Make It Do It Art Camp",
       kind: "Creative art holiday camp",
       area: "Leytonstone",
@@ -1306,8 +1310,8 @@ window.E17_DIRECTORY = {
     },
     {
       id: "infinite-jest",
-      checkedOn: "2026-07-02",
-      availability: { status: "full", asOf: "2026-07-02", note: "Sold out on Pebble — zero spots left for every date 3-7 August and no waitlist offered (2 Jul)." },
+      checkedOn: "2026-07-04",
+      availability: { status: "full", asOf: "2026-07-04", note: "Sold out on Pebble for every date 3-7 August; a 'Join Waitlist' option is now shown (checked 4 Jul 2026)." },
       name: "Infinite Jest Drama Camp",
       kind: "Drama holiday camp",
       area: "Leyton",
@@ -1338,7 +1342,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "mb-summer-tottenham",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "MB Community Summer Camp - Harris Academy Tottenham",
       kind: "Summer holiday camp",
       area: "Tottenham (Haringey)",
@@ -1373,7 +1377,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "mb-summer-chingford",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "MB Community Summer Camp - Salisbury Manor (Chingford)",
       kind: "Summer holiday camp",
       area: "Chingford",
@@ -1408,7 +1412,7 @@ window.E17_DIRECTORY = {
     },
     {
       id: "build-a-band-sing17",
-      checkedOn: "2026-07-02",
+      checkedOn: "2026-07-04",
       name: "Build a Band! Summer Music Project (Sing17)",
       kind: "Music holiday project",
       area: "Walthamstow",
